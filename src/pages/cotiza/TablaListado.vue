@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="flex flex-center">
-    <Filtros/>
-    <CuadroResumen />
+    <div class="row justify-around">
+    <Filtros style="width: 50%"/>
+    <CuadroResumen style="width: 40%"/>
     </div>
     <div class="q-pa-sm">
       <q-table
