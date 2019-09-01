@@ -53,5 +53,5 @@ if (process.env.MODE !== "ssr") {
     component: () => import("pages/Error404.vue")
   });
 }
-h
+
 export default routes;
