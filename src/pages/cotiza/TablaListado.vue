@@ -1,23 +1,16 @@
 <template>
-  <div>
-    <div class="row justify-around">
-    <Filtros style="width: 50%"/>
-    <CuadroResumen style="width: 40%"/>
-    </div>
-    <div class="q-pa-sm">
-      <q-table
-        title="Listado"
-        :data="data"
-        dense
-        :columns="columns"
-        row-key="name"
-        :sort-method="customSort"
-        binary-state-sort
-      />
-    </div>
+  <div class="q-pa-md">
+    <q-table
+      dense
+      title="Listado"
+      :data="data"
+      :columns="columns"
+      row-key="name"
+      :sort-method="customSort"
+      binary-state-sort
+    />
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -26,44 +19,68 @@ export default {
         {
           name: "name",
           required: true,
-          label: "Dessert (100g serving)",
+          label: "Nro.",
           align: "left",
           field: row => row.name,
           format: val => `${val}`,
           sortable: true
         },
         {
-          name: "calories",
-          align: "center",
-          label: "Calories",
+          name: "nu_reque",
+          align: "left",
+          label: "Nro. Requerimiento",
           field: "calories",
           sortable: true
         },
-        { name: "fat", label: "Fat (g)", field: "fat", sortable: true },
-        { name: "carbs", label: "Carbs (g)", field: "carbs", sortable: true },
         {
-          name: "protein",
-          label: "Protein (g)",
+          name: "fe_reque",
+          align: "left",
+          label: "Fecha Reque.",
+          field: "fat",
+          sortable: true
+        },
+        {
+          name: "cliente",
+          align: "left",
+          label: "Cliente",
+          field: "carbs",
+          sortable: true
+        },
+        {
+          name: "contacto",
+          align: "left",
+          label: "Contacto",
           field: "protein",
           sortable: true
         },
         {
-          name: "sodium",
-          label: "Sodium (mg)",
+          name: "di_pendi",
+          align: "left",
+          label: "Dias Pendientes",
           field: "sodium",
           sortable: true
         },
         {
-          name: "calcium",
-          label: "Calcium (%)",
+          name: "fe_cotiz",
+          align: "left",
+          label: "Fecha Cotizacion",
           field: "calcium",
           sortable: true,
           sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
         },
         {
-          name: "iron",
-          label: "Iron (%)",
+          name: "estado",
+          align: "left",
+          label: "Estado",
           field: "iron",
+          sortable: true,
+          sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
+        },
+        {
+          name: "pdf",
+          align: "left",
+          label: "Pdf",
+          field: "pdf",
           sortable: true,
           sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
         }
@@ -172,10 +189,6 @@ export default {
       ]
     };
   },
-  components: {
-    Filtros: () => import("./Filtros"),
-    CuadroResumen: () => import("./CuadroResumen")
-  },
   methods: {
     customSort(rows, sortBy, descending) {
       let data = [...rows];
@@ -193,6 +206,7 @@ export default {
           }
         });
       }
+
       return data;
     }
   }

@@ -1,32 +1,30 @@
 {
-  "name": "appservi",
+  "name": "appwebquasar",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "productName": "Servi Admin",
   "cordovaId": "org.cordova.quasar.app",
   "author": "Miguekos <miguekos1233@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "cross-env OTRA=http://127.0.0.1:8000 QENV=production quasar dev",
-    "test-dev": "cross-env QENV=test quasar dev",
-    "combined": "cross-env OTRA=http://127.0.0.1:8000 QENV=development+test quasar dev",
-    "build": "cross-env OTRA=http://127.0.0.1:8000 QENV=production quasar build"
+    "lint": "eslint --ext .js,.vue src",
+    "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
+    "canvasjs": "^1.8.1",
     "quasar": "^1.0.0",
     "vue-i18n": "^8.0.0"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0",
-    "@quasar/quasar-app-extension-qenv": "^1.0.0-beta.1",
     "@vue/eslint-config-prettier": "^4.0.0",
     "babel-eslint": "^10.0.1",
-    "cross-env": "^5.2.0",
     "eslint": "^5.10.0",
     "eslint-loader": "^2.1.1",
-    "eslint-plugin-vue": "^5.0.0"
+    "eslint-plugin-vue": "^5.0.0",
+    "http-proxy-middleware": "^0.19.1"
   },
   "engines": {
     "node": ">= 8.9.0",

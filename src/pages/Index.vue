@@ -1,19 +1,11 @@
 <template>
-  <q-page class="flex flex-center">
-    <TablaListado />
-  </q-page>
+  <div class="q-pa-md">
+    <q-parallax :height="200" :speed="0.5">
+      <template v-slot:media>
+        <img src="https://cdn.quasar.dev/img/parallax1.jpg" />
+      </template>
+
+      <h1 class="text-white">Home</h1>
+    </q-parallax>
+  </div>
 </template>
-
-<style></style>
-
-<script>
-export default {
-  name: "PageIndex",
-  mounted() {
-    console.log("Todo esta ok");
-  },
-  components: {
-    TablaListado: () => import("./cotiza/TablaListado")
-  }
-};
-</script>

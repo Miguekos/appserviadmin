@@ -1,14 +1,15 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
-
 module.exports = function (ctx) {
   return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
       'i18n',
-      'axios'
+      'axios',
+      'canvas'
     ],
+
     css: [
       'app.styl'
     ],
@@ -16,10 +17,10 @@ module.exports = function (ctx) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v3',
-      // 'fontawesome-v5',
+      'fontawesome-v5',
       // 'eva-icons',
       // 'themify',
-      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
+      'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
       'roboto-font', // optional, you are not bound to it
       'material-icons' // optional, you are not bound to it
@@ -45,13 +46,26 @@ module.exports = function (ctx) {
         'QItem',
         'QItemSection',
         'QItemLabel',
+        'QCard',
+        'QCardSection',
+        'QCardActions',
+        'QInput',
+        'QSeparator',
+        'QParallax',
+        'QImg',
+        'QSpace',
+        'QBadge',
+        'QTooltip',
+        'QAvatar',
+        'QTooltip',
+        'QScrollArea',
         'QTable',
         'QTh',
         'QTr',
         'QTd',
-        'QCard',
-        'QCardSection',
-        'QCardActions'
+        'QMarkupTable',
+        'QSelect',
+        'QDate'
       ],
 
       directives: [
@@ -60,23 +74,14 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'Cookies'
       ]
     },
 
     supportIE: true,
 
     build: {
-      proxyTable: {
-        // proxy all requests starting with /api to jsonplaceholder
-        '/api': {
-          target: 'http://127.0.0.1:8000',
-          changeOrigin: true,
-          pathRewrite: {
-            '^/api': ''
-          }
-        }
-      },
       scopeHoisting: true,
       // vueRouterMode: 'history',
       // vueCompiler: true,
@@ -98,22 +103,12 @@ module.exports = function (ctx) {
 
     devServer: {
       // https: true,
-      proxy: {
-        // proxy all requests starting with /api to jsonplaceholder
-        '/api': {
-          // target: JSON.stringify('http://miguekosdemo.tk'),
-          target: 'http://127.0.0.1:8000',
-          changeOrigin: true,
-          pathRewrite: {
-            '^/api': ''
-          }
-        }
-      },
+      // port: 8080,
       open: true // opens browser window automatically
     },
 
-    // animations: 'all', // --- includes all animations
-    animations: [],
+    animations: 'all', // --- includes all animations
+    // animations: [],
 
     ssr: {
       pwa: false
@@ -189,7 +184,7 @@ module.exports = function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        // appId: 'appservi'
+        // appId: 'appwebquasar'
       }
     }
   }
