@@ -23,7 +23,7 @@
                   id="username"
                   type="text"
                   v-model.trim="form.username"
-                  label="User Name"
+                  label="Email"
                   required
                   autofocus
                 />
@@ -56,8 +56,8 @@ export default {
       drawerState: true,
       rememberMe: true,
       form: {
-        username: "",
-        password: ""
+        username: "admin@admin.com",
+        password: "secret"
       }
     };
   },

@@ -1,11 +1,3 @@
-// const routes = [
-//   {
-//     path: "/",
-//     component: () => import("layouts/MyLayout.vue"),
-//     children: [{ path: "", component: () => import("pages/Index.vue") }]
-//   }
-// ];
-
 const routes = [
   {
     path: "/",
@@ -61,5 +53,5 @@ if (process.env.MODE !== "ssr") {
     component: () => import("pages/Error404.vue")
   });
 }
-
+h
 export default routes;

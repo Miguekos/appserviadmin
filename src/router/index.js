@@ -51,3 +51,4 @@ export default function(/* { store, ssrContext } */) {
 
   return Router;
 }
+h
