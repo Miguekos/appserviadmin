@@ -1,6 +1,6 @@
 <template>
   <div class="full-width">
-    <q-markup-table dense :separator="separator" flat bordered>
+    <q-markup-table :separator="separator" flat bordered>
       <thead>
         <tr>
           <th style="font-size: 20px" class="bg-grey-4 text-left">Filtros</th>
@@ -39,17 +39,6 @@
               standout="bg-teal text-white"
               type="date"
               v-model="fechafin"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td class="text-left">Cliente</td>
-          <td class="text-right">
-            <q-input
-              dense
-              standout="bg-teal text-white"
-              v-model="cliente"
-              label="Nomrbre del Cliente"
             />
           </td>
         </tr>
