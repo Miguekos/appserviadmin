@@ -71,23 +71,23 @@ export default {
       };
       // console.log(data);
       const response = await this.login(data);
-      const validar = response.message;
+      const validar = response[0];
       console.log(validar);
       if (validar == true) {
-        const guardaruser = await this.validarUser();
+          console.log('entro en validar')
         this.$q.notify({
-          message: `Wellcome: ${guardaruser.name}`,
+          message: `Wellcome: ${validar.name}`,
           color: "green"
         });
-        console.log(guardaruser);
+        console.log(validar);
         localStorage.setItem("jwt", true);
-        localStorage.setItem("datadelusuario", JSON.stringify(guardaruser));
+        localStorage.setItem("datadelusuario", JSON.stringify(validar));
         this.$q.cookies.set("accToken", "cookie_value");
         this.$router.push("/");
         // this.$router.push({ name: "HelloWorld" });
       } else {
         this.$q.notify({
-          message: validar,
+          message: 'validar',
           color: "red"
         });
       }

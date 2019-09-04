@@ -5,7 +5,7 @@ import { Notify } from "quasar";
 // const REGISTER_ROUTE = "/auth/register";
 // const VERIFICATION_ROUTE = "/auth/verify";
 const LOGOUT_ROUTE = "/api/logout";
-const LOGIN_ROUTE = "/api/login";
+const LOGIN_ROUTE = "/api/tbusers";
 const VALIDAR_USER = "/api/user";
 // const FETCH_USER_ROUTE = "/auth/user";
 // const PASSWORD_FORGOT_ROUTE = "/auth/password/forgot";
@@ -17,7 +17,7 @@ export async function validarUser() {
 // eslint-disable-next-line
 export async function login({}, payload) {
   try {
-    const login = await axiosInstance.post(LOGIN_ROUTE, payload);
+    const login = await axiosInstance.get(`${LOGIN_ROUTE}?filter={"where":{"and":[{"email":"${payload.email}"},{"password":"${payload.password}"}]}}`);
     return login.data;
   } catch (e) {
     console.log(e);
