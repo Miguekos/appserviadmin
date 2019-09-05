@@ -111,20 +111,20 @@
             </q-item-section>
           </q-item>
 
-          <q-separator class="q-my-md" />
+          <!--          <q-separator class="q-my-md" />-->
 
-          <q-item-label header class="text-weight-bold text-uppercase">
-            Ventas
-          </q-item-label>
+          <!--          <q-item-label header class="text-weight-bold text-uppercase">-->
+          <!--            Ventas-->
+          <!--          </q-item-label>-->
 
-          <q-item v-for="link in links2" :key="link.text" v-ripple clickable>
-            <q-item-section avatar>
-              <q-icon color="grey" :name="link.icon" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{ link.text }}</q-item-label>
-            </q-item-section>
-          </q-item>
+          <!--          <q-item v-for="link in links2" :key="link.text" v-ripple clickable>-->
+          <!--            <q-item-section avatar>-->
+          <!--              <q-icon color="grey" :name="link.icon" />-->
+          <!--            </q-item-section>-->
+          <!--            <q-item-section>-->
+          <!--              <q-item-label>{{ link.text }}</q-item-label>-->
+          <!--            </q-item-section>-->
+          <!--          </q-item>-->
 
           <q-separator class="q-mt-md q-mb-xs" />
 
@@ -224,7 +224,7 @@ export default {
         { icon: "whatshot", text: "Dashboard", path: "/dashboard" },
         {
           icon: "subscriptions",
-          text: "Registro Cotizacion",
+          text: "Cotizacion",
           path: "/cotizacion"
         }
       ],
@@ -235,20 +235,16 @@ export default {
         { icon: "thumb_up_alt", text: "Proveedores" }
       ],
       links3: [
-        { icon: "fab fa-youtube", text: "Clientes", path: "/cliente" },
+        { icon: "group", text: "Clientes", path: "/cliente" },
         {
-          icon: "local_movies",
+          icon: "group_add\n",
           text: "Crear Clientes",
           path: "/cliente/create"
-        },
-        { icon: "videogame_asset", text: "Cuenta" },
-        { icon: "live_tv", text: "Pendientes" }
+        }
       ],
       links4: [
-        { icon: "user", text: "Usuarios", path: "/user" },
-        { icon: "flag", text: "Crear Usuarios", path: "/user/wcreate" },
-        { icon: "help", text: "Registo" },
-        { icon: "feedback", text: "Control de Accesos" }
+        { icon: "supervised_user_circle", text: "Usuarios", path: "/user" },
+        { icon: "person_add", text: "Crear Usuarios", path: "/user/create" }
       ],
       links5: [{ icon: "logout", text: "Salir", path: "logout" }],
       buttons1: [
