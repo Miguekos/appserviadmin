@@ -129,10 +129,16 @@
           <q-separator class="q-mt-md q-mb-xs" />
 
           <q-item-label header class="text-weight-bold text-uppercase">
-            Control
+            Clientes
           </q-item-label>
 
-          <q-item v-for="link in links3" :key="link.text" v-ripple clickable>
+          <q-item
+            v-for="link in links3"
+            :key="link.text"
+            v-ripple
+            clickable
+            @click="URL(link.path)"
+          >
             <q-item-section avatar>
               <q-icon color="grey" :name="link.icon" />
             </q-item-section>
@@ -143,7 +149,17 @@
 
           <q-separator class="q-my-md" />
 
-          <q-item v-for="link in links4" :key="link.text" v-ripple clickable>
+          <q-item-label header class="text-weight-bold text-uppercase">
+            Usuarios
+          </q-item-label>
+
+          <q-item
+            v-for="link in links4"
+            :key="link.text"
+            v-ripple
+            clickable
+            @click="URL(link.path)"
+          >
             <q-item-section avatar>
               <q-icon color="grey" :name="link.icon" />
             </q-item-section>
@@ -219,14 +235,18 @@ export default {
         { icon: "thumb_up_alt", text: "Proveedores" }
       ],
       links3: [
-        { icon: "fab fa-youtube", text: "Ventas" },
-        { icon: "local_movies", text: "Facturacion" },
+        { icon: "fab fa-youtube", text: "Clientes", path: "/cliente" },
+        {
+          icon: "local_movies",
+          text: "Crear Clientes",
+          path: "/cliente/create"
+        },
         { icon: "videogame_asset", text: "Cuenta" },
         { icon: "live_tv", text: "Pendientes" }
       ],
       links4: [
-        { icon: "settings", text: "Clientes" },
-        { icon: "flag", text: "Control de Gastos" },
+        { icon: "user", text: "Usuarios", path: "/user" },
+        { icon: "flag", text: "Crear Usuarios", path: "/user/wcreate" },
         { icon: "help", text: "Registo" },
         { icon: "feedback", text: "Control de Accesos" }
       ],

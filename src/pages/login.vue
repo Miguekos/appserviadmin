@@ -73,8 +73,8 @@ export default {
       const response = await this.login(data);
       const validar = response[0];
       console.log(validar);
-      if (validar == true) {
-          console.log('entro en validar')
+      if (validar) {
+        console.log("entro en validar");
         this.$q.notify({
           message: `Wellcome: ${validar.name}`,
           color: "green"
@@ -87,7 +87,7 @@ export default {
         // this.$router.push({ name: "HelloWorld" });
       } else {
         this.$q.notify({
-          message: 'validar',
+          message: "validar",
           color: "red"
         });
       }

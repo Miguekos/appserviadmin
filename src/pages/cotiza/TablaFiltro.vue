@@ -60,7 +60,7 @@
                   :size="size[1]"
                   :loading="loading2"
                   color="positive"
-                  @click="simulateProgress(2)"
+                  @click="crearCotiza(2)"
                   label="nuevo req."
                 />
               </div>
@@ -87,6 +87,9 @@ export default {
     };
   },
   methods: {
+    crearCotiza() {
+      this.$router.push("/cotiza/create");
+    },
     simulateProgress(number) {
       // we set loading state
       this[`loading${number}`] = true;

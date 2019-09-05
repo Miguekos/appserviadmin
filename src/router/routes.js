@@ -11,9 +11,33 @@ const routes = [
         component: () => import("pages/cotiza/IndexRegistro.vue")
       }
       // { path: '/user/create', component: () => import('pages/Ususarios/Create.vue') },
-      // { path: '/cliente', component: () => import('pages/Cliente/Index.vue') },
-      // { path: '/cliente/sindeuda', component: () => import('pages/Cliente/sinDeudas.vue') },
-      // { path: '/cliente/create', component: () => import('pages/Cliente/Create.vue') }
+      // { path: '/clientes', component: () => import('pages/Cliente/Index.vue') },
+      // { path: '/clientes/sindeuda', component: () => import('pages/Cliente/sinDeudas.vue') },
+      // { path: '/clientes/create', component: () => import('pages/Cliente/Create.vue') }
+    ],
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/user",
+    name: "user",
+    component: () => import("layouts/MyLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/user/Index.vue") },
+      { path: "create", component: () => import("pages/user/Create.vue") }
+    ],
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/cliente",
+    name: "cliente",
+    component: () => import("layouts/MyLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/cliente/Index.vue") },
+      { path: "create", component: () => import("pages/cliente/Create.vue") }
     ],
     meta: {
       requiresAuth: true

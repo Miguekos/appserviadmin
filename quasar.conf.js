@@ -65,7 +65,8 @@ module.exports = function (ctx) {
         'QTd',
         'QMarkupTable',
         'QSelect',
-        'QDate'
+        'QDate',
+        'QForm'
       ],
 
       directives: [

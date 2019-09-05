@@ -23,7 +23,7 @@
 <script>
 export default {
   components: {
-    TablaListado: () => import("./NuevaTabla"),
+    TablaListado: () => import("./TablaListado"),
     TablaFiltro: () => import("./TablaFiltro"),
     CuadroResumen: () => import("./CuadroResumen")
   }

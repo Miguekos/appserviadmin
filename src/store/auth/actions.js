@@ -17,7 +17,11 @@ export async function validarUser() {
 // eslint-disable-next-line
 export async function login({}, payload) {
   try {
-    const login = await axiosInstance.get(`${LOGIN_ROUTE}?filter={"where":{"and":[{"email":"${payload.email}"},{"password":"${payload.password}"}]}}`);
+    const login = await axiosInstance.get(
+      `${LOGIN_ROUTE}?filter={"where":{"and":[{"email":"${
+        payload.email
+      }"},{"password":"${payload.password}"}]}}`
+    );
     return login.data;
   } catch (e) {
     console.log(e);
