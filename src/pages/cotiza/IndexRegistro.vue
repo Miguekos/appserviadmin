@@ -6,6 +6,19 @@
           <q-item-label>Cotizacion</q-item-label>
           <q-item-label caption>Requerimientos</q-item-label>
         </q-item-section>
+        <q-item-section>
+
+        </q-item-section>
+        <q-item-section>
+
+        </q-item-section>
+        <q-item-section>
+          <q-btn
+            size="10px"
+            color="green"
+            label="Nuevo Requerimiento"
+          />
+        </q-item-section>
       </q-item>
       <div class="row full-width">
         <q-item class="col-sm-6">

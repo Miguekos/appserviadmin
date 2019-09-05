@@ -1,6 +1,6 @@
 <template>
   <div class="full-width">
-    <q-markup-table :separator="separator" flat bordered>
+    <q-markup-table dense :separator="separator" flat bordered>
       <thead>
         <tr>
           <th style="font-size: 20px" class="bg-grey-4 text-left">Filtros</th>
@@ -53,15 +53,6 @@
                   color="secondary"
                   @click="simulateProgress(1)"
                   label="Filtrar"
-                />
-              </div>
-              <div>
-                <q-btn
-                  :size="size[1]"
-                  :loading="loading2"
-                  color="positive"
-                  @click="crearCotiza(2)"
-                  label="nuevo req."
                 />
               </div>
             </div>
