@@ -14,7 +14,7 @@
         <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">
           <q-icon name="fas fa-ad" color="green" size="28px" />
           <q-toolbar-title shrink class="text-weight-bold">
-            ServiAdmin
+            SJ Servi Admin
           </q-toolbar-title>
         </q-btn>
 
