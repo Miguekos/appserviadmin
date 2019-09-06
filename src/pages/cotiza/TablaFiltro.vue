@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     crearCotiza() {
-      this.$router.push("/cotiza/create");
+      this.$router.push("/cotizacion/create");
     },
     simulateProgress(number) {
       // we set loading state
