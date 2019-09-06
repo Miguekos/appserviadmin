@@ -1,24 +1,23 @@
 <template>
   <div>
-    <q-toolbar class="bg-custom1 text-white shadow-5">
-      <q-btn flat label="ServiAdmin" />
-      <q-space />
-      <q-btn flat round dense icon="whatshot" />
-    </q-toolbar>
-    <div class="q-pa-md fixed-center" style="width: 400px;">
+    <div class="q-pa-md fixed-center" style="width: 500px;">
       <div class="q-pa-md">
-        <q-toolbar class="shadow-2 rounded-borders">
+        <q-toolbar class="text-white shadow-2 rounded-borders">
           <q-separator vertical inset />
-          <q-btn flat label="Inciar session" />
+          Iniciar Session
+<!--          <q-btn flat label="Inciar session" />-->
           <q-space />
         </q-toolbar>
       </div>
-      <div class="q-pa-md">
-        <q-card class="q-pa-md">
-          <form v-on:submit="onSubmit()">
+
+<!--      <q-img src="/statics/01.png"></q-img>-->
+
+      <div class="q-pa-md shadow-2 rounded-borders">
+        <q-card class="q-pa-md shadow-2 rounded-borders">
+          <form v-on:submit="onSubmit()" class="shadow-2 rounded-borders">
             <div class="">
               <div class="text-left">
-                <img class="float-left" src="/statics/quasar-logo.png" />
+                <img class="float-left" sizes="30px" src="/statics/01.png" />
                 <q-input
                   id="username"
                   type="text"
@@ -97,5 +96,3 @@ export default {
   async mounted() {}
 };
 </script>
-
-<style lang="stylus" scoped></style>

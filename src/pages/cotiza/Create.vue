@@ -3,25 +3,27 @@
     <q-card class="my-card">
       <q-item class="bg-custom4">
         <q-item-section>
-          <q-item-label>Home</q-item-label>
-          <q-item-label caption>Detalle / Global</q-item-label>
+          <q-item-label>Registrar</q-item-label>
+          <q-item-label caption>Requerimientos</q-item-label>
         </q-item-section>
       </q-item>
-      <q-item class="flex-center flex">
-        <q-item-section>
+      <q-item>
+        {{ ClientesFiltro }}
+        <q-item-section class="flex-center flex">
           <template>
             <div class="q-pa-md">
               <div class="q-gutter-md row">
                 <q-select
                   filled
+                  dense
                   v-model="model"
                   use-input
                   hide-selected
                   fill-input
                   input-debounce="0"
-                  :options="options"
+                  :options="ClientesFiltro"
                   @filter="filterFn"
-                  hint="Basic autocomplete"
+                  hint="Buscar Cliente"
                   style="width: 250px; padding-bottom: 32px"
                 >
                   <template v-slot:no-option>
@@ -42,17 +44,21 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 const stringOptions = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 
 export default {
+  computed: {
+    ...mapGetters("clientes", ["ClientesFiltro"])
+  },
   data() {
     return {
       model: null,
       options: stringOptions
     };
   },
-
   methods: {
+    ...mapActions("clientes", ["getClientes"]),
     filterFn(val, update, abort) {
       update(() => {
         const needle = val.toLowerCase();
@@ -62,6 +68,14 @@ export default {
       });
       console.log(abort);
     }
+  },
+  async created() {
+    await this.getClientes();
+    // for (let x = 0; x < ClientesFiltro.length; x++) {
+    //   const elemet = ClientesFiltro[x];
+    //   console.log(elemet);
+    //   return elemet;
+    // }
   }
 };
 </script>

@@ -6,16 +6,13 @@
           <q-item-label>Cotizacion</q-item-label>
           <q-item-label caption>Requerimientos</q-item-label>
         </q-item-section>
-        <q-item-section>
-
-        </q-item-section>
-        <q-item-section>
-
-        </q-item-section>
+        <q-item-section> </q-item-section>
+        <q-item-section> </q-item-section>
         <q-item-section>
           <q-btn
             size="10px"
             color="green"
+            @click="nuevoRegistro()"
             label="Nuevo Requerimiento"
           />
         </q-item-section>
@@ -35,6 +32,12 @@
 
 <script>
 export default {
+  methods: {
+    nuevoRegistro() {
+      console.log("Se preciono el boton");
+      this.$router.push('/cotizacion/create')
+    }
+  },
   components: {
     TablaListado: () => import("./TablaListado"),
     TablaFiltro: () => import("./TablaFiltro"),

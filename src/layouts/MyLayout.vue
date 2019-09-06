@@ -94,7 +94,7 @@
       content-class="bg-grey-2"
       :width="240"
     >
-      <q-scroll-area class="fit">
+      <q-scroll-area class="fit q-pa-sm">
         <q-list padding>
           <q-item
             v-for="link in links1"

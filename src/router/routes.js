@@ -58,7 +58,14 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: () => import("pages/login"),
+    component: () => import("layouts/Login"),
+    children: [
+      {
+        path: "/",
+        component: () => import("pages/login"),
+
+      }
+    ],
     meta: {
       guest: true
     }
