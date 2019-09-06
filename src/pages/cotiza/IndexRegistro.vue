@@ -35,7 +35,7 @@ export default {
   methods: {
     nuevoRegistro() {
       console.log("Se preciono el boton");
-      this.$router.push('/cotizacion/create')
+      this.$router.push("/cotizacion/create");
     }
   },
   components: {

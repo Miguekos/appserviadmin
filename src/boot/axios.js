@@ -16,7 +16,7 @@ const axiosInstance = axios.create({
   // paramsSerializer: params => {
   //   return qs.stringify(params, { arrayFormat: "repeat" });
   // },
-  // proxy: {
+  // proxy: {login
   //   host: '127.0.0.1',
   //   port: 9000
   // }

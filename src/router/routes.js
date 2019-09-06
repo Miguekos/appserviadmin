@@ -62,8 +62,7 @@ const routes = [
     children: [
       {
         path: "/",
-        component: () => import("pages/login"),
-
+        component: () => import("pages/login")
       }
     ],
     meta: {

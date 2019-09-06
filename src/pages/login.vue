@@ -1,23 +1,28 @@
 <template>
   <div>
-    <div class="q-pa-md fixed-center" style="width: 500px;">
-      <div class="q-pa-md">
-        <q-toolbar class="text-white shadow-2 rounded-borders">
-          <q-separator vertical inset />
+    <div class="q-pa-md fixed-center" style="width: 350px;">
+      <div class="q-pa-md text-white text-center">
+        <!--        <q-toolbar class="text-white text-center shadow-2 rounded-borders">-->
+        <q-separator vertical inset />
+        <div class="text-h6">
           Iniciar Session
-<!--          <q-btn flat label="Inciar session" />-->
-          <q-space />
-        </q-toolbar>
+        </div>
+        <!--          <q-btn flat label="Inciar session" />-->
+        <q-space />
+        <!--        </q-toolbar>-->
       </div>
-
-<!--      <q-img src="/statics/01.png"></q-img>-->
 
       <div class="q-pa-md shadow-2 rounded-borders">
         <q-card class="q-pa-md shadow-2 rounded-borders">
+          <div class="q-pa-md flex-center flex">
+            <div>
+              <q-img src="/statics/01.png" style="width: 140px"></q-img>
+            </div>
+          </div>
           <form v-on:submit="onSubmit()" class="shadow-2 rounded-borders">
-            <div class="">
+            <div class="q-pa-md">
               <div class="text-left">
-                <img class="float-left" sizes="30px" src="/statics/01.png" />
+                <!--                <img class="float-left" sizes="30px" src="/statics/01.png" />-->
                 <q-input
                   id="username"
                   type="text"
@@ -52,7 +57,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      drawerState: true,
+      drawerState: false,
       rememberMe: true,
       form: {
         username: "admin@admin.com",
