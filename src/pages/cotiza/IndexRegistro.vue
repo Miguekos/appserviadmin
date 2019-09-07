@@ -13,15 +13,15 @@
             size="10px"
             color="green"
             @click="nuevoRegistro()"
-            label="Nuevo Requerimiento"
+            icon="add"
           />
         </q-item-section>
       </q-item>
       <div class="row full-width">
-        <q-item class="col-sm-6">
+        <q-item class="col-sm-6 col-xs-12">
           <TablaFiltro />
         </q-item>
-        <q-item class="col-sm-6">
+        <q-item class="col-sm-6 col-xs-12">
           <CuadroResumen />
         </q-item>
       </div>
