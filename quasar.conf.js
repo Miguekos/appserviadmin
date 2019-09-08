@@ -61,13 +61,16 @@ module.exports = function(ctx) {
         "QSelect",
         "QDate",
         "QForm",
-        "QDialog"
+        "QDialog",
+        "QBar",
+        "QUploader",
+        "QExpansionItem"
       ],
 
       directives: ["Ripple", "ClosePopup"],
 
       // Quasar plugins
-      plugins: ["Notify", "Cookies", "Loading"]
+      plugins: ["Notify", "Cookies", "Loading", "Dialog"]
     },
 
     supportIE: true,

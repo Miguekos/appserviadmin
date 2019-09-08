@@ -204,7 +204,7 @@ export default {
         color: "positive"
       });
     },
-    onSubmit() {
+    async onSubmit() {
       this.loading = true;
       const response = this.registrarCotizacion({
         ...this.model,
@@ -218,7 +218,7 @@ export default {
           message: "Se registro la cotizacion correctamente"
         });
         this.loading = false;
-        this.registros();
+        await this.registros();
         this.dialogCreate(false);
         // this.$router.push("/cotizacion");
       } else {

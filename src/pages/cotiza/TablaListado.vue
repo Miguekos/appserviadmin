@@ -1,5 +1,8 @@
 <template>
   <div class="q-pa-md">
+    <div>
+      <p class="bg-green-7 text-center text-white text-subtitle1">Listado</p>
+    </div>
     <q-table
       title="Listado"
       :data="getRegistros"

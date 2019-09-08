@@ -2,7 +2,9 @@
   <div class="full-width">
     <div>
       <div>
-        <p class="bg-grey-4 text-center text-subtitle1">Filtros Dinamicos</p>
+        <p class="bg-green-7 text-center text-white text-subtitle1">
+          Filtros Dinamicos
+        </p>
       </div>
       <div class="q-ma-md">
         <q-input

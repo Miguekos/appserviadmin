@@ -1,15 +1,20 @@
 <template>
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
+    <div>
+      <p class="bg-green-7 text-center text-white text-subtitle1">
+        Cuadro Resumen
+      </p>
+    </div>
     <q-markup-table :separator="separator" flat bordered>
-      <thead>
+      <!-- <thead>
         <tr>
-          <th style="font-size: 20px" class="bg-grey-4 text-left">
+          <th style="font-size: 20px" class="bg-green-4 text-left">
             Cuadro Resumen
           </th>
-          <th style="font-size: 20px" class="bg-grey-4 text-left"></th>
+          <th style="font-size: 20px" class="bg-green-4 text-left"></th>
         </tr>
-      </thead>
+      </thead>-->
       <tbody>
         <tr>
           <td class="text-left">En confirmacion:</td>

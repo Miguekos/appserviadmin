@@ -1,52 +1,53 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <q-header elevated class="bg-white text-grey-8 q-py-xs" height-hint="58">
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-          icon="menu"
-        />
-
-        <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">
-          <!-- <q-icon name="fas fa-ad" color="green" size="28px" /> -->
-          <q-img
-            src="/statics/minilogoservi.png"
-            spinner-color="white"
-            style="height: 30px; max-width: 40px"
-          />
-          <q-toolbar-title shrink class="text-weight-bold"
-            >SJ Servi Admin</q-toolbar-title
-          >
-        </q-btn>
-
-        <q-space />
-
-        <div class="YL__toolbar-input-container row no-wrap">
-          <q-input
+  <div>
+    <q-layout view="hHh lpR fFf">
+      <q-header elevated class="bg-white text-grey-8 q-py-xs" height-hint="58">
+        <q-toolbar>
+          <q-btn
+            flat
             dense
-            outlined
-            square
-            v-model="search"
-            placeholder="Search"
-            class="bg-white col"
+            round
+            @click="leftDrawerOpen = !leftDrawerOpen"
+            aria-label="Menu"
+            icon="menu"
           />
-          <q-btn
-            class="YL__toolbar-input-btn"
-            color="grey-3"
-            text-color="grey-8"
-            icon="search"
-            unelevated
-          />
-        </div>
 
-        <q-space />
+          <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">
+            <!-- <q-icon name="fas fa-ad" color="green" size="28px" /> -->
+            <q-img
+              src="/statics/minilogoservi.png"
+              spinner-color="white"
+              style="height: 30px; max-width: 40px"
+            />
+            <q-toolbar-title shrink class="text-weight-bold"
+              >SJ Servi Admin</q-toolbar-title
+            >
+          </q-btn>
 
-        <div class="q-gutter-sm row items-center no-wrap">
-          <q-btn
+          <q-space />
+
+          <div class="YL__toolbar-input-container row no-wrap">
+            <q-input
+              dense
+              outlined
+              square
+              v-model="search"
+              placeholder="Search"
+              class="bg-white col"
+            />
+            <q-btn
+              class="YL__toolbar-input-btn"
+              color="grey-3"
+              text-color="grey-8"
+              icon="search"
+              unelevated
+            />
+          </div>
+
+          <q-space />
+
+          <div class="q-gutter-sm row items-center no-wrap">
+            <!-- <q-btn
             round
             dense
             flat
@@ -75,122 +76,122 @@
             v-if="$q.screen.gt.sm"
           >
             <q-tooltip>Messages</q-tooltip>
-          </q-btn>
-          <q-btn round dense flat color="grey-8" icon="notifications">
-            <q-badge color="red" text-color="white" floating>2</q-badge>
-            <q-tooltip>Notificaciones</q-tooltip>
-          </q-btn>
-          <q-btn round flat>
-            <q-avatar size="26px">
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
-            </q-avatar>
-            <q-tooltip>Cuenta</q-tooltip>
-          </q-btn>
-        </div>
-      </q-toolbar>
-    </q-header>
+            </q-btn>-->
+            <q-btn round dense flat color="grey-8" icon="notifications">
+              <q-badge color="red" text-color="white" floating>2</q-badge>
+              <q-tooltip>Notificaciones</q-tooltip>
+            </q-btn>
+            <q-btn round flat @click="showDialog">
+              <q-avatar size="26px">
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+              </q-avatar>
+              <q-tooltip>Cuenta</q-tooltip>
+            </q-btn>
+          </div>
+        </q-toolbar>
+      </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-2"
-      :width="240"
-    >
-      <q-scroll-area class="fit q-pa-sm">
-        <q-list padding>
-          <q-item
-            v-for="link in links1"
-            :key="link.text"
-            v-ripple
-            clickable
-            @click="URL(link.path)"
-          >
-            <q-item-section avatar>
-              <q-icon color="grey" :name="link.icon" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{ link.text }}</q-item-label>
-            </q-item-section>
-          </q-item>
+      <q-drawer
+        v-model="leftDrawerOpen"
+        show-if-above
+        bordered
+        content-class="bg-grey-2"
+        :width="240"
+      >
+        <q-scroll-area class="fit q-pa-sm">
+          <q-list padding>
+            <q-item
+              v-for="link in links1"
+              :key="link.text"
+              v-ripple
+              clickable
+              @click="URL(link.path)"
+            >
+              <q-item-section avatar>
+                <q-icon color="grey" :name="link.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ link.text }}</q-item-label>
+              </q-item-section>
+            </q-item>
 
-          <!--          <q-separator class="q-my-md" />-->
+            <!--          <q-separator class="q-my-md" />-->
 
-          <!--          <q-item-label header class="text-weight-bold text-uppercase">-->
-          <!--            Ventas-->
-          <!--          </q-item-label>-->
+            <!--          <q-item-label header class="text-weight-bold text-uppercase">-->
+            <!--            Ventas-->
+            <!--          </q-item-label>-->
 
-          <!--          <q-item v-for="link in links2" :key="link.text" v-ripple clickable>-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon color="grey" :name="link.icon" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              <q-item-label>{{ link.text }}</q-item-label>-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
+            <!--          <q-item v-for="link in links2" :key="link.text" v-ripple clickable>-->
+            <!--            <q-item-section avatar>-->
+            <!--              <q-icon color="grey" :name="link.icon" />-->
+            <!--            </q-item-section>-->
+            <!--            <q-item-section>-->
+            <!--              <q-item-label>{{ link.text }}</q-item-label>-->
+            <!--            </q-item-section>-->
+            <!--          </q-item>-->
 
-          <q-separator class="q-mt-md q-mb-xs" />
+            <q-separator class="q-mt-md q-mb-xs" />
 
-          <q-item-label header class="text-weight-bold text-uppercase"
-            >Clientes</q-item-label
-          >
+            <q-item-label header class="text-weight-bold text-uppercase"
+              >Clientes</q-item-label
+            >
 
-          <q-item
-            v-for="link in links3"
-            :key="link.text"
-            v-ripple
-            clickable
-            @click="URL(link.path)"
-          >
-            <q-item-section avatar>
-              <q-icon color="grey" :name="link.icon" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{ link.text }}</q-item-label>
-            </q-item-section>
-          </q-item>
+            <q-item
+              v-for="link in links3"
+              :key="link.text"
+              v-ripple
+              clickable
+              @click="URL(link.path)"
+            >
+              <q-item-section avatar>
+                <q-icon color="grey" :name="link.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ link.text }}</q-item-label>
+              </q-item-section>
+            </q-item>
 
-          <q-separator class="q-my-md" />
+            <q-separator class="q-my-md" />
 
-          <q-item-label header class="text-weight-bold text-uppercase"
-            >Usuarios</q-item-label
-          >
+            <q-item-label header class="text-weight-bold text-uppercase"
+              >Usuarios</q-item-label
+            >
 
-          <q-item
-            v-for="link in links4"
-            :key="link.text"
-            v-ripple
-            clickable
-            @click="URL(link.path)"
-          >
-            <q-item-section avatar>
-              <q-icon color="grey" :name="link.icon" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{ link.text }}</q-item-label>
-            </q-item-section>
-          </q-item>
+            <q-item
+              v-for="link in links4"
+              :key="link.text"
+              v-ripple
+              clickable
+              @click="URL(link.path)"
+            >
+              <q-item-section avatar>
+                <q-icon color="grey" :name="link.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ link.text }}</q-item-label>
+              </q-item-section>
+            </q-item>
 
-          <q-separator class="q-my-md" />
+            <q-separator class="q-my-md" />
 
-          <q-item
-            v-for="link in links5"
-            :key="link.text"
-            v-ripple
-            clickable
-            @click="URL(link.path)"
-          >
-            <q-item-section avatar>
-              <q-icon color="grey" :name="link.icon" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{ link.text }}</q-item-label>
-            </q-item-section>
-          </q-item>
+            <q-item
+              v-for="link in links5"
+              :key="link.text"
+              v-ripple
+              clickable
+              @click="URL(link.path)"
+            >
+              <q-item-section avatar>
+                <q-icon color="grey" :name="link.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ link.text }}</q-item-label>
+              </q-item-section>
+            </q-item>
 
-          <q-separator class="q-mt-md q-mb-lg" />
+            <!-- <q-separator class="q-mt-md q-mb-lg" /> -->
 
-          <div class="q-px-md text-grey-9">
+            <!-- <div class="q-px-md text-grey-9">
             <div class="row items-center q-gutter-x-sm q-gutter-y-xs">
               <a
                 v-for="button in buttons1"
@@ -200,25 +201,112 @@
                 >{{ button.text }}</a
               >
             </div>
-          </div>
-        </q-list>
-      </q-scroll-area>
-    </q-drawer>
+            </div>-->
+          </q-list>
+        </q-scroll-area>
+      </q-drawer>
 
-    <q-page-container>
-      <transition name="fade" mode="out-in">
-        <router-view></router-view>
-      </transition>
-    </q-page-container>
-  </q-layout>
+      <q-page-container>
+        <transition name="fade" mode="out-in">
+          <router-view></router-view>
+        </transition>
+      </q-page-container>
+    </q-layout>
+    <q-dialog
+      v-model="bar2"
+      persistent
+      transition-show="flip-down"
+      transition-hide="flip-up"
+    >
+      <!-- <q-card class="bg-primary text-white"> -->
+      <q-card>
+        <q-bar>
+          <div>{{ user.name }}</div>
+
+          <q-space />
+
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip content-class="bg-white text-primary">Close</q-tooltip>
+          </q-btn>
+        </q-bar>
+
+        <q-card-section>
+          <div class="text-h6"></div>
+        </q-card-section>
+
+        <q-card-section>
+          <div class="row col-xs-12">
+            <div>
+              <q-uploader
+                flat
+                bordered
+                auto-upload
+                url="http://localhost:4444/upload"
+                label="Cambiar imagen de Perfil"
+                multiple
+                accept=".jpg, image/*"
+                class="full-width"
+              />
+            </div>
+            <div col-xs-12>
+              <div class="q-pa-xs col-xs-12">
+                <q-input
+                  v-model="name"
+                  hint="Nombre"
+                  dense
+                  outlined
+                  stack-label
+                  label="Nombre"
+                />
+              </div>
+              <div class="q-pa-xs">
+                <q-input
+                  v-model="correo"
+                  hint="Correo"
+                  dense
+                  outlined
+                  stack-label
+                  label="Correo"
+                />
+              </div>
+              <div class="q-pa-xs">
+                <q-input
+                  v-model="newpassword"
+                  hint="Nueva Contraseña"
+                  dense
+                  outlined
+                  stack-label
+                  label="Password"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <q-btn
+              color="positive"
+              text-color="white"
+              label="Guardar"
+              v-close-popup
+            />
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+  </div>
 </template>
 
 <script>
+// import { date } from "quasar";
 import { mapActions } from "vuex";
 export default {
   name: "MyLayout",
   data() {
     return {
+      name: "",
+      correo: "",
+      newpassword: "",
+      user: {},
+      bar2: false,
       leftDrawerOpen: false,
       search: "",
       links1: [
@@ -262,6 +350,13 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["logout"]),
+    showDialog() {
+      const userlocal = JSON.parse(localStorage.getItem("datadelusuario"));
+      this.user = userlocal;
+      this.name = userlocal.name;
+      this.correo = userlocal.email;
+      this.bar2 = true;
+    },
     async URL(arg) {
       if (arg == "logout") {
         console.log("Entro en el deslogueo");
@@ -275,6 +370,9 @@ export default {
         console.log(arg);
         await this.$router.push(arg);
       }
+    },
+    getUrl(files) {
+      return `http://localhost:4444/upload?count=${files.length}`;
     }
   }
 };
