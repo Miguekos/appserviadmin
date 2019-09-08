@@ -36,7 +36,7 @@
           <q-item-section class="flex-center flex">
             <q-form @submit="onSubmit" @reset="onReset" class="q-pa-md">
               <div class="row flex flex-center q-pa-xs col-12">
-                <div class="q-pa-sm col-2">
+                <div class="q-pa-sm col-xs-12 col-sm-2">
                   <q-input
                     dense
                     filled
@@ -46,7 +46,7 @@
                     lazy-rules
                   />
                 </div>
-                <div class="q-pa-sm col-3">
+                <div class="q-pa-sm col-xs-12 col-sm-2">
                   <q-input
                     dense
                     filled
@@ -61,7 +61,7 @@
                     ]"
                   />
                 </div>
-                <div class="q-pa-sm col-2">
+                <div class="q-pa-sm col-xs-12 col-sm-2">
                   <q-input
                     dense
                     filled
@@ -76,7 +76,7 @@
                     ]"
                   />
                 </div>
-                <div class="q-pa-sm col-2">
+                <div class="q-pa-sm col-xs-12 col-sm-2">
                   <q-input
                     dense
                     filled
@@ -91,7 +91,7 @@
                     ]"
                   />
                 </div>
-                <div class="q-pa-sm col-2">
+                <div class="q-pa-sm col-xs-12 col-sm-2">
                   <q-input
                     dense
                     filled
@@ -107,7 +107,7 @@
                   />
                 </div>
               </div>
-              <div class="q-pa-sm col-12">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <div class="q-pa-md">
                   <q-input
                     v-model="text"
