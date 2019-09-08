@@ -12,7 +12,7 @@ export function registrosFiltroEstados(state) {
   return distintos;
 }
 
-export function registros(state) {
+export function getRegistros(state) {
   return state.registros;
   // console.log(arrayRegistros);
   // let estadoRegistro = [];

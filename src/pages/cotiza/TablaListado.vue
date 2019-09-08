@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <q-table
       title="Listado"
-      :data="registros"
+      :data="getRegistros"
       :columns="columns"
       row-key="name"
       binary-state-sort
@@ -34,7 +34,7 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters("example", ["registros"])
+    ...mapGetters("example", ["getRegistros"])
   },
   data() {
     return {

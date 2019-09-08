@@ -1,13 +1,13 @@
 import { axiosInstance } from "boot/axios";
 import { date } from "quasar";
 
-const data = [null, null, null, null];
 export async function registros({ commit }) {
+  const data = [null, null, null, null];
   console.log("listarRegistros");
   const registro = await axiosInstance.post("/api/registros/listar", data);
-  // console.log(registro.data);
+  console.log(registro.data);
   commit("setRegistros", registro.data);
-  return registro.data;
+  // return registro.data;
 }
 
 // eslint-disable-next-line

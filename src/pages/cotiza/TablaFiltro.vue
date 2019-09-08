@@ -2,7 +2,7 @@
   <div class="full-width">
     <div>
       <div>
-        <p class="q-ma-md text-center text-subtitle1">Filtros Dinamicos</p>
+        <p class="bg-grey-4 text-center text-subtitle1">Filtros Dinamicos</p>
       </div>
       <div class="q-ma-md">
         <q-input
@@ -17,8 +17,6 @@
           </template>
         </q-input>
       </div>
-      <!-- {{ registrosFiltroEstados }} -->
-      {{ model }}
       <div class="q-ma-md">
         <q-input
           dense
@@ -34,6 +32,8 @@
       </div>
       <div class="q-ma-md">
         <q-select
+          transition-show="flip-up"
+          transition-hide="flip-down"
           :options="registrosFiltroEstados"
           standout
           placeholder="Estado"
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="q-pa-md flex flex-center">
-      <q-btn color="white" text-color="black" label="Filtrar" />
+      <q-btn class="bg-secondary" @click="showLoading()" label="Filtrar" />
     </div>
   </div>
 </template>
@@ -56,6 +56,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       text: "",
       fechainicio: "",
       fechafin: "",
@@ -81,11 +82,25 @@ export default {
         // we're done, we reset loading state
         this[`loading${number}`] = false;
       }, 3000);
+    },
+    showLoading() {
+      this.$q.loading.show();
+
+      // hiding in 2s
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        this.timer = void 0;
+      }, 1000);
     }
   },
   async created() {
     await this.registros();
-    this.options = await this.registrosFiltroEstados();
+  },
+  beforeDestroy() {
+    if (this.timer !== void 0) {
+      clearTimeout(this.timer);
+      this.$q.loading.hide();
+    }
   }
 };
 </script>

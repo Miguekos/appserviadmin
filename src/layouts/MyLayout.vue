@@ -12,10 +12,15 @@
         />
 
         <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">
-          <q-icon name="fas fa-ad" color="green" size="28px" />
-          <q-toolbar-title shrink class="text-weight-bold">
-            SJ Servi Admin
-          </q-toolbar-title>
+          <!-- <q-icon name="fas fa-ad" color="green" size="28px" /> -->
+          <q-img
+            src="/statics/minilogoservi.png"
+            spinner-color="white"
+            style="height: 30px; max-width: 40px"
+          />
+          <q-toolbar-title shrink class="text-weight-bold"
+            >SJ Servi Admin</q-toolbar-title
+          >
         </q-btn>
 
         <q-space />
@@ -72,9 +77,7 @@
             <q-tooltip>Messages</q-tooltip>
           </q-btn>
           <q-btn round dense flat color="grey-8" icon="notifications">
-            <q-badge color="red" text-color="white" floating>
-              2
-            </q-badge>
+            <q-badge color="red" text-color="white" floating>2</q-badge>
             <q-tooltip>Notificaciones</q-tooltip>
           </q-btn>
           <q-btn round flat>
@@ -128,9 +131,9 @@
 
           <q-separator class="q-mt-md q-mb-xs" />
 
-          <q-item-label header class="text-weight-bold text-uppercase">
-            Clientes
-          </q-item-label>
+          <q-item-label header class="text-weight-bold text-uppercase"
+            >Clientes</q-item-label
+          >
 
           <q-item
             v-for="link in links3"
@@ -149,9 +152,9 @@
 
           <q-separator class="q-my-md" />
 
-          <q-item-label header class="text-weight-bold text-uppercase">
-            Usuarios
-          </q-item-label>
+          <q-item-label header class="text-weight-bold text-uppercase"
+            >Usuarios</q-item-label
+          >
 
           <q-item
             v-for="link in links4"
@@ -194,9 +197,8 @@
                 :key="button.text"
                 class="YL__drawer-footer-link"
                 href="javascript:void(0)"
+                >{{ button.text }}</a
               >
-                {{ button.text }}
-              </a>
             </div>
           </div>
         </q-list>
@@ -279,26 +281,30 @@ export default {
 </script>
 
 <style lang="stylus">
-.YL
+.YL {
+  &__toolbar-input-container {
+    min-width: 100px;
+    width: 55%;
+  }
 
-  &__toolbar-input-container
-    min-width 100px
-    width 55%
+  &__toolbar-input-btn {
+    border-radius: 0;
+    border-style: solid;
+    border-width: 1px 1px 1px 0;
+    border-color: rgba(0, 0, 0, 0.24);
+    max-width: 60px;
+    width: 100%;
+  }
 
-  &__toolbar-input-btn
-    border-radius 0
-    border-style solid
-    border-width 1px 1px 1px 0
-    border-color rgba(0,0,0,.24)
-    max-width 60px
-    width 100%
+  &__drawer-footer-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.75rem;
 
-  &__drawer-footer-link
-    color inherit
-    text-decoration none
-    font-weight 500
-    font-size .75rem
-
-    &:hover
-      color #000
+    &:hover {
+      color: #000;
+    }
+  }
+}
 </style>
