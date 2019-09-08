@@ -34,9 +34,9 @@
       </q-item>
       <q-item>
         <q-item-section class="flex-center flex">
-          <q-form @submit="onSubmit" class>
+          <q-form @submit="onSubmit" class="q-pa-md">
             <div class="row flex flex-center q-pa-xs">
-              <div class="q-pb-sm col-xs-12 col-sm-2">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   dense
                   filled
@@ -51,7 +51,7 @@
                   ]"
                 />
               </div>
-              <div class="q-pb-sm col-xs-12 col-sm-3">
+              <div class="q-pa-sm col-xs-12 col-sm-3">
                 <q-input
                   dense
                   filled
@@ -66,7 +66,7 @@
                   ]"
                 />
               </div>
-              <div class="q-pb-sm col-xs-12 col-sm-2">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   dense
                   filled
@@ -81,7 +81,7 @@
                   ]"
                 />
               </div>
-              <div class="q-pb-sm col-xs-12 col-sm-2">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   dense
                   filled
@@ -96,7 +96,7 @@
                   ]"
                 />
               </div>
-              <div class="q-pb-sm col-xs-12 col-sm-2">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   dense
                   filled
@@ -112,8 +112,8 @@
                 />
               </div>
             </div>
-            <div class="q-pb-sm">
-              <div class="q-pb-sm col-xs-12 col-sm-2">
+            <div class="q-pa-sm">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   v-model="text"
                   filled
@@ -130,13 +130,7 @@
                 type="submit"
                 color="primary"
               />
-              <q-btn
-                label="Cerrar"
-                color="primary"
-                flat
-                @click="dialogCreate(false)"
-                class="q-ml-sm"
-              />
+              <q-btn label="Atras" color="primary" flat class="q-ml-sm" />
             </div>
           </q-form>
         </q-item-section>
@@ -178,11 +172,7 @@ export default {
   },
   methods: {
     ...mapActions("clientes", ["getClientes"]),
-    ...mapActions("example", [
-      "registrarCotizacion",
-      "dialogCreate",
-      "registros"
-    ]),
+    ...mapActions("example", ["registrarCotizacion"]),
     filterFn(val, update, abort) {
       const asd = this.lotrOpts;
       if (val.length < 1) {
@@ -218,9 +208,7 @@ export default {
           message: "Se registro la cotizacion correctamente"
         });
         this.loading = false;
-        this.registros();
-        this.dialogCreate(false);
-        // this.$router.push("/cotizacion");
+        this.$router.push("/cotizacion");
       } else {
         this.$q.notify({
           color: "red-5",

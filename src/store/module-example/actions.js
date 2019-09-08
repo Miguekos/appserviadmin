@@ -30,3 +30,7 @@ export async function registrarCotizacion({}, payload) {
   // console.log(registro.data);
   return regisCotiza.data;
 }
+
+export function dialogCreate({ commit }, payload) {
+  commit("setDialogCreate", payload);
+}

@@ -60,10 +60,11 @@ module.exports = function(ctx) {
         "QMarkupTable",
         "QSelect",
         "QDate",
-        "QForm"
+        "QForm",
+        "QDialog"
       ],
 
-      directives: ["Ripple"],
+      directives: ["Ripple", "ClosePopup"],
 
       // Quasar plugins
       plugins: ["Notify", "Cookies", "Loading"]

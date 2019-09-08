@@ -110,17 +110,14 @@ export default {
           sortable: true,
           sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
         }
-      ],
-      data: []
+      ]
     };
   },
   methods: {
     ...mapActions("example", ["registros"])
   },
   async created() {
-    const asd = await this.registros();
-    this.data = asd;
-    console.log(asd);
+    await this.registros();
   }
 };
 </script>

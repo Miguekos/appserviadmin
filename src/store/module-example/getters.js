@@ -1,6 +1,6 @@
 export function registrosFiltroEstados(state) {
   const arrayRegistros = state.registros;
-  console.log(arrayRegistros);
+  // console.log(arrayRegistros);
   let estadoRegistro = [];
   for (let index = 0; index < arrayRegistros.length; index++) {
     const element = arrayRegistros[index];
@@ -14,13 +14,8 @@ export function registrosFiltroEstados(state) {
 
 export function getRegistros(state) {
   return state.registros;
-  // console.log(arrayRegistros);
-  // let estadoRegistro = [];
-  // for (let index = 0; index < arrayRegistros.length; index++) {
-  //   const element = arrayRegistros[index];
-  //   // console.log(element.no_client);
-  //   estadoRegistro.push(element.no_estado);
-  // }
-  // const distintos = [...new Set(estadoRegistro)];
-  // return distintos;
+}
+
+export function getDialogCrear(state) {
+  return state.dialogCrearRegistro;
 }
