@@ -1,7 +1,7 @@
 <template>
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
-    <q-markup-table dense :separator="separator" flat bordered>
+    <q-markup-table :separator="separator" flat bordered>
       <thead>
         <tr>
           <th style="font-size: 20px" class="bg-grey-4 text-left">

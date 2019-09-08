@@ -1,71 +1,62 @@
 <template>
   <div class="full-width">
-    <q-markup-table dense :separator="separator" flat bordered>
-      <thead>
-        <tr>
-          <th style="font-size: 20px" class="bg-grey-4 text-left">Filtros</th>
-          <th style="font-size: 20px" class="bg-grey-4 text-left"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="text-left">Estados</td>
-          <td class="text-right">
-            <q-select
-              standout="bg-teal text-white"
-              v-model="model"
-              :options="options"
-              dense
-              label="Estados"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td class="text-left">Fecha Inicio</td>
-          <td class="text-right">
-            <q-input
-              dense
-              standout="bg-teal text-white"
-              type="date"
-              v-model="fechainicio"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td class="text-left">Fecha Fin</td>
-          <td class="text-right">
-            <q-input
-              dense
-              standout="bg-teal text-white"
-              type="date"
-              v-model="fechafin"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td class="text-left"></td>
-          <td class="text-center">
-            <div class="row justify-around">
-              <div>
-                <q-btn
-                  :size="size[1]"
-                  :loading="loading1"
-                  color="secondary"
-                  @click="simulateProgress(1)"
-                  label="Filtrar"
-                />
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </q-markup-table>
+    <div>
+      <div>
+        <p class="q-ma-md text-center text-subtitle1">Filtros Dinamicos</p>
+      </div>
+      <div class="q-ma-md">
+        <q-input
+          dense
+          standout
+          v-model="fechainicio"
+          type="date"
+          prefix="Fecha ini:   "
+        >
+          <template v-slot:prepend>
+            <q-icon name="event" />
+          </template>
+        </q-input>
+      </div>
+      <!-- {{ registrosFiltroEstados }} -->
+      {{ model }}
+      <div class="q-ma-md">
+        <q-input
+          dense
+          standout
+          v-model="fechafin"
+          type="date"
+          prefix="Fecha fin:   "
+        >
+          <template v-slot:prepend>
+            <q-icon name="event" />
+          </template>
+        </q-input>
+      </div>
+      <div class="q-ma-md">
+        <q-select
+          :options="registrosFiltroEstados"
+          standout
+          placeholder="Estado"
+          dense
+          outlined
+          v-model="text"
+        />
+      </div>
+    </div>
+    <div class="q-pa-md flex flex-center">
+      <q-btn color="white" text-color="black" label="Filtrar" />
+    </div>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
+  computed: {
+    ...mapGetters("example", ["registrosFiltroEstados"])
+  },
   data() {
     return {
+      text: "",
       fechainicio: "",
       fechafin: "",
       cliente: "",
@@ -74,10 +65,11 @@ export default {
       loading2: false,
       model: null,
       separator: "cell",
-      options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"]
+      options: []
     };
   },
   methods: {
+    ...mapActions("example", ["registros"]),
     crearCotiza() {
       this.$router.push("/cotizacion/create");
     },
@@ -90,6 +82,10 @@ export default {
         this[`loading${number}`] = false;
       }, 3000);
     }
+  },
+  async created() {
+    await this.registros();
+    this.options = await this.registrosFiltroEstados();
   }
 };
 </script>

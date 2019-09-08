@@ -2,8 +2,7 @@
   <div class="q-pa-md">
     <q-table
       title="Listado"
-      dense
-      :data="data"
+      :data="registros"
       :columns="columns"
       row-key="name"
       binary-state-sort
@@ -13,7 +12,7 @@
       <template v-slot:top>
         <img
           style="height: 50px; width: 50px"
-          src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg"
+          src="/statics/minilogoservi.png"
         />
         <q-space />
         <q-input
@@ -32,8 +31,11 @@
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
+  computed: {
+    ...mapGetters("example", ["registros"])
+  },
   data() {
     return {
       loading: false,

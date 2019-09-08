@@ -6,8 +6,8 @@
           <q-item-label>Cotizacion</q-item-label>
           <q-item-label caption>Requerimientos</q-item-label>
         </q-item-section>
-        <q-item-section> </q-item-section>
-        <q-item-section> </q-item-section>
+        <q-item-section></q-item-section>
+        <q-item-section></q-item-section>
         <q-item-section>
           <q-btn
             size="10px"
@@ -19,10 +19,10 @@
       </q-item>
       <div class="row full-width">
         <q-item class="col-sm-6 col-xs-12">
-          <TablaFiltro />
+          <CuadroResumen />
         </q-item>
         <q-item class="col-sm-6 col-xs-12">
-          <CuadroResumen />
+          <TablaFiltro />
         </q-item>
       </div>
       <TablaListado />

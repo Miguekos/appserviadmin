@@ -40,7 +40,7 @@
                   <q-input
                     dense
                     filled
-                    disable
+                    readonly
                     v-model="model.no_client"
                     label="Nombre"
                     hint="Nombre"
@@ -56,7 +56,7 @@
                   <q-input
                     dense
                     filled
-                    disable
+                    readonly
                     v-model="model.no_corele"
                     label="Correo"
                     hint="Correo"
@@ -72,7 +72,7 @@
                   <q-input
                     dense
                     filled
-                    disable
+                    readonly
                     v-model="model.no_direcc"
                     label="Direccion"
                     hint="Direccion"
@@ -88,7 +88,7 @@
                   <q-input
                     dense
                     filled
-                    disable
+                    readonly
                     v-model="model.nu_docide"
                     label="Documento"
                     hint="Documento"
@@ -104,7 +104,7 @@
                   <q-input
                     dense
                     filled
-                    disable
+                    readonly
                     v-model="model.nu_telefono"
                     label="Telefono"
                     hint="Telefono"
@@ -129,7 +129,12 @@
                 </div>
               </div>
               <div class="flex flex-center">
-                <q-btn label="Registrar" type="submit" color="primary" />
+                <q-btn
+                  label="Registrar"
+                  :loading="loading"
+                  type="submit"
+                  color="primary"
+                />
                 <q-btn label="Atras" color="primary" flat class="q-ml-sm" />
               </div>
             </q-form>
@@ -152,6 +157,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       name: "",
       dni: "",
       selectModel: "",
@@ -194,16 +200,29 @@ export default {
       });
     },
     onSubmit() {
-      this.registrarCotizacion({
+      this.loading = true;
+      const response = this.registrarCotizacion({
         ...this.model,
         text: this.text
       });
-      this.$q.notify({
-        color: "red-5",
-        textColor: "white",
-        icon: "fas fa-exclamation-triangle",
-        message: "You need to accept the license and terms first"
-      });
+      if (response) {
+        this.$q.notify({
+          color: "green-5",
+          textColor: "white",
+          icon: "fas fa-check",
+          message: "Se registro la cotizacion correctamente"
+        });
+        this.loading = false;
+        this.$router.push("/cotizacion");
+      } else {
+        this.$q.notify({
+          color: "red-5",
+          textColor: "white",
+          icon: "fas fa-exclamation-triangle",
+          message: "Se produjo un error al tratar de registrar"
+        });
+        this.loading = false;
+      }
     }
   },
   async created() {

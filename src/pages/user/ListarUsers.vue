@@ -11,7 +11,7 @@
       <template v-slot:top>
         <img
           style="height: 50px; width: 50px"
-          src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg"
+          src="/statics/minilogoservi.png"
         />
         <q-space />
         <q-input
