@@ -7,7 +7,12 @@
           <div class="q-pa-md flex-center flex">
             <div>
               <!-- <q-img src="/statics/01.png" style="width: 180px"></q-img> -->
-              <img class="float-left" spinner-color="white" sizes="30px" src="/statics/01.png" />
+              <img
+                class="float-left"
+                spinner-color="white"
+                sizes="30px"
+                src="/statics/01.png"
+              />
             </div>
           </div>
           <form v-on:submit="onSubmit()" class="shadow-2 rounded-borders">

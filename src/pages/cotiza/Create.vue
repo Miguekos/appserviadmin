@@ -34,22 +34,29 @@
         </q-item>
         <q-item>
           <q-item-section class="flex-center flex">
-            <q-form @submit="onSubmit" @reset="onReset" class="q-pa-md">
-              <div class="row flex flex-center q-pa-xs col-12">
+            <q-form @submit="onSubmit" class="q-pa-md">
+              <div class="row flex flex-center q-pa-xs">
                 <div class="q-pa-sm col-xs-12 col-sm-2">
                   <q-input
                     dense
                     filled
+                    disable
                     v-model="model.no_client"
                     label="Nombre"
                     hint="Nombre"
                     lazy-rules
+                    :rules="[
+                      val =>
+                        (val && val.length > 0) ||
+                        'No puede dejar el campo vacio'
+                    ]"
                   />
                 </div>
-                <div class="q-pa-sm col-xs-12 col-sm-2">
+                <div class="q-pa-sm col-xs-12 col-sm-3">
                   <q-input
                     dense
                     filled
+                    disable
                     v-model="model.no_corele"
                     label="Correo"
                     hint="Correo"
@@ -65,6 +72,7 @@
                   <q-input
                     dense
                     filled
+                    disable
                     v-model="model.no_direcc"
                     label="Direccion"
                     hint="Direccion"
@@ -80,6 +88,7 @@
                   <q-input
                     dense
                     filled
+                    disable
                     v-model="model.nu_docide"
                     label="Documento"
                     hint="Documento"
@@ -95,6 +104,7 @@
                   <q-input
                     dense
                     filled
+                    disable
                     v-model="model.nu_telefono"
                     label="Telefono"
                     hint="Telefono"
@@ -107,8 +117,8 @@
                   />
                 </div>
               </div>
-              <div class="q-pa-sm col-xs-12 col-sm-2">
-                <div class="q-pa-md">
+              <div class="q-pa-sm">
+                <div class="q-pa-sm col-xs-12 col-sm-2">
                   <q-input
                     v-model="text"
                     filled
@@ -161,6 +171,7 @@ export default {
   },
   methods: {
     ...mapActions("clientes", ["getClientes"]),
+    ...mapActions("example", ["registrarCotizacion"]),
     filterFn(val, update, abort) {
       const asd = this.lotrOpts;
       if (val.length < 1) {
@@ -169,10 +180,6 @@ export default {
       }
       update(() => {
         const needle = val.toLowerCase();
-        console.log("saasdasdasdasdasd");
-        console.log(
-          asd.filter(v => v.no_client.toLowerCase().includes(needle))
-        );
         this.options = asd.filter(v =>
           v.no_client.toLowerCase().includes(needle)
         );
@@ -187,27 +194,16 @@ export default {
       });
     },
     onSubmit() {
-      if (this.accept !== true) {
-        this.$q.notify({
-          color: "red-5",
-          textColor: "white",
-          icon: "fas fa-exclamation-triangle",
-          message: "You need to accept the license and terms first"
-        });
-      } else {
-        this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "fas fa-check-circle",
-          message: "Submitted"
-        });
-      }
-    },
-
-    onReset() {
-      this.name = null;
-      this.age = null;
-      this.accept = false;
+      this.registrarCotizacion({
+        ...this.model,
+        text: this.text
+      });
+      this.$q.notify({
+        color: "red-5",
+        textColor: "white",
+        icon: "fas fa-exclamation-triangle",
+        message: "You need to accept the license and terms first"
+      });
     }
   },
   async created() {
