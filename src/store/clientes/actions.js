@@ -3,9 +3,9 @@ import { axiosInstance } from "boot/axios";
 export async function getClientes({ commit }) {
   console.log("listar Cliente");
   const response = await axiosInstance.post("/api/clientes/listar");
-  console.log(response.data);
+  // console.log(response.data);
   commit("setClientes", response.data);
-  return response.data;
+  // return response.data;
 }
 // eslint-disable-next-line
 export async function createCleintes({ commit }, payload) {
@@ -17,7 +17,7 @@ export async function createCleintes({ commit }, payload) {
     p_no_direcc: payload.direccion
   };
   console.log("crear cliente");
-  console.log(payload);
+  // console.log(payload);
   const response = await axiosInstance.post("/api/clientes/registrar", data);
   console.log(response.data);
   return response.data;

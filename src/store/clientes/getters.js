@@ -3,5 +3,17 @@ export function Clientes(state) {
 }
 
 export function ClientesFiltro(state) {
-  return state.clientes[0];
+  const arrayClienteName = state.clientes;
+  // console.log(arrayClienteName);
+  let nameCliente = [];
+  for (let index = 0; index < arrayClienteName.length; index++) {
+    const element = arrayClienteName[index];
+    // console.log(element.no_client);
+    nameCliente.push(element.no_client);
+  }
+  return nameCliente;
+}
+
+export function asdClientes(state) {
+  return state.clientes;
 }
