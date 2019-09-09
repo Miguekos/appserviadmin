@@ -33,11 +33,8 @@
                   label="Password"
                   required
                 />
-                <br />
               </div>
             </div>
-            <q-separator />
-
             <q-card-actions>
               <q-btn type="submit" class="fit" color="positive">Login</q-btn>
             </q-card-actions>
