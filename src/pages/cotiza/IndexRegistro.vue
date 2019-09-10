@@ -14,7 +14,8 @@
               size="10px"
               color="green"
               @click="nuevoRegistro()"
-              icon="add"
+              q-btn--push
+              label="Nuevo"
             />
           </q-item-section>
         </q-item>

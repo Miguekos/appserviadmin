@@ -1,4 +1,4 @@
-import * as BaseComponents from 'components/BaseComponents'
+import * as BaseComponents from "components/BaseComponents";
 
 export default async ({ Vue }) => {
   // Globally register your base components
@@ -6,6 +6,6 @@ export default async ({ Vue }) => {
   // check 'components/BaseComponents/index.js' where these component files
   // are exported
   Object.keys(BaseComponents).forEach(v => {
-    Vue.component(v, BaseComponents[v])
-  })
-}
+    Vue.component(v, BaseComponents[v]);
+  });
+};

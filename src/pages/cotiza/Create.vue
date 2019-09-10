@@ -9,7 +9,7 @@
         </q-item-section>
       </q-item>
       <q-item>
-        <q-item-section class="flex-center flex q-pa-xs">
+        <q-item-section class="flex-center flex">
           <q-select
             filled
             v-model="model"
@@ -35,15 +35,14 @@
       <q-item>
         <q-item-section class="flex-center flex">
           <q-form @submit="onSubmit" class>
-            <div class="row flex flex-center q-pa-xs">
-              <div class="q-pb-sm col-xs-12 col-sm-2">
+            <div class="row flex flex-center">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   dense
                   filled
                   readonly
                   v-model="model.no_client"
                   label="Nombre"
-                  hint="Nombre"
                   lazy-rules
                   :rules="[
                     val =>
@@ -51,14 +50,13 @@
                   ]"
                 />
               </div>
-              <div class="q-pb-sm col-xs-12 col-sm-3">
+              <div class="q-pa-sm col-xs-12 col-sm-3">
                 <q-input
                   dense
                   filled
                   readonly
                   v-model="model.no_corele"
                   label="Correo"
-                  hint="Correo"
                   lazy-rules
                   :rules="[
                     val =>
@@ -66,14 +64,13 @@
                   ]"
                 />
               </div>
-              <div class="q-pb-sm col-xs-12 col-sm-2">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   dense
                   filled
                   readonly
                   v-model="model.no_direcc"
                   label="Direccion"
-                  hint="Direccion"
                   lazy-rules
                   :rules="[
                     val =>
@@ -81,14 +78,13 @@
                   ]"
                 />
               </div>
-              <div class="q-pb-sm col-xs-12 col-sm-2">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   dense
                   filled
                   readonly
                   v-model="model.nu_docide"
                   label="Documento"
-                  hint="Documento"
                   lazy-rules
                   :rules="[
                     val =>
@@ -96,14 +92,13 @@
                   ]"
                 />
               </div>
-              <div class="q-pb-sm col-xs-12 col-sm-2">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   dense
                   filled
                   readonly
                   v-model="model.nu_telefono"
                   label="Telefono"
-                  hint="Telefono"
                   lazy-rules
                   :rules="[
                     val =>
@@ -113,13 +108,12 @@
               </div>
             </div>
             <div class="q-pb-sm">
-              <div class="q-pb-sm col-xs-12 col-sm-2">
+              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   v-model="text"
                   filled
                   type="textarea"
                   label="Descripcion"
-                  hint="Descripcion"
                 />
               </div>
             </div>

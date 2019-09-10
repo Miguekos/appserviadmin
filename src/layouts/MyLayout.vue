@@ -4,15 +4,16 @@
       <q-header elevated class="bg-white text-grey-8 q-py-xs" height-hint="58">
         <q-toolbar>
           <q-btn
-            flat
             dense
             round
             @click="leftDrawerOpen = !leftDrawerOpen"
             aria-label="Menu"
             icon="menu"
+            color="green"
           />
 
-          <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">
+          <!--          <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">-->
+          <q-btn flat no-caps no-wrap class="q-ml-xs">
             <!-- <q-icon name="fas fa-ad" color="green" size="28px" /> -->
             <q-img
               src="/statics/minilogoservi.png"
@@ -26,23 +27,23 @@
 
           <q-space />
 
-          <div class="YL__toolbar-input-container row no-wrap">
-            <q-input
-              dense
-              outlined
-              square
-              v-model="search"
-              placeholder="Search"
-              class="bg-white col"
-            />
-            <q-btn
-              class="YL__toolbar-input-btn"
-              color="grey-3"
-              text-color="grey-8"
-              icon="search"
-              unelevated
-            />
-          </div>
+          <!--          <div class="YL__toolbar-input-container row no-wrap">-->
+          <!--            <q-input-->
+          <!--              dense-->
+          <!--              outlined-->
+          <!--              square-->
+          <!--              v-model="search"-->
+          <!--              placeholder="Search"-->
+          <!--              class="bg-white col"-->
+          <!--            />-->
+          <!--            <q-btn-->
+          <!--              class="YL__toolbar-input-btn"-->
+          <!--              color="grey-3"-->
+          <!--              text-color="grey-8"-->
+          <!--              icon="search"-->
+          <!--              unelevated-->
+          <!--            />-->
+          <!--          </div>-->
 
           <q-space />
 
@@ -235,20 +236,19 @@
         </q-card-section>
 
         <q-card-section>
-          <div class="row col-xs-12">
-            <div>
+          <div class="row">
+            <div class="col-xs-12 q-pb-lg">
               <q-uploader
                 flat
                 bordered
                 auto-upload
                 url="http://localhost:4444/upload"
                 label="Cambiar imagen de Perfil"
-                multiple
                 accept=".jpg, image/*"
                 class="full-width"
               />
             </div>
-            <div col-xs-12>
+            <div class="col-xs-12">
               <div class="q-pa-xs col-xs-12">
                 <q-input
                   v-model="name"
@@ -281,7 +281,7 @@
               </div>
             </div>
           </div>
-          <div>
+          <div class="text-center">
             <q-btn
               color="positive"
               text-color="white"

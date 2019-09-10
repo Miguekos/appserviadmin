@@ -3,7 +3,7 @@
     <div class="q-pa-md fixed-center" style="width: 350px;">
       <div class="q-pa-md shadow-2 rounded-borders">
         <q-card class="q-pa-md shadow-2 rounded-borders">
-          <div class="text-h6 text-center">Iniciar Session</div>
+          <!--          <div class="text-h6 text-center">Iniciar Session</div>-->
           <div class="q-pa-md flex-center flex">
             <div>
               <!-- <q-img src="/statics/01.png" style="width: 180px"></q-img> -->

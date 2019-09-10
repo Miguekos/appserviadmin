@@ -2,7 +2,7 @@
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
-      <p class="bg-green-7 text-center text-white text-subtitle1">
+      <p class="bg-positive shadow-5 text-center text-white text-subtitle1">
         Cuadro Resumen
       </p>
     </div>

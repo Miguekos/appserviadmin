@@ -2,7 +2,7 @@
   <div class="full-width">
     <div>
       <div>
-        <p class="bg-green-7 text-center text-white text-subtitle1">
+        <p class="bg-positive shadow-5 text-center text-white text-subtitle1">
           Filtros Dinamicos
         </p>
       </div>
@@ -46,7 +46,7 @@
       </div>
     </div>
     <div class="q-pa-md flex flex-center">
-      <q-btn class="bg-secondary" @click="showLoading()" label="Filtrar" />
+      <q-btn @click="showLoading()" label="Filtrar" color="secondary" />
     </div>
   </div>
 </template>
