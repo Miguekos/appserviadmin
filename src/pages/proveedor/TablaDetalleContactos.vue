@@ -31,19 +31,19 @@
         <!--        </q-input>-->
       </template>
     </q-table>
-    {{ $data.form }}
     <q-dialog v-model="prompt" persistent>
-      <q-card style="min-width: 400px">
+      <q-card>
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <q-card-section>
             <div class="text-h6">Agregar Contacto</div>
           </q-card-section>
 
           <q-card-section>
-            <div>
+            <div class="q-gutter-md">
               <div>
                 <q-input
                   dense
+                  outlined
                   required="true"
                   label="Nombre"
                   v-model="form.p_no_nombre"
@@ -54,6 +54,7 @@
               <div>
                 <q-input
                   dense
+                  outlined
                   required
                   label="Telefono"
                   v-model="form.p_nu_telefo"
@@ -63,6 +64,7 @@
               <div>
                 <q-input
                   dense
+                  outlined
                   required
                   label="Correo"
                   type="email"
@@ -73,6 +75,7 @@
               <div>
                 <q-input
                   dense
+                  outlined
                   required
                   label="Genero"
                   v-model="form.p_co_gencon"
@@ -89,7 +92,7 @@
         </q-form>
       </q-card>
     </q-dialog>
-    {{ $data.form }}
+<!--    {{ $data.form }}-->
   </div>
 </template>
 <script>
