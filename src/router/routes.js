@@ -29,7 +29,8 @@ const routes = [
     component: () => import("layouts/MyLayout.vue"),
     children: [
       { path: "", component: () => import("pages/proveedor/Index.vue") },
-      { path: "create", component: () => import("pages/proveedor/Create.vue") }
+      { path: "create", component: () => import("pages/proveedor/Create.vue") },
+      { path: "detalle/:id", component: () => import("pages/proveedor/Detalle.vue") }
     ],
     meta: {
       requiresAuth: true

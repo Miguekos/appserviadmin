@@ -64,7 +64,8 @@ module.exports = function(ctx) {
         "QDialog",
         "QBar",
         "QUploader",
-        "QExpansionItem"
+        "QExpansionItem",
+        "QOptionGroup"
       ],
 
       directives: ["Ripple", "ClosePopup"],

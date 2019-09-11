@@ -1,12 +1,10 @@
 <template>
   <div class="q-pa-md">
+<!--    {{ datafld }}-->
     <q-table
-      title="Treats"
-      selection="single"
-      :selected.sync="selected"
-      :data="info"
+      :data="datafld"
       :columns="columns"
-      row-key="id_provee"
+      row-key="id"
       :filter="filter"
       :loading="loading"
       :pagination.sync="pagination"
@@ -24,28 +22,24 @@
           color="primary"
           v-model="filter"
         >
-          <template v-if="selected != ''" v-slot:append>
-            <q-btn class="bg-warning text-white" @click="detalleProve()">ver</q-btn>
-          </template>
-          <template v-else v-slot:append>
+          <template v-slot:append>
             <q-icon name="search" />
           </template>
         </q-input>
-        <!--        <div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>-->
       </template>
     </q-table>
-    {{ $data.filter }}
+    <!--    {{ $data }}-->
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from "vuex";
+// import { mapActions, mapGetters } from "vuex";
 export default {
+  props: ["datafld"],
   computed: {
-    ...mapGetters("proveedor", ["Proveedores"])
+    // ...mapGetters("clientes", ["Clientes"])
   },
   data() {
     return {
-      selected: [],
       pagination: {
         sortBy: "id",
         descending: false,
@@ -59,7 +53,7 @@ export default {
       filter: "",
       columns: [
         {
-          name: "id_provee",
+          name: "id",
           required: true,
           label: "Nro.",
           align: "left",
@@ -68,40 +62,35 @@ export default {
           sortable: true
         },
         {
-          name: "no_provee",
-          align: "left",
-          label: "Nombre",
-          field: "no_provee",
-          sortable: true
-        },
-        {
-          name: "Email",
-          align: "left",
-          label: "Email",
-          field: "nu_docpro",
-          sortable: true
-        },
-        {
-          name: "Direccion",
+          name: "direccion",
           align: "left",
           label: "Direccion",
-          field: "nu_sigpro",
+          field: "no_direcc",
+          sortable: true
+        },
+        {
+          name: "codigoubigeo",
+          align: "left",
+          label: "Codigo Ubigeo",
+          field: "co_ubigeo",
+          sortable: true
+        },
+        {
+          name: "id_provee",
+          align: "left",
+          label: "id_provee",
+          field: "id_provee",
           sortable: true
         }
       ]
     };
   },
   methods: {
-    ...mapActions("proveedor", ["getProveedor"]),
-      detalleProve () {
-          const proveedor = this.selected[0].id_provee;
-          console.log(proveedor);
-          this.$router.push(`/proveedores/detalle/${proveedor}`);
-      }
+    // ...mapActions("clientes", ["getClientes"])
   },
   async mounted() {
-    await this.getProveedor();
-    this.info = this.Proveedores;
+    // await this.getClientes();
+    // this.info = this.Clientes;
   }
 };
 </script>
