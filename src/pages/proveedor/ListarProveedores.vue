@@ -19,13 +19,13 @@
         <q-space />
         <q-input
           borderless
+          placeholder="Buscar"
           dense
-          debounce="300"
           color="primary"
           v-model="filter"
         >
           <template v-if="selected != ''" v-slot:append>
-            <q-btn class="bg-warning text-white" @click="detalleProve()">ver</q-btn>
+            <q-btn dense class="bg-warning text-white" @click="detalleProve()">ver</q-btn>
           </template>
           <template v-else v-slot:append>
             <q-icon name="search" />
@@ -34,7 +34,7 @@
         <!--        <div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>-->
       </template>
     </q-table>
-    {{ $data.filter }}
+<!--    {{ $data.filter }}-->
   </div>
 </template>
 <script>
