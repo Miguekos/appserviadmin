@@ -6,14 +6,6 @@ const routes = [
     children: [
       { path: "", component: () => import("pages/Index.vue") },
       { path: "dashboard", component: () => import("pages/DashboardUser.vue") }
-      // {
-      //   path: "cotizacion",
-      //   component: () => import("pages/cotiza/IndexRegistro.vue")
-      // }
-      // { path: '/user/create', component: () => import('pages/Ususarios/Create.vue') },
-      // { path: '/clientes', component: () => import('pages/Cliente/Index.vue') },
-      // { path: '/clientes/sindeuda', component: () => import('pages/Cliente/sinDeudas.vue') },
-      // { path: '/clientes/create', component: () => import('pages/Cliente/Create.vue') }
     ],
     meta: {
       requiresAuth: true
@@ -26,6 +18,18 @@ const routes = [
     children: [
       { path: "", component: () => import("pages/cotiza/IndexRegistro.vue") },
       { path: "create", component: () => import("pages/cotiza/Create.vue") }
+    ],
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/proveedores",
+    name: "proveedores",
+    component: () => import("layouts/MyLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/proveedor/Index.vue") },
+      { path: "create", component: () => import("pages/proveedor/Create.vue") }
     ],
     meta: {
       requiresAuth: true

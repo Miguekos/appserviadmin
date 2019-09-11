@@ -5,6 +5,7 @@ import auth from "./auth";
 import example from "./module-example";
 import users from "./users";
 import clientes from "./clientes";
+import proveedor from "./proveedor";
 
 Vue.use(Vuex);
 
@@ -19,7 +20,8 @@ export default function(/* { ssrContext } */) {
       example,
       auth,
       users,
-      clientes
+      clientes,
+      proveedor
     },
 
     // enable strict mode (adds overhead!)

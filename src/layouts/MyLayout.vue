@@ -1,7 +1,12 @@
 <template>
   <div>
     <q-layout view="hHh lpR fFf">
-      <q-header elevated class="bg-white text-grey-8 q-py-xs" height-hint="58">
+      <q-header
+        dense
+        elevated
+        class="bg-white text-grey-8 q-py-xs"
+        height-hint="58"
+      >
         <q-toolbar>
           <q-btn
             dense
@@ -24,61 +29,9 @@
               >SJ Servi Admin</q-toolbar-title
             >
           </q-btn>
-
           <q-space />
-
-          <!--          <div class="YL__toolbar-input-container row no-wrap">-->
-          <!--            <q-input-->
-          <!--              dense-->
-          <!--              outlined-->
-          <!--              square-->
-          <!--              v-model="search"-->
-          <!--              placeholder="Search"-->
-          <!--              class="bg-white col"-->
-          <!--            />-->
-          <!--            <q-btn-->
-          <!--              class="YL__toolbar-input-btn"-->
-          <!--              color="grey-3"-->
-          <!--              text-color="grey-8"-->
-          <!--              icon="search"-->
-          <!--              unelevated-->
-          <!--            />-->
-          <!--          </div>-->
-
-          <q-space />
-
           <div class="q-gutter-sm row items-center no-wrap">
-            <!-- <q-btn
-            round
-            dense
-            flat
-            color="grey-8"
-            icon="video_call"
-            v-if="$q.screen.gt.sm"
-          >
-            <q-tooltip>Create a video or post</q-tooltip>
-          </q-btn>
-          <q-btn
-            round
-            dense
-            flat
-            color="grey-8"
-            icon="apps"
-            v-if="$q.screen.gt.sm"
-          >
-            <q-tooltip>Apps</q-tooltip>
-          </q-btn>
-          <q-btn
-            round
-            dense
-            flat
-            color="grey-8"
-            icon="message"
-            v-if="$q.screen.gt.sm"
-          >
-            <q-tooltip>Messages</q-tooltip>
-            </q-btn>-->
-            <q-btn round dense flat color="grey-8" icon="notifications">
+            <q-btn round flat color="grey-8" icon="notifications">
               <q-badge color="red" text-color="white" floating>2</q-badge>
               <q-tooltip>Notificaciones</q-tooltip>
             </q-btn>
@@ -93,6 +46,7 @@
       </q-header>
 
       <q-drawer
+        dense
         v-model="leftDrawerOpen"
         show-if-above
         bordered
@@ -116,21 +70,6 @@
               </q-item-section>
             </q-item>
 
-            <!--          <q-separator class="q-my-md" />-->
-
-            <!--          <q-item-label header class="text-weight-bold text-uppercase">-->
-            <!--            Ventas-->
-            <!--          </q-item-label>-->
-
-            <!--          <q-item v-for="link in links2" :key="link.text" v-ripple clickable>-->
-            <!--            <q-item-section avatar>-->
-            <!--              <q-icon color="grey" :name="link.icon" />-->
-            <!--            </q-item-section>-->
-            <!--            <q-item-section>-->
-            <!--              <q-item-label>{{ link.text }}</q-item-label>-->
-            <!--            </q-item-section>-->
-            <!--          </q-item>-->
-
             <q-separator class="q-mt-md q-mb-xs" />
 
             <q-item-label header class="text-weight-bold text-uppercase"
@@ -139,6 +78,27 @@
 
             <q-item
               v-for="link in links3"
+              :key="link.text"
+              v-ripple
+              clickable
+              @click="URL(link.path)"
+            >
+              <q-item-section avatar>
+                <q-icon color="grey" :name="link.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ link.text }}</q-item-label>
+              </q-item-section>
+            </q-item>
+
+            <q-separator class="q-my-md" />
+
+            <q-item-label header class="text-weight-bold text-uppercase"
+              >Proveedores</q-item-label
+            >
+
+            <q-item
+              v-for="link in links6"
               :key="link.text"
               v-ripple
               clickable
@@ -189,20 +149,6 @@
                 <q-item-label>{{ link.text }}</q-item-label>
               </q-item-section>
             </q-item>
-
-            <!-- <q-separator class="q-mt-md q-mb-lg" /> -->
-
-            <!-- <div class="q-px-md text-grey-9">
-            <div class="row items-center q-gutter-x-sm q-gutter-y-xs">
-              <a
-                v-for="button in buttons1"
-                :key="button.text"
-                class="YL__drawer-footer-link"
-                href="javascript:void(0)"
-                >{{ button.text }}</a
-              >
-            </div>
-            </div>-->
           </q-list>
         </q-scroll-area>
       </q-drawer>
@@ -226,7 +172,7 @@
 
           <q-space />
 
-          <q-btn dense flat icon="close" v-close-popup>
+          <q-btn flat icon="close" v-close-popup>
             <q-tooltip content-class="bg-white text-primary">Close</q-tooltip>
           </q-btn>
         </q-bar>
@@ -253,7 +199,6 @@
                 <q-input
                   v-model="name"
                   hint="Nombre"
-                  dense
                   outlined
                   stack-label
                   label="Nombre"
@@ -263,7 +208,6 @@
                 <q-input
                   v-model="correo"
                   hint="Correo"
-                  dense
                   outlined
                   stack-label
                   label="Correo"
@@ -273,7 +217,6 @@
                 <q-input
                   v-model="newpassword"
                   hint="Nueva Contraseña"
-                  dense
                   outlined
                   stack-label
                   label="Password"
@@ -337,6 +280,18 @@ export default {
         { icon: "person_add", text: "Crear Usuarios", path: "/user/create" }
       ],
       links5: [{ icon: "logout", text: "Salir", path: "logout" }],
+      links6: [
+        {
+          icon: "supervised_user_circle",
+          text: "Proveedor",
+          path: "/proveedores"
+        },
+        {
+          icon: "person_add",
+          text: "Crear Proveedor",
+          path: "/proveedores/create"
+        }
+      ],
       buttons1: [
         { text: "About" },
         { text: "Config" },
