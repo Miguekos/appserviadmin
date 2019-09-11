@@ -6,7 +6,7 @@
       :selected.sync="selected"
       :data="info"
       :columns="columns"
-      row-key="id_client"
+      row-key="id_provee"
       :filter="filter"
       :loading="loading"
       :pagination.sync="pagination"
@@ -31,7 +31,7 @@
         <!--        <div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>-->
       </template>
     </q-table>
-    <!--    {{ $data }}-->
+<!--    {{ $data }}-->
   </div>
 </template>
 <script>
@@ -60,7 +60,7 @@ export default {
           required: true,
           label: "Nro.",
           align: "left",
-          field: "id_client",
+          field: "id_provee",
           format: val => `${val}`,
           sortable: true
         },
@@ -68,35 +68,21 @@ export default {
           name: "Nombre",
           align: "left",
           label: "Nombre",
-          field: "no_client",
+          field: "no_provee",
           sortable: true
         },
         {
           name: "Email",
           align: "left",
           label: "Email",
-          field: "no_corele",
+          field: "nu_docpro",
           sortable: true
         },
         {
           name: "Direccion",
           align: "left",
           label: "Direccion",
-          field: "no_direcc",
-          sortable: true
-        },
-        {
-          name: "DNI",
-          align: "left",
-          label: "DNI / C.E",
-          field: "nu_docide",
-          sortable: true
-        },
-        {
-          name: "Telefono",
-          align: "left",
-          label: "Telefono",
-          field: "nu_telefono",
+          field: "nu_sigpro",
           sortable: true
         }
       ]
@@ -107,7 +93,7 @@ export default {
   },
   async mounted() {
     await this.getProveedor();
-    // this.info = this.Proveedores;
+    this.info = this.Proveedores;
   }
 };
 </script>

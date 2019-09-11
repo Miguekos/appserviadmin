@@ -1,4 +1,5 @@
 export function setProveedor(state, payload) {
+  console.log("mutaciones");
   state.proveedores = payload;
 }
 

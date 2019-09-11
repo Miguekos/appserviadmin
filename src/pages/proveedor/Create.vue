@@ -72,46 +72,31 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      name: null,
-      email: null,
-      dni: null,
-      telf: null,
-      direccion: null,
-      model: null,
-      roles: [
-        {
-          label: "Admin",
-          value: 1
-        },
-        {
-          label: "Usuario",
-          value: 2
-        }
-      ]
+      razonSocial: null,
+      ruc: null,
+      sigla: null,
     };
   },
   methods: {
-    ...mapActions("clientes", ["createCleintes"]),
+    ...mapActions("proveedor", ["registrarProveedor"]),
     registrar() {
       const data = {
-        name: this.name,
-        dni: this.dni,
-        email: this.email,
-        telf: this.telf,
-        direccion: this.direccion
+        no_provee: this.razonSocial,
+        nu_docpro: this.ruc,
+        nu_sigpro: this.sigla
       };
       console.log(data);
-      return this.createCleintes(data);
+      return this.registrarProveedor(data);
     },
     onSubmit() {
-      this.$refs.name.validate();
-      this.$refs.dni.validate();
-      this.$refs.email.validate();
+      this.$refs.razonSocial.validate();
+      this.$refs.ruc.validate();
+      this.$refs.sigla.validate();
 
       if (
-        this.$refs.name.hasError ||
-        this.$refs.dni.hasError ||
-        this.$refs.email.hasError
+        this.$refs.razonSocial.hasError ||
+        this.$refs.ruc.hasError ||
+        this.$refs.sigla.hasError
       ) {
         this.formHasError = true;
       } else {
@@ -123,7 +108,7 @@ export default {
             message: "Registrado"
           });
           this.onReset();
-          this.$router.push("/cliente");
+          this.$router.push("/proveedores");
         } else {
           this.$q.notify({
             icon: "close",
@@ -135,13 +120,13 @@ export default {
     },
 
     onReset() {
-      this.name = null;
-      this.dni = null;
-      this.email = null;
+      this.razonSocial = null;
+      this.ruc = null;
+      this.sigla = null;
 
-      this.$refs.name.resetValidation();
-      this.$refs.dni.resetValidation();
-      this.$refs.email.resetValidation();
+      this.$refs.razonSocial.resetValidation();
+      this.$refs.ruc.resetValidation();
+      this.$refs.sigla.resetValidation();
     }
   }
 };
