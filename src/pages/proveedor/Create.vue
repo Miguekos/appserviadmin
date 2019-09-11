@@ -74,7 +74,7 @@ export default {
     return {
       razonSocial: null,
       ruc: null,
-      sigla: null,
+      sigla: null
     };
   },
   methods: {

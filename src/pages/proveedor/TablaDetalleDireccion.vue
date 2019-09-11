@@ -70,7 +70,7 @@
         </q-form>
       </q-card>
     </q-dialog>
-<!--    {{ $data.form }}-->
+    <!--    {{ $data.form }}-->
   </div>
 </template>
 <script>
@@ -157,7 +157,7 @@ export default {
     ...mapActions("proveedor", ["registrarProveDireccion"])
   },
   async mounted() {
-      this.form.p_id_provee = this.id_pro;
+    this.form.p_id_provee = this.id_pro;
     // await this.getClientes();
     // this.info = this.Clientes;
   }

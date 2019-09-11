@@ -25,7 +25,9 @@
           v-model="filter"
         >
           <template v-if="selected != ''" v-slot:append>
-            <q-btn dense class="bg-warning text-white" @click="detalleProve()">ver</q-btn>
+            <q-btn dense class="bg-warning text-white" @click="detalleProve()"
+              >ver</q-btn
+            >
           </template>
           <template v-else v-slot:append>
             <q-icon name="search" />
@@ -34,7 +36,7 @@
         <!--        <div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>-->
       </template>
     </q-table>
-<!--    {{ $data.filter }}-->
+    <!--    {{ $data.filter }}-->
   </div>
 </template>
 <script>
@@ -93,11 +95,11 @@ export default {
   },
   methods: {
     ...mapActions("proveedor", ["getProveedor"]),
-      detalleProve () {
-          const proveedor = this.selected[0].id_provee;
-          console.log(proveedor);
-          this.$router.push(`/proveedores/detalle/${proveedor}`);
-      }
+    detalleProve() {
+      const proveedor = this.selected[0].id_provee;
+      console.log(proveedor);
+      this.$router.push(`/proveedores/detalle/${proveedor}`);
+    }
   },
   async mounted() {
     await this.getProveedor();
