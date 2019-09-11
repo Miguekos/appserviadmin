@@ -15,7 +15,7 @@
           src="/statics/minilogoservi.png"
         />
         <q-space />
-        <q-btn class="bg-positive text-white" @click="crearDireccion()">
+        <q-btn outline color="positive" @click="crearDireccion()">
           Agregar Direccion
         </q-btn>
         <!--        <q-input-->
@@ -83,7 +83,7 @@ export default {
   data() {
     return {
       form: {
-        p_id_provee: "",
+        p_id_provee: null,
         p_no_direcc: "",
         p_co_ubigeo: ""
       },
@@ -142,6 +142,7 @@ export default {
         message: "Submitted"
       });
       await this.registrarProveDireccion(this.form);
+      await this.direccionProveedor(this.form.p_id_provee);
       this.prompt = false;
     },
 
@@ -154,7 +155,10 @@ export default {
     crearDireccion() {
       this.prompt = true;
     },
-    ...mapActions("proveedor", ["registrarProveDireccion"])
+    ...mapActions("proveedor", [
+      "registrarProveDireccion",
+      "direccionProveedor"
+    ])
   },
   async mounted() {
     this.form.p_id_provee = this.id_pro;

@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <!--    {{ datafld }}-->
+    <!--    {{ `ID proveedor ${id_pro}` }}-->
     <q-table
       :data="datafld"
       :columns="columns"
@@ -15,7 +15,7 @@
           src="/statics/minilogoservi.png"
         />
         <q-space />
-        <q-btn class="bg-positive text-white" @click="crearDireccion()">
+        <q-btn outline color="positive" @click="crearDireccion()">
           Agregar Contacto
         </q-btn>
         <!--        <q-input-->
@@ -105,7 +105,7 @@ export default {
   data() {
     return {
       form: {
-        p_id_provee: "",
+        p_id_provee: null,
         p_no_nombre: "",
         p_nu_telefo: "",
         p_no_correo: "",
@@ -180,6 +180,7 @@ export default {
         message: "Submitted"
       });
       await this.registrarProveContacto(this.form);
+      await this.contactoProveedor(this.form.p_id_provee);
       this.prompt = false;
     },
 
@@ -192,7 +193,7 @@ export default {
     crearDireccion() {
       this.prompt = true;
     },
-    ...mapActions("proveedor", ["registrarProveContacto"])
+    ...mapActions("proveedor", ["registrarProveContacto", "contactoProveedor"])
   },
   async mounted() {
     this.form.p_id_provee = this.id_pro;

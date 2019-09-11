@@ -6,6 +6,10 @@
           <q-item-label>Proveedores</q-item-label>
           <q-item-label caption>Detalle</q-item-label>
         </q-item-section>
+        <q-item-section>
+          <q-item-label>Proveedores</q-item-label>
+          <q-item-label caption>Detalle</q-item-label>
+        </q-item-section>
       </q-item>
       <div>
         <div>
