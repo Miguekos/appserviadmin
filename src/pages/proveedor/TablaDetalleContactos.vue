@@ -15,8 +15,8 @@
           src="/statics/minilogoservi.png"
         />
         <q-space />
-        <q-btn class="bg-positive" @click="crearDireccion()">
-          Agregar Direccion
+        <q-btn class="bg-positive text-white" @click="crearDireccion()">
+          Agregar Contacto
         </q-btn>
         <!--        <q-input-->
         <!--          borderless-->
@@ -31,7 +31,7 @@
         <!--        </q-input>-->
       </template>
     </q-table>
-    <q-dialog v-model="prompt" persistent>
+    <q-dialog full-width v-model="prompt" persistent>
       <q-card>
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <q-card-section>
@@ -39,7 +39,7 @@
           </q-card-section>
 
           <q-card-section>
-            <div class="q-gutter-md">
+            <div class="q-gutter-sm">
               <div>
                 <q-input
                   dense
@@ -87,7 +87,7 @@
 
           <q-card-actions align="right" class="text-primary">
             <q-btn flat label="Cancel" type="reset" />
-            <q-btn flat label="Agregar DIreccion" type="submit" />
+            <q-btn flat label="Agregar Contacto" type="submit" />
           </q-card-actions>
         </q-form>
       </q-card>

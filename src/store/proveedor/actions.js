@@ -58,7 +58,7 @@ export async function registrarProveDireccion({ commit }, payload) {
   console.log("registrar direccion_proveedor");
   console.log(payload);
   const response = await axiosInstance.post(
-    `/api/proveedors/registrar`,
+    `/api/proveedors/registrarDirecciones`,
     payload
   );
   // console.log(response.data);
