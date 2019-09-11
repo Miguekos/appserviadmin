@@ -9,14 +9,14 @@
       </q-item>
       <div>
         <div>
-          <ListaDirecciones :datafld="getProvDireccion"/>
+          <ListaDirecciones :datafld="getProvDireccion" :id_pro="id_pro" />
         </div>
         <div>
-          <ListaContactos :datafld="getProvContactos"/>
+          <ListaContactos :datafld="getProvContactos" :id_pro="id_pro" />
         </div>
       </div>
-<!--      {{ getProvContactos }}-->
-<!--      {{ getProvDireccion }}-->
+      <!--      {{ getProvContactos }}-->
+      <!--      {{ getProvDireccion }}-->
       <!--      <ListarCliente />-->
     </q-card>
   </q-page>
@@ -25,6 +25,11 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      id_pro: null
+    };
+  },
   computed: {
     ...mapGetters("proveedor", ["getProvContactos", "getProvDireccion"])
   },
@@ -38,6 +43,7 @@ export default {
   },
   async mounted() {
     const id = this.$route.params.id;
+    this.id_pro = id;
     console.log(id);
     await this.contactoProveedor(id);
     await this.direccionProveedor(id);

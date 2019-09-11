@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-<!--    {{ datafld }}-->
+    <!--    {{ datafld }}-->
     <q-table
       :data="datafld"
       :columns="columns"
@@ -15,31 +15,100 @@
           src="/statics/minilogoservi.png"
         />
         <q-space />
-        <q-input
-          borderless
-          dense
-          debounce="300"
-          color="primary"
-          v-model="filter"
-        >
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
+        <q-btn class="bg-positive" @click="crearDireccion()">
+          Agregar Direccion
+        </q-btn>
+        <!--        <q-input-->
+        <!--          borderless-->
+        <!--          dense-->
+        <!--          debounce="300"-->
+        <!--          color="primary"-->
+        <!--          v-model="filter"-->
+        <!--        >-->
+        <!--          <template v-slot:append>-->
+        <!--            <q-icon name="search" />-->
+        <!--          </template>-->
+        <!--        </q-input>-->
       </template>
     </q-table>
-    <!--    {{ $data }}-->
+    {{ $data.form }}
+    <q-dialog v-model="prompt" persistent>
+      <q-card style="min-width: 400px">
+        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+          <q-card-section>
+            <div class="text-h6">Agregar Contacto</div>
+          </q-card-section>
+
+          <q-card-section>
+            <div>
+              <div>
+                <q-input
+                  dense
+                  required="true"
+                  label="Nombre"
+                  v-model="form.p_no_nombre"
+                  autofocus
+                  @keyup.enter="prompt = false"
+                />
+              </div>
+              <div>
+                <q-input
+                  dense
+                  required
+                  label="Telefono"
+                  v-model="form.p_nu_telefo"
+                  @keyup.enter="prompt = false"
+                />
+              </div>
+              <div>
+                <q-input
+                  dense
+                  required
+                  label="Correo"
+                  type="email"
+                  v-model="form.p_no_correo"
+                  @keyup.enter="prompt = false"
+                />
+              </div>
+              <div>
+                <q-input
+                  dense
+                  required
+                  label="Genero"
+                  v-model="form.p_co_gencon"
+                  @keyup.enter="prompt = false"
+                />
+              </div>
+            </div>
+          </q-card-section>
+
+          <q-card-actions align="right" class="text-primary">
+            <q-btn flat label="Cancel" type="reset" />
+            <q-btn flat label="Agregar DIreccion" type="submit" />
+          </q-card-actions>
+        </q-form>
+      </q-card>
+    </q-dialog>
+    {{ $data.form }}
   </div>
 </template>
 <script>
-// import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
-  props: ["datafld"],
+  props: ["datafld", "id_pro"],
   computed: {
     // ...mapGetters("clientes", ["Clientes"])
   },
   data() {
     return {
+      form: {
+        p_id_provee: "",
+        p_no_nombre: "",
+        p_nu_telefo: "",
+        p_no_correo: "",
+        p_co_gencon: ""
+      },
+      prompt: false,
       pagination: {
         sortBy: "id",
         descending: false,
@@ -100,9 +169,30 @@ export default {
     };
   },
   methods: {
-    // ...mapActions("clientes", ["getClientes"])
+    async onSubmit() {
+      this.$q.notify({
+        color: "green-4",
+        textColor: "white",
+        icon: "fas fa-check-circle",
+        message: "Submitted"
+      });
+      await this.registrarProveContacto(this.form);
+      this.prompt = false;
+    },
+
+    onReset() {
+      this.prompt = false;
+      this.name = null;
+      this.age = null;
+      this.accept = false;
+    },
+    crearDireccion() {
+      this.prompt = true;
+    },
+    ...mapActions("proveedor", ["registrarProveContacto"])
   },
   async mounted() {
+       this.form.p_id_provee = this.id_pro;
     // await this.getClientes();
     // this.info = this.Clientes;
   }

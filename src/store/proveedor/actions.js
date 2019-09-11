@@ -41,3 +41,27 @@ export async function registrarProveedor({ commit }, payload) {
   // commit("setReg", response.data);
   return response.data;
 }
+// eslint-disable-next-line
+export async function registrarProveContacto({ commit }, payload) {
+  console.log("registrar direccion_proveedor");
+  console.log(payload);
+  const response = await axiosInstance.post(
+    `/api/proveedors/registrarContactos`,
+    payload
+  );
+  // console.log(response.data);
+  // commit("setReg", response.data);
+  return response.data;
+}
+// eslint-disable-next-line
+export async function registrarProveDireccion({ commit }, payload) {
+  console.log("registrar direccion_proveedor");
+  console.log(payload);
+  const response = await axiosInstance.post(
+    `/api/proveedors/registrar`,
+    payload
+  );
+  // console.log(response.data);
+  // commit("setReg", response.data);
+  return response.data;
+}
