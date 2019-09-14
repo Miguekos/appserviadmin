@@ -135,6 +135,7 @@ export default {
   },
   methods: {
     async onSubmit() {
+      this.loading = true;
       this.$q.notify({
         color: "green-4",
         textColor: "white",
@@ -144,6 +145,7 @@ export default {
       await this.registrarProveDireccion(this.form);
       await this.direccionProveedor(this.form.p_id_provee);
       this.prompt = false;
+      this.loading = false;
     },
 
     onReset() {
@@ -161,7 +163,9 @@ export default {
     ])
   },
   async mounted() {
+    this.loading = true;
     this.form.p_id_provee = this.id_pro;
+    this.loading = false;
     // await this.getClientes();
     // this.info = this.Clientes;
   }

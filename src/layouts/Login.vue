@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh Lpr fFf" class="loginfondo size=400px">
+  <q-layout view="hHh Lpr fFf" class="loginfondo">
     <!-- Be sure to play with the Layout demo on docs -->
 
     <!-- (Optional) The Header -->
@@ -45,5 +45,10 @@ export default {
 .loginfondo {
   /* background-color: #365552; */
   background-image: url("../statics/fondo.png");
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 </style>

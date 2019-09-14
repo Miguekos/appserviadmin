@@ -57,7 +57,7 @@ export default {
     return {
       visible: true,
       showSimulatedReturnData: true,
-      loading: true,
+      loading: false,
       filter: "",
       rowCount: 10,
       columns: [
@@ -137,7 +137,9 @@ export default {
   },
   async created() {
     // this.$q.loading.show();
+    this.loading = true;
     await this.registros();
+    this.loading = false;
     // this.$q.loading.hide();
   }
 };

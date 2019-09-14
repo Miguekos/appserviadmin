@@ -104,6 +104,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       form: {
         p_id_provee: null,
         p_no_nombre: "",
@@ -121,7 +122,6 @@ export default {
         pagesNumber: 3
       },
       info: [],
-      loading: false,
       filter: "",
       columns: [
         {
@@ -173,6 +173,7 @@ export default {
   },
   methods: {
     async onSubmit() {
+      this.loading = true;
       this.$q.notify({
         color: "green-4",
         textColor: "white",
@@ -182,6 +183,7 @@ export default {
       await this.registrarProveContacto(this.form);
       await this.contactoProveedor(this.form.p_id_provee);
       this.prompt = false;
+      this.loading = false;
     },
 
     onReset() {
@@ -196,7 +198,9 @@ export default {
     ...mapActions("proveedor", ["registrarProveContacto", "contactoProveedor"])
   },
   async mounted() {
+    this.loading = true;
     this.form.p_id_provee = this.id_pro;
+    this.loading = false;
     // await this.getClientes();
     // this.info = this.Clientes;
   }

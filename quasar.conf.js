@@ -76,11 +76,11 @@ module.exports = function(ctx) {
 
       // Quasar plugins
       plugins: ["Notify", "Cookies", "Loading", "Dialog"],
-      config: {
-        loading: {
-          spinner: QSpinnerGears,
-        }
-      }
+      // config: {
+      //   loading: {
+      //     spinner: QSpinnerGears,
+      //   }
+      // }
     },
 
     supportIE: true,

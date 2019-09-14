@@ -211,9 +211,9 @@ export default {
           icon: "fas fa-check",
           message: "Se registro la cotizacion correctamente"
         });
-        this.loading = false;
         await this.registros();
         this.dialogCreate(false);
+        this.loading = false;
         // this.$router.push("/cotizacion");
       } else {
         this.$q.notify({
