@@ -64,7 +64,7 @@
                   ]"
                 />
               </div>
-              <div class="q-pa-sm col-xs-12 col-sm-2">
+              <div class="q-pa-sm col-xs-12 col-sm-4">
                 <q-input
                   dense
                   filled
@@ -227,9 +227,11 @@ export default {
     }
   },
   async created() {
+    // this.$q.loading.show();
     await this.getClientes();
     this.options = await this.asdClientes;
     this.lotrOpts = await this.asdClientes;
+    // this.$q.loading.hide();
   }
 };
 </script>

@@ -5,35 +5,46 @@
         Listado
       </p>
     </div>
-    <q-table
-      title="Listado"
-      :data="getRegistros"
-      :columns="columns"
-      row-key="name"
-      binary-state-sort
-      :filter="filter"
-      :loading="loading"
+    <transition
+      appear
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
     >
-      <template v-slot:top>
-        <img
-          style="height: 50px; width: 50px"
-          src="/statics/minilogoservi.png"
-        />
-        <q-space />
-        <q-input
-          borderless
-          dense
-          debounce="300"
-          color="primary"
-          v-model="filter"
-          label="Buscar"
-        >
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-      </template>
-    </q-table>
+      <q-table
+        v-show="showSimulatedReturnData"
+        title="Listado"
+        :data="getRegistros"
+        :columns="columns"
+        row-key="name"
+        binary-state-sort
+        :filter="filter"
+        :loading="loading"
+        loading-label="Cargadno Data"
+      >
+        <q-inner-loading :showing="visible">
+          <q-spinner-gears size="50px" color="primary" />
+        </q-inner-loading>
+        <template v-slot:top>
+          <img
+            style="height: 50px; width: 50px"
+            src="/statics/minilogoservi.png"
+          />
+          <q-space />
+          <q-input
+            borderless
+            dense
+            debounce="300"
+            color="primary"
+            v-model="filter"
+            label="Buscar"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+        </template>
+      </q-table>
+    </transition>
   </div>
 </template>
 <script>
@@ -44,7 +55,9 @@ export default {
   },
   data() {
     return {
-      loading: false,
+      visible: true,
+      showSimulatedReturnData: true,
+      loading: true,
       filter: "",
       rowCount: 10,
       columns: [
@@ -123,7 +136,9 @@ export default {
     ...mapActions("example", ["registros"])
   },
   async created() {
+    // this.$q.loading.show();
     await this.registros();
+    // this.$q.loading.hide();
   }
 };
 </script>

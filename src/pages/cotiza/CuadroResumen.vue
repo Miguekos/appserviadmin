@@ -48,6 +48,10 @@ export default {
       separator: "cell",
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"]
     };
+  },
+  created() {
+    console.log("se cargo el created de resumen");
+    // this.$q.loading.show({ delay: 400 });
   }
 };
 </script>

@@ -32,7 +32,7 @@ export default function(/* { store, ssrContext } */) {
           if (user.is_admin == 1) {
             next();
           } else {
-            next({ name: "userboard" });
+            next({ path: "/dashboard" });
           }
         } else {
           next();
@@ -42,7 +42,7 @@ export default function(/* { store, ssrContext } */) {
       if (localStorage.getItem("jwt") == null) {
         next();
       } else {
-        next({ name: "userboard" });
+        next({ path: "/dashboard" });
       }
     } else {
       next();

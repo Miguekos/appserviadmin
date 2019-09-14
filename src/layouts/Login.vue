@@ -44,6 +44,6 @@ export default {
 <style scoped>
 .loginfondo {
   /* background-color: #365552; */
-  background-image: url("../statics/fondo.jpg");
+  background-image: url("../statics/fondo.png");
 }
 </style>

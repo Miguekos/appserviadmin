@@ -4,7 +4,6 @@ import { Notify } from "quasar";
 //
 // const REGISTER_ROUTE = "/auth/register";
 // const VERIFICATION_ROUTE = "/auth/verify";
-const LOGOUT_ROUTE = "/api/logout";
 const LOGIN_ROUTE = "/api/tbusers";
 const VALIDAR_USER = "/api/user";
 // const FETCH_USER_ROUTE = "/auth/user";
@@ -37,6 +36,4 @@ export async function logout() {
   localStorage.removeItem("jwt");
   localStorage.removeItem("datadelusuario");
   Cookies.remove("accToken");
-  const logout = await axiosInstance.get(LOGOUT_ROUTE);
-  return logout;
 }

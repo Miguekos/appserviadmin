@@ -25,7 +25,11 @@
           v-model="filter"
         >
           <template v-if="selected != ''" v-slot:append>
-            <q-btn outline dense class="bg-warning text-white" @click="detalleProve()"
+            <q-btn
+              outline
+              dense
+              class="bg-warning text-white"
+              @click="detalleProve()"
               >ver</q-btn
             >
           </template>

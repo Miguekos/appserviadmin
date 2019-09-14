@@ -65,13 +65,22 @@ module.exports = function(ctx) {
         "QBar",
         "QUploader",
         "QExpansionItem",
-        "QOptionGroup"
+        "QOptionGroup",
+        "QInnerLoading",
+        "QSpinner",
+        "QSpinnerGears"
+
       ],
 
       directives: ["Ripple", "ClosePopup"],
 
       // Quasar plugins
-      plugins: ["Notify", "Cookies", "Loading", "Dialog"]
+      plugins: ["Notify", "Cookies", "Loading", "Dialog"],
+      config: {
+        loading: {
+          spinner: QSpinnerGears,
+        }
+      }
     },
 
     supportIE: true,
