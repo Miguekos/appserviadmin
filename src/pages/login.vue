@@ -37,7 +37,13 @@
             </div>
           </div>
           <q-card-actions>
-            <q-btn type="submit" class="fit" color="positive">Login</q-btn>
+            <q-btn
+              :loading="loading1"
+              type="submit"
+              class="fit"
+              color="positive"
+              >Login</q-btn
+            >
           </q-card-actions>
         </form>
       </q-card>
@@ -50,6 +56,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      loading1: false,
       drawerState: false,
       rememberMe: true,
       form: {
@@ -61,6 +68,7 @@ export default {
   methods: {
     ...mapActions("auth", ["login", "validarUser"]),
     async onSubmit() {
+      this.loading1 = true;
       // this.getCliente();
       const data = {
         email: this.form.username,
@@ -88,6 +96,7 @@ export default {
           color: "red"
         });
       }
+      this.loading1 = false;
       // this.login()
     }
   },

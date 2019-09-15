@@ -1,9 +1,12 @@
 <template>
   <div class="q-pa-md">
     <q-table
+      title="Treats"
+      selection="single"
+      :selected.sync="selected"
       :data="info"
       :columns="columns"
-      row-key="id"
+      row-key="id_provee"
       :filter="filter"
       :loading="loading"
       :pagination.sync="pagination"
@@ -16,28 +19,39 @@
         <q-space />
         <q-input
           borderless
+          placeholder="Buscar"
           dense
-          debounce="300"
           color="primary"
           v-model="filter"
         >
-          <template v-slot:append>
+          <template v-if="selected != ''" v-slot:append>
+            <q-btn
+              outline
+              dense
+              class="bg-warning text-white"
+              @click="detalleProve()"
+              >ver</q-btn
+            >
+          </template>
+          <template v-else v-slot:append>
             <q-icon name="search" />
           </template>
         </q-input>
+        <!--        <div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>-->
       </template>
     </q-table>
-    <!--    {{ $data }}-->
+    <!--    {{ $data.filter }}-->
   </div>
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters("clientes", ["Clientes"])
+    ...mapGetters("proveedor", ["Proveedores"])
   },
   data() {
     return {
+      selected: [],
       pagination: {
         sortBy: "id",
         descending: false,
@@ -51,58 +65,49 @@ export default {
       filter: "",
       columns: [
         {
-          name: "#",
+          name: "id_provee",
           required: true,
           label: "Nro.",
           align: "left",
-          field: "id_client",
+          field: "id_provee",
           format: val => `${val}`,
           sortable: true
         },
         {
-          name: "Nombre",
+          name: "no_provee",
           align: "left",
           label: "Nombre",
-          field: "no_client",
+          field: "no_provee",
           sortable: true
         },
         {
           name: "Email",
           align: "left",
           label: "Email",
-          field: "no_corele",
+          field: "nu_docpro",
           sortable: true
         },
         {
           name: "Direccion",
           align: "left",
           label: "Direccion",
-          field: "no_direcc",
-          sortable: true
-        },
-        {
-          name: "DNI",
-          align: "left",
-          label: "DNI / C.E",
-          field: "nu_docide",
-          sortable: true
-        },
-        {
-          name: "Telefono",
-          align: "left",
-          label: "Telefono",
-          field: "nu_telefono",
+          field: "nu_sigpro",
           sortable: true
         }
       ]
     };
   },
   methods: {
-    ...mapActions("clientes", ["getClientes"])
+    ...mapActions("proveedor", ["getProveedor"]),
+    detalleProve() {
+      const proveedor = this.selected[0].id_provee;
+      console.log(proveedor);
+      this.$router.push(`/proveedores/detalle/${proveedor}`);
+    }
   },
   async mounted() {
-    await this.getClientes();
-    this.info = this.Clientes;
+    await this.getProveedor();
+    this.info = this.Proveedores;
   }
 };
 </script>
