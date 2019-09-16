@@ -1,5 +1,8 @@
 export default {
   proveedores: [],
   proveedorContactos: [],
-  proveedorDirecciones: []
+  proveedorDirecciones: [],
+  pblistar_departamento: [],
+  pblistar_provincia: [],
+  pblistar_distrito: []
 };

@@ -185,10 +185,12 @@ export default {
         icon: "fas fa-check-circle",
         message: "Submitted"
       });
-      await this.registrarProveContacto(this.form);
-      await this.contactoProveedor(this.form.p_id_provee);
-      this.prompt = false;
-      this.loading = false;
+      this.registrarProveContacto(this.form).then(() => {
+        this.contactoProveedor(this.form.p_id_provee).then(() => {
+          this.prompt = false;
+          this.loading = false;
+        });
+      });
     },
     onReset() {
       this.prompt = false;

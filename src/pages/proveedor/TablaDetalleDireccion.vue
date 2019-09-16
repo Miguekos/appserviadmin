@@ -39,14 +39,58 @@
                   @keyup.enter="prompt = false"
                 />
               </div>
+              <!--              <div>-->
+              <!--                <q-input-->
+              <!--                  dense-->
+              <!--                  outlined-->
+              <!--                  required-->
+              <!--                  label="Codigo de Ubigeo"-->
+              <!--                  v-model="form.p_co_ubigeo"-->
+              <!--                  @keyup.enter="prompt = false"-->
+              <!--                />-->
+              <!--              </div>-->
               <div>
-                <q-input
-                  dense
+                <q-select
                   outlined
+                  dense
                   required
-                  label="Codigo de Ubigeo"
-                  v-model="form.p_co_ubigeo"
-                  @keyup.enter="prompt = false"
+                  @input="provincia()"
+                  v-model="fieldDepartamento"
+                  :options="getDepartamento"
+                  option-value="no_ubigeo"
+                  option-label="nu_depart"
+                  emit-value
+                  map-options
+                  label="Departamento"
+                />
+              </div>
+              <div>
+                <q-select
+                  @input="distrito()"
+                  outlined
+                  dense
+                  required
+                  v-model="fieldProvincia"
+                  :options="getProvincia"
+                  option-value="no_ubigeo"
+                  option-label="no_provin"
+                  emit-value
+                  map-options
+                  label="Provincia"
+                />
+              </div>
+              <div>
+                <q-select
+                  outlined
+                  dense
+                  required
+                  v-model="fieldDistrito"
+                  :options="getDistrito"
+                  option-value="no_ubigeo"
+                  option-label="no_provin"
+                  emit-value
+                  map-options
+                  label="Distrito"
                 />
               </div>
             </div>
@@ -59,18 +103,26 @@
         </q-form>
       </q-card>
     </q-dialog>
-    <!--    {{ $data.form }}-->
+    <!--    {{ $data }}-->
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   props: ["datafld", "id_pro"],
   computed: {
-    // ...mapGetters("clientes", ["Clientes"])
+    ...mapGetters("proveedor", [
+      "getDepartamento",
+      "getProvincia",
+      "getDistrito"
+    ])
   },
   data() {
     return {
+      fieldDepartamento: "",
+      fieldProvincia: "",
+      fieldDistrito: "",
+      model: "",
       form: {
         p_id_provee: null,
         p_no_direcc: "",
@@ -123,6 +175,13 @@ export default {
     };
   },
   methods: {
+    ...mapActions("proveedor", [
+      "registrarProveDireccion",
+      "direccionProveedor",
+      "pblistar_departamento",
+      "pblistar_provincia",
+      "pblistar_distrito"
+    ]),
     async onSubmit() {
       this.loading = true;
       this.$q.notify({
@@ -131,12 +190,20 @@ export default {
         icon: "fas fa-check-circle",
         message: "Submitted"
       });
-      await this.registrarProveDireccion(this.form);
-      await this.direccionProveedor(this.form.p_id_provee);
-      this.prompt = false;
-      this.loading = false;
+      this.registrarProveDireccion(this.form).then(result => {
+        console.log(result);
+        this.direccionProveedor(this.form.p_id_provee).then(result => {
+          console.log(result);
+          this.loading = false;
+          this.prompt = false;
+        });
+      });
+      // this.reload();
+      // this.$route.push(`/proveedores/detalle/${this.$route.params.id}`)
     },
-
+    reload: function() {
+      this.$router.go(this.$router.currentRoute);
+    },
     onReset() {
       this.prompt = false;
       this.name = null;
@@ -146,17 +213,27 @@ export default {
     crearDireccion() {
       this.prompt = true;
     },
-    ...mapActions("proveedor", [
-      "registrarProveDireccion",
-      "direccionProveedor"
-    ])
+    provincia() {
+      console.log(this.fieldDepartamento);
+      this.pblistar_provincia(this.fieldDepartamento);
+      this.fieldProvincia = "";
+    },
+    distrito() {
+      console.log(this.fieldProvincia);
+      this.pblistar_distrito(this.fieldProvincia);
+      this.form.p_co_ubigeo = this.fieldProvincia;
+      this.fieldDistrito = "";
+    }
   },
   async mounted() {
     this.loading = true;
     this.form.p_id_provee = this.id_pro;
+    this.pblistar_departamento();
     this.loading = false;
+
     // await this.getClientes();
     // this.info = this.Clientes;
-  }
+  },
+  watch: {}
 };
 </script>

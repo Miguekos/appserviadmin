@@ -65,3 +65,25 @@ export async function registrarProveDireccion({ commit }, payload) {
   // commit("setReg", response.data);
   return response.data;
 }
+
+export async function pblistar_departamento({ commit }) {
+  console.log("listar contacto_proveedor");
+  const response = await axiosInstance.get(
+    `/api/proveedors/pblistar_departamento`
+  );
+  commit("pblistar_departamento", response.data);
+}
+export async function pblistar_provincia({ commit }, payload) {
+  console.log("listar contacto_proveedor");
+  const response = await axiosInstance.get(
+    `/api/proveedors/pblistar_provincia/${payload}`
+  );
+  commit("pblistar_provincia", response.data);
+}
+export async function pblistar_distrito({ commit }, payload) {
+  console.log("listar contacto_proveedor");
+  const response = await axiosInstance.get(
+    `/api/proveedors/pblistar_distrito/${payload}`
+  );
+  commit("pblistar_distrito", response.data);
+}

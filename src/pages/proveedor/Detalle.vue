@@ -7,8 +7,9 @@
           <q-item-label caption>Detalle</q-item-label>
         </q-item-section>
         <q-item-section>
-          <q-item-label>Proveedores</q-item-label>
-          <q-item-label caption>Detalle</q-item-label>
+          <!--          <div class="text-right">-->
+          <!--            <q-btn class="bg-red-4" >atras</q-btn>-->
+          <!--          </div>-->
         </q-item-section>
       </q-item>
       <div>
