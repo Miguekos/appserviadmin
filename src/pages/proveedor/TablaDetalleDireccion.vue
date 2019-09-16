@@ -18,17 +18,6 @@
         <q-btn outline color="positive" @click="crearDireccion()">
           Agregar Direccion
         </q-btn>
-        <!--        <q-input-->
-        <!--          borderless-->
-        <!--          dense-->
-        <!--          debounce="300"-->
-        <!--          color="primary"-->
-        <!--          v-model="filter"-->
-        <!--        >-->
-        <!--          <template v-slot:append>-->
-        <!--            <q-icon name="search" />-->
-        <!--          </template>-->
-        <!--        </q-input>-->
       </template>
     </q-table>
     <q-dialog full-width v-model="prompt" persistent>

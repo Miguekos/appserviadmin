@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa-md">
     <q-table
+      @click-row="loading = true"
       title="Treats"
-      selection="single"
       :selected.sync="selected"
       :data="info"
       :columns="columns"
@@ -11,6 +11,18 @@
       :loading="loading"
       :pagination.sync="pagination"
     >
+      <q-tr
+        slot="body"
+        slot-scope="props"
+        :props="props"
+        @click.native="rowClick(props.row)"
+        class="cursor-pointer"
+      >
+        <q-td v-for="col in props.cols" :key="col.name" :props="props">
+          {{ col.value }}
+        </q-td>
+      </q-tr>
+
       <template v-slot:top>
         <img
           style="height: 50px; width: 50px"
@@ -24,16 +36,7 @@
           color="primary"
           v-model="filter"
         >
-          <template v-if="selected != ''" v-slot:append>
-            <q-btn
-              outline
-              dense
-              class="bg-warning text-white"
-              @click="detalleProve()"
-              >ver</q-btn
-            >
-          </template>
-          <template v-else v-slot:append>
+          <template v-slot:append>
             <q-icon name="search" />
           </template>
         </q-input>
@@ -98,12 +101,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions("proveedor", ["getProveedor"]),
-    detalleProve() {
-      const proveedor = this.selected[0].id_provee;
-      console.log(proveedor);
-      this.$router.push(`/proveedores/detalle/${proveedor}`);
-    }
+    rowClick(val) {
+      console.log(val);
+      this.$router.push(`/proveedores/detalle/${val.id_provee}`);
+    },
+    ...mapActions("proveedor", ["getProveedor"])
   },
   async mounted() {
     await this.getProveedor();

@@ -7,7 +7,7 @@
           <q-item-label caption>Mentenimiento</q-item-label>
         </q-item-section>
       </q-item>
-      <ListarCliente />
+      <ListarProveedores />
     </q-card>
   </q-page>
 </template>
@@ -15,7 +15,7 @@
 <script>
 export default {
   components: {
-    ListarCliente: () => import("./ListarProveedores")
+    ListarProveedores: () => import("./ListarProveedores")
     // TablaFiltro: () => import("./TablaFiltro"),
     // CuadroResumen: () => import("./CuadroResumen")
   }

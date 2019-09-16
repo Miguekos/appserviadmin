@@ -49,8 +49,10 @@ export default {
     const id = this.$route.params.id;
     this.id_pro = id;
     console.log(id);
+    this.$q.loading.show();
     await this.contactoProveedor(id);
     await this.direccionProveedor(id);
+    this.$q.loading.hide();
   }
   // name: 'PageName',
 };

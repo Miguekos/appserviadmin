@@ -18,17 +18,6 @@
         <q-btn outline color="positive" @click="crearDireccion()">
           Agregar Contacto
         </q-btn>
-        <!--        <q-input-->
-        <!--          borderless-->
-        <!--          dense-->
-        <!--          debounce="300"-->
-        <!--          color="primary"-->
-        <!--          v-model="filter"-->
-        <!--        >-->
-        <!--          <template v-slot:append>-->
-        <!--            <q-icon name="search" />-->
-        <!--          </template>-->
-        <!--        </q-input>-->
       </template>
     </q-table>
     <q-dialog full-width v-model="prompt" persistent>
@@ -42,6 +31,7 @@
             <div class="q-gutter-sm">
               <div>
                 <q-input
+                  ref="form.p_no_nombre"
                   dense
                   outlined
                   required="true"
@@ -49,20 +39,24 @@
                   v-model="form.p_no_nombre"
                   autofocus
                   @keyup.enter="prompt = false"
+                  :rules="[val => !!val || 'El campo es obligatorio']"
                 />
               </div>
               <div>
                 <q-input
+                  ref="telefono"
                   dense
                   outlined
                   required
                   label="Telefono"
                   v-model="form.p_nu_telefo"
                   @keyup.enter="prompt = false"
+                  :rules="[val => val.length == 9 || 'Debe tener 9 digitos']"
                 />
               </div>
               <div>
                 <q-input
+                  ref="correo"
                   dense
                   outlined
                   required
@@ -70,23 +64,27 @@
                   type="email"
                   v-model="form.p_no_correo"
                   @keyup.enter="prompt = false"
+                  :rules="[val => !!val || 'El campo es obligatorio']"
                 />
               </div>
               <div>
-                <q-input
+                <q-select
+                  :options="generos"
+                  ref="genero"
                   dense
                   outlined
                   required
                   label="Genero"
                   v-model="form.p_co_gencon"
                   @keyup.enter="prompt = false"
+                  :rules="[val => !!val || 'El campo es obligatorio']"
                 />
               </div>
             </div>
           </q-card-section>
 
           <q-card-actions align="right" class="text-primary">
-            <q-btn flat label="Cancel" type="reset" />
+            <q-btn flat label="Cancel" @click="reset()" type="reset" />
             <q-btn flat label="Agregar Contacto" type="submit" />
           </q-card-actions>
         </q-form>
@@ -104,6 +102,7 @@ export default {
   },
   data() {
     return {
+      generos: ["M", "F"],
       loading: false,
       form: {
         p_id_provee: null,
@@ -172,6 +171,12 @@ export default {
     };
   },
   methods: {
+    reset() {
+      // this.$refs.p_no_nombre.resetValidation();
+      // this.$refs.telefono.resetValidation();
+      // this.$refs.correo.resetValidation();
+      // this.$refs.genero.resetValidation();
+    },
     async onSubmit() {
       this.loading = true;
       this.$q.notify({
@@ -185,7 +190,6 @@ export default {
       this.prompt = false;
       this.loading = false;
     },
-
     onReset() {
       this.prompt = false;
       this.name = null;
