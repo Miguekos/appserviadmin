@@ -34,7 +34,7 @@
       </q-item>
       <q-item>
         <q-item-section class="flex-center flex">
-          <q-form @submit="onSubmit" class>
+          <q-form @submit.prevent="onSubmit" class>
             <div class="row flex flex-center">
               <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
@@ -120,7 +120,7 @@
             <div class="flex flex-center">
               <q-btn
                 label="Registrar"
-                :loading="loading"
+                :loading="loading1"
                 type="submit"
                 color="primary"
               />
@@ -153,6 +153,7 @@ export default {
   data() {
     return {
       loading: false,
+      loading1: false,
       name: "",
       dni: "",
       selectModel: "",
@@ -200,30 +201,40 @@ export default {
     },
     async onSubmit() {
       this.loading = true;
-      const response = this.registrarCotizacion({
+      this.loading1 = true;
+      this.registrarCotizacion({
         ...this.model,
         text: this.text
-      });
-      if (response) {
-        this.$q.notify({
-          color: "green-5",
-          textColor: "white",
-          icon: "fas fa-check",
-          message: "Se registro la cotizacion correctamente"
+      })
+        .then(resp => {
+          console.log(resp);
+          this.$q.notify({
+            color: "green-5",
+            textColor: "white",
+            icon: "fas fa-check",
+            message: "Se registro la cotizacion correctamente"
+          });
+          this.registros().then(response => {
+            console.log(response);
+            // this.dialogCreate(false);
+            // this.loading1 = false;
+          });
+          // this.loading = false;
+        })
+        .catch(err => {
+          console.log(err);
+          this.$q.notify({
+            color: "red-5",
+            textColor: "white",
+            icon: "fas fa-exclamation-triangle",
+            message: "Se produjo un error al tratar de registrar"
+          });
+        })
+        .finally(() => {
+          this.loading1 = false;
+          this.loading = false;
+          this.dialogCreate(false);
         });
-        await this.registros();
-        this.dialogCreate(false);
-        this.loading = false;
-        // this.$router.push("/cotizacion");
-      } else {
-        this.$q.notify({
-          color: "red-5",
-          textColor: "white",
-          icon: "fas fa-exclamation-triangle",
-          message: "Se produjo un error al tratar de registrar"
-        });
-        this.loading = false;
-      }
     }
   },
   async created() {
