@@ -46,17 +46,11 @@
         </q-toolbar>
       </q-header>
 
-      <q-drawer
-        dense
-        v-model="leftDrawerOpen"
-        show-if-above
-        bordered
-        content-class="bg-grey-2"
-        :width="240"
-      >
-        <q-scroll-area class="fit q-pa-sm">
+      <q-drawer v-model="leftDrawerOpen" content-class="bg-grey-3" :width="240">
+        <q-scroll-area dense :thumb-style="thumbStyle" class="fit q-pa-sm">
           <q-list padding>
             <q-item
+              dense
               v-for="link in links1"
               :key="link.text"
               v-ripple
@@ -78,6 +72,7 @@
             >
 
             <q-item
+              dense
               v-for="link in links3"
               :key="link.text"
               v-ripple
@@ -99,6 +94,7 @@
             >
 
             <q-item
+              dense
               v-for="link in links6"
               :key="link.text"
               v-ripple
@@ -120,6 +116,7 @@
             >
 
             <q-item
+              dense
               v-for="link in links4"
               :key="link.text"
               v-ripple
@@ -137,6 +134,7 @@
             <q-separator class="q-my-md" />
 
             <q-item
+              dense
               v-for="link in links5"
               :key="link.text"
               v-ripple
@@ -197,30 +195,17 @@
             </div>
             <div class="col-xs-12">
               <div class="q-pa-xs col-xs-12">
-                <q-input
-                  v-model="name"
-                  hint="Nombre"
-                  outlined
-                  stack-label
-                  label="Nombre"
-                />
+                <q-input v-model="name" outlined stack-label label="Nombre" />
               </div>
               <div class="q-pa-xs">
-                <q-input
-                  v-model="correo"
-                  hint="Correo"
-                  outlined
-                  stack-label
-                  label="Correo"
-                />
+                <q-input v-model="correo" outlined stack-label label="Correo" />
               </div>
               <div class="q-pa-xs">
                 <q-input
                   v-model="newpassword"
-                  hint="Nueva Contraseña"
                   outlined
                   stack-label
-                  label="Password"
+                  label="Nuevo Password"
                 />
               </div>
             </div>
@@ -243,6 +228,31 @@
 // import { date } from "quasar";
 import { mapActions } from "vuex";
 export default {
+  computed: {
+    contentStyle() {
+      return {
+        backgroundColor: "rgba(0,0,0,0.02)",
+        color: "#555"
+      };
+    },
+
+    contentActiveStyle() {
+      return {
+        backgroundColor: "#eee",
+        color: "black"
+      };
+    },
+
+    thumbStyle() {
+      return {
+        right: "2px",
+        borderRadius: "5px",
+        backgroundColor: "#43b1e3",
+        width: "5px",
+        opacity: 0.75
+      };
+    }
+  },
   name: "MyLayout",
   data() {
     return {
@@ -260,6 +270,11 @@ export default {
           icon: "subscriptions",
           text: "Cotizacion",
           path: "/cotizacion"
+        },
+        {
+          icon: "subscriptions",
+          text: "Formulario",
+          path: "/formulario"
         }
       ],
       links2: [

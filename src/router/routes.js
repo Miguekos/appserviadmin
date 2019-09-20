@@ -5,7 +5,11 @@ const routes = [
     component: () => import("layouts/MyLayout.vue"),
     children: [
       { path: "", component: () => import("pages/Index.vue") },
-      { path: "dashboard", component: () => import("pages/DashboardUser.vue") }
+      { path: "dashboard", component: () => import("pages/DashboardUser.vue") },
+      {
+        path: "formulario",
+        component: () => import("pages/cotiza/Formulario.vue")
+      }
     ],
     meta: {
       requiresAuth: true
