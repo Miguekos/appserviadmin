@@ -9,17 +9,9 @@
           </q-item-section>
           <q-item-section></q-item-section>
           <q-item-section></q-item-section>
-          <q-item-section>
-            <q-btn
-              size="10px"
-              color="green"
-              @click="nuevoRegistro()"
-              q-btn--push
-              label="Nuevo"
-            />
-          </q-item-section>
+          <q-item-section> </q-item-section>
         </q-item>
-        <div class="row full-width">
+        <div class="row full-width" style="border: red">
           <q-item class="col-sm-6 col-xs-12">
             <div class="q-pa-md">
               <div class="q-gutter-md row">
@@ -44,8 +36,10 @@
                   </template>
                 </q-select>
               </div>
+              <div class="q-gutter-md row">
+                <q-input filled hint="Basic autocomplete" label="Filled" />
+              </div>
             </div>
-            <q-input filled hint="Basic autocomplete" label="Filled" />
           </q-item>
           <q-item class="col-sm-6 col-xs-12">
             <div class="q-pa-md">
@@ -60,12 +54,28 @@
               />
 
               <div class="q-mt-md">
-                Selected: {{ JSON.stringify(selected) }}
+                <!--                Selected: {{ JSON.stringify(selected) }}-->
               </div>
             </div>
           </q-item>
         </div>
-        <TablaListado />
+        <!--        <TablaListado />-->
+      </q-card>
+    </q-page>
+    <q-page padding>
+      <q-card class="my-card">
+        <q-item class="bg-custom4">
+          <q-item-section>
+            <q-item-label>Cotizacion</q-item-label>
+            <q-item-label caption>Masivo</q-item-label>
+          </q-item-section>
+          <q-item-section></q-item-section>
+          <q-item-section></q-item-section>
+          <q-item-section> </q-item-section>
+        </q-item>
+        <div>
+          <ListaCompraProveedor />
+        </div>
       </q-card>
     </q-page>
   </div>
@@ -81,26 +91,7 @@ export default {
   data: () => ({
     alert: false,
     model: null,
-    options: stringOptions
-  }),
-  methods: {
-    getSelectedString() {
-      return this.selected.length === 0
-        ? ""
-        : `${this.selected.length} record${
-            this.selected.length > 1 ? "s" : ""
-          } selected of ${this.data.length}`;
-    },
-    filterFn(val, update, abort) {
-      console.log(abort);
-      update(() => {
-        const needle = val.toLowerCase();
-        this.options = stringOptions.filter(
-          v => v.toLowerCase().indexOf(needle) > -1
-        );
-      });
-    },
-    selected: [],
+    options: stringOptions,
     columns: [
       {
         name: "desc",
@@ -117,24 +108,6 @@ export default {
         label: "Calories",
         field: "calories",
         sortable: true
-      },
-      { name: "fat", label: "Fat (g)", field: "fat", sortable: true },
-      { name: "carbs", label: "Carbs (g)", field: "carbs" },
-      { name: "protein", label: "Protein (g)", field: "protein" },
-      { name: "sodium", label: "Sodium (mg)", field: "sodium" },
-      {
-        name: "calcium",
-        label: "Calcium (%)",
-        field: "calcium",
-        sortable: true,
-        sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
-      },
-      {
-        name: "iron",
-        label: "Iron (%)",
-        field: "iron",
-        sortable: true,
-        sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
       }
     ],
     data: [
@@ -238,11 +211,30 @@ export default {
         calcium: "12%",
         iron: "6%"
       }
-    ]
+    ],
+    selected: []
+  }),
+  methods: {
+    getSelectedString() {
+      return this.selected.length === 0
+        ? ""
+        : `${this.selected.length} record${
+            this.selected.length > 1 ? "s" : ""
+          } selected of ${this.data.length}`;
+    },
+    filterFn(val, update, abort) {
+      console.log(abort);
+      update(() => {
+        const needle = val.toLowerCase();
+        this.options = stringOptions.filter(
+          v => v.toLowerCase().indexOf(needle) > -1
+        );
+      });
+    }
     // ...mapActions("example", ["dialogCreate"]),
   },
   components: {
-    // TablaListado: () => import("./TablaListado"),
+    ListaCompraProveedor: () => import("./ListaCompraProveedor")
     // TablaFiltro: () => import("./TablaFiltro"),
     // CuadroResumen: () => import("./CuadroResumen"),
     // AddRegistro: () => import("./Create")
