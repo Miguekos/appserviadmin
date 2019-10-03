@@ -11,9 +11,9 @@
           <q-item-section></q-item-section>
           <q-item-section> </q-item-section>
         </q-item>
-        <div class="row full-width" style="border: red">
+        <div class="row" style="border: red">
           <q-item class="col-sm-6 col-xs-12">
-            <div class="q-pa-md">
+            <div class="q-pa-md col-md-6">
               <div class="q-gutter-md row">
                 <q-select
                   filled
@@ -24,8 +24,12 @@
                   input-debounce="0"
                   :options="options"
                   @filter="filterFn"
-                  hint="Basic autocomplete"
+                  hint="Buscar por productos"
                   style="width: 250px; padding-bottom: 32px"
+                  option-value="no_client"
+                  option-label="no_client"
+                  @input="input2"
+                  auto-select
                 >
                   <template v-slot:no-option>
                     <q-item>
@@ -36,15 +40,15 @@
                   </template>
                 </q-select>
               </div>
-              <div class="q-gutter-md row">
-                <q-input filled hint="Basic autocomplete" label="Filled" />
-              </div>
+            </div>
+            <div class="q-pa-md col-md-6">
+              <q-input filled hint="Cant." />
             </div>
           </q-item>
-          <q-item class="col-sm-6 col-xs-12">
+          <q-item class="flex-center col-sm-6 col-xs-12">
             <div class="q-pa-md">
               <q-table
-                title="Treats"
+                title="Proveedores"
                 :data="data"
                 :columns="columns"
                 row-key="name"
@@ -94,7 +98,7 @@ export default {
     options: stringOptions,
     columns: [
       {
-        name: "desc",
+        name: "Proveedores",
         required: true,
         label: "Dessert (100g serving)",
         align: "left",
@@ -103,7 +107,7 @@ export default {
         sortable: true
       },
       {
-        name: "calories",
+        name: "ID",
         align: "center",
         label: "Calories",
         field: "calories",
@@ -229,6 +233,14 @@ export default {
         this.options = stringOptions.filter(
           v => v.toLowerCase().indexOf(needle) > -1
         );
+      });
+    },
+    input2(val) {
+      this.notif();
+      this.notif = this.$q.notify({
+        message: `Cliente: ${JSON.stringify(val.no_client)} seleccionado.`,
+        timeout: 1000,
+        color: "positive"
       });
     }
     // ...mapActions("example", ["dialogCreate"]),
