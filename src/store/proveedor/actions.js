@@ -87,3 +87,9 @@ export async function pblistar_distrito({ commit }, payload) {
   );
   commit("pblistar_distrito", response.data);
 }
+
+//
+export async function addProduct({ commit }, payload) {
+  console.log(payload);
+  commit("setProduct", payload);
+}

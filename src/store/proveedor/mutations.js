@@ -22,3 +22,7 @@ export function pblistar_provincia(state, payload) {
 export function pblistar_distrito(state, payload) {
   state.pblistar_distrito = payload;
 }
+
+export function setProduct(state, payload) {
+  state.productosSeleccionados.push(payload);
+}

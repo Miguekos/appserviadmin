@@ -21,3 +21,15 @@ export function getProvincia(state) {
 export function getDistrito(state) {
   return state.pblistar_distrito;
 }
+//
+export function formularioProductos(state) {
+  return state.formularioProductos;
+}
+
+export function formularioProvee(state) {
+  return state.formularioProvee;
+}
+
+export function SelectsProduc(state) {
+  return state.productosSeleccionados;
+}

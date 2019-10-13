@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <q-table
-      title="Treats"
+      title="Cotizacion"
       dense
       :data="data"
       :columns="columns"

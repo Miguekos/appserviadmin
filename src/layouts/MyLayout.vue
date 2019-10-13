@@ -2,6 +2,7 @@
   <div>
     <q-layout view="hHh lpR fFf">
       <q-header
+        size="sm"
         dense
         elevated
         class="bg-white text-grey-8 q-py-xs"
