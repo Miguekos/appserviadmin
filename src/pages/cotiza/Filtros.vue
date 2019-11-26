@@ -1,6 +1,6 @@
 <template>
   <div class="full-width">
-    <q-markup-table :separator="separator" flat bordered>
+    <q-markup-table :separator="separator" flat bordered dense>
       <thead>
         <tr>
           <th style="font-size: 20px" class="bg-grey-4 text-left">Filtros</th>
@@ -15,7 +15,6 @@
               standout="bg-teal text-white"
               v-model="model"
               :options="options"
-              dense
               label="Estados"
             />
           </td>
@@ -24,7 +23,6 @@
           <td class="text-left">Fecha Inicio</td>
           <td class="text-right">
             <q-input
-              dense
               standout="bg-teal text-white"
               type="date"
               v-model="fechainicio"
@@ -35,7 +33,6 @@
           <td class="text-left">Fecha Fin</td>
           <td class="text-right">
             <q-input
-              dense
               standout="bg-teal text-white"
               type="date"
               v-model="fechafin"
@@ -48,11 +45,12 @@
             <div class="row justify-around">
               <div>
                 <q-btn
-                  :size="size[1]"
+                  dense
+                  :size="size[3]"
                   :loading="loading1"
                   color="secondary"
                   @click="simulateProgress(1)"
-                  label="Filtrar"
+                  label="Filtrare"
                 />
               </div>
             </div>

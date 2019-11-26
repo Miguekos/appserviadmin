@@ -32,9 +32,9 @@
               >
                 <template v-slot:no-option>
                   <q-item>
-                    <q-item-section class="text-grey">
-                      No results
-                    </q-item-section>
+                    <q-item-section class="text-grey"
+                      >No results</q-item-section
+                    >
                   </q-item>
                 </template>
               </q-select>
@@ -86,7 +86,7 @@
           </q-item-section>
           <q-item-section></q-item-section>
           <q-item-section></q-item-section>
-          <q-item-section> </q-item-section>
+          <q-item-section></q-item-section>
         </q-item>
         <ListaCompraProveedor />
       </q-card>
@@ -207,7 +207,7 @@ export default {
       this.notif = this.$q.notify({
         message: `Producto: ${JSON.stringify(val)} seleccionado.`,
         timeout: 500,
-        color: "positive"
+        color: "secondary"
       });
     }
   },

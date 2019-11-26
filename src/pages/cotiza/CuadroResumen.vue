@@ -2,11 +2,11 @@
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
-      <p class="bg-positive shadow-5 text-center text-white text-subtitle1">
+      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
         Cuadro Resumen
       </p>
     </div>
-    <q-markup-table :separator="separator" flat bordered>
+    <q-markup-table :separator="separator" flat dense bordered>
       <!-- <thead>
         <tr>
           <th style="font-size: 20px" class="bg-green-4 text-left">
@@ -18,23 +18,23 @@
       <tbody>
         <tr>
           <td class="text-left">En confirmacion:</td>
-          <td class="text-right">06</td>
+          <td class="text-right">{{ resumen.confirmacion }}</td>
         </tr>
         <tr>
           <td class="text-left">Aceptado:</td>
-          <td class="text-right">237</td>
+          <td class="text-right">{{ resumen.aceptado }}</td>
         </tr>
         <tr>
           <td class="text-left">Rechazado</td>
-          <td class="text-right">262</td>
+          <td class="text-right">{{ resumen.rechazado }}</td>
         </tr>
         <tr>
           <td class="text-left">Listo</td>
-          <td class="text-right">305</td>
+          <td class="text-right">{{ resumen.listo }}</td>
         </tr>
         <tr>
           <td class="text-left">Total</td>
-          <td class="text-right">356</td>
+          <td class="text-right">{{ resumen.total }}</td>
         </tr>
       </tbody>
     </q-markup-table>
@@ -44,6 +44,13 @@
 export default {
   data() {
     return {
+      resumen: {
+        confirmacion: 6,
+        aceptado: 12,
+        rechazado: 0,
+        listo: 12,
+        total: 18
+      },
       model: null,
       separator: "cell",
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"]

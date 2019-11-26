@@ -1,13 +1,28 @@
 <template>
   <div class="q-pa-md">
     <q-table
+      @click-row="loading = true"
+      title="Treats"
+      :selected.sync="selected"
       :data="info"
       :columns="columns"
-      row-key="id"
+      row-key="id_provee"
       :filter="filter"
       :loading="loading"
       :pagination.sync="pagination"
     >
+      <q-tr
+        slot="body"
+        slot-scope="props"
+        :props="props"
+        @click.native="rowClick(props.row)"
+        class="cursor-pointer"
+      >
+        <q-td v-for="col in props.cols" :key="col.name" :props="props">
+          {{ col.value }}
+        </q-td>
+      </q-tr>
+
       <template v-slot:top>
         <img
           style="height: 50px; width: 50px"
@@ -16,8 +31,8 @@
         <q-space />
         <q-input
           borderless
+          placeholder="Buscar"
           dense
-          debounce="300"
           color="primary"
           v-model="filter"
         >
@@ -25,9 +40,10 @@
             <q-icon name="search" />
           </template>
         </q-input>
+        <!--        <div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>-->
       </template>
     </q-table>
-    <!--    {{ $data }}-->
+    <!--    {{ $data.filter }}-->
   </div>
 </template>
 <script>
@@ -38,6 +54,7 @@ export default {
   },
   data() {
     return {
+      selected: [],
       pagination: {
         sortBy: "id",
         descending: false,
@@ -98,6 +115,10 @@ export default {
     };
   },
   methods: {
+    rowClick(val) {
+      console.log(val);
+      this.$router.push(`/cliente/detalle/${val.id_client}`);
+    },
     ...mapActions("clientes", ["getClientes"])
   },
   async mounted() {

@@ -12,6 +12,7 @@
         <q-item-section class="flex-center flex">
           <q-select
             filled
+            dense
             v-model="model"
             use-input
             hide-selected
@@ -36,13 +37,12 @@
         <q-item-section class="flex-center flex">
           <q-form @submit.prevent="onSubmit" class>
             <div class="row flex flex-center">
-              <div class="q-pa-sm col-xs-12 col-sm-2">
+              <div class="q-pa-xs col-xs-12 col-sm-3">
                 <q-input
                   dense
                   filled
-                  readonly
-                  v-model="model.no_client"
-                  label="Nombre"
+                  v-model="model.fe_regist"
+                  label="Fecha"
                   lazy-rules
                   :rules="[
                     val =>
@@ -50,13 +50,12 @@
                   ]"
                 />
               </div>
-              <div class="q-pa-sm col-xs-12 col-sm-3">
+              <div class="q-pa-xs col-xs-12 col-sm-6">
                 <q-input
                   dense
                   filled
-                  readonly
                   v-model="model.no_corele"
-                  label="Correo"
+                  label="Cliente"
                   lazy-rules
                   :rules="[
                     val =>
@@ -64,12 +63,24 @@
                   ]"
                 />
               </div>
-              <div class="q-pa-sm col-xs-12 col-sm-4">
+              <div class="q-pa-xs col-xs-12 col-sm-3">
                 <q-input
                   dense
                   filled
-                  readonly
                   v-model="model.no_direcc"
+                  label="Contacto"
+                  lazy-rules
+                  :rules="[
+                    val =>
+                      (val && val.length > 0) || 'No puede dejar el campo vacio'
+                  ]"
+                />
+              </div>
+              <!-- <div class="q-pa-xs col-xs-12 col-sm-2">
+                <q-input
+                  dense
+                  filled
+                  v-model="model.nu_docide"
                   label="Direccion"
                   lazy-rules
                   :rules="[
@@ -77,28 +88,24 @@
                       (val && val.length > 0) || 'No puede dejar el campo vacio'
                   ]"
                 />
-              </div>
-              <div class="q-pa-sm col-xs-12 col-sm-2">
+              </div>-->
+              <div class="q-pa-xs col-xs-12 col-sm-6">
                 <q-input
                   dense
                   filled
-                  readonly
                   v-model="model.nu_docide"
-                  label="Documento"
+                  label="Direccion"
                   lazy-rules
                   :rules="[
                     val =>
                       (val && val.length > 0) || 'No puede dejar el campo vacio'
                   ]"
                 />
-              </div>
-              <div class="q-pa-sm col-xs-12 col-sm-2">
                 <q-input
                   dense
                   filled
-                  readonly
                   v-model="model.nu_telefono"
-                  label="Telefono"
+                  label="Asunto"
                   lazy-rules
                   :rules="[
                     val =>
@@ -108,12 +115,12 @@
               </div>
             </div>
             <div class="q-pb-sm">
-              <div class="q-pa-sm col-xs-12 col-sm-2">
+              <div class="q-pa-xs col-xs-12 col-sm-2">
                 <q-input
                   v-model="text"
                   filled
                   type="textarea"
-                  label="Descripcion"
+                  label="Detalle"
                 />
               </div>
             </div>
@@ -196,7 +203,7 @@ export default {
       this.notif = this.$q.notify({
         message: `Cliente: ${JSON.stringify(val.no_client)} seleccionado.`,
         timeout: 1000,
-        color: "positive"
+        color: "secondary"
       });
     },
     async onSubmit() {

@@ -68,14 +68,14 @@ module.exports = function(ctx) {
         "QOptionGroup",
         "QInnerLoading",
         "QSpinner",
-        "QSpinnerGears"
-
+        "QSpinnerGears",
+        "QMenu"
       ],
 
       directives: ["Ripple", "ClosePopup"],
 
       // Quasar plugins
-      plugins: ["Notify", "Cookies", "Loading", "Dialog"],
+      plugins: ["Notify", "Cookies", "Loading", "Dialog"]
       // config: {
       //   loading: {
       //     spinner: QSpinnerGears,

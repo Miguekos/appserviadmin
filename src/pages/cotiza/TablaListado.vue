@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <div>
-      <p class="bg-positive shadow-5 text-center text-white text-subtitle1">
+      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
         Listado
       </p>
     </div>
@@ -62,70 +62,61 @@ export default {
       rowCount: 10,
       columns: [
         {
-          name: "name",
+          name: "id_reqcot",
           required: true,
           label: "Nro.",
           align: "left",
-          field: "nu_canite",
+          field: "id_reqcot",
           format: val => `${val}`,
           sortable: true
         },
         {
-          name: "nu_reque",
+          name: "fe_regist",
           align: "left",
-          label: "Nro. Requerimiento",
-          field: "nu_requer",
+          label: "Fecha Registro.",
+          field: "fe_regist",
           sortable: true
         },
         {
-          name: "fe_reque",
+          name: "no_razsoc",
           align: "left",
-          label: "Fecha Reque.",
-          field: "fe_requer",
+          label: "Razon Social",
+          field: "no_razsoc",
           sortable: true
         },
         {
-          name: "cliente",
+          name: "no_contac",
           align: "left",
-          label: "Cliente",
-          field: "no_client",
-          sortable: true
-        },
-        {
-          name: "contacto",
-          align: "left",
-          label: "Contacto",
+          label: "Nro. Contacto",
           field: "no_contac",
           sortable: true
         },
         {
-          name: "di_pendi",
+          name: "ca_diapen",
           align: "left",
-          label: "Dias Pendientes",
+          label: "Dias Pendiente",
           field: "ca_diapen",
           sortable: true
         },
         {
-          name: "fe_cotiz",
+          name: "fe_reqcot",
           align: "left",
-          label: "Fecha Cotizacion",
-          field: "fe_cotiza",
-          sortable: true,
-          sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
+          label: "F. Cotizacion.",
+          field: "fe_reqcot",
+          sortable: true
         },
         {
-          name: "estado",
+          name: "no_estreq",
           align: "left",
           label: "Estado",
-          field: "no_estado",
-          sortable: true,
-          sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
+          field: "no_estreq",
+          sortable: true
         },
         {
-          name: "pdf",
+          name: "de_reqcot",
           align: "left",
-          label: "Pdf",
-          field: "",
+          label: "Detalle",
+          field: "de_reqcot",
           sortable: true,
           sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
         }

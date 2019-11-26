@@ -2,7 +2,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: () => import("layouts/MyLayout.vue"),
+    component: () => import("layouts/MyLayoutNew.vue"),
     children: [
       { path: "", component: () => import("pages/Index.vue") },
       { path: "dashboard", component: () => import("pages/DashboardUser.vue") },
@@ -18,7 +18,7 @@ const routes = [
   {
     path: "/cotizacion",
     name: "cotizacion",
-    component: () => import("layouts/MyLayout.vue"),
+    component: () => import("layouts/MyLayoutNew.vue"),
     children: [
       { path: "", component: () => import("pages/cotiza/IndexRegistro.vue") },
       { path: "create", component: () => import("pages/cotiza/Create.vue") }
@@ -30,7 +30,7 @@ const routes = [
   {
     path: "/proveedores",
     name: "proveedores",
-    component: () => import("layouts/MyLayout.vue"),
+    component: () => import("layouts/MyLayoutNew.vue"),
     children: [
       { path: "", component: () => import("pages/proveedor/Index.vue") },
       { path: "create", component: () => import("pages/proveedor/Create.vue") },
@@ -46,7 +46,7 @@ const routes = [
   {
     path: "/user",
     name: "user",
-    component: () => import("layouts/MyLayout.vue"),
+    component: () => import("layouts/MyLayoutNew.vue"),
     children: [
       { path: "", component: () => import("pages/user/Index.vue") },
       { path: "create", component: () => import("pages/user/Create.vue") }
@@ -58,10 +58,14 @@ const routes = [
   {
     path: "/cliente",
     name: "cliente",
-    component: () => import("layouts/MyLayout.vue"),
+    component: () => import("layouts/MyLayoutNew.vue"),
     children: [
       { path: "", component: () => import("pages/cliente/Index.vue") },
-      { path: "create", component: () => import("pages/cliente/Create.vue") }
+      { path: "create", component: () => import("pages/cliente/Create.vue") },
+      {
+        path: "detalle/:id",
+        component: () => import("pages/cliente/Detalle.vue")
+      }
     ],
     meta: {
       requiresAuth: true

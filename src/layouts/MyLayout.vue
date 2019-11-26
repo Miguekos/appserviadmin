@@ -213,7 +213,7 @@
           </div>
           <div class="text-center">
             <q-btn
-              color="positive"
+              color="secondary"
               text-color="white"
               label="Guardar"
               v-close-popup

@@ -54,7 +54,7 @@ export default {
           this.$q.notify({
             message: "Account updated ",
             timeout: 2000,
-            color: "positive"
+            color: "secondary"
           });
         })
         .catch(error => {

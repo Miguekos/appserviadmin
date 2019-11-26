@@ -139,7 +139,7 @@ export default {
         if (response) {
           this.$q.notify({
             icon: "done",
-            color: "positive",
+            color: "secondary",
             message: "Registrado"
           });
           this.onReset();

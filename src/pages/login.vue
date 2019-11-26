@@ -41,7 +41,7 @@
               :loading="loading1"
               type="submit"
               class="fit"
-              color="positive"
+              color="secondary"
               >Login</q-btn
             >
           </q-card-actions>

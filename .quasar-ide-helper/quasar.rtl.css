@@ -6797,7 +6797,7 @@ body.q-ios-padding .q-notifications__list--bottom {
   color: #21ba45 !important;
   color: var(--q-color-positive) !important;
 }
-[dir] .bg-positive {
+[dir] .bg-secondary {
   background: #21ba45 !important;
   background: var(--q-color-positive) !important;
 }
