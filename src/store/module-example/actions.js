@@ -2,9 +2,13 @@ import { axiosInstance } from "boot/axios";
 import { date } from "quasar";
 
 export async function registros({ commit }) {
-  const data = [null, null, null, null];
+  const data =     {
+    "p_co_estreq" : "null",
+    "p_fe_inireq" : "null",
+    "p_fe_finreq" : "null"
+  };
   console.log("listarRegistros");
-  const registro = await axiosInstance.post("/api/registros/listar", data);
+  const registro = await axiosInstance.post("/api/cotizas/requerimiento_listar", data);
   // console.log(registro.data);
   commit("setRegistros", registro.data);
   // return registro.data;

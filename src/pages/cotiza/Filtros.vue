@@ -61,7 +61,11 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
+  computed: {
+    ...mapGetters("example", ["stadosFiltro"])
+  },
   data() {
     return {
       fechainicio: "",
@@ -88,6 +92,9 @@ export default {
         this[`loading${number}`] = false;
       }, 3000);
     }
-  }
+  },
+    created() {
+      console.log(this.stadosFiltro)
+    }
 };
 </script>

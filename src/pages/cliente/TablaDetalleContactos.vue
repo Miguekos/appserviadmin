@@ -136,7 +136,7 @@ export default {
           name: "nombre",
           align: "left",
           label: "Nombre",
-          field: "?column?",
+          field: "no_client",
           sortable: true
         }
       ]

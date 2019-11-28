@@ -37,17 +37,23 @@
           transition-show="flip-up"
           transition-hide="flip-down"
           :options="registrosFiltroEstados"
+          option-value="co_estreq"
+          option-label="no_estreq"
+          option-disable="inactive"
+          emit-value
+          map-options
           standout
           placeholder="Estado"
           dense
           outlined
-          v-model="text"
+          v-model="estadoFiltro"
         />
       </div>
     </div>
     <div class="q-pa-xs flex flex-center">
       <q-btn @click="showLoading()" label="Filtrar" dense color="secondary" />
     </div>
+<!--    {{ $data }}-->
   </div>
 </template>
 <script>
@@ -59,7 +65,7 @@ export default {
   data() {
     return {
       loading: false,
-      text: "",
+      estadoFiltro: "",
       fechainicio: "",
       fechafin: "",
       cliente: "",
@@ -87,7 +93,6 @@ export default {
     },
     showLoading() {
       this.$q.loading.show();
-
       // hiding in 2s
       this.timer = setTimeout(() => {
         this.$q.loading.hide();

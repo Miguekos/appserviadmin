@@ -22,8 +22,8 @@
             @filter="filterFn"
             hint="Buscar por nombre de cliente"
             style="width: 250px; padding-bottom: 32px"
-            option-value="no_client"
-            option-label="no_client"
+            option-value="no_razsoc"
+            option-label="no_razsoc"
             @input="input2"
             auto-select
           />
@@ -54,7 +54,7 @@
                 <q-input
                   dense
                   filled
-                  v-model="model.no_corele"
+                  v-model="model.no_razsoc"
                   label="Cliente"
                   lazy-rules
                   :rules="[
@@ -90,28 +90,39 @@
                 />
               </div>-->
               <div class="q-pa-xs col-xs-12 col-sm-6">
-                <q-input
-                  dense
+                <q-select
                   filled
-                  v-model="model.nu_docide"
-                  label="Direccion"
-                  lazy-rules
-                  :rules="[
-                    val =>
-                      (val && val.length > 0) || 'No puede dejar el campo vacio'
-                  ]"
+                  v-model="model"
+                  :options="optionsContactos"
+                  option-value="id"
+                  option-label="desc"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
+                  style="min-width: 250px; max-width: 300px"
                 />
-                <q-input
-                  dense
-                  filled
-                  v-model="model.nu_telefono"
-                  label="Asunto"
-                  lazy-rules
-                  :rules="[
-                    val =>
-                      (val && val.length > 0) || 'No puede dejar el campo vacio'
-                  ]"
-                />
+                <!--                <q-input-->
+                <!--                  dense-->
+                <!--                  filled-->
+                <!--                  v-model="model.nu_docide"-->
+                <!--                  label="Direccion"-->
+                <!--                  lazy-rules-->
+                <!--                  :rules="[-->
+                <!--                    val =>-->
+                <!--                      (val && val.length > 0) || 'No puede dejar el campo vacio'-->
+                <!--                  ]"-->
+                <!--                />-->
+                <!--                <q-input-->
+                <!--                  dense-->
+                <!--                  filled-->
+                <!--                  v-model="model.nu_telefono"-->
+                <!--                  label="Asunto"-->
+                <!--                  lazy-rules-->
+                <!--                  :rules="[-->
+                <!--                    val =>-->
+                <!--                      (val && val.length > 0) || 'No puede dejar el campo vacio'-->
+                <!--                  ]"-->
+                <!--                />-->
               </div>
             </div>
             <div class="q-pb-sm">
@@ -144,7 +155,8 @@
       </q-item>
     </q-card>
     <!-- {{ options }} -->
-    <!-- {{ model.no_client }} -->
+    {{ model }}
+    {{ optionsContactos }}
     <!-- {{ name }} -->
     <!-- </q-page> -->
   </div>
@@ -155,10 +167,15 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters("clientes", ["ClientesFiltro", "asdClientes"])
+    ...mapGetters("clientes", [
+      "ClientesFiltro",
+      "asdClientes",
+      "getClieDireccion"
+    ])
   },
   data() {
     return {
+      idCliente: null,
       loading: false,
       loading1: false,
       name: "",
@@ -167,7 +184,7 @@ export default {
       selectModel2: null,
       text: "",
       model: {
-        no_client: "",
+        no_razsoc: "",
         no_corele: "",
         no_direcc: "",
         nu_docide: "",
@@ -175,11 +192,16 @@ export default {
       },
       lotrOpts: [],
       options: [],
+      optionsContactos: [],
       notif: () => {}
     };
   },
   methods: {
-    ...mapActions("clientes", ["getClientes"]),
+    ...mapActions("clientes", [
+      "getClientes",
+      "contactoCliente",
+      "direccionCliente"
+    ]),
     ...mapActions("example", [
       "registrarCotizacion",
       "dialogCreate",
@@ -194,16 +216,20 @@ export default {
       update(() => {
         const needle = val.toLowerCase();
         this.options = asd.filter(v =>
-          v.no_client.toLowerCase().includes(needle)
+          v.no_razsoc.toLowerCase().includes(needle)
         );
       });
     },
-    input2(val) {
+    async input2(val) {
       this.notif();
       this.notif = this.$q.notify({
-        message: `Cliente: ${JSON.stringify(val.no_client)} seleccionado.`,
+        message: `Cliente: ${JSON.stringify(val.no_razsoc)} seleccionado.`,
         timeout: 1000,
         color: "secondary"
+      });
+      await this.contactoCliente(val.co_client).then(() => {
+        console.log(this.getClieDireccion);
+        this.optionsContactos = this.getClieDireccion;
       });
     },
     async onSubmit() {
@@ -242,6 +268,32 @@ export default {
           this.loading = false;
           this.dialogCreate(false);
         });
+    },
+    async filterFnNew(val, update, abort) {
+      console.log(val);
+      console.log(abort);
+      console.log(update);
+      console.log(this.idCliente);
+      // if (this.optionsContactos !== null) {
+      //
+      //   // already loaded
+      //   update();
+      //   return;
+      // }
+
+      // setTimeout(() => {
+      // update(async () => {
+      //   console.log(val.co_client);
+      //   await this.contactoCliente(val.co_client).then(() => {
+      //     this.optionsContactos = this.getClieDireccion;
+      //   });
+      //   await this.direccionCliente(val.co_client);
+      // });
+      // }, 2000);
+    },
+
+    abortFilterFn() {
+      // console.log('delayed filter aborted')
     }
   },
   async created() {
