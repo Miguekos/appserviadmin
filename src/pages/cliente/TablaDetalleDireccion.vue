@@ -142,15 +142,6 @@ export default {
       filter: "",
       columns: [
         {
-          name: "id",
-          required: true,
-          label: "Nro.",
-          align: "left",
-          field: "id_provee",
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
           name: "direccion",
           align: "left",
           label: "Direccion",
@@ -162,13 +153,6 @@ export default {
           align: "left",
           label: "Codigo Ubigeo",
           field: "co_ubigeo",
-          sortable: true
-        },
-        {
-          name: "id_provee",
-          align: "left",
-          label: "id_provee",
-          field: "id_provee",
           sortable: true
         }
       ]

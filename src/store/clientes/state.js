@@ -1,3 +1,5 @@
 export default {
-  clientes: []
+  clientes: [],
+  clienteContactos: [],
+  clienteDirecciones: []
 };

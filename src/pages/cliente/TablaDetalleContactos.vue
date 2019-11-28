@@ -128,7 +128,7 @@ export default {
           required: true,
           label: "Nro.",
           align: "left",
-          field: "id_provee",
+          field: "co_person",
           format: val => `${val}`,
           sortable: true
         },
@@ -136,35 +136,7 @@ export default {
           name: "nombre",
           align: "left",
           label: "Nombre",
-          field: "no_nombre",
-          sortable: true
-        },
-        {
-          name: "telf",
-          align: "left",
-          label: "Telefono",
-          field: "nu_telefo",
-          sortable: true
-        },
-        {
-          name: "correo",
-          align: "left",
-          label: "Correo",
-          field: "no_correo",
-          sortable: true
-        },
-        {
-          name: "genero",
-          align: "left",
-          label: "Genero",
-          field: "co_gencon",
-          sortable: true
-        },
-        {
-          name: "id_conpro",
-          align: "left",
-          label: "id_conpro",
-          field: "id_conpro",
+          field: "?column?",
           sortable: true
         }
       ]

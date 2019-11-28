@@ -84,30 +84,23 @@ export default {
           sortable: true
         },
         {
-          name: "Email",
+          name: "RUC",
           align: "left",
-          label: "Email",
-          field: "no_corele",
-          sortable: true
-        },
-        {
-          name: "Direccion",
-          align: "left",
-          label: "Direccion",
+          label: "RUC",
           field: "co_doctri",
           sortable: true
         },
         {
-          name: "DNI",
+          name: "CanPersona",
           align: "left",
-          label: "DNI / C.E",
+          label: "Can. Persona",
           field: "ca_percon",
           sortable: true
         },
         {
-          name: "Telefono",
+          name: "CanDireccion",
           align: "left",
-          label: "Telefono",
+          label: "Can. Direccion",
           field: "ca_direcc",
           sortable: true
         }
@@ -117,7 +110,7 @@ export default {
   methods: {
     rowClick(val) {
       console.log(val);
-      this.$router.push(`/cliente/detalle/${val.id_client}`);
+      this.$router.push(`/cliente/detalle/${val.co_client}`);
     },
     ...mapActions("clientes", ["getClientes"])
   },

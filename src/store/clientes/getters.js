@@ -17,3 +17,11 @@ export function ClientesFiltro(state) {
 export function asdClientes(state) {
   return state.clientes;
 }
+
+export function getClieDireccion(state) {
+  return state.clienteDirecciones;
+}
+
+export function getClieContactos(state) {
+  return state.clienteContactos;
+}

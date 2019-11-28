@@ -14,10 +14,10 @@
       </q-item>
       <div>
         <div>
-          <ListaDirecciones :datafld="getProvDireccion" :id_pro="id_pro" />
+          <ListaDirecciones :datafld="getClieDireccion" :id_pro="id_pro" />
         </div>
         <div>
-          <ListaContactos :datafld="getProvContactos" :id_pro="id_pro" />
+          <ListaContactos :datafld="getClieContactos" :id_pro="id_pro" />
         </div>
       </div>
       <!--      {{ getProvContactos }}-->
@@ -36,7 +36,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("proveedor", ["getProvContactos", "getProvDireccion"])
+    ...mapGetters("clientes", ["getClieContactos", "getClieDireccion"])
   },
   components: {
     ListaDirecciones: () => import("./TablaDetalleDireccion"),
@@ -44,15 +44,15 @@ export default {
     // CuadroResumen: () => import("./CuadroResumen")
   },
   methods: {
-    ...mapActions("proveedor", ["contactoProveedor", "direccionProveedor"])
+    ...mapActions("clientes", ["contactoCliente", "direccionCliente"])
   },
   async mounted() {
     const id = this.$route.params.id;
     this.id_pro = id;
     console.log(id);
     this.$q.loading.show();
-    await this.contactoProveedor(id);
-    await this.direccionProveedor(id);
+    await this.contactoCliente(id);
+    await this.direccionCliente(id);
     this.$q.loading.hide();
   }
   // name: 'PageName',
