@@ -22,7 +22,10 @@ const routes = [
     children: [
       { path: "", component: () => import("pages/cotiza/IndexRegistro.vue") },
       { path: "create", component: () => import("pages/cotiza/Create.vue") },
-      { path: "requerimiento", component: () => import("pages/cotiza/RequerimientoDeCotizacion.vue") }
+      {
+        path: "requerimiento",
+        component: () => import("pages/cotiza/RequerimientoDeCotizacion.vue")
+      }
     ],
     meta: {
       requiresAuth: true

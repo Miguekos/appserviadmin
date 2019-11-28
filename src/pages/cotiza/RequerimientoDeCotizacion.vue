@@ -7,14 +7,16 @@
         mode="popup"
         buttons
         :props="props"
-      >{{ props.row.name }}</q-editable-td>
+        >{{ props.row.name }}</q-editable-td
+      >
       <q-selectable-td
         key="company"
         :props="props"
         mode="inline"
         v-model="props.row.company"
         :options="options"
-      >{{ props.row.company }}</q-selectable-td>
+        >{{ props.row.company }}</q-selectable-td
+      >
     </q-tr>
   </div>
 </template>
