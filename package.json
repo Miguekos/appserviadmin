@@ -27,7 +27,8 @@
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^5.0.0",
     "http-proxy-middleware": "^0.19.1",
-    "quasar-app-extension-ide-helper": "0.0.6"
+    "quasar-app-extension-ide-helper": "0.0.6",
+    "quasar-app-extension-qmodeltd": "^1.0.0-alpha.6"
   },
   "engines": {
     "node": ">= 8.9.0",

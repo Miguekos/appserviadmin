@@ -2,7 +2,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: () => import("layouts/MyLayoutNew.vue"),
+    component: () => import("layouts/MyLayout.vue"),
     children: [
       { path: "", component: () => import("pages/Index.vue") },
       { path: "dashboard", component: () => import("pages/DashboardUser.vue") },
@@ -18,10 +18,11 @@ const routes = [
   {
     path: "/cotizacion",
     name: "cotizacion",
-    component: () => import("layouts/MyLayoutNew.vue"),
+    component: () => import("layouts/MyLayout.vue"),
     children: [
       { path: "", component: () => import("pages/cotiza/IndexRegistro.vue") },
-      { path: "create", component: () => import("pages/cotiza/Create.vue") }
+      { path: "create", component: () => import("pages/cotiza/Create.vue") },
+      { path: "requerimiento", component: () => import("pages/cotiza/RequerimientoDeCotizacion.vue") }
     ],
     meta: {
       requiresAuth: true
@@ -30,7 +31,7 @@ const routes = [
   {
     path: "/proveedores",
     name: "proveedores",
-    component: () => import("layouts/MyLayoutNew.vue"),
+    component: () => import("layouts/MyLayout.vue"),
     children: [
       { path: "", component: () => import("pages/proveedor/Index.vue") },
       { path: "create", component: () => import("pages/proveedor/Create.vue") },
@@ -46,7 +47,7 @@ const routes = [
   {
     path: "/user",
     name: "user",
-    component: () => import("layouts/MyLayoutNew.vue"),
+    component: () => import("layouts/MyLayout.vue"),
     children: [
       { path: "", component: () => import("pages/user/Index.vue") },
       { path: "create", component: () => import("pages/user/Create.vue") }
@@ -58,7 +59,7 @@ const routes = [
   {
     path: "/cliente",
     name: "cliente",
-    component: () => import("layouts/MyLayoutNew.vue"),
+    component: () => import("layouts/MyLayout.vue"),
     children: [
       { path: "", component: () => import("pages/cliente/Index.vue") },
       { path: "create", component: () => import("pages/cliente/Create.vue") },

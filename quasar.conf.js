@@ -69,7 +69,8 @@ module.exports = function(ctx) {
         "QInnerLoading",
         "QSpinner",
         "QSpinnerGears",
-        "QMenu"
+        "QMenu",
+        "QPopupEdit"
       ],
 
       directives: ["Ripple", "ClosePopup"],
