@@ -28,11 +28,11 @@
             />
 
             <q-input
-              ref="dni"
+              ref="generoPersona"
               filled
-              v-model="dni"
-              label="DNI"
-              hint="DNI / C.E"
+              v-model="generoPersona"
+              label="Genero"
+              hint="Genero"
               lazy-rules
               :rules="[
                 val =>
@@ -41,12 +41,11 @@
             />
 
             <q-input
-              ref="email"
+              ref="estadoCivil"
               filled
-              type="email"
-              v-model="email"
-              label="Email"
-              hint="Correo electronico"
+              v-model="estadoCivil"
+              label="Estado Civil"
+              hint="Estado Civil"
               lazy-rules
               :rules="[
                 val =>
@@ -55,12 +54,12 @@
             />
 
             <q-input
-              ref="telf"
+              ref="documentoTributario"
               filled
-              type="telf"
-              v-model="telf"
-              label="Telefono"
-              hint="Telf."
+              v-model="documentoTributario"
+              label="RUC"
+              hint="RUC"
+              maxlength="11"
               lazy-rules
               :rules="[
                 val =>
@@ -68,19 +67,19 @@
               ]"
             />
 
-            <q-input
-              ref="direccion"
-              filled
-              type="direccion"
-              v-model="direccion"
-              label="Direccion"
-              hint="Direccion"
-              lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'el campo no puede estar vacio'
-              ]"
-            />
+            <!--            <q-input-->
+            <!--              ref="direccion"-->
+            <!--              filled-->
+            <!--              type="direccion"-->
+            <!--              v-model="direccion"-->
+            <!--              label="Direccion"-->
+            <!--              hint="Direccion"-->
+            <!--              lazy-rules-->
+            <!--              :rules="[-->
+            <!--                val =>-->
+            <!--                  (val && val.length > 0) || 'el campo no puede estar vacio'-->
+            <!--              ]"-->
+            <!--            />-->
 
             <div>
               <q-btn label="Registrar" type="submit" color="primary" />
@@ -106,7 +105,9 @@ export default {
     return {
       name: null,
       email: null,
-      dni: null,
+      generoPersona: null,
+      estadoCivil: null,
+      documentoTributario: null,
       telf: null,
       direccion: null,
       model: null,
@@ -125,49 +126,66 @@ export default {
   methods: {
     ...mapActions("clientes", ["createCleintes"]),
     registrar() {
+      // const data = {
+      //   name: this.name,
+      //   dni: this.dni,
+      //   email: this.email,
+      //   telf: this.telf,
+      //   direccion: this.direccion
+      // };
       const data = {
-        name: this.name,
-        dni: this.dni,
-        email: this.email,
-        telf: this.telf,
-        direccion: this.direccion
+        tipoPersona: "J",
+        numeroDocumento: "",
+        apellidoPaterno: "",
+        apellidoMaterno: "",
+        nombres: this.name,
+        tipoDocumento: "1",
+        codigoNacionalidad: "1",
+        fechaNacimiento: "1990-10-10",
+        generoPersona: this.generoPersona,
+        estadoCivil: this.estadoCivil,
+        documentoTributario: this.documentoTributario,
+        razonSocial: "Razon Social",
+        nombreComercial: "Siglas"
       };
       console.log(data);
       return this.createCleintes(data);
     },
     onSubmit() {
-      this.$refs.name.validate();
-      this.$refs.dni.validate();
-      this.$refs.email.validate();
-      this.$refs.telf.validate();
-      this.$refs.direccion.validate();
+      const response = this.registrar();
+      console.log(response)
+      // this.$refs.name.validate();
+      // this.$refs.dni.validate();
+      // this.$refs.email.validate();
+      // this.$refs.telf.validate();
+      // this.$refs.direccion.validate();
 
-      if (
-        this.$refs.name.hasError ||
-        this.$refs.dni.hasError ||
-        this.$refs.email.hasError ||
-        this.$refs.telf.hasError ||
-        this.$refs.direccion.hasError
-      ) {
-        this.formHasError = true;
-      } else {
-        const response = this.registrar();
-        if (response) {
-          this.$q.notify({
-            icon: "done",
-            color: "secondary",
-            message: "Registrado"
-          });
-          this.onReset();
-          this.$router.push("/cliente");
-        } else {
-          this.$q.notify({
-            icon: "close",
-            color: "red",
-            message: "No se pudo guardar el usuario"
-          });
-        }
-      }
+      // if (
+      //   this.$refs.name.hasError ||
+      //   this.$refs.dni.hasError ||
+      //   this.$refs.email.hasError ||
+      //   this.$refs.telf.hasError ||
+      //   this.$refs.direccion.hasError
+      // ) {
+      //   this.formHasError = true;
+      // } else {
+      //   const response = this.registrar();
+      //   if (response) {
+      //     this.$q.notify({
+      //       icon: "done",
+      //       color: "secondary",
+      //       message: "Registrado"
+      //     });
+      //     this.onReset();
+      //     this.$router.push("/cliente");
+      //   } else {
+      //     this.$q.notify({
+      //       icon: "close",
+      //       color: "red",
+      //       message: "No se pudo guardar el usuario"
+      //     });
+      //   }
+      // }
     },
 
     onReset() {

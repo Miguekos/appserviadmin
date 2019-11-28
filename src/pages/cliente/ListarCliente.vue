@@ -72,7 +72,7 @@ export default {
           required: true,
           label: "Nro.",
           align: "left",
-          field: "id_client",
+          field: "co_client",
           format: val => `${val}`,
           sortable: true
         },
@@ -80,7 +80,7 @@ export default {
           name: "Nombre",
           align: "left",
           label: "Nombre",
-          field: "no_client",
+          field: "no_razsoc",
           sortable: true
         },
         {
@@ -94,21 +94,21 @@ export default {
           name: "Direccion",
           align: "left",
           label: "Direccion",
-          field: "no_direcc",
+          field: "co_doctri",
           sortable: true
         },
         {
           name: "DNI",
           align: "left",
           label: "DNI / C.E",
-          field: "nu_docide",
+          field: "ca_percon",
           sortable: true
         },
         {
           name: "Telefono",
           align: "left",
           label: "Telefono",
-          field: "nu_telefono",
+          field: "ca_direcc",
           sortable: true
         }
       ]
