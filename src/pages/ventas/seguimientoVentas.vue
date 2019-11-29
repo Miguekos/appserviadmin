@@ -61,19 +61,15 @@
             </q-popup-edit>
           </q-td>
           <q-td key="estado" :props="props">
-            {{ props.row.estado }}
-            <q-popup-edit v-model="props.row.estado">
               <q-select
+                borderless
                 dense
                 options-dense
                 v-model="props.row.estado"
                 :options="options"
-                label="Standard"
                 transition-show="flip-up"
                 transition-hide="flip-down"
-                standout
               />
-            </q-popup-edit>
           </q-td>
           <q-td key="botones" :props="props">
             <div class="q-pa-xs q-gutter-xs">
