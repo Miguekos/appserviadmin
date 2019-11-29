@@ -70,7 +70,11 @@ module.exports = function(ctx) {
         "QSpinner",
         "QSpinnerGears",
         "QMenu",
-        "QPopupEdit"
+        "QPopupEdit",
+        "QSplitter",
+        "QTabPanels",
+        "QTabPanel",
+        "QPopupProxy"
       ],
 
       directives: ["Ripple", "ClosePopup"],

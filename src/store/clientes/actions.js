@@ -45,7 +45,8 @@ export async function contactoCliente({ commit }, payload) {
   const response = await axiosInstance.get(
     `/api/clientes/contacto_cliente/${payload}`
   );
-  // console.log(response.data);
+  console.log("Respuesta de la Contactos de cliente")
+  console.log(response.data);
   commit("setContactoCliente", response.data);
   // return response.data;
 }
@@ -55,7 +56,8 @@ export async function direccionCliente({ commit }, payload) {
   const response = await axiosInstance.get(
     `/api/clientes/direccion_cliente/${payload}`
   );
-  // console.log(response.data);
+  console.log("Respuesta de la direccion de cliente")
+  console.log(response.data);
   commit("setDireccionCliente", response.data);
   // return response.data;
 }

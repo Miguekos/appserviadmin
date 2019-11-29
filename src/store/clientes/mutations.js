@@ -3,6 +3,8 @@ export function setClientes(state, payload) {
 }
 
 export function setContactoCliente(state, payload) {
+  console.log("Data de mutacion");
+  console.log(payload);
   state.clienteContactos = payload;
 }
 

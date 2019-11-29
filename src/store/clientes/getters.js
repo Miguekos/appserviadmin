@@ -23,5 +23,7 @@ export function getClieDireccion(state) {
 }
 
 export function getClieContactos(state) {
+  console.log("data del estado");
+  console.log(state.clienteContactos);
   return state.clienteContactos;
 }

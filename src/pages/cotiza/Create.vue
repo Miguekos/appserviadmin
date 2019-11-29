@@ -37,18 +37,29 @@
         <q-item-section class="flex-center flex">
           <q-form @submit.prevent="onSubmit" class>
             <div class="row flex flex-center">
-              <div class="q-pa-xs col-xs-12 col-sm-3">
+              <div class="q-pa-xs col-xs-12 col-sm-6">
                 <q-input
                   dense
                   filled
-                  v-model="model.fe_regist"
-                  label="Fecha"
-                  lazy-rules
-                  :rules="[
-                    val =>
-                      (val && val.length > 0) || 'No puede dejar el campo vacio'
-                  ]"
-                />
+                  v-model="model.date"
+                  mask="date"
+                  :rules="['date']"
+                >
+                  <template v-slot:append>
+                    <q-icon name="event" class="cursor-pointer">
+                      <q-popup-proxy
+                        ref="qDateProxy"
+                        transition-show="scale"
+                        transition-hide="scale"
+                      >
+                        <q-date
+                          v-model="model.date"
+                          @input="() => $refs.qDateProxy.hide()"
+                        />
+                      </q-popup-proxy>
+                    </q-icon>
+                  </template>
+                </q-input>
               </div>
               <div class="q-pa-xs col-xs-12 col-sm-6">
                 <q-input
@@ -63,72 +74,54 @@
                   ]"
                 />
               </div>
-              <div class="q-pa-xs col-xs-12 col-sm-3">
-                <q-input
-                  dense
-                  filled
-                  v-model="model.no_direcc"
-                  label="Contacto"
-                  lazy-rules
-                  :rules="[
-                    val =>
-                      (val && val.length > 0) || 'No puede dejar el campo vacio'
-                  ]"
-                />
-              </div>
-              <!-- <div class="q-pa-xs col-xs-12 col-sm-2">
-                <q-input
-                  dense
-                  filled
-                  v-model="model.nu_docide"
-                  label="Direccion"
-                  lazy-rules
-                  :rules="[
-                    val =>
-                      (val && val.length > 0) || 'No puede dejar el campo vacio'
-                  ]"
-                />
-              </div>-->
               <div class="q-pa-xs col-xs-12 col-sm-6">
                 <q-select
                   filled
-                  v-model="model"
-                  :options="optionsContactos"
-                  option-value="id"
-                  option-label="desc"
+                  dense
+                  options-dense
+                  v-model="model.no_direcc"
+                  :options="getClieDireccion"
+                  option-value="co_ubigeo"
+                  option-label="no_direcc"
                   option-disable="inactive"
                   emit-value
                   map-options
-                  style="min-width: 250px; max-width: 300px"
+                  label="Direccion"
                 />
-                <!--                <q-input-->
-                <!--                  dense-->
-                <!--                  filled-->
-                <!--                  v-model="model.nu_docide"-->
-                <!--                  label="Direccion"-->
-                <!--                  lazy-rules-->
-                <!--                  :rules="[-->
-                <!--                    val =>-->
-                <!--                      (val && val.length > 0) || 'No puede dejar el campo vacio'-->
-                <!--                  ]"-->
-                <!--                />-->
-                <!--                <q-input-->
-                <!--                  dense-->
-                <!--                  filled-->
-                <!--                  v-model="model.nu_telefono"-->
-                <!--                  label="Asunto"-->
-                <!--                  lazy-rules-->
-                <!--                  :rules="[-->
-                <!--                    val =>-->
-                <!--                      (val && val.length > 0) || 'No puede dejar el campo vacio'-->
-                <!--                  ]"-->
-                <!--                />-->
+              </div>
+              <div class="q-pa-xs col-xs-12 col-sm-6">
+                <q-select
+                  filled
+                  dense
+                  options-dense
+                  v-model="model.contacto"
+                  :options="getClieContactos"
+                  option-value="co_person"
+                  option-label="no_client"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
+                  label="Contacto"
+                />
+              </div>
+              <div class="q-pa-xs col-xs-12 col-sm-12">
+                <q-input
+                  dense
+                  filled
+                  v-model="model.asunto"
+                  label="Asunto"
+                  lazy-rules
+                  :rules="[
+                    val =>
+                      (val && val.length > 0) || 'No puede dejar el campo vacio'
+                  ]"
+                />
               </div>
             </div>
-            <div class="q-pb-sm">
+            <div class="q-pa-xs">
               <div class="q-pa-xs col-xs-12 col-sm-2">
                 <q-input
-                  v-model="text"
+                  v-model="model.text"
                   filled
                   type="textarea"
                   label="Detalle"
@@ -155,8 +148,9 @@
       </q-item>
     </q-card>
     <!-- {{ options }} -->
-    {{ model }}
-    {{ optionsContactos }}
+    <!--    {{ model }}-->
+    <!--    {{ getClieDireccion }}-->
+    <!--    {{ getClieContactos }}-->
     <!-- {{ name }} -->
     <!-- </q-page> -->
   </div>
@@ -170,7 +164,8 @@ export default {
     ...mapGetters("clientes", [
       "ClientesFiltro",
       "asdClientes",
-      "getClieDireccion"
+      "getClieDireccion",
+      "getClieContactos"
     ])
   },
   data() {
@@ -184,11 +179,14 @@ export default {
       selectModel2: null,
       text: "",
       model: {
+        text: "",
+        date: "2019/11/01",
         no_razsoc: "",
         no_corele: "",
         no_direcc: "",
         nu_docide: "",
-        nu_telefono: ""
+        nu_telefono: "",
+        contacto: ""
       },
       lotrOpts: [],
       options: [],
@@ -227,17 +225,28 @@ export default {
         timeout: 1000,
         color: "secondary"
       });
-      await this.contactoCliente(val.co_client).then(() => {
-        console.log(this.getClieDireccion);
-        this.optionsContactos = this.getClieDireccion;
-      });
+      this.idCliente = val.co_client;
+      await this.contactoCliente(val.co_client)
+        .then(() => {
+          console.log("Cargo Contactos Correctamente");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      await this.direccionCliente(val.co_client)
+        .then(() => {
+          console.log("Cargo Direccion Correctamente");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     async onSubmit() {
       this.loading = true;
       this.loading1 = true;
       this.registrarCotizacion({
         ...this.model,
-        text: this.text
+        idcliente: this.idCliente
       })
         .then(resp => {
           console.log(resp);
