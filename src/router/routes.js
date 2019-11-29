@@ -25,6 +25,10 @@ const routes = [
       {
         path: "requerimiento",
         component: () => import("pages/cotiza/RequerimientoDeCotizacion.vue")
+      },
+      {
+        path: "seguimiento",
+        component: () => import("pages/cotiza/RequerimientoDeCotizacion.vue")
       }
     ],
     meta: {
@@ -36,7 +40,7 @@ const routes = [
     name: "ventas",
     component: () => import("layouts/MyLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/ventas/seguimientoVentas.vue") }
+      { path: "", component: () => import("pages/ventas/IndexRegistro.vue") }
     ],
     meta: {
       requiresAuth: true

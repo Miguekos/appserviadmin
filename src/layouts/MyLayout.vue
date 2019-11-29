@@ -90,27 +90,27 @@
 
             <q-separator class="q-my-md" />
 
-            <q-item-label header class="text-weight-bold text-uppercase"
-              >Proveedores</q-item-label
-            >
+            <!--            <q-item-label header class="text-weight-bold text-uppercase"-->
+            <!--              >Proveedores</q-item-label-->
+            <!--            >-->
 
-            <q-item
-              dense
-              v-for="link in links6"
-              :key="link.text"
-              v-ripple
-              clickable
-              @click="URL(link.path)"
-            >
-              <q-item-section avatar>
-                <q-icon color="grey" :name="link.icon" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>{{ link.text }}</q-item-label>
-              </q-item-section>
-            </q-item>
+            <!--            <q-item-->
+            <!--              dense-->
+            <!--              v-for="link in links6"-->
+            <!--              :key="link.text"-->
+            <!--              v-ripple-->
+            <!--              clickable-->
+            <!--              @click="URL(link.path)"-->
+            <!--            >-->
+            <!--              <q-item-section avatar>-->
+            <!--                <q-icon color="grey" :name="link.icon" />-->
+            <!--              </q-item-section>-->
+            <!--              <q-item-section>-->
+            <!--                <q-item-label>{{ link.text }}</q-item-label>-->
+            <!--              </q-item-section>-->
+            <!--            </q-item>-->
 
-            <q-separator class="q-my-md" />
+            <!--            <q-separator class="q-my-md" />-->
 
             <q-item-label header class="text-weight-bold text-uppercase"
               >Usuarios</q-item-label
@@ -281,6 +281,11 @@ export default {
           icon: "monetization_on",
           text: "Seguimiento de Ventas",
           path: "/ventas"
+        },
+        {
+          icon: "monetization_on",
+          text: "Requerimiento de cotizacion",
+          path: "/cotizacion/requerimiento"
         }
       ],
       links2: [
