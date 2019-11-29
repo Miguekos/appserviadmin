@@ -276,6 +276,11 @@ export default {
           icon: "subscriptions",
           text: "Formulario",
           path: "/formulario"
+        },
+        {
+          icon: "monetization_on",
+          text: "Seguimiento de Ventas",
+          path: "/ventas"
         }
       ],
       links2: [

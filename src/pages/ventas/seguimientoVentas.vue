@@ -73,16 +73,17 @@
           </q-td>
           <q-td key="botones" :props="props">
             <div class="q-pa-xs q-gutter-xs">
-              <q-btn dense color="primary" icon="shopping_cart" />
-              <q-btn dense color="secondary" icon="navigation" />
+              <q-btn dense size="md" color="primary" icon="local_phone" />
+              <q-btn dense size="md" color="positive" icon="email" />
               <q-btn
+                size="md"
                 dense
                 color="amber"
                 glossy
                 text-color="black"
-                icon="layers_clear"
+                icon="email"
               />
-              <q-btn dense color="brown-5" icon="directions" />
+              <q-btn dense size="md" color="brown-5" icon="edit" />
             </div>
           </q-td>
         </q-tr>
