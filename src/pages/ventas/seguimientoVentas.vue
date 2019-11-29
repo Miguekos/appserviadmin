@@ -3,7 +3,7 @@
     <q-table
       :data="data"
       :columns="columns"
-      title="Cliente"
+      title="Cliente v1.1"
       :rows-per-page-options="[]"
       row-key="name"
     >
