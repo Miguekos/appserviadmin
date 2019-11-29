@@ -32,6 +32,17 @@ const routes = [
     }
   },
   {
+    path: "/ventas",
+    name: "ventas",
+    component: () => import("layouts/MyLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/ventas/seguimientoVentas.vue") }
+    ],
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: "/proveedores",
     name: "proveedores",
     component: () => import("layouts/MyLayout.vue"),
