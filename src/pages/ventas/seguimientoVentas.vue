@@ -11,9 +11,6 @@
         <q-tr :props="props">
           <q-td key="desc" :props="props">
             {{ props.row.name }}
-            <q-popup-edit v-model="props.row.name" title="Edit the Name">
-              <q-input v-model="props.row.name" dense autofocus counter />
-            </q-popup-edit>
           </q-td>
           <q-td key="calories" :props="props">
             {{ props.row.calories }}
@@ -79,7 +76,7 @@
             </q-popup-edit>
           </q-td>
           <q-td key="botones" :props="props">
-            <div class="q-pa-md q-gutter-sm">
+            <div class="q-pa-xs q-gutter-xs">
               <q-btn dense color="primary" icon="shopping_cart" />
               <q-btn dense color="secondary" icon="navigation" />
               <q-btn dense color="amber" glossy text-color="black" icon="layers_clear" />
@@ -99,7 +96,7 @@ const columns = [
     label: "Nro",
     field: "name"
   },
-  { name: "calories", align: "center", label: "Cliente", field: "calories" },
+  { name: "calories", label: "Cliente", field: "calories" },
   { name: "fat", label: "Contacto", field: "fat" },
   { name: "carbs", label: "Correo", field: "carbs" },
   { name: "protein", label: "Area", field: "protein" },
@@ -113,8 +110,8 @@ const columns = [
 
 const data = [
   {
-    name: "Frozen Yogurt",
-    calories: 159,
+    name: "1",
+    calories: "Frozen",
     fat: 6.0,
     carbs: 24,
     protein: 4.0,
@@ -126,8 +123,8 @@ const data = [
     botonoes: []
   },
   {
-    name: "Ice cream sandwich",
-    calories: 237,
+    name: "2",
+    calories: "Ice",
     fat: 9.0,
     carbs: 37,
     protein: 4.3,
@@ -139,8 +136,8 @@ const data = [
     botonoes: []
   },
   {
-    name: "Eclair",
-    calories: 262,
+    name: "3",
+    calories: "Eclair",
     fat: 16.0,
     carbs: 23,
     protein: 6.0,
@@ -152,8 +149,8 @@ const data = [
     botonoes: []
   },
   {
-    name: "Cupcake",
-    calories: 305,
+    name: "4",
+    calories: "Cupcake",
     fat: 3.7,
     carbs: 67,
     protein: 4.3,
@@ -165,8 +162,8 @@ const data = [
     botonoes: []
   },
   {
-    name: "Gingerbread",
-    calories: 356,
+    name: "5",
+    calories: "Gingerbread",
     fat: 16.0,
     carbs: 49,
     protein: 3.9,
@@ -178,8 +175,8 @@ const data = [
     botonoes: []
   },
   {
-    name: "Jelly bean",
-    calories: 375,
+    name: "6",
+    calories: "Jelly",
     fat: 0.0,
     carbs: 94,
     protein: 0.0,
@@ -191,8 +188,8 @@ const data = [
     botonoes: []
   },
   {
-    name: "Lollipop",
-    calories: 392,
+    name: "7",
+    calories: "Lollipop",
     fat: 0.2,
     carbs: 98,
     protein: 0,
@@ -204,8 +201,8 @@ const data = [
     botonoes: []
   },
   {
-    name: "Honeycomb",
-    calories: 408,
+    name: "8",
+    calories: "Honeycomb",
     fat: 3.2,
     carbs: 87,
     protein: 6.5,
@@ -217,8 +214,8 @@ const data = [
     botonoes: []
   },
   {
-    name: "Donut",
-    calories: 452,
+    name: "9",
+    calories: "Donut",
     fat: 25.0,
     carbs: 51,
     protein: 4.9,
@@ -230,8 +227,8 @@ const data = [
     botonoes: []
   },
   {
-    name: "KitKat",
-    calories: 518,
+    name: "10",
+    calories: "KitKat",
     fat: 26.0,
     carbs: 65,
     protein: 7,
