@@ -3,7 +3,7 @@
     <q-table
       :data="data"
       :columns="columns"
-      title="Cliente v1.1"
+      title="Listado v1.2"
       :rows-per-page-options="[]"
       row-key="name"
     >
@@ -95,6 +95,7 @@
 const columns = [
   {
     name: "desc",
+    required: true,
     align: "left",
     label: "Nro",
     field: "name"

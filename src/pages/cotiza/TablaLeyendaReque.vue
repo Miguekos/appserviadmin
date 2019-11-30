@@ -42,7 +42,7 @@ export default {
         {
           name: "desc",
           required: true,
-          label: "Dessert (100g serving)",
+          label: "Código Estado",
           align: "left",
           field: row => row.name,
           format: val => `${val}`,
@@ -50,28 +50,35 @@ export default {
         },
         {
           name: "calories",
-          align: "center",
-          label: "Calories",
+          align: "left",
+          label: "Nombre Estado",
           field: "calories",
           sortable: true
         },
-        { name: "fat", label: "Fat (g)", field: "fat", sortable: true },
-        { name: "carbs", label: "Carbs (g)", field: "carbs" },
-        { name: "protein", label: "Protein (g)", field: "protein" },
-        { name: "sodium", label: "Sodium (mg)", field: "sodium" },
         {
-          name: "calcium",
-          label: "Calcium (%)",
-          field: "calcium",
-          sortable: true,
-          sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
+          name: "fat",
+          align: "left",
+          label: "Código Motivo",
+          field: "fat",
+          sortable: true
         },
         {
-          name: "iron",
-          label: "Iron (%)",
-          field: "iron",
-          sortable: true,
-          sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
+          name: "carbs",
+          align: "left",
+          label: "Nombre Motivo",
+          field: "carbs"
+        },
+        {
+          name: "protein",
+          align: "left",
+          label: "Código Evaluaciòn",
+          field: "protein"
+        },
+        {
+          name: "sodium",
+          align: "left",
+          label: "Nombre Evaluaciòn",
+          field: "sodium"
         }
       ],
       data: [

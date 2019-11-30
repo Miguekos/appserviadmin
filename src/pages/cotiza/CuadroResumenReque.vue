@@ -9,8 +9,8 @@
     <q-markup-table :separator="separator" flat dense bordered>
       <tbody>
         <tr>
-          <td class="text-left">Semaforo</td>
-          <td class="text-right">Cantidad</td>
+          <td class="bg-primary text-white text-left">Semaforo</td>
+          <td class="bg-primary text-white text-right">Cantidad</td>
         </tr>
         <tr>
           <td class="text-left">Aceptado:</td>
