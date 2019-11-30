@@ -86,7 +86,7 @@
             <div class="q-pa-xs q-gutter-xs">
               <q-btn
                 dense
-                @click="dialogLlamada = !dialogLlamada"
+                @click="dialogLlamadaCliente(true)"
                 size="sm"
                 color="primary"
                 icon="local_phone"
@@ -100,7 +100,7 @@
                 text-color="black"
                 icon="email"
               />
-              <q-btn dense size="sm" color="brown-5" icon="edit" />
+              <q-btn dense @click="dialogRegistrarCitaCliente(true)" size="sm" color="brown-5" icon="edit" />
             </div>
           </q-td>
         </q-tr>
@@ -109,8 +109,11 @@
     <q-dialog full-width v-model="dialogLlamada">
       <Llamadas />
     </q-dialog>
-    {{ Clientes }}
-    {{ dialogLlamada }}
+    <q-dialog full-width v-model="dialogRegistrarCita">
+      <RegistrarCita />
+    </q-dialog>
+<!--    {{ Clientes }}-->
+<!--    {{ dialogLlamada }}-->
   </div>
 </template>
 <script>
@@ -135,16 +138,13 @@ const columns = [
   { name: "botones", align: "left", label: "Accions", field: "botones" }
 ];
 
-const data = [];
-
 export default {
   computed: {
-    ...mapGetters("example", ["dialogLlamada"]),
+    ...mapGetters("example", ["dialogLlamada", "dialogRegistrarCita"]),
     ...mapGetters("clientes", ["Clientes"])
   },
   data() {
     return {
-      data,
       columns,
       alert: false,
       options: [
@@ -161,12 +161,17 @@ export default {
   },
   methods: {
     ...mapActions("clientes", ["getClientes"]),
+    ...mapActions("example", [
+      "dialogLlamadaCliente",
+      "dialogRegistrarCitaCliente"
+    ]),
     update(val) {
       console.log(val);
     }
   },
   components: {
-    Llamadas: () => import("./Llamadas")
+    Llamadas: () => import("./Llamadas"),
+    RegistrarCita: () => import("./RegistrarCita")
     // TablaFiltro: () => import("./TablaFiltro"),
     // CuadroResumen: () => import("./CuadroResumen")
     // AddRegistro: () => import("./Create")

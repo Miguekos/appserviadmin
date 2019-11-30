@@ -7,3 +7,11 @@ export function setRegistros(state, payload) {
 export function setDialogCreate(state, payload) {
   state.dialogCrearRegistro = payload;
 }
+
+export function setdialogLlamadaCliente(state, payload) {
+  state.dialogLlamadaCliente = payload;
+}
+
+export function setdialogRegistrarCitaCliente(state, payload) {
+  state.dialogRegistrarCitaCliente = payload;
+}

@@ -23,5 +23,6 @@ export default {
       no_estreq: "PROCESANDO"
     }
   ],
-  popLlamadaVentas: false
+  dialogLlamadaCliente: false,
+  dialogRegistrarCitaCliente: false
 };

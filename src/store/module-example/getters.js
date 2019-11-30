@@ -26,6 +26,9 @@ export function registrosFiltroEstados(state) {
 }
 
 export function dialogLlamada(state) {
-  console.log("Levantar pop para llamada");
-  return state.popLlamadaVentas;
+  return state.dialogLlamadaCliente;
+}
+
+export function dialogRegistrarCita(state) {
+  return state.dialogRegistrarCitaCliente;
 }

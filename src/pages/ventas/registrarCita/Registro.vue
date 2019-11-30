@@ -6,9 +6,8 @@
           Registro
         </p>
       </div>
-      <div class="q-ma-sm"></div>
       <div class="q-ma-sm">
-        <q-input dense filled v-model="date" mask="date" :rules="['date']">
+        <q-input dense v-model="date" mask="date" :rules="['date']">
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy
@@ -16,11 +15,25 @@
                 transition-show="scale"
                 transition-hide="scale"
               >
-                <q-date v-model="date" @input="() => $refs.qDateProxy.hide()" />
+                <q-date dense v-model="date" @input="() => $refs.qDateProxy.hide()" />
               </q-popup-proxy>
             </q-icon>
           </template>
         </q-input>
+      </div>
+      <div class="q-ma-sm">
+        <q-input dense v-model="time" mask="time" :rules="['time']">
+          <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-time v-model="time" />
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+        </q-input>
+      </div>
+      <div class="q-ma-sm">
+        <q-input dense v-model="direccion" label="Direccion" />
       </div>
 
       <div class="q-ma-sm">
@@ -36,6 +49,12 @@
     <div class="q-gutter-md text-center">
       <q-btn @click="showLoading()" label="Grabar" size="sm" color="positive" />
       <q-btn label="Sin Contacto" size="sm" color="negative" />
+      <q-btn
+        label="Cerrar"
+        @click="dialogRegistrarCitaCliente(false)"
+        size="sm"
+        color="secondary"
+      />
     </div>
     <!--    {{ $data }}-->
   </div>
@@ -48,6 +67,8 @@ export default {
   },
   data() {
     return {
+      time: "10:56",
+      direccion: "",
       date: "2019/02/01",
       loading: false,
       estadoFiltro: "",
@@ -63,7 +84,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("example", ["registros"]),
+    ...mapActions("example", ["registros", "dialogRegistrarCitaCliente"]),
     crearCotiza() {
       this.$router.push("/cotizacion/create");
     },

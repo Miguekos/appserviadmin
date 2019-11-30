@@ -20,7 +20,7 @@ const routes = [
     name: "cotizacion",
     component: () => import("layouts/MyLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/cotiza/IndexRegistro.vue") },
+      { path: "", component: () => import("pages/cotiza/Index.vue") },
       { path: "create", component: () => import("pages/cotiza/Create.vue") },
       {
         path: "requerimiento",
@@ -40,7 +40,7 @@ const routes = [
     name: "ventas",
     component: () => import("layouts/MyLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/ventas/IndexRegistro.vue") },
+      { path: "", component: () => import("pages/ventas/Index.vue") },
       { path: "llamadas", component: () => import("pages/ventas/Llamadas.vue") }
     ],
     meta: {

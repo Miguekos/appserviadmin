@@ -34,8 +34,8 @@ export default {
   },
   components: {
     // TablaListado: () => import("./popLlamadaLista"),
-    TablaFiltro: () => import("./llamadas/Registro"),
-    CuadroResumen: () => import("./llamadas/Lista")
+    TablaFiltro: () => import("./registrarCita/Registro"),
+    CuadroResumen: () => import("./registrarCita/Lista")
     // AddRegistro: () => import("./Create")
   }
   // name: 'PageName',

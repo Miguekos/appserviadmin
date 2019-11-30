@@ -50,3 +50,11 @@ export async function getResumenVentas() {
   // console.log(registro.data);
   return regisCotiza.data;
 }
+
+export function dialogLlamadaCliente({ commit }, payload) {
+  commit("setdialogLlamadaCliente", payload);
+}
+
+export function dialogRegistrarCitaCliente({ commit }, payload) {
+  commit("setdialogRegistrarCitaCliente", payload);
+}
