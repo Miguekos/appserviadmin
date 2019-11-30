@@ -7,14 +7,9 @@
       </p>
     </div>
     <div class="q-pa-xs">
-      <q-table
-        hide-bottom
-        dense
-        :data="info"
-        :columns="columns"
-      />
+      <q-table hide-bottom dense :data="info" :columns="columns" />
     </div>
-<!--    {{ info }}-->
+    <!--    {{ info }}-->
   </div>
 </template>
 <script>
@@ -42,7 +37,7 @@ export default {
       info: [],
       resumen: {},
       model: null,
-      separator: "cell",
+      separator: "cell"
     };
   },
   methods: {

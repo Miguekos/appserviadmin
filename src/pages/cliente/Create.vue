@@ -153,7 +153,7 @@ export default {
     },
     onSubmit() {
       const response = this.registrar();
-      console.log(response)
+      console.log(response);
       // this.$refs.name.validate();
       // this.$refs.dni.validate();
       // this.$refs.email.validate();

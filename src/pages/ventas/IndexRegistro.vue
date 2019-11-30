@@ -61,7 +61,7 @@ export default {
   components: {
     TablaListado: () => import("./TablaListado"),
     TablaFiltro: () => import("./TablaFiltro"),
-    CuadroResumen: () => import("./CuadroResumen"),
+    CuadroResumen: () => import("./CuadroResumen")
     // AddRegistro: () => import("./Create")
   }
   // name: 'PageName',

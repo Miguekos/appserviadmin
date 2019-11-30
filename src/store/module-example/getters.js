@@ -21,7 +21,11 @@ export function getDialogCrear(state) {
 }
 
 export function registrosFiltroEstados(state) {
-  console.log("Cargando los filtros desde stored")
+  // console.log("Cargando los filtros desde stored")
   return state.estadoFiltros;
 }
 
+export function dialogLlamada(state) {
+  console.log("Levantar pop para llamada");
+  return state.popLlamadaVentas;
+}

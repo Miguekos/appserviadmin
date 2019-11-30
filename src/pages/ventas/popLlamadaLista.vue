@@ -46,8 +46,7 @@ export default {
       separator: "cell"
     };
   },
-  methods: {
-  },
+  methods: {},
   created() {
     console.log("se cargo el created de resumen");
     // this.$q.loading.show({ delay: 400 });

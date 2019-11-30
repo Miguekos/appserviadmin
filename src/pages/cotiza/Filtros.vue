@@ -93,8 +93,8 @@ export default {
       }, 3000);
     }
   },
-    created() {
-      console.log(this.stadosFiltro)
-    }
+  created() {
+    console.log(this.stadosFiltro);
+  }
 };
 </script>

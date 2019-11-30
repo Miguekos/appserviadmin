@@ -34,17 +34,8 @@
       </div>
     </div>
     <div class="q-gutter-md text-center">
-      <q-btn
-        @click="showLoading()"
-        label="Grabar"
-        size="sm"
-        color="positive"
-      />
-      <q-btn
-        label="Sin Contacto"
-        size="sm"
-        color="negative"
-      />
+      <q-btn @click="showLoading()" label="Grabar" size="sm" color="positive" />
+      <q-btn label="Sin Contacto" size="sm" color="negative" />
     </div>
     <!--    {{ $data }}-->
   </div>

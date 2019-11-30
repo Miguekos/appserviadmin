@@ -33,7 +33,10 @@ export async function createCleintes({ commit }, payload) {
   // };
   console.log("crear cliente");
   // console.log(payload);
-  const response = await axiosInstance.post("/api/clientes/registrar_new/R", payload);
+  const response = await axiosInstance.post(
+    "/api/clientes/registrar_new/R",
+    payload
+  );
   console.log(response.data);
   return response.data;
   // commit("setUsers", response.data);
@@ -45,7 +48,7 @@ export async function contactoCliente({ commit }, payload) {
   const response = await axiosInstance.get(
     `/api/clientes/contacto_cliente/${payload}`
   );
-  console.log("Respuesta de la Contactos de cliente")
+  console.log("Respuesta de la Contactos de cliente");
   console.log(response.data);
   commit("setContactoCliente", response.data);
   // return response.data;
@@ -56,7 +59,7 @@ export async function direccionCliente({ commit }, payload) {
   const response = await axiosInstance.get(
     `/api/clientes/direccion_cliente/${payload}`
   );
-  console.log("Respuesta de la direccion de cliente")
+  console.log("Respuesta de la direccion de cliente");
   console.log(response.data);
   commit("setDireccionCliente", response.data);
   // return response.data;

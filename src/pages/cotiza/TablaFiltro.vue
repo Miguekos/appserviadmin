@@ -53,7 +53,7 @@
     <div class="q-pa-xs flex flex-center">
       <q-btn @click="showLoading()" label="Filtrar" dense color="secondary" />
     </div>
-<!--    {{ $data }}-->
+    <!--    {{ $data }}-->
   </div>
 </template>
 <script>

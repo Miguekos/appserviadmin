@@ -6,7 +6,8 @@
       </p>
     </div>
     <q-table
-      :data="data"
+      dense
+      :data="Clientes"
       :columns="columns"
       :rows-per-page-options="[]"
       row-key="name"
@@ -14,18 +15,24 @@
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="desc" :props="props">
-            {{ props.row.name }}
+            {{ props.row.co_client }}
           </q-td>
-          <q-td key="calories" :props="props">
-            {{ props.row.calories }}
-            <q-popup-edit v-model="props.row.calories">
-              <q-input v-model="props.row.calories" dense autofocus />
+          <q-td key="no_razsoc" :props="props">
+            {{ props.row.no_razsoc }}
+            <q-popup-edit v-model="props.row.no_razsoc">
+              <q-input v-model="props.row.no_razsoc" dense autofocus />
             </q-popup-edit>
           </q-td>
           <q-td key="fat" :props="props">
             {{ props.row.fat }}
             <q-popup-edit v-model="props.row.fat">
               <q-input v-model="props.row.fat" dense autofocus />
+            </q-popup-edit>
+          </q-td>
+          <q-td key="semaforo" :props="props">
+            {{ props.row.semaforo }}
+            <q-popup-edit v-model="props.row.semaforo">
+              <q-input v-model="props.row.semaforo" dense autofocus />
             </q-popup-edit>
           </q-td>
           <q-td key="carbs" :props="props">
@@ -66,18 +73,24 @@
           </q-td>
           <q-td key="estado" :props="props">
             <q-select
-              borderless
               dense
               options-dense
               v-model="props.row.estado"
               :options="options"
+              @change="update(props.row.estado)"
               transition-show="flip-up"
               transition-hide="flip-down"
             />
           </q-td>
           <q-td key="botones" :props="props">
             <div class="q-pa-xs q-gutter-xs">
-              <q-btn dense @click="alert = true" size="sm" color="primary" icon="local_phone" />
+              <q-btn
+                dense
+                @click="dialogLlamada = !dialogLlamada"
+                size="sm"
+                color="primary"
+                icon="local_phone"
+              />
               <q-btn dense size="sm" color="positive" icon="email" />
               <q-btn
                 size="sm"
@@ -93,12 +106,15 @@
         </q-tr>
       </template>
     </q-table>
-    <q-dialog full-width v-model="alert">
-    <Llamadas/>
+    <q-dialog full-width v-model="dialogLlamada">
+      <Llamadas />
     </q-dialog>
+    {{ Clientes }}
+    {{ dialogLlamada }}
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
 const columns = [
   {
     name: "desc",
@@ -106,8 +122,9 @@ const columns = [
     label: "Nro",
     field: "name"
   },
-  { name: "calories", align: "left", label: "Cliente", field: "calories" },
+  { name: "no_razsoc", align: "left", label: "Cliente", field: "no_razsoc" },
   { name: "fat", align: "left", label: "Contacto", field: "fat" },
+  { name: "semaforo", align: "left", label: "S", field: "semaforo" },
   { name: "carbs", align: "left", label: "Correo", field: "carbs" },
   { name: "protein", align: "left", label: "Area", field: "protein" },
   { name: "sodium", align: "left", label: "Distrito", field: "sodium" },
@@ -118,140 +135,13 @@ const columns = [
   { name: "botones", align: "left", label: "Accions", field: "botones" }
 ];
 
-const data = [
-  {
-    name: "1",
-    calories: "Frozen",
-    fat: 6.0,
-    carbs: 24,
-    protein: 4.0,
-    sodium: 87,
-    calcium: "14%",
-    iron: "1%",
-    commend: "",
-    estado: "NR - No Requieren",
-    botonoes: []
-  },
-  {
-    name: "2",
-    calories: "Ice",
-    fat: 9.0,
-    carbs: 37,
-    protein: 4.3,
-    sodium: 129,
-    calcium: "8%",
-    iron: "1%",
-    commend: "",
-    estado: "NR - No Requieren",
-    botonoes: []
-  },
-  {
-    name: "3",
-    calories: "Eclair",
-    fat: 16.0,
-    carbs: 23,
-    protein: 6.0,
-    sodium: 337,
-    calcium: "6%",
-    iron: "7%",
-    commend: "",
-    estado: "NR - No Requieren",
-    botonoes: []
-  },
-  {
-    name: "4",
-    calories: "Cupcake",
-    fat: 3.7,
-    carbs: 67,
-    protein: 4.3,
-    sodium: 413,
-    calcium: "3%",
-    iron: "8%",
-    commend: "",
-    estado: "NR - No Requieren",
-    botonoes: []
-  },
-  {
-    name: "5",
-    calories: "Gingerbread",
-    fat: 16.0,
-    carbs: 49,
-    protein: 3.9,
-    sodium: 327,
-    calcium: "7%",
-    iron: "16%",
-    commend: "",
-    estado: "NR - No Requieren",
-    botonoes: []
-  },
-  {
-    name: "6",
-    calories: "Jelly",
-    fat: 0.0,
-    carbs: 94,
-    protein: 0.0,
-    sodium: 50,
-    calcium: "0%",
-    iron: "0%",
-    commend: "",
-    estado: "NR - No Requieren",
-    botonoes: []
-  },
-  {
-    name: "7",
-    calories: "Lollipop",
-    fat: 0.2,
-    carbs: 98,
-    protein: 0,
-    sodium: 38,
-    calcium: "0%",
-    iron: "2%",
-    commend: "",
-    estado: "NR - No Requieren",
-    botonoes: []
-  },
-  {
-    name: "8",
-    calories: "Honeycomb",
-    fat: 3.2,
-    carbs: 87,
-    protein: 6.5,
-    sodium: 562,
-    calcium: "0%",
-    iron: "45%",
-    commend: "",
-    estado: "NR - No Requieren",
-    botonoes: []
-  },
-  {
-    name: "9",
-    calories: "Donut",
-    fat: 25.0,
-    carbs: 51,
-    protein: 4.9,
-    sodium: 326,
-    calcium: "2%",
-    iron: "22%",
-    commend: "",
-    estado: "NR - No Requieren",
-    botonoes: []
-  },
-  {
-    name: "10",
-    calories: "KitKat",
-    fat: 26.0,
-    carbs: 65,
-    protein: 7,
-    sodium: 54,
-    calcium: "12%",
-    iron: "6%",
-    commend: "",
-    estado: "NR - No Requieren",
-    botonoes: []
-  }
-];
+const data = [];
 
 export default {
+  computed: {
+    ...mapGetters("example", ["dialogLlamada"]),
+    ...mapGetters("clientes", ["Clientes"])
+  },
   data() {
     return {
       data,
@@ -262,15 +152,27 @@ export default {
         "CC - Cita Concretada",
         "CP - Cliente Potencial",
         "NC - No Contesta",
-        "NR - No Requieren"
+        "NR - No Requieren",
+        "OC - Otorga Cita",
+        "TF - Todo Fisico",
+        "TC - Todo por Correo"
       ]
     };
+  },
+  methods: {
+    ...mapActions("clientes", ["getClientes"]),
+    update(val) {
+      console.log(val);
+    }
   },
   components: {
     Llamadas: () => import("./Llamadas")
     // TablaFiltro: () => import("./TablaFiltro"),
     // CuadroResumen: () => import("./CuadroResumen")
     // AddRegistro: () => import("./Create")
+  },
+  created() {
+    this.getClientes();
   }
 };
 </script>
