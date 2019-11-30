@@ -40,7 +40,8 @@ const routes = [
     name: "ventas",
     component: () => import("layouts/MyLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/ventas/IndexRegistro.vue") }
+      { path: "", component: () => import("pages/ventas/IndexRegistro.vue") },
+      { path: "llamadas", component: () => import("pages/ventas/Llamadas.vue") }
     ],
     meta: {
       requiresAuth: true

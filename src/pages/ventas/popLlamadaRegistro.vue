@@ -3,71 +3,47 @@
     <div>
       <div>
         <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
-          Filtros
+          Registro
         </p>
       </div>
+      <div class="q-ma-sm"></div>
       <div class="q-ma-sm">
-        <q-select
-          transition-show="flip-up"
-          transition-hide="flip-down"
-          :options="registrosFiltroEstados"
-          option-value="co_estreq"
-          option-label="no_estreq"
-          option-disable="inactive"
-          emit-value
-          map-options
-          standout
-          label="Estado"
-          placeholder="Estado"
-          dense
-          outlined
-          v-model="estadoFiltro"
-        />
-      </div>
-      <div class="q-ma-sm">
-        <q-select
-          transition-show="flip-up"
-          transition-hide="flip-down"
-          :options="registrosFiltroEstados"
-          option-value="co_estreq"
-          option-label="no_estreq"
-          option-disable="inactive"
-          emit-value
-          map-options
-          standout
-          label="Sector Economico"
-          placeholder="Sector Economico"
-          dense
-          outlined
-          v-model="estadoFiltro"
-        />
+        <q-input dense filled v-model="date" mask="date" :rules="['date']">
+          <template v-slot:append>
+            <q-icon name="event" class="cursor-pointer">
+              <q-popup-proxy
+                ref="qDateProxy"
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date v-model="date" @input="() => $refs.qDateProxy.hide()" />
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+        </q-input>
       </div>
 
       <div class="q-ma-sm">
-        <q-select
-          transition-show="flip-up"
-          transition-hide="flip-down"
-          :options="registrosFiltroEstados"
-          option-value="co_estreq"
-          option-label="no_estreq"
-          option-disable="inactive"
-          emit-value
-          map-options
-          label="Semaforo"
-          standout
-          placeholder="Semaforo"
+        <q-input
           dense
-          outlined
-          v-model="estadoFiltro"
+          v-model="text"
+          filled
+          type="textarea"
+          label="Comentario"
         />
       </div>
     </div>
-    <div class="q-pa-xs flex flex-center">
+    <div class="q-gutter-md text-center">
       <q-btn
         @click="showLoading()"
-        label="Filtrar"
+        label="Grabar"
         size="sm"
         color="positive"
+      />
+      <q-btn
+        label="Sin Contacto"
+        size="sm"
+        color="negative"
       />
     </div>
     <!--    {{ $data }}-->
@@ -81,6 +57,7 @@ export default {
   },
   data() {
     return {
+      date: "2019/02/01",
       loading: false,
       estadoFiltro: "",
       fechainicio: "",

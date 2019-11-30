@@ -44,3 +44,9 @@ export async function registrarCotizacion({}, payload) {
 export function dialogCreate({ commit }, payload) {
   commit("setDialogCreate", payload);
 }
+
+export async function getResumenVentas() {
+  const regisCotiza = await axiosInstance.get("/api/ventas/resumen");
+  // console.log(registro.data);
+  return regisCotiza.data;
+}

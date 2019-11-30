@@ -1,9 +1,13 @@
 <template>
   <div class="q-pa-md">
+    <div>
+      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
+        Clientes
+      </p>
+    </div>
     <q-table
       :data="data"
       :columns="columns"
-      title="Cliente v1.1"
       :rows-per-page-options="[]"
       row-key="name"
     >
@@ -73,42 +77,45 @@
           </q-td>
           <q-td key="botones" :props="props">
             <div class="q-pa-xs q-gutter-xs">
-              <q-btn dense size="md" color="primary" icon="local_phone" />
-              <q-btn dense size="md" color="positive" icon="email" />
+              <q-btn dense @click="alert = true" size="sm" color="primary" icon="local_phone" />
+              <q-btn dense size="sm" color="positive" icon="email" />
               <q-btn
-                size="md"
+                size="sm"
                 dense
                 color="amber"
                 glossy
                 text-color="black"
                 icon="email"
               />
-              <q-btn dense size="md" color="brown-5" icon="edit" />
+              <q-btn dense size="sm" color="brown-5" icon="edit" />
             </div>
           </q-td>
         </q-tr>
       </template>
     </q-table>
+    <q-dialog full-width v-model="alert">
+    <Llamadas/>
+    </q-dialog>
   </div>
 </template>
 <script>
 const columns = [
   {
     name: "desc",
-    align: "left",
+    align: "right",
     label: "Nro",
     field: "name"
   },
-  { name: "calories", label: "Cliente", field: "calories" },
-  { name: "fat", label: "Contacto", field: "fat" },
-  { name: "carbs", label: "Correo", field: "carbs" },
-  { name: "protein", label: "Area", field: "protein" },
-  { name: "sodium", label: "Distrito", field: "sodium" },
-  { name: "calcium", label: "Sector", field: "calcium" },
-  { name: "iron", label: "Cantidad Consultas", field: "iron" },
-  { name: "commend", label: "Comentarios", field: "commend" },
-  { name: "estado", label: "Estados", field: "estado" },
-  { name: "botones", label: "Accions", field: "botones" }
+  { name: "calories", align: "left", label: "Cliente", field: "calories" },
+  { name: "fat", align: "left", label: "Contacto", field: "fat" },
+  { name: "carbs", align: "left", label: "Correo", field: "carbs" },
+  { name: "protein", align: "left", label: "Area", field: "protein" },
+  { name: "sodium", align: "left", label: "Distrito", field: "sodium" },
+  { name: "calcium", align: "left", label: "Sector", field: "calcium" },
+  { name: "iron", align: "left", label: "Can. Consultas", field: "iron" },
+  { name: "commend", align: "left", label: "Comentarios", field: "commend" },
+  { name: "estado", align: "left", label: "Estados", field: "estado" },
+  { name: "botones", align: "left", label: "Accions", field: "botones" }
 ];
 
 const data = [
@@ -249,6 +256,7 @@ export default {
     return {
       data,
       columns,
+      alert: false,
       options: [
         "CA - Cita Anulada",
         "CC - Cita Concretada",
@@ -257,6 +265,12 @@ export default {
         "NR - No Requieren"
       ]
     };
+  },
+  components: {
+    Llamadas: () => import("./Llamadas")
+    // TablaFiltro: () => import("./TablaFiltro"),
+    // CuadroResumen: () => import("./CuadroResumen")
+    // AddRegistro: () => import("./Create")
   }
 };
 </script>

@@ -3,22 +3,16 @@
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
-        Resumen
+        Listado
       </p>
     </div>
     <div class="q-pa-xs">
-      <q-table
-        hide-bottom
-        dense
-        :data="info"
-        :columns="columns"
-      />
+      <q-table hide-bottom dense :data="info" :columns="columns" />
     </div>
-<!--    {{ info }}-->
+    <!--    {{ info }}-->
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -26,7 +20,7 @@ export default {
         {
           name: "no_semsve",
           required: true,
-          label: "Semaforo",
+          label: "Fecha",
           align: "left",
           field: "no_semsve",
           sortable: true
@@ -34,7 +28,14 @@ export default {
         {
           name: "ca_semafo",
           align: "center",
-          label: "Cantidad",
+          label: "Usuario",
+          field: "ca_semafo",
+          sortable: true
+        },
+        {
+          name: "ca_semafo",
+          align: "center",
+          label: "Comentario",
           field: "ca_semafo",
           sortable: true
         }
@@ -42,22 +43,13 @@ export default {
       info: [],
       resumen: {},
       model: null,
-      separator: "cell",
+      separator: "cell"
     };
   },
   methods: {
-    ...mapActions("example", ["getResumenVentas"])
   },
   created() {
     console.log("se cargo el created de resumen");
-    this.getResumenVentas()
-      .then(resp => {
-        console.log(resp);
-        this.info = resp;
-      })
-      .catch(err => {
-        console.log(err);
-      });
     // this.$q.loading.show({ delay: 400 });
   }
 };

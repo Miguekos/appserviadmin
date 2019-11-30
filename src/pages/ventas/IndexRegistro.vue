@@ -14,9 +14,9 @@
               size="10px"
               @click="nuevoRegistro()"
               q-btn--push
-              label="Nuevo"
+              label="Correo"
               text-color="white"
-              style="background-color: #26a69a;"
+              color="positive"
             />
           </q-item-section>
         </q-item>
@@ -36,9 +36,6 @@
         <q-card-section>
           <!--          <AddRegistro />-->
         </q-card-section>
-        <!-- <q-card-actions align="right">
-          <q-btn flat label="OK" color="primary" v-close-popup />
-        </q-card-actions>-->
       </q-card>
     </q-dialog>
   </div>
