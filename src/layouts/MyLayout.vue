@@ -1,6 +1,7 @@
 <template>
   <div>
-    <q-layout view="hHh lpR fFf">
+    <!--    <q-layout view="hHh lpR fFf">-->
+    <q-layout view="hHh LpR fFf">
       <q-header
         size="sm"
         dense
@@ -20,17 +21,17 @@
           />
 
           <!--          <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">-->
-          <q-btn flat no-caps no-wrap class="q-ml-xs">
-            <!-- <q-icon name="fas fa-ad" color="green" size="28px" /> -->
-            <q-img
-              src="/statics/minilogoservi.png"
-              spinner-color="white"
-              style="height: 30px; max-width: 40px"
-            />
-            <q-toolbar-title shrink class="text-weight-bold"
-              >SJ Servi Admin</q-toolbar-title
-            >
-          </q-btn>
+          <!--          <q-btn flat no-caps no-wrap class="q-ml-xs">-->
+          <!-- <q-icon name="fas fa-ad" color="green" size="28px" /> -->
+          <q-img
+            src="/statics/minilogoservi.png"
+            spinner-color="white"
+            style="height: 30px; max-width: 40px"
+          />
+          <q-toolbar-title shrink class="text-weight-bold"
+            >SJ Servi Admin</q-toolbar-title
+          >
+          <!--          </q-btn>-->
           <q-space />
           <div class="q-gutter-sm row items-center no-wrap">
             <q-btn round flat color="grey-8" icon="notifications">
@@ -46,8 +47,8 @@
           </div>
         </q-toolbar>
       </q-header>
-
-      <q-drawer v-model="leftDrawerOpen" content-class="bg-grey-3" :width="240">
+      <!-- Aqui el panel lateral     -->
+      <q-drawer v-model="leftDrawerOpen" content-class="bg-grey-2" :width="240">
         <q-scroll-area dense :thumb-style="thumbStyle" class="fit q-pa-sm">
           <q-list padding>
             <q-item
@@ -360,31 +361,40 @@ export default {
 };
 </script>
 
-<style lang="stylus">
-.YL {
-  &__toolbar-input-container {
-    min-width: 100px;
-    width: 55%;
-  }
-
-  &__toolbar-input-btn {
-    border-radius: 0;
-    border-style: solid;
-    border-width: 1px 1px 1px 0;
-    border-color: rgba(0, 0, 0, 0.24);
-    max-width: 60px;
-    width: 100%;
-  }
-
-  &__drawer-footer-link {
-    color: inherit;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.75rem;
-
-    &:hover {
-      color: #000;
-    }
-  }
+<style>
+.q-toolbar {
+  position: relative;
+  padding: 0 12px;
+  min-height: 20px;
+  width: 100%;
 }
 </style>
+
+<!--<style lang="stylus">-->
+<!--.YL {-->
+<!--  &__toolbar-input-container {-->
+<!--    min-width: 100px;-->
+<!--    width: 55%;-->
+<!--  }-->
+
+<!--  &__toolbar-input-btn {-->
+<!--    border-radius: 0;-->
+<!--    border-style: solid;-->
+<!--    border-width: 1px 1px 1px 0;-->
+<!--    border-color: rgba(0, 0, 0, 0.24);-->
+<!--    max-width: 60px;-->
+<!--    width: 100%;-->
+<!--  }-->
+
+<!--  &__drawer-footer-link {-->
+<!--    color: inherit;-->
+<!--    text-decoration: none;-->
+<!--    font-weight: 500;-->
+<!--    font-size: 0.75rem;-->
+
+<!--    &:hover {-->
+<!--      color: #000;-->
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</style>-->
