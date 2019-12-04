@@ -16,11 +16,9 @@
           option-disable="inactive"
           emit-value
           map-options
-          standout
           label="Estado"
           placeholder="Estado"
           dense
-          outlined
           v-model="estadoFiltro"
         />
       </div>
@@ -34,11 +32,9 @@
           option-disable="inactive"
           emit-value
           map-options
-          standout
           label="Sector Economico"
           placeholder="Sector Economico"
           dense
-          outlined
           v-model="estadoFiltro"
         />
       </div>
@@ -54,10 +50,8 @@
           emit-value
           map-options
           label="Semaforo"
-          standout
           placeholder="Semaforo"
           dense
-          outlined
           v-model="estadoFiltro"
         />
       </div>
