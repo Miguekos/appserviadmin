@@ -338,7 +338,6 @@ export default {
       letter-spacing: .01785714em
       font-weight: 500
   @media (min-width: 1024px)
-
     &__page-container
       padding-left: 94px
 </style>

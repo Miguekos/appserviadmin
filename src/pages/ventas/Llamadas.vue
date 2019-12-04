@@ -1,17 +1,15 @@
 <template>
   <div>
-    <q-page padding>
-      <q-card>
-        <div class="row">
-          <q-item class="col-sm-6 col-xs-12">
-            <TablaFiltro />
-          </q-item>
-          <q-item class="col-sm-6 col-xs-12">
-            <CuadroResumen />
-          </q-item>
-        </div>
-      </q-card>
-    </q-page>
+    <q-card>
+      <div class="row">
+        <q-item class="col-sm-6 col-xs-12">
+          <TablaFiltro />
+        </q-item>
+        <q-item class="col-sm-6 col-xs-12">
+          <CuadroResumen />
+        </q-item>
+      </div>
+    </q-card>
   </div>
 </template>
 
@@ -42,6 +40,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

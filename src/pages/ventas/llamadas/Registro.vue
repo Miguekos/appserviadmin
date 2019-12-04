@@ -36,7 +36,12 @@
     <div class="q-gutter-md text-center">
       <q-btn @click="showLoading()" label="Grabar" size="sm" color="positive" />
       <q-btn label="Sin Contacto" size="sm" color="negative" />
-      <q-btn label="Cerrar" @click="dialogLlamadaCliente(false)" size="sm" color="secondary" />
+      <q-btn
+        label="Cerrar"
+        @click="dialogLlamadaCliente(false)"
+        size="sm"
+        color="secondary"
+      />
     </div>
     <!--    {{ $data }}-->
   </div>

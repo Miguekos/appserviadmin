@@ -15,7 +15,11 @@
                 transition-show="scale"
                 transition-hide="scale"
               >
-                <q-date dense v-model="date" @input="() => $refs.qDateProxy.hide()" />
+                <q-date
+                  dense
+                  v-model="date"
+                  @input="() => $refs.qDateProxy.hide()"
+                />
               </q-popup-proxy>
             </q-icon>
           </template>
