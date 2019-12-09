@@ -31,8 +31,13 @@
           <q-toolbar-title shrink class="text-weight-bold"
             >SJ Servi Admin</q-toolbar-title
           >
+          <!--          </q-btn>-->
           <q-space />
           <div class="q-gutter-sm row items-center no-wrap">
+            <q-btn round flat color="grey-8" icon="notifications">
+              <q-badge color="red" text-color="white" floating>2</q-badge>
+              <q-tooltip>Notificaciones</q-tooltip>
+            </q-btn>
             <q-btn round flat @click="showDialog">
               <q-avatar size="26px">
                 <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
@@ -46,106 +51,106 @@
       <q-drawer v-model="leftDrawerOpen" content-class="bg-grey-2" :width="240">
         <q-scroll-area dense :thumb-style="thumbStyle" class="fit q-pa-sm">
           <!--          <Menu />-->
-          <q-list bordered>
-            <q-expansion-item
-              group="somegroup"
-              icon="group"
-              label="Clientes"
-              default-opened
-              header-class="text-primary"
+          <q-list padding>
+            <q-item
+              dense
+              v-for="link in links1"
+              :key="link.text"
+              v-ripple
+              clickable
+              @click="URL(link.path)"
             >
-              <q-item
-                :header-inset-level="1"
-                clickable
-                v-ripple
-                :active="link === 'clienteNuevo'"
-                @click="(link = 'clienteNuevo'), URL('/cliente/create')"
-                active-class="my-menu-link"
-              >
-                <q-item-section avatar>
-                  <q-icon name="group_add" />
-                </q-item-section>
+              <q-item-section avatar>
+                <q-icon color="grey" :name="link.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ link.text }}</q-item-label>
+              </q-item-section>
+            </q-item>
 
-                <q-item-section>Crear</q-item-section>
-              </q-item>
-            </q-expansion-item>
+            <q-separator class="q-mt-md q-mb-xs" />
 
-            <q-separator />
-
-            <q-expansion-item
-              group="somegroup"
-              icon="perm_identity"
-              label="Control"
-              header-class="text-teal"
+            <q-item-label header class="text-weight-bold text-uppercase"
+              >Clientes</q-item-label
             >
-              <q-item
-                clickable
-                v-ripple
-                :active="link === 'inbox'"
-                @click="(link = 'inbox'), URL('/dashboard')"
-                active-class="my-menu-link"
-              >
-                <q-item-section avatar>
-                  <q-icon name="whatshot" />
-                </q-item-section>
 
-                <q-item-section>Dashboard</q-item-section>
-              </q-item>
-              <q-item
-                clickable
-                v-ripple
-                :active="link === 'outbox'"
-                @click="(link = 'outbox'), URL('/ventas')"
-                active-class="my-menu-link"
-              >
-                <q-item-section avatar>
-                  <q-icon name="monetization_on" />
-                </q-item-section>
-
-                <q-item-section>Seg. de Ventas</q-item-section>
-              </q-item>
-
-              <q-item
-                clickable
-                v-ripple
-                :active="link === 'trash'"
-                @click="(link = 'trash'), URL('/cotizacion/requerimiento')"
-                active-class="my-menu-link"
-              >
-                <q-item-section avatar>
-                  <q-icon name="monetization_on" />
-                </q-item-section>
-
-                <q-item-section>Req. de cotizacion</q-item-section>
-              </q-item>
-            </q-expansion-item>
-
-            <q-separator />
-
-            <q-expansion-item
-              group="somegroup"
-              icon="shopping_cart"
-              label="Third"
-              header-class="text-purple"
+            <q-item
+              dense
+              v-for="link in links3"
+              :key="link.text"
+              v-ripple
+              clickable
+              @click="URL(link.path)"
             >
-              <q-card>
-                <q-card-section> </q-card-section>
-              </q-card>
-            </q-expansion-item>
+              <q-item-section avatar>
+                <q-icon color="grey" :name="link.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ link.text }}</q-item-label>
+              </q-item-section>
+            </q-item>
 
-            <q-separator />
+            <q-separator class="q-my-md" />
 
-            <q-expansion-item
-              group="somegroup"
-              icon="bluetooth"
-              label="Fourth"
-              header-class="bg-teal text-white"
-              expand-icon-class="text-white"
+            <!--            <q-item-label header class="text-weight-bold text-uppercase"-->
+            <!--              >Proveedores</q-item-label-->
+            <!--            >-->
+
+            <!--            <q-item-->
+            <!--              dense-->
+            <!--              v-for="link in links6"-->
+            <!--              :key="link.text"-->
+            <!--              v-ripple-->
+            <!--              clickable-->
+            <!--              @click="URL(link.path)"-->
+            <!--            >-->
+            <!--              <q-item-section avatar>-->
+            <!--                <q-icon color="grey" :name="link.icon" />-->
+            <!--              </q-item-section>-->
+            <!--              <q-item-section>-->
+            <!--                <q-item-label>{{ link.text }}</q-item-label>-->
+            <!--              </q-item-section>-->
+            <!--            </q-item>-->
+
+            <!--            <q-separator class="q-my-md" />-->
+
+            <q-item-label header class="text-weight-bold text-uppercase"
+              >Usuarios</q-item-label
             >
-              <q-card class="bg-teal-2">
-                <q-card-section> </q-card-section>
-              </q-card>
-            </q-expansion-item>
+
+            <q-item
+              dense
+              v-for="link in links4"
+              :key="link.text"
+              v-ripple
+              clickable
+              @click="URL(link.path)"
+            >
+              <q-item-section avatar>
+                <q-icon color="grey" :name="link.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ link.text }}</q-item-label>
+              </q-item-section>
+            </q-item>
+
+            <q-separator class="q-my-md" />
+
+            <q-item
+              dense
+              v-for="link in links5"
+              :key="link.text"
+              v-ripple
+              clickable
+              @click="URL(link.path)"
+            >
+              <q-item-section avatar>
+                <q-icon color="grey" :name="link.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ link.text }}</q-item-label>
+              </q-item-section>
+            </q-item>
           </q-list>
         </q-scroll-area>
       </q-drawer>
@@ -254,7 +259,6 @@ export default {
   name: "MyLayout",
   data() {
     return {
-      link: "",
       name: "",
       correo: "",
       newpassword: "",
@@ -369,11 +373,7 @@ export default {
   width: 100%;
 }
 </style>
-<style lang="sass">
-.my-menu-link
-  color: white
-  background: #027be3
-</style>
+
 <!--<style lang="stylus">-->
 <!--.YL {-->
 <!--  &__toolbar-input-container {-->

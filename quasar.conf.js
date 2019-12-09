@@ -169,6 +169,7 @@ module.exports = function(ctx) {
     cordova: {
       // id: 'org.cordova.quasar.app',
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
+      backButtonExit: true/false // Quasar handles app exit on mobile phone back button
     },
 
     electron: {

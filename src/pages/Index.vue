@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <q-parallax>
       <template v-slot:media>
-        <img src="https://cdn.quasar.dev/img/parallax2.jpg" />
+        <!--        <img src="https://cdn.quasar.dev/img/parallax2.jpg" />-->
       </template>
 
       <template v-slot:content="scope">
@@ -20,7 +20,7 @@
             style="width: 150px; height: 150px"
           />
           <div class="text-h3 text-white text-center">SJ Servi</div>
-          <div class="text-h6 text-grey-3 text-center">
+          <div class="text-h6 text-center">
             <!--            v{{ $q.version }}-->
             v1.1
           </div>

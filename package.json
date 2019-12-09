@@ -2,8 +2,8 @@
   "name": "appwebquasar",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "Servi Admin",
-  "cordovaId": "org.cordova.quasar.app",
+  "productName": "ServiAdminApp",
+  "cordovaId": "org.cordova.quasar.ServiAdminApp",
   "author": "Miguekos <miguekos1233@gmail.com>",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "axios": "^0.18.1",
     "canvasjs": "^1.8.1",
     "chart.js": "^2.8.0",
+    "cordova-plugin-splashscreen-version": "^5.0.7",
     "quasar": "^1.4.5",
     "vue-chartjs": "^3.4.2",
     "vue-i18n": "^8.0.0"
