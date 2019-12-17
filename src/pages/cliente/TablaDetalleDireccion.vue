@@ -142,17 +142,31 @@ export default {
       filter: "",
       columns: [
         {
-          name: "direccion",
+          name: "no_depart",
           align: "left",
-          label: "Direccion",
-          field: "no_direcc",
+          label: "Departamento",
+          field: "no_depart",
           sortable: true
         },
         {
-          name: "codigoubigeo",
+          name: "no_provin",
           align: "left",
-          label: "Codigo Ubigeo",
-          field: "co_ubigeo",
+          label: "Provincia",
+          field: "no_provin",
+          sortable: true
+        },
+        {
+          name: "no_distri",
+          align: "left",
+          label: "Distrito",
+          field: "no_distri",
+          sortable: true
+        },
+        {
+          name: "no_direcc",
+          align: "left",
+          label: "Codigo de Direccion",
+          field: "no_direcc",
           sortable: true
         }
       ]

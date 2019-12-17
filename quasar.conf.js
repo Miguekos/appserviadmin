@@ -45,7 +45,6 @@ module.exports = function(ctx) {
         "QCardActions",
         "QInput",
         "QSeparator",
-        "QParallax",
         "QImg",
         "QSpace",
         "QBadge",

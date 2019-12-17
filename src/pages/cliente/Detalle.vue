@@ -20,8 +20,8 @@
           <ListaContactos :datafld="getClieContactos" :id_pro="id_pro" />
         </div>
       </div>
-      <!--      {{ getProvContactos }}-->
-      <!--      {{ getProvDireccion }}-->
+      {{ getProvContactos }}
+      {{ getProvDireccion }}
       <!--      <ListarCliente />-->
     </q-card>
   </q-page>

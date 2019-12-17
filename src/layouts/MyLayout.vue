@@ -10,19 +10,14 @@
         height-hint="58"
       >
         <q-toolbar>
-          <!--          {{ $q.screen.gt.xs }}-->
+          <!-- {{ $q.screen.gt.xs }} -->
           <q-btn
-            dense
             round
             @click="leftDrawerOpen = !leftDrawerOpen"
             aria-label="Menu"
             icon="menu"
             color="green"
           />
-
-          <!--          <q-btn flat no-caps no-wrap class="q-ml-xs" v-if="$q.screen.gt.xs">-->
-          <!--          <q-btn flat no-caps no-wrap class="q-ml-xs">-->
-          <!-- <q-icon name="fas fa-ad" color="green" size="28px" /> -->
           <q-img
             src="/statics/minilogoservi.png"
             spinner-color="white"
@@ -34,7 +29,7 @@
           <q-space />
           <div class="q-gutter-sm row items-center no-wrap">
             <q-btn round flat @click="showDialog">
-              <q-avatar size="26px">
+              <q-avatar size="36px">
                 <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
               </q-avatar>
               <q-tooltip>Cuenta</q-tooltip>
@@ -45,28 +40,61 @@
       <!-- Aqui el panel lateral     -->
       <q-drawer v-model="leftDrawerOpen" content-class="bg-grey-2" :width="240">
         <q-scroll-area dense :thumb-style="thumbStyle" class="fit q-pa-sm">
-          <!--          <Menu />-->
+          <!--<Menu />-->
           <q-list bordered>
             <q-expansion-item
               group="somegroup"
               icon="group"
-              label="Clientes"
+              label="Mantenimiento"
               default-opened
               header-class="text-primary"
             >
+              <!-- Cliente -->
               <q-item
                 :header-inset-level="1"
                 clickable
                 v-ripple
-                :active="link === 'clienteNuevo'"
-                @click="(link = 'clienteNuevo'), URL('/cliente/create')"
+                :active="link === '/cliente'"
+                @click="URL('/cliente')"
                 active-class="my-menu-link"
               >
                 <q-item-section avatar>
-                  <q-icon name="group_add" />
+                  <q-icon name="group" />
                 </q-item-section>
 
-                <q-item-section>Crear</q-item-section>
+                <q-item-section>Cliente</q-item-section>
+              </q-item>
+
+              <!-- Proveedores -->
+              <q-item
+                :header-inset-level="1"
+                clickable
+                v-ripple
+                :active="link === '/proveedores'"
+                @click="URL('/proveedores')"
+                active-class="my-menu-link"
+              >
+                <q-item-section avatar>
+                  <q-icon name="supervised_user_circle" />
+                </q-item-section>
+
+                <q-item-section>Proveedores</q-item-section>
+              </q-item>
+
+              <!-- ¨Producto -->
+              <q-item
+                :header-inset-level="1"
+                clickable
+                v-ripple
+                :active="link === '/producto'"
+                @click="URL('/producto')"
+                active-class="my-menu-link"
+              >
+                <q-item-section avatar>
+                  <q-icon name="supervised_user_circle" />
+                </q-item-section>
+
+                <q-item-section>Producto</q-item-section>
               </q-item>
             </q-expansion-item>
 
@@ -75,22 +103,10 @@
             <q-expansion-item
               group="somegroup"
               icon="perm_identity"
-              label="Control"
-              header-class="text-teal"
+              label="Ventas"
+              header-class="bg-teal text-white"
+              expand-icon-class="text-white"
             >
-              <q-item
-                clickable
-                v-ripple
-                :active="link === 'inbox'"
-                @click="(link = 'inbox'), URL('/dashboard')"
-                active-class="my-menu-link"
-              >
-                <q-item-section avatar>
-                  <q-icon name="whatshot" />
-                </q-item-section>
-
-                <q-item-section>Dashboard</q-item-section>
-              </q-item>
               <q-item
                 clickable
                 v-ripple
@@ -109,7 +125,7 @@
                 clickable
                 v-ripple
                 :active="link === 'trash'"
-                @click="(link = 'trash'), URL('/cotizacion/requerimiento')"
+                @click="(link = 'trash'), ir()"
                 active-class="my-menu-link"
               >
                 <q-item-section avatar>
@@ -121,31 +137,6 @@
             </q-expansion-item>
 
             <q-separator />
-
-            <q-expansion-item
-              group="somegroup"
-              icon="shopping_cart"
-              label="Third"
-              header-class="text-purple"
-            >
-              <q-card>
-                <q-card-section> </q-card-section>
-              </q-card>
-            </q-expansion-item>
-
-            <q-separator />
-
-            <q-expansion-item
-              group="somegroup"
-              icon="bluetooth"
-              label="Fourth"
-              header-class="bg-teal text-white"
-              expand-icon-class="text-white"
-            >
-              <q-card class="bg-teal-2">
-                <q-card-section> </q-card-section>
-              </q-card>
-            </q-expansion-item>
           </q-list>
         </q-scroll-area>
       </q-drawer>
@@ -223,6 +214,7 @@
 </template>
 
 <script>
+// import { openURL } from 'quasar'
 // import { date } from "quasar";
 import { mapActions } from "vuex";
 export default {
@@ -233,14 +225,12 @@ export default {
         color: "#555"
       };
     },
-
     contentActiveStyle() {
       return {
         backgroundColor: "#eee",
         color: "black"
       };
     },
-
     thumbStyle() {
       return {
         right: "2px",
@@ -261,71 +251,7 @@ export default {
       user: {},
       bar2: false,
       leftDrawerOpen: false,
-      search: "",
-      links1: [
-        { icon: "home", text: "Home", path: "/" },
-        { icon: "whatshot", text: "Dashboard", path: "/dashboard" },
-        {
-          icon: "subscriptions",
-          text: "Cotizacion",
-          path: "/cotizacion"
-        },
-        {
-          icon: "subscriptions",
-          text: "Formulario",
-          path: "/formulario"
-        },
-        {
-          icon: "monetization_on",
-          text: "Seguimiento de Ventas",
-          path: "/ventas"
-        },
-        {
-          icon: "monetization_on",
-          text: "Requerimiento de cotizacion",
-          path: "/cotizacion/requerimiento"
-        }
-      ],
-      links2: [
-        { icon: "folder", text: "Control" },
-        { icon: "restore", text: "Inventario" },
-        { icon: "watch_later", text: "Almacen" },
-        { icon: "thumb_up_alt", text: "Proveedores" }
-      ],
-      links3: [
-        { icon: "group", text: "Clientes", path: "/cliente" },
-        {
-          icon: "group_add\n",
-          text: "Crear Clientes",
-          path: "/cliente/create"
-        }
-      ],
-      links4: [
-        { icon: "supervised_user_circle", text: "Usuarios", path: "/user" },
-        { icon: "person_add", text: "Crear Usuarios", path: "/user/create" }
-      ],
-      links5: [{ icon: "logout", text: "Salir", path: "logout" }],
-      links6: [
-        {
-          icon: "supervised_user_circle",
-          text: "Proveedor",
-          path: "/proveedores"
-        },
-        {
-          icon: "person_add",
-          text: "Crear Proveedor",
-          path: "/proveedores/create"
-        }
-      ],
-      buttons1: [
-        { text: "About" },
-        { text: "Config" },
-        { text: "Copyright" },
-        { text: "Contact us" },
-        { text: "Creators" },
-        { text: "Advertise" },
-        { text: "Developers" }
-      ]
+      search: ""
     };
   },
   methods: {
@@ -347,6 +273,7 @@ export default {
         });
         await this.$router.push("/login");
       } else {
+        this.link = arg;
         console.log(arg);
         await this.$router.push(arg);
       }
@@ -374,31 +301,3 @@ export default {
   color: white
   background: #027be3
 </style>
-<!--<style lang="stylus">-->
-<!--.YL {-->
-<!--  &__toolbar-input-container {-->
-<!--    min-width: 100px;-->
-<!--    width: 55%;-->
-<!--  }-->
-
-<!--  &__toolbar-input-btn {-->
-<!--    border-radius: 0;-->
-<!--    border-style: solid;-->
-<!--    border-width: 1px 1px 1px 0;-->
-<!--    border-color: rgba(0, 0, 0, 0.24);-->
-<!--    max-width: 60px;-->
-<!--    width: 100%;-->
-<!--  }-->
-
-<!--  &__drawer-footer-link {-->
-<!--    color: inherit;-->
-<!--    text-decoration: none;-->
-<!--    font-weight: 500;-->
-<!--    font-size: 0.75rem;-->
-
-<!--    &:hover {-->
-<!--      color: #000;-->
-<!--    }-->
-<!--  }-->
-<!--}-->
-<!--</style>-->

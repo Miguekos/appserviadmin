@@ -20,8 +20,8 @@ const axiosInstance = axios.create({
   //   host: '127.0.0.1',
   //   port: 9000
   // }
-  baseURL: "http://172.105.17.123:4100"
-  // baseURL: "http://127.0.0.1:4100"
+  // baseURL: "http://172.105.17.123:4100"
+  baseURL: "http://127.0.0.1:4100"
 });
 
 export default ({ Vue }) => {

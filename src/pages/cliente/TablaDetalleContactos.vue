@@ -124,19 +124,39 @@ export default {
       filter: "",
       columns: [
         {
-          name: "id",
+          name: "no_percon",
           required: true,
-          label: "Nro.",
+          label: "Nombre.",
           align: "left",
-          field: "co_person",
-          format: val => `${val}`,
+          field: "no_percon",
           sortable: true
         },
         {
-          name: "nombre",
+          name: "nu_doccon",
           align: "left",
-          label: "Nombre",
-          field: "no_client",
+          label: "Documento",
+          field: "nu_doccon",
+          sortable: true
+        },
+        {
+          name: "no_sigpro",
+          align: "left",
+          label: "Sigla",
+          field: "no_sigpro",
+          sortable: true
+        },
+        {
+          name: "no_corele",
+          align: "left",
+          label: "Correo",
+          field: "no_corele",
+          sortable: true
+        },
+        {
+          name: "nu_telefo",
+          align: "left",
+          label: "Telefono",
+          field: "nu_telefo",
           sortable: true
         }
       ]

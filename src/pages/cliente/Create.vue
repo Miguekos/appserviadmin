@@ -14,51 +14,34 @@
             @reset.prevent.stop="onReset"
             class="q-gutter-md"
           >
-            <q-input
-              ref="name"
+            <q-select
+              v-model="tipoDePersonaVar"
+              :options="tipoDePersonaOption"
+              option-value="co_tipper"
+              option-label="no_tipper"
+              emit-value
+              map-options
+              label="Tipo de Persona"
               filled
-              v-model="name"
-              label="Nombres"
-              hint="Nombre completo"
-              lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'el campo no puede estar vacio'
-              ]"
+            />
+
+            <q-select
+              v-model="tipoDeDocumentoVar"
+              :options="tipoDeDocumentoOption"
+              option-value="ti_docide"
+              option-label="no_tipdoc"
+              emit-value
+              map-options
+              label="Tipo de Documento"
+              filled
             />
 
             <q-input
-              ref="generoPersona"
+              ref="numeroDeDocumento"
               filled
-              v-model="generoPersona"
-              label="Genero"
-              hint="Genero"
-              lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'el campo no puede estar vacio'
-              ]"
-            />
-
-            <q-input
-              ref="estadoCivil"
-              filled
-              v-model="estadoCivil"
-              label="Estado Civil"
-              hint="Estado Civil"
-              lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'el campo no puede estar vacio'
-              ]"
-            />
-
-            <q-input
-              ref="documentoTributario"
-              filled
-              v-model="documentoTributario"
-              label="RUC"
-              hint="RUC"
+              v-model="numeroDeDocumento"
+              label="Numero de Documento"
+              hint="Numero de Documento"
               maxlength="11"
               lazy-rules
               :rules="[
@@ -67,19 +50,31 @@
               ]"
             />
 
-            <!--            <q-input-->
-            <!--              ref="direccion"-->
-            <!--              filled-->
-            <!--              type="direccion"-->
-            <!--              v-model="direccion"-->
-            <!--              label="Direccion"-->
-            <!--              hint="Direccion"-->
-            <!--              lazy-rules-->
-            <!--              :rules="[-->
-            <!--                val =>-->
-            <!--                  (val && val.length > 0) || 'el campo no puede estar vacio'-->
-            <!--              ]"-->
-            <!--            />-->
+            <q-input
+              ref="nombre"
+              filled
+              v-model="nombre"
+              label="Nombre"
+              hint="Nombre"
+              lazy-rules
+              :rules="[
+                val =>
+                  (val && val.length > 0) || 'el campo no puede estar vacio'
+              ]"
+            />
+
+            <q-input
+              ref="sigla"
+              filled
+              v-model="sigla"
+              label="Sigla"
+              hint="Sigla"
+              lazy-rules
+              :rules="[
+                val =>
+                  (val && val.length > 0) || 'el campo no puede estar vacio'
+              ]"
+            />
 
             <div>
               <q-btn label="Registrar" type="submit" color="primary" />
@@ -95,6 +90,8 @@
         </q-item-section>
       </q-item>
     </q-card>
+    <!-- {{ tipoDeDocumentoOption }} -->
+    <!-- {{ tipoDePersonaVar }} -->
   </q-page>
 </template>
 
@@ -103,14 +100,21 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      tipoDePersonaOption: [],
+      tipoDeDocumentoOption: [],
+      tipoDePersonaVar: null,
+      tipoDeDocumentoVar: null,
+      numeroDeDocumento: "",
       name: null,
       email: null,
+      nombre: "",
       generoPersona: null,
       estadoCivil: null,
       documentoTributario: null,
       telf: null,
       direccion: null,
       model: null,
+      sigla: "",
       roles: [
         {
           label: "Admin",
@@ -124,29 +128,18 @@ export default {
     };
   },
   methods: {
-    ...mapActions("clientes", ["createCleintes"]),
+    ...mapActions("clientes", [
+      "createCleintes",
+      "tipoDePersona",
+      "TipoDeDocumento"
+    ]),
     registrar() {
-      // const data = {
-      //   name: this.name,
-      //   dni: this.dni,
-      //   email: this.email,
-      //   telf: this.telf,
-      //   direccion: this.direccion
-      // };
       const data = {
-        tipoPersona: "J",
-        numeroDocumento: "",
-        apellidoPaterno: "",
-        apellidoMaterno: "",
-        nombres: this.name,
-        tipoDocumento: "1",
-        codigoNacionalidad: "1",
-        fechaNacimiento: "1990-10-10",
-        generoPersona: this.generoPersona,
-        estadoCivil: this.estadoCivil,
-        documentoTributario: this.documentoTributario,
-        razonSocial: "Razon Social",
-        nombreComercial: "Siglas"
+        tipoPersona: this.tipoDePersonaVar,
+        tipoDocumento: this.tipoDeDocumentoVar,
+        numeroDocumento: this.numeroDeDocumento,
+        razonSocial: this.nombre,
+        siglaCliente: this.sigla
       };
       console.log(data);
       return this.createCleintes(data);
@@ -154,38 +147,6 @@ export default {
     onSubmit() {
       const response = this.registrar();
       console.log(response);
-      // this.$refs.name.validate();
-      // this.$refs.dni.validate();
-      // this.$refs.email.validate();
-      // this.$refs.telf.validate();
-      // this.$refs.direccion.validate();
-
-      // if (
-      //   this.$refs.name.hasError ||
-      //   this.$refs.dni.hasError ||
-      //   this.$refs.email.hasError ||
-      //   this.$refs.telf.hasError ||
-      //   this.$refs.direccion.hasError
-      // ) {
-      //   this.formHasError = true;
-      // } else {
-      //   const response = this.registrar();
-      //   if (response) {
-      //     this.$q.notify({
-      //       icon: "done",
-      //       color: "secondary",
-      //       message: "Registrado"
-      //     });
-      //     this.onReset();
-      //     this.$router.push("/cliente");
-      //   } else {
-      //     this.$q.notify({
-      //       icon: "close",
-      //       color: "red",
-      //       message: "No se pudo guardar el usuario"
-      //     });
-      //   }
-      // }
     },
 
     onReset() {
@@ -201,6 +162,10 @@ export default {
       this.$refs.telf.resetValidation();
       this.$refs.direccion.resetValidation();
     }
+  },
+  async created() {
+    this.tipoDePersonaOption = await this.tipoDePersona();
+    this.tipoDeDocumentoOption = await this.TipoDeDocumento();
   }
 };
 </script>
