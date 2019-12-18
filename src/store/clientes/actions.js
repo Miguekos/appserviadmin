@@ -1,5 +1,7 @@
 import { axiosInstance } from "boot/axios";
 
+/* eslint-disable */
+
 export async function getClientes({ commit }) {
   console.log("listar Cliente");
   const response = await axiosInstance.post("/api/clientes/listar");
@@ -59,4 +61,94 @@ export async function direccionCliente({ commit }, payload) {
   console.log(response.data);
   commit("setDireccionCliente", response.data);
   // return response.data;
+}
+
+// eslint-disable-next-line
+export async function guardarDireccion({ commit }, payload) {
+  console.log("listar direccion_cliente");
+  const data = {
+    codigoUbigeo: payload.codigoUbigeo,
+    codigoDireccion: payload.codigoDireccion,
+    direccion: payload.direccion
+  };
+  const response = await axiosInstance.post(
+    `/api/clientes/guardarDireccion/${payload.p_id}`,
+    data
+  );
+  console.log("Respuesta de la direccion de cliente");
+  console.log(response.data);
+  // commit("guardarDireccion", response.data);
+  return response.data;
+}
+
+// eslint-disable-next-line
+export async function guardarContacto({ commit }, payload) {
+  console.log("listar guardarContacto");
+  const data = {
+    tipoPersona: payload.tipoPersona,
+    numeroDocumento: payload.numeroDocumento,
+    apellidoPaterno: payload.apellidoPaterno,
+    apellidoMaterno: payload.apellidoMaterno,
+    nombres: payload.nombres,
+    generoPersona: payload.generoPersona,
+    tipoDocumento: payload.tipoDocumento,
+    codigoAreaLaboral: payload.codigoAreaLaboral,
+    correoElectronico: payload.correoElectronico,
+    codigoSiglaProfesion: payload.codigoSiglaProfesion
+  };
+  const response = await axiosInstance.post(
+    `/api/clientes/guardarContacto/${payload.p_id}`,
+    data
+  );
+  console.log("Respuesta de la direccion de cliente");
+  console.log(response.data);
+  // commit("guardarDireccion", response.data);
+  return response.data;
+}
+
+export async function eliminarCliente({ commit }, payload) {
+  console.log("Eliminar Cliente");
+  const data = {
+    tipoPersona: "2",
+    desactivarCliente: "S"
+  };
+  const response = await axiosInstance.post(
+    `/api/clientes/eliminar/${payload.p_id}`,
+    data
+  );
+  console.log("Respuesta de la direccion de cliente");
+  console.log(response.data);
+  // commit("guardarDireccion", response.data);
+  return response.data;
+}
+
+// eslint-disable-next-line
+export async function listar_genero_persona({ commit }) {
+  console.log("listar Cliente");
+  const response = await axiosInstance.get(
+    "/api/clientes/listar_genero_persona"
+  );
+  // console.log(response.data);
+  // commit("setClientes", response.data);
+  return response.data;
+}
+
+// eslint-disable-next-line
+export async function listar_area_laboral({ commit }) {
+  console.log("listar Cliente");
+  const response = await axiosInstance.get("/api/clientes/listar_area_laboral");
+  // console.log(response.data);
+  // commit("setClientes", response.data);
+  return response.data;
+}
+
+// eslint-disable
+export async function listar_sigla_profesion({ commit }) {
+  console.log("listar Cliente");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_sigla_profesion`
+  );
+  // console.log(response.data);
+  // commit("setClientes", response.data);
+  return response.data;
 }

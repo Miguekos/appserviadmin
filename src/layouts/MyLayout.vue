@@ -12,19 +12,16 @@
         <q-toolbar>
           <!-- {{ $q.screen.gt.xs }} -->
           <q-btn
+            dense
             round
             @click="leftDrawerOpen = !leftDrawerOpen"
             aria-label="Menu"
             icon="menu"
             color="green"
           />
-          <q-img
-            src="/statics/minilogoservi.png"
-            spinner-color="white"
-            style="height: 30px; max-width: 40px"
-          />
-          <q-toolbar-title shrink class="text-weight-bold"
-            >SJ Servi Admin</q-toolbar-title
+          <q-toolbar-title shrink class="text-weight-bold">
+            SJ Servi Admin
+          </q-toolbar-title
           >
           <q-space />
           <div class="q-gutter-sm row items-center no-wrap">
@@ -41,7 +38,7 @@
       <q-drawer v-model="leftDrawerOpen" content-class="bg-grey-2" :width="240">
         <q-scroll-area dense :thumb-style="thumbStyle" class="fit q-pa-sm">
           <!--<Menu />-->
-          <q-list bordered>
+          <q-list>
             <q-expansion-item
               group="somegroup"
               icon="group"
@@ -51,7 +48,7 @@
             >
               <!-- Cliente -->
               <q-item
-                :header-inset-level="1"
+                dense
                 clickable
                 v-ripple
                 :active="link === '/cliente'"
@@ -59,7 +56,7 @@
                 active-class="my-menu-link"
               >
                 <q-item-section avatar>
-                  <q-icon name="group" />
+                  <!--                  <q-icon name="group" />-->
                 </q-item-section>
 
                 <q-item-section>Cliente</q-item-section>
@@ -67,6 +64,7 @@
 
               <!-- Proveedores -->
               <q-item
+                dense
                 :header-inset-level="1"
                 clickable
                 v-ripple
@@ -75,7 +73,7 @@
                 active-class="my-menu-link"
               >
                 <q-item-section avatar>
-                  <q-icon name="supervised_user_circle" />
+                  <!--                  <q-icon name="supervised_user_circle" />-->
                 </q-item-section>
 
                 <q-item-section>Proveedores</q-item-section>
@@ -83,6 +81,7 @@
 
               <!-- ¨Producto -->
               <q-item
+                dense
                 :header-inset-level="1"
                 clickable
                 v-ripple
@@ -91,7 +90,7 @@
                 active-class="my-menu-link"
               >
                 <q-item-section avatar>
-                  <q-icon name="supervised_user_circle" />
+                  <!--                  <q-icon name="supervised_user_circle" />-->
                 </q-item-section>
 
                 <q-item-section>Producto</q-item-section>
@@ -102,12 +101,12 @@
 
             <q-expansion-item
               group="somegroup"
-              icon="perm_identity"
+              icon="attach_money"
               label="Ventas"
-              header-class="bg-teal text-white"
-              expand-icon-class="text-white"
+              header-class="text-primary"
             >
               <q-item
+                dense
                 clickable
                 v-ripple
                 :active="link === 'outbox'"
@@ -115,21 +114,22 @@
                 active-class="my-menu-link"
               >
                 <q-item-section avatar>
-                  <q-icon name="monetization_on" />
+                  <!--                  <q-icon name="monetization_on" />-->
                 </q-item-section>
 
                 <q-item-section>Seg. de Ventas</q-item-section>
               </q-item>
 
               <q-item
+                dense
                 clickable
                 v-ripple
                 :active="link === 'trash'"
-                @click="(link = 'trash'), ir()"
+                @click="(link = 'trash'), URL('/ventas')"
                 active-class="my-menu-link"
               >
                 <q-item-section avatar>
-                  <q-icon name="monetization_on" />
+                  <!--                  <q-icon name="monetization_on" />-->
                 </q-item-section>
 
                 <q-item-section>Req. de cotizacion</q-item-section>
@@ -299,5 +299,5 @@ export default {
 <style lang="sass">
 .my-menu-link
   color: white
-  background: #027be3
+  background: grey
 </style>

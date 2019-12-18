@@ -9,7 +9,6 @@
       row-key="id_provee"
       :filter="filter"
       :loading="loading"
-      :pagination.sync="pagination"
     >
       <q-tr
         slot="body"

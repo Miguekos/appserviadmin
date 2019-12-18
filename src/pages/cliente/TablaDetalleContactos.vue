@@ -31,13 +31,88 @@
             <div class="q-gutter-sm">
               <div>
                 <q-input
-                  ref="form.p_no_nombre"
+                  ref="form.apellidoPaterno"
+                  dense
+                  outlined
+                  required="true"
+                  label="Apellido Paterno"
+                  v-model="form.apellidoPaterno"
+                  autofocus
+                  @keyup.enter="prompt = false"
+                  :rules="[val => !!val || 'El campo es obligatorio']"
+                />
+              </div>
+              <div>
+                <q-input
+                  ref="form.apellidoMaterno"
+                  dense
+                  outlined
+                  required="true"
+                  label="Apellido Materno"
+                  v-model="form.apellidoMaterno"
+                  autofocus
+                  @keyup.enter="prompt = false"
+                  :rules="[val => !!val || 'El campo es obligatorio']"
+                />
+              </div>
+              <div>
+                <q-input
+                  ref="form.nombres"
                   dense
                   outlined
                   required="true"
                   label="Nombre"
-                  v-model="form.p_no_nombre"
+                  v-model="form.nombres"
                   autofocus
+                  @keyup.enter="prompt = false"
+                  :rules="[val => !!val || 'El campo es obligatorio']"
+                />
+              </div>
+              <div>
+                <q-select
+                  :options="generoOption"
+                  option-label="no_genero"
+                  option-value="ti_genero"
+                  emit-value
+                  map-options
+                  ref="sexo"
+                  dense
+                  outlined
+                  required
+                  label="Sexo"
+                  v-model="form.generoPersona"
+                />
+              </div>
+              <div>
+                <q-select
+                  :options="areaOption"
+                  option-label="no_arelab"
+                  option-value="co_arelab"
+                  emit-value
+                  map-options
+                  ref="area"
+                  dense
+                  outlined
+                  required
+                  label="Area"
+                  v-model="form.codigoAreaLaboral"
+                  @keyup.enter="prompt = false"
+                  :rules="[val => !!val || 'El campo es obligatorio']"
+                />
+              </div>
+              <div>
+                <q-select
+                  :options="siglaOption"
+                  option-label="no_sigpro"
+                  option-value="co_sigpro"
+                  emit-value
+                  map-options
+                  ref="siglas"
+                  dense
+                  outlined
+                  required
+                  label="Siglas"
+                  v-model="form.codigoSiglaProfesion"
                   @keyup.enter="prompt = false"
                   :rules="[val => !!val || 'El campo es obligatorio']"
                 />
@@ -62,27 +137,13 @@
                   required
                   label="Correo"
                   type="email"
-                  v-model="form.p_no_correo"
-                  @keyup.enter="prompt = false"
-                  :rules="[val => !!val || 'El campo es obligatorio']"
-                />
-              </div>
-              <div>
-                <q-select
-                  :options="generos"
-                  ref="genero"
-                  dense
-                  outlined
-                  required
-                  label="Genero"
-                  v-model="form.p_co_gencon"
+                  v-model="form.correoElectronico"
                   @keyup.enter="prompt = false"
                   :rules="[val => !!val || 'El campo es obligatorio']"
                 />
               </div>
             </div>
           </q-card-section>
-
           <q-card-actions align="right" class="text-primary">
             <q-btn flat label="Cancel" @click="reset()" type="reset" />
             <q-btn flat label="Agregar Contacto" type="submit" />
@@ -90,7 +151,8 @@
         </q-form>
       </q-card>
     </q-dialog>
-    <!--    {{ $data.form }}-->
+    <!-- {{ $data.form }} -->
+    <!-- {{ $data.generoOption }} -->
   </div>
 </template>
 <script>
@@ -104,12 +166,21 @@ export default {
     return {
       generos: ["M", "F"],
       loading: false,
+      generoOption: [],
+      areaOption: [],
+      siglaOption: [],
       form: {
-        p_id_provee: null,
-        p_no_nombre: "",
-        p_nu_telefo: "",
-        p_no_correo: "",
-        p_co_gencon: ""
+        tipoPersona: "1",
+        numeroDocumento: "72232762",
+        apellidoPaterno: "",
+        apellidoMaterno: "",
+        nombres: "",
+        generoPersona: "",
+        tipoDocumento: "1",
+        codigoAreaLaboral: "",
+        correoElectronico: "",
+        codigoSiglaProfesion: "",
+        p_id: null
       },
       prompt: false,
       pagination: {
@@ -177,8 +248,10 @@ export default {
         icon: "fas fa-check-circle",
         message: "Submitted"
       });
-      this.registrarProveContacto(this.form).then(() => {
-        this.contactoProveedor(this.form.p_id_provee).then(() => {
+      this.guardarContacto(this.form).then(() => {
+        console.log("Se ejecuto Guardar Contacto");
+        this.contactoCliente(this.form.p_id).then(() => {
+          console.log("Se ejecuto Guardar clienteContacto");
           this.prompt = false;
           this.loading = false;
         });
@@ -193,12 +266,17 @@ export default {
     crearDireccion() {
       this.prompt = true;
     },
-    ...mapActions("proveedor", ["registrarProveContacto", "contactoProveedor"])
+    ...mapActions("proveedor", ["registrarProveContacto", "contactoProveedor"]),
+    // eslint-disable-next-line
+    ...mapActions("clientes", ["guardarContacto", "listar_genero_persona", "listar_area_laboral", "listar_sigla_profesion", "contactoCliente"])
   },
   async mounted() {
     this.loading = true;
-    this.form.p_id_provee = this.id_pro;
+    this.form.p_id = this.id_pro;
     this.loading = false;
+    this.generoOption = await this.listar_genero_persona();
+    this.areaOption = await this.listar_area_laboral();
+    this.siglaOption = await this.listar_sigla_profesion();
     // await this.getClientes();
     // this.info = this.Clientes;
   }

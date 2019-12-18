@@ -35,20 +35,10 @@
                   outlined
                   required
                   label="Direccion del Proveedor"
-                  v-model="form.p_no_direcc"
+                  v-model="form.direccion"
                   @keyup.enter="prompt = false"
                 />
               </div>
-              <!--              <div>-->
-              <!--                <q-input-->
-              <!--                  dense-->
-              <!--                  outlined-->
-              <!--                  required-->
-              <!--                  label="Codigo de Ubigeo"-->
-              <!--                  v-model="form.p_co_ubigeo"-->
-              <!--                  @keyup.enter="prompt = false"-->
-              <!--                />-->
-              <!--              </div>-->
               <div>
                 <q-select
                   outlined
@@ -84,7 +74,7 @@
                   outlined
                   dense
                   required
-                  v-model="fieldDistrito"
+                  v-model="form.codigoDireccion"
                   :options="getDistrito"
                   option-value="no_ubigeo"
                   option-label="no_provin"
@@ -103,7 +93,7 @@
         </q-form>
       </q-card>
     </q-dialog>
-    <!--    {{ $data }}-->
+    <!-- {{ $data }} -->
   </div>
 </template>
 <script>
@@ -124,9 +114,10 @@ export default {
       fieldDistrito: "",
       model: "",
       form: {
-        p_id_provee: null,
-        p_no_direcc: "",
-        p_co_ubigeo: ""
+        p_id: null,
+        direccion: "",
+        codigoUbigeo: "",
+        codigoDireccion: ""
       },
       prompt: false,
       pagination: {
@@ -180,6 +171,7 @@ export default {
       "pblistar_provincia",
       "pblistar_distrito"
     ]),
+    ...mapActions("clientes", ["guardarDireccion", "direccionCliente"]),
     async onSubmit() {
       this.loading = true;
       this.$q.notify({
@@ -188,12 +180,15 @@ export default {
         icon: "fas fa-check-circle",
         message: "Submitted"
       });
-      this.registrarProveDireccion(this.form).then(result => {
+      this.guardarDireccion(this.form).then(result => {
         console.log(result);
-        this.direccionProveedor(this.form.p_id_provee).then(result => {
+        this.direccionCliente(this.form.p_id).then(result => {
           console.log(result);
           this.loading = false;
           this.prompt = false;
+          this.form.direccion = "";
+          this.form.codigoUbigeo = "";
+          this.form.codigoDireccion = "";
         });
       });
       // this.reload();
@@ -219,13 +214,13 @@ export default {
     distrito() {
       console.log(this.fieldProvincia);
       this.pblistar_distrito(this.fieldProvincia);
-      this.form.p_co_ubigeo = this.fieldProvincia;
-      this.fieldDistrito = "";
+      this.form.codigoUbigeo = this.fieldProvincia;
+      this.form.codigoDireccion = "";
     }
   },
   async mounted() {
     this.loading = true;
-    this.form.p_id_provee = this.id_pro;
+    this.form.p_id = this.id_pro;
     this.pblistar_departamento();
     this.loading = false;
 

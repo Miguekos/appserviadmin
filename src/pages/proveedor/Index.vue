@@ -6,6 +6,18 @@
           <q-item-label>Proveedores</q-item-label>
           <q-item-label caption>Mentenimiento</q-item-label>
         </q-item-section>
+        <q-item-section></q-item-section>
+        <q-item-section></q-item-section>
+        <q-item-section>
+          <q-btn
+            size="sm"
+            @click="atras()"
+            q-btn-push
+            label="Atras"
+            text-color="white"
+            color="grey"
+          />
+        </q-item-section>
       </q-item>
       <ListarProveedores />
     </q-card>
@@ -18,6 +30,12 @@ export default {
     ListarProveedores: () => import("./ListarProveedores")
     // TablaFiltro: () => import("./TablaFiltro"),
     // CuadroResumen: () => import("./CuadroResumen")
+  },
+  methods: {
+    atras() {
+      console.log("Ir Atras");
+      this.$router.go(-1);
+    }
   }
   // name: 'PageName',
 };
