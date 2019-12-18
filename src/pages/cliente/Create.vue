@@ -6,15 +6,28 @@
           <q-item-label>Crear Cliente</q-item-label>
           <q-item-label caption>Mentenimiento</q-item-label>
         </q-item-section>
+        <q-item-section></q-item-section>
+        <q-item-section></q-item-section>
+        <q-item-section>
+          <q-btn
+            size="sm"
+            @click="atras()"
+            q-btn-push
+            label="Atras"
+            text-color="white"
+            color="grey"
+          />
+        </q-item-section>
       </q-item>
       <q-item>
         <q-item-section>
           <form
             @submit.prevent.stop="onSubmit"
             @reset.prevent.stop="onReset"
-            class="q-gutter-md"
+            class="q-gutter-sm"
           >
             <q-select
+              dense
               v-model="tipoDePersonaVar"
               :options="tipoDePersonaOption"
               option-value="co_tipper"
@@ -22,10 +35,11 @@
               emit-value
               map-options
               label="Tipo de Persona"
-              filled
+              outlined
             />
 
             <q-select
+              dense
               v-model="tipoDeDocumentoVar"
               :options="tipoDeDocumentoOption"
               option-value="ti_docide"
@@ -33,52 +47,41 @@
               emit-value
               map-options
               label="Tipo de Documento"
-              filled
+              outlined
             />
 
             <q-input
+              dense
               ref="numeroDeDocumento"
-              filled
+              outlined
               v-model="numeroDeDocumento"
               label="Numero de Documento"
-              hint="Numero de Documento"
               maxlength="11"
               lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'el campo no puede estar vacio'
-              ]"
             />
 
             <q-input
+              dense
               ref="nombre"
-              filled
+              outlined
               v-model="nombre"
               label="Nombre"
-              hint="Nombre"
               lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'el campo no puede estar vacio'
-              ]"
             />
 
             <q-input
+              dense
               ref="sigla"
-              filled
+              outlined
               v-model="sigla"
               label="Sigla"
-              hint="Sigla"
               lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'el campo no puede estar vacio'
-              ]"
             />
 
-            <div>
-              <q-btn label="Registrar" type="submit" color="primary" />
+            <div class="text-center">
+              <q-btn size="sm" label="Registrar" type="submit" color="primary" />
               <q-btn
+                size="sm"
                 label="Resetear"
                 type="reset"
                 color="primary"
@@ -133,6 +136,10 @@ export default {
       "tipoDePersona",
       "TipoDeDocumento"
     ]),
+    atras() {
+      console.log("Ir Atras");
+      this.$router.go(-1);
+    },
     registrar() {
       const data = {
         tipoPersona: this.tipoDePersonaVar,

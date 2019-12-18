@@ -299,5 +299,5 @@ export default {
 <style lang="sass">
 .my-menu-link
   color: white
-  background: grey
+  background: lightgrey
 </style>

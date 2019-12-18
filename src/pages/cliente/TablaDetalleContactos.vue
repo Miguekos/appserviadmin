@@ -2,26 +2,37 @@
   <div class="q-pa-md">
     <!--    {{ `ID proveedor ${id_pro}` }}-->
     <q-table
+      dense
       :data="datafld"
       :columns="columns"
-      row-key="id"
+      row-key="name"
       :filter="filter"
       :loading="loading"
-      :pagination.sync="pagination"
     >
       <template v-slot:top>
-        <img
-          style="height: 50px; width: 50px"
-          src="/statics/minilogoservi.png"
-        />
+        <div>
+          Contactos
+        </div>
+        <q-space />
+        <q-input
+          borderless
+          placeholder="Buscar"
+          dense
+          color="primary"
+          v-model="filter"
+        >
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
         <q-space />
         <q-btn outline color="secondary" @click="crearDireccion()"
           >Agregar Contacto</q-btn
         >
       </template>
     </q-table>
-    <q-dialog full-width v-model="prompt" persistent>
-      <q-card>
+    <q-dialog v-model="prompt" persistent>
+      <q-card style="width: 100%;">
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <q-card-section>
             <div class="text-h6">Agregar Contacto</div>
@@ -29,33 +40,31 @@
 
           <q-card-section>
             <div class="q-gutter-sm">
-              <div>
-                <q-input
-                  ref="form.apellidoPaterno"
-                  dense
-                  outlined
-                  required="true"
-                  label="Apellido Paterno"
-                  v-model="form.apellidoPaterno"
-                  autofocus
-                  @keyup.enter="prompt = false"
-                  :rules="[val => !!val || 'El campo es obligatorio']"
-                />
+              <div class="row q-gutter-xs">
+                <div class="col">
+                  <q-input
+                    ref="form.apellidoPaterno"
+                    dense
+                    outlined
+                    required="true"
+                    label="Apellido Paterno"
+                    v-model="form.apellidoPaterno"
+                    autofocus
+                  />
+                </div>
+                <div class="col ">
+                  <q-input
+                    ref="form.apellidoMaterno"
+                    dense
+                    outlined
+                    required="true"
+                    label="Apellido Materno"
+                    v-model="form.apellidoMaterno"
+                    autofocus
+                  />
+                </div>
               </div>
-              <div>
-                <q-input
-                  ref="form.apellidoMaterno"
-                  dense
-                  outlined
-                  required="true"
-                  label="Apellido Materno"
-                  v-model="form.apellidoMaterno"
-                  autofocus
-                  @keyup.enter="prompt = false"
-                  :rules="[val => !!val || 'El campo es obligatorio']"
-                />
-              </div>
-              <div>
+              <div class="q-gutter-xs">
                 <q-input
                   ref="form.nombres"
                   dense
@@ -64,11 +73,9 @@
                   label="Nombre"
                   v-model="form.nombres"
                   autofocus
-                  @keyup.enter="prompt = false"
-                  :rules="[val => !!val || 'El campo es obligatorio']"
                 />
               </div>
-              <div>
+              <div class="q-gutter-xs">
                 <q-select
                   :options="generoOption"
                   option-label="no_genero"
@@ -83,7 +90,7 @@
                   v-model="form.generoPersona"
                 />
               </div>
-              <div>
+              <div class="q-gutter-xs">
                 <q-select
                   :options="areaOption"
                   option-label="no_arelab"
@@ -96,11 +103,9 @@
                   required
                   label="Area"
                   v-model="form.codigoAreaLaboral"
-                  @keyup.enter="prompt = false"
-                  :rules="[val => !!val || 'El campo es obligatorio']"
                 />
               </div>
-              <div>
+              <div class="q-gutter-xs">
                 <q-select
                   :options="siglaOption"
                   option-label="no_sigpro"
@@ -113,23 +118,20 @@
                   required
                   label="Siglas"
                   v-model="form.codigoSiglaProfesion"
-                  @keyup.enter="prompt = false"
-                  :rules="[val => !!val || 'El campo es obligatorio']"
                 />
               </div>
-              <div>
+              <div class="q-gutter-xs">
                 <q-input
                   ref="telefono"
                   dense
                   outlined
                   required
                   label="Telefono"
+                  maxlength="9"
                   v-model="form.p_nu_telefo"
-                  @keyup.enter="prompt = false"
-                  :rules="[val => val.length == 9 || 'Debe tener 9 digitos']"
                 />
               </div>
-              <div>
+              <div class="q-gutter-xs">
                 <q-input
                   ref="correo"
                   dense
@@ -138,8 +140,6 @@
                   label="Correo"
                   type="email"
                   v-model="form.correoElectronico"
-                  @keyup.enter="prompt = false"
-                  :rules="[val => !!val || 'El campo es obligatorio']"
                 />
               </div>
             </div>
@@ -268,7 +268,13 @@ export default {
     },
     ...mapActions("proveedor", ["registrarProveContacto", "contactoProveedor"]),
     // eslint-disable-next-line
-    ...mapActions("clientes", ["guardarContacto", "listar_genero_persona", "listar_area_laboral", "listar_sigla_profesion", "contactoCliente"])
+    ...mapActions("clientes", [
+      "guardarContacto",
+      "listar_genero_persona",
+      "listar_area_laboral",
+      "listar_sigla_profesion",
+      "contactoCliente"
+    ])
   },
   async mounted() {
     this.loading = true;

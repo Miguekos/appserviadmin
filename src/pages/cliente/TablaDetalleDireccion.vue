@@ -2,26 +2,33 @@
   <div class="q-pa-md">
     <!--    {{ datafld }}-->
     <q-table
+      dense
       :data="datafld"
       :columns="columns"
       row-key="id"
       :filter="filter"
       :loading="loading"
-      :pagination.sync="pagination"
     >
       <template v-slot:top>
-        <img
-          style="height: 50px; width: 50px"
-          src="/statics/minilogoservi.png"
-        />
+        <q-input
+          borderless
+          placeholder="Buscar"
+          dense
+          color="primary"
+          v-model="filter"
+        >
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
         <q-space />
         <q-btn outline color="secondary" @click="crearDireccion()"
           >Agregar Direccion</q-btn
         >
       </template>
     </q-table>
-    <q-dialog full-width v-model="prompt" persistent>
-      <q-card>
+    <q-dialog v-model="prompt" persistent>
+      <q-card style="width: 100%;">
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <q-card-section>
             <div class="text-h6">Agregar Direccion</div>
