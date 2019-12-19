@@ -5,7 +5,7 @@
       <q-item class="bg-custom4">
         <q-item-section>
           <q-item-label>Registrar</q-item-label>
-          <q-item-label caption>Requerimientos</q-item-label>
+          <q-item-label caption>REQUERIMIENTO DE COTIZACIÓN</q-item-label>
         </q-item-section>
       </q-item>
       <q-item>
@@ -22,8 +22,8 @@
             @filter="filterFn"
             hint="Buscar por nombre de cliente"
             style="width: 250px; padding-bottom: 32px"
-            option-value="no_razsoc"
-            option-label="no_razsoc"
+            option-value="no_client"
+            option-label="no_client"
             @input="input2"
             auto-select
           />
@@ -65,7 +65,7 @@
                 <q-input
                   dense
                   filled
-                  v-model="model.no_razsoc"
+                  v-model="model.no_client"
                   label="Cliente"
                   lazy-rules
                   :rules="[
@@ -79,9 +79,9 @@
                   filled
                   dense
                   options-dense
-                  v-model="model.no_direcc"
+                  v-model="no_direcc"
                   :options="getClieDireccion"
-                  option-value="co_ubigeo"
+                  option-value="co_direcc"
                   option-label="no_direcc"
                   option-disable="inactive"
                   emit-value
@@ -94,10 +94,10 @@
                   filled
                   dense
                   options-dense
-                  v-model="model.contacto"
+                  v-model="contacto"
                   :options="getClieContactos"
-                  option-value="co_person"
-                  option-label="no_client"
+                  option-value="co_percon"
+                  option-label="no_percon"
                   option-disable="inactive"
                   emit-value
                   map-options
@@ -151,6 +151,8 @@
     <!--    {{ model }}-->
     <!--    {{ getClieDireccion }}-->
     <!--    {{ getClieContactos }}-->
+    <!--    {{ contacto }}-->
+    <!--    {{ no_direcc }}-->
     <!-- {{ name }} -->
     <!-- </q-page> -->
   </div>
@@ -178,15 +180,15 @@ export default {
       selectModel: "",
       selectModel2: null,
       text: "",
+      contacto: "",
+      no_direcc: "",
       model: {
         text: "",
-        date: "2019/11/01",
-        no_razsoc: "",
+        date: "",
+        no_client: "",
         no_corele: "",
-        no_direcc: "",
         nu_docide: "",
-        nu_telefono: "",
-        contacto: ""
+        nu_telefono: ""
       },
       lotrOpts: [],
       options: [],
@@ -214,14 +216,14 @@ export default {
       update(() => {
         const needle = val.toLowerCase();
         this.options = asd.filter(v =>
-          v.no_razsoc.toLowerCase().includes(needle)
+          v.no_client.toLowerCase().includes(needle)
         );
       });
     },
     async input2(val) {
       this.notif();
       this.notif = this.$q.notify({
-        message: `Cliente: ${JSON.stringify(val.no_razsoc)} seleccionado.`,
+        message: `Cliente: ${JSON.stringify(val.no_client)} seleccionado.`,
         timeout: 1000,
         color: "secondary"
       });
@@ -246,6 +248,8 @@ export default {
       this.loading1 = true;
       this.registrarCotizacion({
         ...this.model,
+        contacto: this.contacto,
+        direccion: this.no_direcc,
         idcliente: this.idCliente
       })
         .then(resp => {

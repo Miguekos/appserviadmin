@@ -6,7 +6,7 @@
         Cuadro Resumen
       </p>
     </div>
-    <q-markup-table :separator="separator" flat dense bordered>
+    <q-markup-table :separator="separator" flat>
       <!-- <thead>
         <tr>
           <th style="font-size: 20px" class="bg-green-4 text-left">
@@ -17,7 +17,7 @@
       </thead>-->
       <tbody>
         <tr>
-          <td class="text-left">En confirmacion:</td>
+          <td class="text-left">Pendiente:</td>
           <td class="text-right">{{ resumen.confirmacion }}</td>
         </tr>
         <tr>
@@ -32,10 +32,10 @@
           <td class="text-left">Listo</td>
           <td class="text-right">{{ resumen.listo }}</td>
         </tr>
-        <tr>
-          <td class="text-left">Total</td>
-          <td class="text-right">{{ resumen.total }}</td>
-        </tr>
+        <!--        <tr>-->
+        <!--          <td class="text-left">Total</td>-->
+        <!--          <td class="text-right">{{ resumen.total }}</td>-->
+        <!--        </tr>-->
       </tbody>
     </q-markup-table>
   </div>

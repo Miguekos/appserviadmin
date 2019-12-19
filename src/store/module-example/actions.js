@@ -31,10 +31,15 @@ export async function registrarCotizacion({}, payload) {
   //   p_fe_requer: formattedString
   // };
   const data = {
-    r_no_detall: payload.text,
-    r_fe_requer: "14/11/2019",
-    p_co_client: payload.idcliente
+    co_client: payload.co_client,
+    r_fe_requer: "2019-11-11",
+    asunto: payload.asunto,
+    detalle: payload.text,
+    contacto: payload.contacto,
+    direccion: payload.direccion
   };
+
+  console.log(data);
 
   const regisCotiza = await axiosInstance.post("/api/cotizas/registrar", data);
   // console.log(registro.data);

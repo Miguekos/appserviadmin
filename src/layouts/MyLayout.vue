@@ -122,7 +122,7 @@
                 clickable
                 v-ripple
                 :active="link === 'trash'"
-                @click="(link = 'trash'), URL('/ventas')"
+                @click="(link = 'trash'), URL('/cotizacion')"
                 active-class="my-menu-link"
               >
                 <q-item-section avatar>

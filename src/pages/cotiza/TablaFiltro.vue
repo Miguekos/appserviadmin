@@ -7,33 +7,8 @@
         </p>
       </div>
       <div class="q-ma-md">
-        <q-input
-          dense
-          standout
-          v-model="fechainicio"
-          type="date"
-          prefix="Fecha ini:   "
-        >
-          <template v-slot:prepend>
-            <q-icon name="event" />
-          </template>
-        </q-input>
-      </div>
-      <div class="q-ma-md">
-        <q-input
-          dense
-          standout
-          v-model="fechafin"
-          type="date"
-          prefix="Fecha fin:   "
-        >
-          <template v-slot:prepend>
-            <q-icon name="event" />
-          </template>
-        </q-input>
-      </div>
-      <div class="q-ma-md">
         <q-select
+          label="Estado"
           transition-show="flip-up"
           transition-hide="flip-down"
           :options="registrosFiltroEstados"
@@ -42,16 +17,41 @@
           option-disable="inactive"
           emit-value
           map-options
-          standout
           placeholder="Estado"
           dense
-          outlined
           v-model="estadoFiltro"
         />
       </div>
+      <div class="q-ma-md">
+        <q-input dense v-model="fechainicio" type="date" prefix="Fecha ini:   ">
+          <template v-slot:prepend>
+            <q-icon name="event" />
+          </template>
+        </q-input>
+      </div>
+      <div class="q-ma-md">
+        <q-input dense v-model="fechafin" type="date" prefix="Fecha fin:   ">
+          <template v-slot:prepend>
+            <q-icon name="event" />
+          </template>
+        </q-input>
+      </div>
     </div>
-    <div class="q-pa-xs flex flex-center">
-      <q-btn @click="showLoading()" label="Filtrar" dense color="secondary" />
+    <div class="row justify-around q-gutter">
+      <q-btn
+        color="secondary"
+        @click="showLoading()"
+        icon-right="send"
+        size="sm"
+        label="Filtrar"
+      />
+      <q-btn
+        color="positive"
+        @click="nuevo_reque()"
+        icon-right="add"
+        size="sm"
+        label="Nuevo Requ."
+      />
     </div>
     <!--    {{ $data }}-->
   </div>
@@ -78,7 +78,18 @@ export default {
     };
   },
   methods: {
-    ...mapActions("example", ["registros"]),
+    ...mapActions("example", ["registros", "dialogCreate"]),
+    nuevo_reque() {
+      console.log("Se preciono el boton");
+      this.dialogCreate(true);
+      // this.$router.push("/cotizacion/create");
+      // this.$q.notify({
+      //   color: "red",
+      //   textColor: "white",
+      //   message: "Por definir.!"
+      // });
+      console.log("Boron precinado");
+    },
     crearCotiza() {
       this.$router.push("/cotizacion/create");
     },
@@ -100,7 +111,7 @@ export default {
       }, 1000);
     }
   },
-  async created() {
+  async mounted() {
     await this.registros();
   },
   beforeDestroy() {

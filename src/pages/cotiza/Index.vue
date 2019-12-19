@@ -11,11 +11,12 @@
           <q-item-section></q-item-section>
           <q-item-section>
             <q-btn
-              size="10px"
-              color="green"
-              @click="nuevoRegistro()"
-              q-btn--push
-              label="Nuevo"
+              size="sm"
+              @click="atras()"
+              q-btn-push
+              label="Atras"
+              text-color="white"
+              color="grey"
             />
           </q-item-section>
         </q-item>
@@ -30,14 +31,9 @@
         <TablaListado />
       </q-card>
     </q-page>
-    <q-dialog full-height full-width v-model="getDialogCrear">
-      <q-card class="full-height full-width">
-        <q-card-section>
-          <AddRegistro />
-        </q-card-section>
-        <!-- <q-card-actions align="right">
-          <q-btn flat label="OK" color="primary" v-close-popup />
-        </q-card-actions>-->
+    <q-dialog v-model="getDialogCrear">
+      <q-card>
+        <AddRegistro />
       </q-card>
     </q-dialog>
   </div>
@@ -54,10 +50,9 @@ export default {
   }),
   methods: {
     ...mapActions("example", ["dialogCreate"]),
-    nuevoRegistro() {
-      console.log("Se preciono el boton");
-      this.dialogCreate(true);
-      // this.$router.push("/cotizacion/create");
+    atras() {
+      console.log("Ir Atras");
+      this.$router.go(-1);
     }
   },
   components: {

@@ -2,8 +2,73 @@
   <div class="q-pa-md">
     <div>
       <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
-        Listado
+        Requerimientos
       </p>
+    </div>
+    <div class="q-pb-md">
+      <div class="row no-wrap shadow-1 bg-grey-4">
+        <q-toolbar>
+          <q-input
+            v-if="$q.screen.gt.xs"
+            borderless
+            class="full-width"
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+          <q-input
+            v-else
+            class="full-width"
+            borderless
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+
+          <q-space />
+
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="positive"-->
+          <!--            icon="add"-->
+          <!--            no-caps-->
+          <!--            label="Nuevo"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="negative"-->
+          <!--            icon="remove"-->
+          <!--            no-caps-->
+          <!--            label="Eliminar"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+          <q-btn
+            flat
+            dense
+            no-wrap
+            color="primary"
+            icon="cloud_upload"
+            no-caps
+            label="Exportar"
+            class="q-ml-sm q-px-md"
+          />
+        </q-toolbar>
+      </div>
     </div>
     <transition
       appear
@@ -11,38 +76,22 @@
       leave-active-class="animated fadeOut"
     >
       <q-table
+        dense
         v-show="showSimulatedReturnData"
-        title="Listado"
         :data="getRegistros"
         :columns="columns"
-        row-key="name"
+        row-key="id_reqcot"
         binary-state-sort
         :filter="filter"
         :loading="loading"
-        loading-label="Cargadno Data"
+        loading-label="Cargando Data"
+        :selected-rows-label="getSelectedString"
+        selection="multiple"
+        :selected.sync="selected"
       >
         <q-inner-loading :showing="visible">
-          <q-spinner-gears size="50px" color="primary" />
+          <q-spinner-gears size="550px" color="red" />
         </q-inner-loading>
-        <template v-slot:top>
-          <img
-            style="height: 50px; width: 50px"
-            src="/statics/minilogoservi.png"
-          />
-          <q-space />
-          <q-input
-            borderless
-            dense
-            debounce="300"
-            color="primary"
-            v-model="filter"
-            label="Buscar"
-          >
-            <template v-slot:append>
-              <q-icon name="search" />
-            </template>
-          </q-input>
-        </template>
       </q-table>
     </transition>
   </div>
@@ -55,6 +104,7 @@ export default {
   },
   data() {
     return {
+      selected: [],
       visible: true,
       showSimulatedReturnData: true,
       loading: false,
@@ -124,7 +174,10 @@ export default {
     };
   },
   methods: {
-    ...mapActions("example", ["registros"])
+    ...mapActions("example", ["registros"]),
+    getSelectedString() {
+      return this.selected.length === 0 ? "" : `${this.selected.length}`;
+    }
   },
   async created() {
     // this.$q.loading.show();
