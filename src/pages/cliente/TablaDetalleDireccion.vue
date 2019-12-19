@@ -5,7 +5,7 @@
       dense
       :data="datafld"
       :columns="columns"
-      row-key="no_direcc"
+      row-key="co_direcc"
       :filter="filter"
       :loading="loading"
       selection="multiple"

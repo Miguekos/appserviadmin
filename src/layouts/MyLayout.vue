@@ -19,7 +19,10 @@
             icon="menu"
             color="green"
           />
-          <q-toolbar-title shrink class="text-weight-bold">
+          <q-toolbar-title
+            class="cursor-pointer text-weight-bold"
+            @click="URL('/')"
+          >
             SJ Servi Admin
           </q-toolbar-title>
           <q-space />
@@ -47,7 +50,6 @@
             >
               <!-- Cliente -->
               <q-item
-                dense
                 clickable
                 v-ripple
                 :active="link === '/cliente'"
@@ -63,7 +65,6 @@
 
               <!-- Proveedores -->
               <q-item
-                dense
                 :header-inset-level="1"
                 clickable
                 v-ripple
@@ -80,7 +81,6 @@
 
               <!-- ¨Producto -->
               <q-item
-                dense
                 :header-inset-level="1"
                 clickable
                 v-ripple
@@ -105,7 +105,6 @@
               header-class="text-primary"
             >
               <q-item
-                dense
                 clickable
                 v-ripple
                 :active="link === 'outbox'"
@@ -120,7 +119,6 @@
               </q-item>
 
               <q-item
-                dense
                 clickable
                 v-ripple
                 :active="link === 'trash'"
