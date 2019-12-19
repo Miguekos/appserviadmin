@@ -1,5 +1,96 @@
 <template>
   <div class="q-pa-md">
+    <div>
+      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
+        Contactos
+      </p>
+    </div>
+    <div class="q-pb-md">
+      <div class="row no-wrap shadow-1 bg-grey-4">
+        <q-toolbar class="q-gutter-sm">
+          <q-input
+            v-if="$q.screen.gt.xs"
+            borderless
+            class="full-width"
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+          <q-input
+            v-else
+            class="full-width"
+            borderless
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+
+          <q-space />
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="positive"-->
+          <!--            icon="add"-->
+          <!--            no-caps-->
+          <!--            label="Nuevo"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="negative"-->
+          <!--            icon="remove"-->
+          <!--            no-caps-->
+          <!--            label="Eliminar"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+          <q-btn
+            class="q-pa-xs"
+            dense
+            no-wrap
+            size="sm"
+            color="red"
+            no-caps
+            outline
+            label="Eliminar Contacto"
+            @click="eliminarContactoF()"
+          ></q-btn>
+          <q-btn
+            class="q-pa-xs"
+            dense
+            no-wrap
+            size="sm"
+            no-caps
+            outline
+            color="positive"
+            label="Agregar Contacto"
+            @click="crearDireccion()"
+          ></q-btn>
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="primary"-->
+          <!--            icon="cloud_upload"-->
+          <!--            no-caps-->
+          <!--            label="Exportar"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+        </q-toolbar>
+      </div>
+    </div>
     <!--    {{ `ID proveedor ${id_pro}` }}-->
     <q-table
       dense
@@ -11,28 +102,6 @@
       selection="multiple"
       :selected.sync="selected"
     >
-      <template v-slot:top>
-        <q-input
-          borderless
-          placeholder="Buscar"
-          dense
-          color="primary"
-          v-model="filter"
-        >
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-        <q-space />
-        <div class="q-gutter-sm">
-          <q-btn size="sm" outline color="red" @click="eliminarContactoF()"
-            >Eliminar Contacto</q-btn
-          >
-          <q-btn size="sm" outline color="positive" @click="crearDireccion()"
-            >Agregar Contacto</q-btn
-          >
-        </div>
-      </template>
     </q-table>
     <q-dialog v-model="prompt" persistent>
       <q-card style="width: 100%;">

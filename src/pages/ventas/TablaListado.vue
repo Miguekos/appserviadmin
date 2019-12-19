@@ -67,7 +67,6 @@
         </q-toolbar>
       </div>
     </div>
-
     <q-table
       :separator="separator"
       :filter="search"

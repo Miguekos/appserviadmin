@@ -1,8 +1,77 @@
 <template>
   <div class="q-pa-md">
+    <div>
+      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
+        Clientes
+      </p>
+    </div>
+    <div class="q-pb-md">
+      <div class="row no-wrap shadow-1 bg-grey-4">
+        <q-toolbar>
+          <q-input
+            v-if="$q.screen.gt.xs"
+            borderless
+            class="full-width"
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+          <q-input
+            v-else
+            class="full-width"
+            borderless
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+
+          <q-space />
+
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="positive"-->
+          <!--            icon="add"-->
+          <!--            no-caps-->
+          <!--            label="Nuevo"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="negative"-->
+          <!--            icon="remove"-->
+          <!--            no-caps-->
+          <!--            label="Eliminar"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+          <q-btn
+            flat
+            dense
+            no-wrap
+            color="primary"
+            icon="cloud_upload"
+            no-caps
+            label="Exportar"
+            class="q-ml-sm q-px-md"
+          />
+        </q-toolbar>
+      </div>
+    </div>
     <q-table
       dense
-      title="Clientes"
       :data="Clientes"
       :columns="columns"
       row-key="nu_doccli"
@@ -18,33 +87,13 @@
           <div>{{ props.value }}</div>
         </q-td>
       </template>
-      <template v-slot:top>
-        <img
-          style="height: 50px; width: 50px"
-          src="/statics/minilogoservi.png"
-        />
-        <q-space />
-        <q-input
-          borderless
-          placeholder="Buscar"
-          dense
-          color="primary"
-          v-model="filter"
-        >
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-        <!--        <div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>-->
-      </template>
     </q-table>
-
     <!-- <div class="q-mt-md">
       Selected: {{ JSON.stringify(selected) }}
     </div> -->
     <q-separator />
     <q-toolbar class="text-center">
-      <q-toolbar-title class="q-pt-md row justify-around">
+      <q-toolbar-title class="q-pa-md row justify-around">
         <!-- <q-toolbar-title class="q-pa-md q-gutter-md"> -->
         <q-btn
           size="sm"
@@ -52,13 +101,6 @@
           text-color="white"
           label="Nuevo"
           @click="URL('/cliente/create')"
-        />
-        <q-btn
-          size="sm"
-          color="warning"
-          text-color="white"
-          label="Ver"
-          @click="rowClickNew()"
         />
         <q-btn
           size="sm"

@@ -3,7 +3,7 @@
     <q-card class="my-card">
       <q-item class="bg-custom4">
         <q-item-section>
-          <q-item-label>Cliente</q-item-label>
+          <q-item-label>Clientes</q-item-label>
           <q-item-label caption>Lista</q-item-label>
         </q-item-section>
         <q-item-section></q-item-section>
