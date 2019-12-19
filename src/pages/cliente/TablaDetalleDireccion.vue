@@ -3,7 +3,7 @@
     <!--    {{ datafld }}-->
     <div>
       <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
-        Direccion
+        Direcciones
       </p>
     </div>
     <div class="q-pb-md">
@@ -101,6 +101,7 @@
       :loading="loading"
       selection="multiple"
       :selected.sync="selected"
+      :selected-rows-label="getSelectedString"
     >
     </q-table>
     <q-dialog v-model="prompt" persistent>
@@ -345,6 +346,9 @@ export default {
       this.pblistar_distrito(this.fieldProvincia);
       this.form.codigoUbigeo = this.fieldProvincia;
       this.form.codigoDireccion = "";
+    },
+    getSelectedString() {
+      return this.selected.length === 0 ? "" : `${this.selected.length}`;
     }
   },
   async mounted() {

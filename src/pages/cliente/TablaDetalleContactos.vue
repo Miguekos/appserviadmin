@@ -101,6 +101,7 @@
       :loading="loading"
       selection="multiple"
       :selected.sync="selected"
+      :selected-rows-label="getSelectedString"
     >
     </q-table>
     <q-dialog v-model="prompt" persistent>
@@ -377,6 +378,9 @@ export default {
     },
     crearDireccion() {
       this.prompt = true;
+    },
+    getSelectedString() {
+      return this.selected.length === 0 ? "" : `${this.selected.length}`;
     },
     ...mapActions("proveedor", ["registrarProveContacto", "contactoProveedor"]),
     // eslint-disable-next-line
