@@ -34,7 +34,7 @@ export default {
   methods: {
     atras() {
       console.log("Ir Atras");
-      this.$router.go(-1)
+      this.$router.go(-1);
     }
   }
   // name: 'PageName',

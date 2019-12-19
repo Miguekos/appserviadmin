@@ -5,15 +5,13 @@
       dense
       :data="datafld"
       :columns="columns"
-      row-key="name"
+      row-key="no_percon"
       :filter="filter"
       :loading="loading"
+      selection="multiple"
+      :selected.sync="selected"
     >
       <template v-slot:top>
-        <div>
-          Contactos
-        </div>
-        <q-space />
         <q-input
           borderless
           placeholder="Buscar"
@@ -26,9 +24,14 @@
           </template>
         </q-input>
         <q-space />
-        <q-btn outline color="secondary" @click="crearDireccion()"
-          >Agregar Contacto</q-btn
-        >
+        <div class="q-gutter-sm">
+          <q-btn size="sm" outline color="red" @click="eliminarContactoF()"
+            >Eliminar Contacto</q-btn
+          >
+          <q-btn size="sm" outline color="positive" @click="crearDireccion()"
+            >Agregar Contacto</q-btn
+          >
+        </div>
       </template>
     </q-table>
     <q-dialog v-model="prompt" persistent>
@@ -151,7 +154,7 @@
         </q-form>
       </q-card>
     </q-dialog>
-    <!-- {{ $data.form }} -->
+    <!--    {{ $data.selected }}-->
     <!-- {{ $data.generoOption }} -->
   </div>
 </template>
@@ -164,6 +167,7 @@ export default {
   },
   data() {
     return {
+      selected: [],
       generos: ["M", "F"],
       loading: false,
       generoOption: [],
@@ -171,7 +175,6 @@ export default {
       siglaOption: [],
       form: {
         tipoPersona: "1",
-        numeroDocumento: "72232762",
         apellidoPaterno: "",
         apellidoMaterno: "",
         nombres: "",
@@ -234,6 +237,46 @@ export default {
     };
   },
   methods: {
+    eliminarContactoF() {
+      if (this.selected.length === 0) {
+        this.$q.notify({
+          color: "red",
+          textColor: "white",
+          icon: "fas fa-times",
+          message: "Debe selecionar un registro para Eliminar.!"
+        });
+      }
+      for (let index = 0; index < this.selected.length; index++) {
+        const element = this.selected[index];
+        console.log(element);
+        //tipo de persona
+        console.log(this.id_pro);
+        // Codigo de cliente
+        console.log(element.co_client);
+        this.eliminarContacto({
+          p_id: this.id_pro,
+          p_contacto: element.co_percon,
+          tipoPersona: element.co_tipper,
+          desactivarCliente: "S"
+        })
+          .then(resp => {
+            console.log(resp);
+            this.$q.notify({
+              color: "green",
+              textColor: "white",
+              icon: "fas fa-check-circle",
+              message: "Eliminado Correctamente.!"
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          })
+          .finally(() => {
+            this.contactoCliente(this.id_pro);
+            // this.info = this.Clientes;
+          });
+      }
+    },
     reset() {
       // this.$refs.p_no_nombre.resetValidation();
       // this.$refs.telefono.resetValidation();
@@ -273,7 +316,8 @@ export default {
       "listar_genero_persona",
       "listar_area_laboral",
       "listar_sigla_profesion",
-      "contactoCliente"
+      "contactoCliente",
+      "eliminarContacto"
     ])
   },
   async mounted() {

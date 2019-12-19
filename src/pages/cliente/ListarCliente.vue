@@ -3,7 +3,7 @@
     <q-table
       dense
       title="Clientes"
-      :data="info"
+      :data="Clientes"
       :columns="columns"
       row-key="nu_doccli"
       :selected-rows-label="getSelectedString"
@@ -136,6 +136,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions("clientes", ["getClientes", "eliminarCliente"]),
     onRowClick() {
       console.log("Se preciono una ROW");
     },
@@ -163,7 +164,7 @@ export default {
           .then(resp => {
             console.log(resp);
             this.$q.notify({
-              color: "green-4",
+              color: "green",
               textColor: "white",
               icon: "fas fa-check-circle",
               message: "Eliminado Correctamente.!"
@@ -171,6 +172,10 @@ export default {
           })
           .catch(err => {
             console.log(err);
+          })
+          .finally(() => {
+            this.getClientes();
+            // this.info = this.Clientes;
           });
       }
     },
@@ -195,7 +200,6 @@ export default {
         this.$router.push(`/cliente/detalle/${this.selected[0].co_client}`);
       }
     },
-    ...mapActions("clientes", ["getClientes", "eliminarCliente"]),
     getSelectedString() {
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
     }

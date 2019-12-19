@@ -5,9 +5,11 @@
       dense
       :data="datafld"
       :columns="columns"
-      row-key="id"
+      row-key="no_direcc"
       :filter="filter"
       :loading="loading"
+      selection="multiple"
+      :selected.sync="selected"
     >
       <template v-slot:top>
         <q-input
@@ -22,9 +24,14 @@
           </template>
         </q-input>
         <q-space />
-        <q-btn outline color="secondary" @click="crearDireccion()"
-          >Agregar Direccion</q-btn
-        >
+        <div class="q-gutter-sm">
+          <q-btn size="sm" outline color="red" @click="eliminarDireccionF()"
+            >Eliminar Contacto</q-btn
+          >
+          <q-btn size="sm" outline color="positive" @click="crearDireccion()"
+            >Agregar Contacto</q-btn
+          >
+        </div>
       </template>
     </q-table>
     <q-dialog v-model="prompt" persistent>
@@ -100,7 +107,7 @@
         </q-form>
       </q-card>
     </q-dialog>
-    <!-- {{ $data }} -->
+    <!--    {{ $data.selected }}-->
   </div>
 </template>
 <script>
@@ -116,6 +123,7 @@ export default {
   },
   data() {
     return {
+      selected: [],
       fieldDepartamento: "",
       fieldProvincia: "",
       fieldDistrito: "",
@@ -171,6 +179,46 @@ export default {
     };
   },
   methods: {
+    eliminarDireccionF() {
+      console.log(`Se selecionaron ${this.selected.length} registros`);
+      if (this.selected.length === 0) {
+        this.$q.notify({
+          color: "red",
+          textColor: "white",
+          icon: "fas fa-times",
+          message: "Debe selecionar un registro para Eliminar.!"
+        });
+      }
+      for (let index = 0; index < this.selected.length; index++) {
+        const element = this.selected[index];
+        console.log(element);
+        //tipo de persona
+        console.log(this.id_pro);
+        // Codigo de cliente
+        console.log(element.co_direcc);
+        this.eliminarDireccion({
+          p_id: this.id_pro,
+          codigoDireccion: element.co_direcc,
+          desactivarCliente: "S"
+        })
+          .then(resp => {
+            console.log(resp);
+            this.$q.notify({
+              color: "green",
+              textColor: "white",
+              icon: "fas fa-check-circle",
+              message: "Eliminado Correctamente.!"
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          })
+          .finally(() => {
+            this.direccionCliente(this.id_pro);
+            // this.info = this.Clientes;
+          });
+      }
+    },
     ...mapActions("proveedor", [
       "registrarProveDireccion",
       "direccionProveedor",
@@ -178,7 +226,12 @@ export default {
       "pblistar_provincia",
       "pblistar_distrito"
     ]),
-    ...mapActions("clientes", ["guardarDireccion", "direccionCliente"]),
+    ...mapActions("clientes", [
+      "guardarDireccion",
+      "direccionCliente",
+      "eliminarDireccion",
+      "contactoCliente"
+    ]),
     async onSubmit() {
       this.loading = true;
       this.$q.notify({

@@ -21,8 +21,7 @@
           />
           <q-toolbar-title shrink class="text-weight-bold">
             SJ Servi Admin
-          </q-toolbar-title
-          >
+          </q-toolbar-title>
           <q-space />
           <div class="q-gutter-sm row items-center no-wrap">
             <q-btn round flat @click="showDialog">

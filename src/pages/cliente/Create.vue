@@ -22,8 +22,8 @@
       <q-item>
         <q-item-section>
           <form
-            @submit.prevent.stop="onSubmit"
-            @reset.prevent.stop="onReset"
+            @submit.prevent="registrar"
+            @reset.prevent="onReset"
             class="q-gutter-sm"
           >
             <q-select
@@ -36,6 +36,7 @@
               map-options
               label="Tipo de Persona"
               outlined
+              required="true"
             />
 
             <q-select
@@ -57,7 +58,7 @@
               v-model="numeroDeDocumento"
               label="Numero de Documento"
               maxlength="11"
-              lazy-rules
+              required
             />
 
             <q-input
@@ -66,7 +67,7 @@
               outlined
               v-model="nombre"
               label="Nombre"
-              lazy-rules
+              required
             />
 
             <q-input
@@ -75,11 +76,16 @@
               outlined
               v-model="sigla"
               label="Sigla"
-              lazy-rules
+              required
             />
 
             <div class="text-center">
-              <q-btn size="sm" label="Registrar" type="submit" color="primary" />
+              <q-btn
+                size="sm"
+                label="Registrar"
+                type="submit"
+                color="primary"
+              />
               <q-btn
                 size="sm"
                 label="Resetear"
@@ -149,25 +155,42 @@ export default {
         siglaCliente: this.sigla
       };
       console.log(data);
-      return this.createCleintes(data);
+      this.createCleintes(data)
+        .then(resp => {
+          console.log(resp);
+          this.$q.notify({
+            color: "green",
+            textColor: "white",
+            icon: "fas fa-check-circle",
+            message: "Registrado"
+          });
+          this.$router.push("/cliente");
+        })
+        .catch(err => {
+          console.log(err);
+          this.$q.notify({
+            color: "red",
+            textColor: "white",
+            icon: "fas fa-times",
+            message: "Error al registrar.!"
+          });
+        });
     },
     onSubmit() {
       const response = this.registrar();
       console.log(response);
     },
-
     onReset() {
-      this.name = null;
-      this.dni = null;
-      this.email = null;
-      this.telf = null;
-      this.direccion = null;
-
-      this.$refs.name.resetValidation();
-      this.$refs.dni.resetValidation();
-      this.$refs.email.resetValidation();
-      this.$refs.telf.resetValidation();
-      this.$refs.direccion.resetValidation();
+      this.tipoDePersonaVar = "";
+      this.tipoDeDocumentoVar = "";
+      this.numeroDeDocumento = "";
+      this.nombre = "";
+      this.sigla = "";
+      //   this.$refs.name.resetValidation();
+      //   this.$refs.dni.resetValidation();
+      //   this.$refs.email.resetValidation();
+      //   this.$refs.telf.resetValidation();
+      //   this.$refs.direccion.resetValidation();
     }
   },
   async created() {
