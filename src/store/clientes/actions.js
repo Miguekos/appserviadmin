@@ -157,7 +157,7 @@ export async function eliminarDireccion({ commit }, payload) {
   console.log("Eliminar Cliente");
   const data = {
     codigoDireccion: payload.codigoDireccion,
-    desactivarCliente: "S"
+    desactivarDireccion: "S"
   };
   const response = await axiosInstance.post(
     `/api/clientes/eliminarDireccion/${payload.p_id}`,
@@ -173,7 +173,7 @@ export async function eliminarContacto({ commit }, payload) {
   console.log("Eliminar Cliente");
   const data = {
     tipoPersona: "2",
-    desactivarCliente: "S"
+    desactivar: "S"
   };
   const response = await axiosInstance.post(
     `/api/clientes/eliminarContacto/${payload.p_id}/${payload.p_contacto}`,
