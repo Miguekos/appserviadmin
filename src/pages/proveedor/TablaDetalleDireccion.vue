@@ -1,54 +1,118 @@
 <template>
   <div class="q-pa-md">
+    <div>
+      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
+        Direcciones
+      </p>
+    </div>
+    <div class="q-pb-md">
+      <div class="row no-wrap shadow-1 bg-grey-4">
+        <q-toolbar class="q-gutter-sm">
+          <q-input
+            v-if="$q.screen.gt.xs"
+            borderless
+            class="full-width q-pl-xs"
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+          <q-input
+            v-else
+            class="full-width"
+            borderless
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+
+          <q-space />
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="positive"-->
+          <!--            icon="add"-->
+          <!--            no-caps-->
+          <!--            label="Nuevo"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="negative"-->
+          <!--            icon="remove"-->
+          <!--            no-caps-->
+          <!--            label="Eliminar"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+          <q-btn
+            class="q-pa-xs"
+            dense
+            no-wrap
+            size="sm"
+            color="red"
+            no-caps
+            outline
+            label="Eliminar Direccion"
+            @click="eliminarDireccionF()"
+          ></q-btn>
+          <q-btn
+            class="q-pa-xs"
+            dense
+            no-wrap
+            size="sm"
+            no-caps
+            outline
+            color="positive"
+            label="Agregar Direccion"
+            @click="crearDireccion()"
+          ></q-btn>
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="primary"-->
+          <!--            icon="cloud_upload"-->
+          <!--            no-caps-->
+          <!--            label="Exportar"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+        </q-toolbar>
+      </div>
+    </div>
     <!--    {{ datafld }}-->
     <q-table
+      dense
       :data="datafld"
       :columns="columns"
-      row-key="id"
+      row-key="co_direcc"
       :filter="filter"
       :loading="loading"
       :pagination.sync="pagination"
+      selection="multiple"
+      :selected.sync="selected"
+      :selected-rows-label="getSelectedString"
     >
-      <template v-slot:top>
-        <img
-          style="height: 50px; width: 50px"
-          src="/statics/minilogoservi.png"
-        />
-        <q-space />
-        <q-btn outline color="secondary" @click="crearDireccion()"
-          >Agregar Direccion</q-btn
-        >
-      </template>
     </q-table>
-    <q-dialog full-width v-model="prompt" persistent>
-      <q-card>
+    <q-dialog v-model="prompt" persistent>
+      <q-card style="width: 100%;">
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <q-card-section>
             <div class="text-h6">Agregar Direccion</div>
           </q-card-section>
-
           <q-card-section>
             <div class="q-gutter-sm">
-              <div>
-                <q-input
-                  dense
-                  outlined
-                  required
-                  label="Direccion del Proveedor"
-                  v-model="form.p_no_direcc"
-                  @keyup.enter="prompt = false"
-                />
-              </div>
-              <!--              <div>-->
-              <!--                <q-input-->
-              <!--                  dense-->
-              <!--                  outlined-->
-              <!--                  required-->
-              <!--                  label="Codigo de Ubigeo"-->
-              <!--                  v-model="form.p_co_ubigeo"-->
-              <!--                  @keyup.enter="prompt = false"-->
-              <!--                />-->
-              <!--              </div>-->
               <div>
                 <q-select
                   outlined
@@ -84,13 +148,23 @@
                   outlined
                   dense
                   required
-                  v-model="fieldDistrito"
+                  v-model="form.codigoUbigeo"
                   :options="getDistrito"
                   option-value="no_ubigeo"
                   option-label="no_provin"
                   emit-value
                   map-options
                   label="Distrito"
+                />
+              </div>
+              <div>
+                <q-input
+                  dense
+                  outlined
+                  required
+                  label="Direccion del Proveedor"
+                  v-model="form.direccion"
+                  @keyup.enter="prompt = false"
                 />
               </div>
             </div>
@@ -119,14 +193,16 @@ export default {
   },
   data() {
     return {
+      selected: [],
       fieldDepartamento: "",
       fieldProvincia: "",
       fieldDistrito: "",
       model: "",
       form: {
-        p_id_provee: null,
-        p_no_direcc: "",
-        p_co_ubigeo: ""
+        id_pro: this.id_pro,
+        codigoUbigeo: "",
+        codigoDireccion: "",
+        direccion: ""
       },
       prompt: false,
       pagination: {
@@ -142,33 +218,32 @@ export default {
       filter: "",
       columns: [
         {
-          name: "id",
+          name: "no_depart",
           required: true,
-          label: "Nro.",
+          label: "Departamento",
           align: "left",
-          field: "id_provee",
-          format: val => `${val}`,
+          field: "no_depart",
           sortable: true
         },
         {
-          name: "direccion",
+          name: "no_provin",
+          align: "left",
+          label: "Provincia",
+          field: "no_provin",
+          sortable: true
+        },
+        {
+          name: "no_distri",
+          align: "left",
+          label: "Distrito",
+          field: "no_distri",
+          sortable: true
+        },
+        {
+          name: "no_direcc",
           align: "left",
           label: "Direccion",
           field: "no_direcc",
-          sortable: true
-        },
-        {
-          name: "codigoubigeo",
-          align: "left",
-          label: "Codigo Ubigeo",
-          field: "co_ubigeo",
-          sortable: true
-        },
-        {
-          name: "id_provee",
-          align: "left",
-          label: "id_provee",
-          field: "id_provee",
           sortable: true
         }
       ]
@@ -192,7 +267,11 @@ export default {
       });
       this.registrarProveDireccion(this.form).then(result => {
         console.log(result);
-        this.direccionProveedor(this.form.p_id_provee).then(result => {
+        this.fieldDepartamento = "";
+        this.fieldProvincia = "";
+        this.form.codigoUbigeo = "";
+        this.form.direccion = "";
+        this.direccionProveedor(this.id_pro).then(result => {
           console.log(result);
           this.loading = false;
           this.prompt = false;
@@ -223,14 +302,17 @@ export default {
       this.pblistar_distrito(this.fieldProvincia);
       this.form.p_co_ubigeo = this.fieldProvincia;
       this.fieldDistrito = "";
+    },
+    getSelectedString() {
+      return this.selected.length === 0 ? "" : `${this.selected.length}`;
     }
   },
   async mounted() {
     this.loading = true;
-    this.form.p_id_provee = this.id_pro;
-    this.pblistar_departamento();
+    this.form.p_id_provee = await this.id_pro;
+    this.form.id_pro = await this.id_pro;
+    await this.pblistar_departamento();
     this.loading = false;
-
     // await this.getClientes();
     // this.info = this.Clientes;
   },

@@ -3,56 +3,88 @@
     <q-card class="my-card">
       <q-item class="bg-custom4">
         <q-item-section>
-          <q-item-label>Crear Cliente</q-item-label>
+          <q-item-label>Crear Proveedor</q-item-label>
           <q-item-label caption>Mentenimiento</q-item-label>
         </q-item-section>
       </q-item>
       <q-item>
         <q-item-section>
-          <form
-            @submit.prevent.stop="onSubmit"
-            @reset.prevent.stop="onReset"
+          <q-form
+            @submit.prevent="registrar"
+            @reset="onReset"
             class="q-gutter-md"
           >
-            <q-input
-              ref="razonSocial"
-              filled
-              v-model="razonSocial"
-              label="Razon Social"
-              lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'el campo no puede estar vacio'
-              ]"
+            <q-select
+              dense
+              autofocus
+              v-model="tipoDePersonaVar"
+              :options="tipoDePersonaOption"
+              option-value="co_tipper"
+              option-label="no_tipper"
+              emit-value
+              map-options
+              label="Tipo de Persona"
+              outlined
+            />
+
+            <q-select
+              dense
+              v-model="tipoDeDocumentoVar"
+              :options="tipoDeDocumentoOption"
+              option-value="ti_docide"
+              option-label="no_tipdoc"
+              emit-value
+              map-options
+              label="Tipo de Documento"
+              outlined
+            />
+
+            <q-select
+              dense
+              v-model="listar_sector_economicoVar"
+              :options="listar_sector_economicoOption"
+              option-value="co_sececo"
+              option-label="no_sececo"
+              emit-value
+              map-options
+              label="Sector Economico"
+              outlined
             />
 
             <q-input
-              ref="ruc"
-              filled
-              v-model="ruc"
-              label="Numero de Ruc"
-              lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'el campo no puede estar vacio'
-              ]"
+              dense
+              required="true"
+              outlined
+              maxlength="11"
+              v-model="numDocumento"
+              label="Nro. de Documento"
             />
 
             <q-input
-              ref="sigla"
-              filled
-              v-model="sigla"
-              label="Sigla"
-              lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'el campo no puede estar vacio'
-              ]"
+              dense
+              required="true"
+              outlined
+              v-model="SiglaProveedor"
+              label="Sigla Proveedor"
             />
 
-            <div>
-              <q-btn label="Registrar" type="submit" color="primary" />
+            <q-input
+              dense
+              required="true"
+              outlined
+              v-model="nombre"
+              label="Nombre"
+            />
+
+            <div class="text-center">
               <q-btn
+                size="sm"
+                label="Registrar"
+                type="submit"
+                color="primary"
+              />
+              <q-btn
+                size="sm"
                 label="Resetear"
                 type="reset"
                 color="primary"
@@ -60,7 +92,7 @@
                 class="q-ml-sm"
               />
             </div>
-          </form>
+          </q-form>
         </q-item-section>
       </q-item>
     </q-card>
@@ -72,62 +104,65 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      razonSocial: null,
-      ruc: null,
-      sigla: null
+      tipoDePersonaOption: [],
+      tipoDeDocumentoOption: [],
+      listar_sector_economicoOption: [],
+      tipoDePersonaVar: null,
+      tipoDeDocumentoVar: null,
+      listar_sector_economicoVar: null,
+      numDocumento: "",
+      SiglaProveedor: "",
+      nombre: ""
     };
   },
   methods: {
-    ...mapActions("proveedor", ["registrarProveedor"]),
+    ...mapActions("proveedor", [
+      "registrarProveedor",
+      "listar_sector_economico"
+    ]),
+    ...mapActions("clientes", ["tipoDePersona", "TipoDeDocumento"]),
     registrar() {
       const data = {
-        no_provee: this.razonSocial,
-        nu_docpro: this.ruc,
-        nu_sigpro: this.sigla
+        tipoPersona: this.tipoDePersonaVar,
+        tipoDocumento: this.tipoDeDocumentoVar,
+        codigoSectorEconomico: this.listar_sector_economicoVar,
+        numeroDocumento: this.numDocumento,
+        siglaProveedor: this.SiglaProveedor,
+        razonSocial: this.nombre
       };
       console.log(data);
-      return this.registrarProveedor(data);
-    },
-    onSubmit() {
-      this.$refs.razonSocial.validate();
-      this.$refs.ruc.validate();
-      this.$refs.sigla.validate();
-
-      if (
-        this.$refs.razonSocial.hasError ||
-        this.$refs.ruc.hasError ||
-        this.$refs.sigla.hasError
-      ) {
-        this.formHasError = true;
-      } else {
-        const response = this.registrar();
-        if (response) {
+      this.registrarProveedor(data)
+        .then(resp => {
+          console.log(resp);
           this.$q.notify({
-            icon: "done",
-            color: "secondary",
-            message: "Registrado"
+            color: "positive",
+            message: "Proveedor registrado correctamente.!",
+            textColor: "white"
           });
-          this.onReset();
           this.$router.push("/proveedores");
-        } else {
+        })
+        .catch(err => {
+          console.log(err);
           this.$q.notify({
-            icon: "close",
-            color: "red",
-            message: "No se pudo guardar el usuario"
+            color: "negative",
+            message: "Error al intentar registrar proveedor.!",
+            textColor: "white"
           });
-        }
-      }
+        });
     },
-
     onReset() {
-      this.razonSocial = null;
-      this.ruc = null;
-      this.sigla = null;
-
-      this.$refs.razonSocial.resetValidation();
-      this.$refs.ruc.resetValidation();
-      this.$refs.sigla.resetValidation();
+      this.tipoDePersonaVar = null;
+      this.tipoDeDocumentoVar = null;
+      this.listar_sector_economicoVar = null;
+      this.numDocumento = "";
+      this.SiglaProveedor = "";
+      this.nombre = "";
     }
+  },
+  async mounted() {
+    this.tipoDePersonaOption = await this.tipoDePersona();
+    this.tipoDeDocumentoOption = await this.TipoDeDocumento();
+    this.listar_sector_economicoOption = await this.listar_sector_economico();
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pt-md q-pr-md q-pl-md">
     <div>
       <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
         Clientes

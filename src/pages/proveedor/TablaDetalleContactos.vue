@@ -1,27 +1,112 @@
 <template>
   <div class="q-pa-md">
+    <div>
+      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
+        Contactos
+      </p>
+    </div>
+    <div class="q-pb-md">
+      <div class="row no-wrap shadow-1 bg-grey-4">
+        <q-toolbar class="q-gutter-sm">
+          <q-input
+            v-if="$q.screen.gt.xs"
+            borderless
+            class="full-width q-pl-xs"
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+          <q-input
+            v-else
+            class="full-width"
+            borderless
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+
+          <q-space />
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="positive"-->
+          <!--            icon="add"-->
+          <!--            no-caps-->
+          <!--            label="Nuevo"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="negative"-->
+          <!--            icon="remove"-->
+          <!--            no-caps-->
+          <!--            label="Eliminar"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+          <q-btn
+            class="q-pa-xs"
+            dense
+            no-wrap
+            size="sm"
+            color="red"
+            no-caps
+            outline
+            label="Eliminar Contacto"
+            @click="eliminarContactoF()"
+          ></q-btn>
+          <q-btn
+            class="q-pa-xs"
+            dense
+            no-wrap
+            size="sm"
+            no-caps
+            outline
+            color="positive"
+            label="Agregar Contacto"
+            @click="crearDireccion()"
+          ></q-btn>
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="primary"-->
+          <!--            icon="cloud_upload"-->
+          <!--            no-caps-->
+          <!--            label="Exportar"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
+        </q-toolbar>
+      </div>
+    </div>
     <!--    {{ `ID proveedor ${id_pro}` }}-->
     <q-table
+      dense
       :data="datafld"
       :columns="columns"
-      row-key="id"
+      row-key="co_percon"
       :filter="filter"
       :loading="loading"
       :pagination.sync="pagination"
+      selection="multiple"
+      :selected.sync="selected"
+      :selected-rows-label="getSelectedString"
     >
-      <template v-slot:top>
-        <img
-          style="height: 50px; width: 50px"
-          src="/statics/minilogoservi.png"
-        />
-        <q-space />
-        <q-btn outline color="secondary" @click="crearDireccion()"
-          >Agregar Contacto</q-btn
-        >
-      </template>
     </q-table>
-    <q-dialog full-width v-model="prompt" persistent>
-      <q-card>
+    <q-dialog v-model="prompt" persistent>
+      <q-card style="width: 100%;">
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <q-card-section>
             <div class="text-h6">Agregar Contacto</div>
@@ -29,32 +114,98 @@
 
           <q-card-section>
             <div class="q-gutter-sm">
-              <div>
+              <div class="row q-gutter-xs">
+                <div class="col">
+                  <q-input
+                    ref="form.apellidoPaterno"
+                    dense
+                    outlined
+                    required="true"
+                    label="Apellido Paterno"
+                    v-model="form.apellidoPaterno"
+                    autofocus
+                  />
+                </div>
+                <div class="col ">
+                  <q-input
+                    ref="form.apellidoMaterno"
+                    dense
+                    outlined
+                    required="true"
+                    label="Apellido Materno"
+                    v-model="form.apellidoMaterno"
+                    autofocus
+                  />
+                </div>
+              </div>
+              <div class="q-gutter-xs">
                 <q-input
-                  ref="form.p_no_nombre"
+                  ref="form.nombres"
                   dense
                   outlined
                   required="true"
                   label="Nombre"
-                  v-model="form.p_no_nombre"
+                  v-model="form.nombres"
                   autofocus
-                  @keyup.enter="prompt = false"
-                  :rules="[val => !!val || 'El campo es obligatorio']"
                 />
               </div>
-              <div>
+              <div class="q-gutter-xs">
+                <q-select
+                  :options="generoOption"
+                  option-label="no_genero"
+                  option-value="ti_genero"
+                  emit-value
+                  map-options
+                  ref="sexo"
+                  dense
+                  outlined
+                  required
+                  label="Sexo"
+                  v-model="form.generoPersona"
+                />
+              </div>
+              <div class="q-gutter-xs">
+                <q-select
+                  :options="areaOption"
+                  option-label="no_arelab"
+                  option-value="co_arelab"
+                  emit-value
+                  map-options
+                  ref="area"
+                  dense
+                  outlined
+                  required
+                  label="Area"
+                  v-model="form.codigoAreaLaboral"
+                />
+              </div>
+              <div class="q-gutter-xs">
+                <q-select
+                  :options="siglaOption"
+                  option-label="no_sigpro"
+                  option-value="co_sigpro"
+                  emit-value
+                  map-options
+                  ref="siglas"
+                  dense
+                  outlined
+                  required
+                  label="Siglas"
+                  v-model="form.codigoSiglaProfesion"
+                />
+              </div>
+              <div class="q-gutter-xs">
                 <q-input
                   ref="telefono"
                   dense
                   outlined
                   required
                   label="Telefono"
+                  maxlength="9"
                   v-model="form.p_nu_telefo"
-                  @keyup.enter="prompt = false"
-                  :rules="[val => val.length == 9 || 'Debe tener 9 digitos']"
                 />
               </div>
-              <div>
+              <div class="q-gutter-xs">
                 <q-input
                   ref="correo"
                   dense
@@ -62,22 +213,7 @@
                   required
                   label="Correo"
                   type="email"
-                  v-model="form.p_no_correo"
-                  @keyup.enter="prompt = false"
-                  :rules="[val => !!val || 'El campo es obligatorio']"
-                />
-              </div>
-              <div>
-                <q-select
-                  :options="generos"
-                  ref="genero"
-                  dense
-                  outlined
-                  required
-                  label="Genero"
-                  v-model="form.p_co_gencon"
-                  @keyup.enter="prompt = false"
-                  :rules="[val => !!val || 'El campo es obligatorio']"
+                  v-model="form.correoElectronico"
                 />
               </div>
             </div>
@@ -90,7 +226,7 @@
         </q-form>
       </q-card>
     </q-dialog>
-    <!--    {{ $data.form }}-->
+    <!--    {{ $data }}-->
   </div>
 </template>
 <script>
@@ -102,14 +238,22 @@ export default {
   },
   data() {
     return {
+      selected: [],
       generos: ["M", "F"],
       loading: false,
+      generoOption: [],
+      areaOption: [],
+      siglaOption: [],
       form: {
-        p_id_provee: null,
-        p_no_nombre: "",
-        p_nu_telefo: "",
-        p_no_correo: "",
-        p_co_gencon: ""
+        tipoPersona: "1",
+        apellidoPaterno: "",
+        apellidoMaterno: "",
+        nombres: "",
+        generoPersona: "",
+        tipoDocumento: "1",
+        codigoAreaLaboral: "",
+        correoElectronico: "",
+        codigoSiglaProfesion: ""
       },
       prompt: false,
       pagination: {
@@ -124,53 +268,50 @@ export default {
       filter: "",
       columns: [
         {
-          name: "id",
+          name: "no_percon",
           required: true,
-          label: "Nro.",
-          align: "left",
-          field: "id_provee",
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "nombre",
-          align: "left",
           label: "Nombre",
-          field: "no_nombre",
-          sortable: true
-        },
-        {
-          name: "telf",
           align: "left",
-          label: "Telefono",
-          field: "nu_telefo",
+          field: "no_percon",
           sortable: true
         },
         {
-          name: "correo",
+          name: "nu_doccon",
+          align: "left",
+          label: "Documento",
+          field: "nu_doccon",
+          sortable: true
+        },
+        {
+          name: "no_sigpro",
+          align: "left",
+          label: "Sigla",
+          field: "no_sigpro",
+          sortable: true
+        },
+        {
+          name: "no_corele",
           align: "left",
           label: "Correo",
-          field: "no_correo",
+          field: "no_corele",
           sortable: true
         },
         {
-          name: "genero",
+          name: "nu_telefo",
           align: "left",
-          label: "Genero",
-          field: "co_gencon",
-          sortable: true
-        },
-        {
-          name: "id_conpro",
-          align: "left",
-          label: "id_conpro",
-          field: "id_conpro",
+          label: "Telefonos",
+          field: "nu_telefo",
           sortable: true
         }
       ]
     };
   },
   methods: {
+    ...mapActions("clientes", [
+      "listar_genero_persona",
+      "listar_area_laboral",
+      "listar_sigla_profesion"
+    ]),
     reset() {
       // this.$refs.p_no_nombre.resetValidation();
       // this.$refs.telefono.resetValidation();
@@ -185,27 +326,45 @@ export default {
         icon: "fas fa-check-circle",
         message: "Submitted"
       });
-      this.registrarProveContacto(this.form).then(() => {
-        this.contactoProveedor(this.form.p_id_provee).then(() => {
-          this.prompt = false;
-          this.loading = false;
-        });
-      });
+      console.log("#################");
+      console.log({ ...this.form, id: this.id_pro });
+      console.log(this.form.p_id);
+      console.log("#################");
+      this.registrarProveContacto({ ...this.form, p_id: this.id_pro }).then(
+        () => {
+          this.onReset();
+          this.contactoProveedor(this.form.p_id_provee).then(() => {
+            this.prompt = false;
+            this.loading = false;
+          });
+        }
+      );
     },
     onReset() {
       this.prompt = false;
-      this.name = null;
-      this.age = null;
-      this.accept = false;
+      this.form.apellidoPaterno = "";
+      this.form.apellidoMaterno = "";
+      this.form.nombres = "";
+      this.form.generoPersona = "";
+      this.form.codigoAreaLaboral = "";
+      this.form.correoElectronico = "";
+      this.form.codigoSiglaProfesion = "";
     },
     crearDireccion() {
       this.prompt = true;
     },
-    ...mapActions("proveedor", ["registrarProveContacto", "contactoProveedor"])
+    ...mapActions("proveedor", ["registrarProveContacto", "contactoProveedor"]),
+    getSelectedString() {
+      return this.selected.length === 0 ? "" : `${this.selected.length}`;
+    }
   },
   async mounted() {
     this.loading = true;
-    this.form.p_id_provee = this.id_pro;
+    this.form.p_id_provee = await this.id_pro;
+    this.form.id_pro = await this.id_pro;
+    this.generoOption = await this.listar_genero_persona();
+    this.areaOption = await this.listar_area_laboral();
+    this.siglaOption = await this.listar_sigla_profesion();
     this.loading = false;
     // await this.getClientes();
     // this.info = this.Clientes;
