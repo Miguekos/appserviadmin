@@ -33,6 +33,12 @@
               </q-avatar>
               <q-tooltip>Cuenta</q-tooltip>
             </q-btn>
+            <q-btn round flat @click="URL('logout')">
+              <q-avatar size="36px">
+                <q-icon name="logout" />
+              </q-avatar>
+              <q-tooltip>Salir</q-tooltip>
+            </q-btn>
           </div>
         </q-toolbar>
       </q-header>
@@ -104,25 +110,24 @@
               label="Ventas"
               header-class="text-primary"
             >
-              <!--              <q-item-->
-              <!--                clickable-->
-              <!--                v-ripple-->
-              <!--                :active="link === 'outbox'"-->
-              <!--                @click="(link = 'outbox'), URL('/ventas')"-->
-              <!--                active-class="my-menu-link"-->
-              <!--              >-->
-              <!--                <q-item-section avatar>-->
-              <!--                  &lt;!&ndash;                  <q-icon name="monetization_on" />&ndash;&gt;-->
-              <!--                </q-item-section>-->
-
-              <!--                <q-item-section>Seg. de Ventas</q-item-section>-->
-              <!--              </q-item>-->
+              <q-item
+                clickable
+                v-ripple
+                :active="link === '/ventas'"
+                @click="URL('/ventas')"
+                active-class="my-menu-link"
+              >
+                <q-item-section avatar>
+                  <!--                  <q-icon name="monetization_on" />-->
+                </q-item-section>
+                <q-item-section>Seg. de Ventas</q-item-section>
+              </q-item>
 
               <q-item
                 clickable
                 v-ripple
-                :active="link === 'trash'"
-                @click="(link = 'trash'), URL('/cotizacion')"
+                :active="link === '/cotizacion'"
+                @click="URL('/cotizacion')"
                 active-class="my-menu-link"
               >
                 <q-item-section avatar>
@@ -296,5 +301,5 @@ export default {
 <style lang="sass">
 .my-menu-link
   color: white
-  background: lightgrey
+  background: #26a69a
 </style>
