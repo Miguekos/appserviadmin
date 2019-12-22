@@ -130,12 +130,16 @@
             </div>
             <div class="flex flex-center">
               <q-btn
+                size="sm"
+                glossy
                 label="Registrar"
                 :loading="loading1"
                 type="submit"
                 color="primary"
               />
               <q-btn
+                size="sm"
+                glossy
                 label="Cerrar"
                 color="primary"
                 flat

@@ -3,20 +3,13 @@
     <q-card class="my-card">
       <q-item class="bg-custom4">
         <q-item-section>
-          <q-item-label>Crear Cliente</q-item-label>
-          <q-item-label caption>Mentenimiento</q-item-label>
+          <q-item-label>Crear</q-item-label>
+          <q-item-label caption>Cliente</q-item-label>
         </q-item-section>
         <q-item-section></q-item-section>
         <q-item-section></q-item-section>
         <q-item-section>
-          <q-btn
-            size="sm"
-            @click="atras()"
-            q-btn-push
-            label="Atras"
-            text-color="white"
-            color="grey"
-          />
+          <Atras />
         </q-item-section>
       </q-item>
       <q-item>
@@ -81,12 +74,14 @@
 
             <div class="text-center">
               <q-btn
+                glossy
                 size="sm"
                 label="Registrar"
                 type="submit"
                 color="primary"
               />
               <q-btn
+                glossy
                 size="sm"
                 label="Resetear"
                 type="reset"
@@ -135,6 +130,9 @@ export default {
         }
       ]
     };
+  },
+  components: {
+    Atras: () => import("../../components/atras")
   },
   methods: {
     ...mapActions("clientes", [

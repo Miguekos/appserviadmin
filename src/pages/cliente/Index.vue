@@ -9,14 +9,7 @@
         <q-item-section></q-item-section>
         <q-item-section></q-item-section>
         <q-item-section>
-          <q-btn
-            size="sm"
-            @click="atras()"
-            q-btn-push
-            label="Atras"
-            text-color="white"
-            color="grey"
-          />
+          <Atras />
         </q-item-section>
       </q-item>
       <ListarCliente />
@@ -27,7 +20,8 @@
 <script>
 export default {
   components: {
-    ListarCliente: () => import("./ListarCliente")
+    ListarCliente: () => import("./ListarCliente"),
+    Atras: () => import("../../components/atras")
     // TablaFiltro: () => import("./TablaFiltro"),
     // CuadroResumen: () => import("./CuadroResumen")
   },

@@ -6,6 +6,11 @@
           <q-item-label>Crear Proveedor</q-item-label>
           <q-item-label caption>Mentenimiento</q-item-label>
         </q-item-section>
+        <q-item-section></q-item-section>
+        <q-item-section></q-item-section>
+        <q-item-section>
+          <Atras />
+        </q-item-section>
       </q-item>
       <q-item>
         <q-item-section>
@@ -114,6 +119,9 @@ export default {
       SiglaProveedor: "",
       nombre: ""
     };
+  },
+  components: {
+    Atras: () => import("../../components/atras")
   },
   methods: {
     ...mapActions("proveedor", [

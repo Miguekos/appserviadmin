@@ -9,14 +9,7 @@
         <q-item-section />
         <q-item-section />
         <q-item-section>
-          <q-btn
-            size="sm"
-            @click="atras()"
-            q-btn--push
-            label="Atras"
-            text-color="white"
-            color="grey"
-          />
+          <Atras />
         </q-item-section>
       </q-item>
       <div>
@@ -45,7 +38,8 @@ export default {
   },
   components: {
     ListaDirecciones: () => import("./TablaDetalleDireccion"),
-    ListaContactos: () => import("./TablaDetalleContactos")
+    ListaContactos: () => import("./TablaDetalleContactos"),
+    Atras: () => import("../../components/atras")
     // CuadroResumen: () => import("./CuadroResumen")
   },
   methods: {

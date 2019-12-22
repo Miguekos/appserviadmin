@@ -40,6 +40,7 @@
     <div class="row justify-around q-gutter">
       <q-btn
         color="secondary"
+        glossy
         @click="showLoading()"
         icon-right="send"
         size="sm"
@@ -47,6 +48,7 @@
       />
       <q-btn
         color="positive"
+        glossy
         @click="nuevo_reque()"
         icon-right="add"
         size="sm"

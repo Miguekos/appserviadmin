@@ -10,14 +10,7 @@
           <q-item-section></q-item-section>
           <q-item-section></q-item-section>
           <q-item-section>
-            <q-btn
-              size="sm"
-              @click="atras()"
-              q-btn-push
-              label="Atras"
-              text-color="white"
-              color="grey"
-            />
+            <Atras />
           </q-item-section>
         </q-item>
         <div class="row full-width">
@@ -59,7 +52,8 @@ export default {
     TablaListado: () => import("./TablaListado"),
     TablaFiltro: () => import("./TablaFiltro"),
     CuadroResumen: () => import("./CuadroResumen"),
-    AddRegistro: () => import("./Create")
+    AddRegistro: () => import("./Create"),
+    Atras: () => import("../../components/atras")
   }
   // name: 'PageName',
 };

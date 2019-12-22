@@ -1,14 +1,15 @@
 <template>
   <div class="q-pt-md q-pr-md q-pl-md">
     <div>
-      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
+      <p class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1">
         Clientes
       </p>
     </div>
     <div class="q-pb-md">
-      <div class="row no-wrap shadow-1 bg-grey-4">
+      <div class="row no-wrap glossy shadow-1 bg-grey-4">
         <q-toolbar>
           <q-input
+            glossy
             v-if="$q.screen.gt.xs"
             borderless
             class="full-width"
@@ -22,6 +23,7 @@
             </template>
           </q-input>
           <q-input
+            glossy
             v-else
             class="full-width"
             borderless
@@ -96,6 +98,7 @@
       <q-toolbar-title class="q-pa-md row justify-around">
         <!-- <q-toolbar-title class="q-pa-md q-gutter-md"> -->
         <q-btn
+          glossy
           size="sm"
           color="positive"
           text-color="white"
@@ -103,6 +106,7 @@
           @click="URL('/cliente/create')"
         />
         <q-btn
+          glossy
           size="sm"
           color="negative"
           text-color="white"
