@@ -46,7 +46,7 @@
         </div>
         <div class="q-ma-sm">
           <q-select
-            label="Estado"
+            label="Direccion"
             required="true"
             filled
             dense

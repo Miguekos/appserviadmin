@@ -106,7 +106,7 @@
       <q-card style="width: 100%;">
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <q-card-section>
-            <div class="text-h6">Agregar Contacto</div>
+            <div class="text-h6">Agregar Contacto del cliente {{ id_pro }}</div>
           </q-card-section>
 
           <q-card-section>
