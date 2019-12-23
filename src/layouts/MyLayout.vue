@@ -18,6 +18,7 @@
             aria-label="Menu"
             icon="menu"
             color="green"
+            class="glossy"
           />
           <q-toolbar-title
             class="cursor-pointer text-weight-bold"
@@ -46,100 +47,7 @@
       <q-drawer v-model="leftDrawerOpen" content-class="bg-grey-2" :width="240">
         <q-scroll-area dense :thumb-style="thumbStyle" class="fit q-pa-sm">
           <!--<Menu />-->
-          <q-list>
-            <q-expansion-item
-              group="somegroup"
-              icon="group"
-              label="Mantenimiento"
-              default-opened
-              header-class="text-primary"
-            >
-              <!-- Cliente -->
-              <q-item
-                clickable
-                v-ripple
-                :active="link === '/cliente'"
-                @click="URL('/cliente')"
-                active-class="my-menu-link"
-              >
-                <q-item-section avatar>
-                  <!--                  <q-icon name="group" />-->
-                </q-item-section>
-
-                <q-item-section>Cliente</q-item-section>
-              </q-item>
-
-              <!-- Proveedores -->
-              <q-item
-                :header-inset-level="1"
-                clickable
-                v-ripple
-                :active="link === '/proveedores'"
-                @click="URL('/proveedores')"
-                active-class="my-menu-link"
-              >
-                <q-item-section avatar>
-                  <!--                  <q-icon name="supervised_user_circle" />-->
-                </q-item-section>
-
-                <q-item-section>Proveedores</q-item-section>
-              </q-item>
-
-              <!-- ¨Producto -->
-              <!--              <q-item-->
-              <!--                :header-inset-level="1"-->
-              <!--                clickable-->
-              <!--                v-ripple-->
-              <!--                :active="link === '/producto'"-->
-              <!--                @click="URL('/producto')"-->
-              <!--                active-class="my-menu-link"-->
-              <!--              >-->
-              <!--                <q-item-section avatar>-->
-              <!--                  &lt;!&ndash;                  <q-icon name="supervised_user_circle" />&ndash;&gt;-->
-              <!--                </q-item-section>-->
-
-              <!--                <q-item-section>Producto</q-item-section>-->
-              <!--              </q-item>-->
-            </q-expansion-item>
-
-            <q-separator />
-
-            <q-expansion-item
-              group="somegroup"
-              icon="attach_money"
-              label="Ventas"
-              header-class="text-primary"
-            >
-              <q-item
-                clickable
-                v-ripple
-                :active="link === '/ventas'"
-                @click="URL('/ventas')"
-                active-class="my-menu-link"
-              >
-                <q-item-section avatar>
-                  <!--                  <q-icon name="monetization_on" />-->
-                </q-item-section>
-                <q-item-section>Seg. de Ventas</q-item-section>
-              </q-item>
-
-              <q-item
-                clickable
-                v-ripple
-                :active="link === '/cotizacion'"
-                @click="URL('/cotizacion')"
-                active-class="my-menu-link"
-              >
-                <q-item-section avatar>
-                  <!--                  <q-icon name="monetization_on" />-->
-                </q-item-section>
-
-                <q-item-section>Req. de cotizacion</q-item-section>
-              </q-item>
-            </q-expansion-item>
-
-            <q-separator />
-          </q-list>
+          <Menu />
         </q-scroll-area>
       </q-drawer>
 
@@ -175,13 +83,10 @@
           <div class="row">
             <div class="col-xs-12 q-pb-lg">
               <q-uploader
-                flat
-                bordered
-                auto-upload
-                url="http://localhost:4444/upload"
-                label="Cambiar imagen de Perfil"
-                accept=".jpg, image/*"
-                class="full-width"
+                :factory="factoryFn"
+                multiple
+                style="max-width: 300px"
+                name="file"
               />
             </div>
             <div class="col-xs-12">
@@ -257,6 +162,24 @@ export default {
     };
   },
   methods: {
+    factoryFn(files) {
+      console.log(files);
+      return {
+        url: "http://localhost:5000",
+        method: "POST"
+      };
+      // console.log(files);
+      // returning a Promise
+
+      // return new Promise(resolve => {
+      //   // simulating a delay of 2 seconds
+      //   setTimeout(() => {
+      //     resolve({
+      //       url: "http://localhost:4444/upload"
+      //     });
+      //   }, 2000);
+      // });
+    },
     ...mapActions("auth", ["logout"]),
     showDialog() {
       const userlocal = JSON.parse(localStorage.getItem("datadelusuario"));
@@ -285,7 +208,7 @@ export default {
     }
   },
   components: {
-    // Menu: () => import("./Menu")
+    Menu: () => import("./Menu")
   }
 };
 </script>
@@ -300,6 +223,6 @@ export default {
 </style>
 <style lang="sass">
 .my-menu-link
-  color: white
-  background: #26a69a
+  color: black
+  background: #efe9e5
 </style>

@@ -26,9 +26,30 @@ export function registrosFiltroEstados(state) {
 }
 
 export function dialogLlamada(state) {
+  console.log(state.dialogLlamadaCliente);
   return state.dialogLlamadaCliente;
+}
+
+export function dialogLlamadaEstado(state) {
+  return state.dialogLlamadaCliente.estado;
 }
 
 export function dialogRegistrarCita(state) {
   return state.dialogRegistrarCitaCliente;
+}
+
+export function dialogRegistrarCitaEstado(state) {
+  return state.dialogRegistrarCitaCliente.estado;
+}
+
+export function getseguimiento_cliente(state) {
+  return state.seguimiento_cliente;
+}
+
+export function getlistar_estado_seguimiento(state) {
+  return state.listar_estado_seguimiento;
+}
+
+export function getlistar_seguimientos_registrados(state) {
+  return state.listar_seguimientos_registrados;
 }

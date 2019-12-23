@@ -1,126 +1,146 @@
 <template>
-  <div class="q-pa-md" style="max-width: 350px">
-    <q-list bordered class="rounded-borders">
+  <div>
+    <q-list>
       <q-expansion-item
-        expand-separator
-        icon="mail"
-        label="Inbox"
-        caption="5 unread emails"
+        group="somegroup"
+        icon="group"
+        label="Mantenimiento"
         default-opened
+        header-class="text-white glossy bg-green-5 rounded-borders"
       >
-        <q-expansion-item
-          :header-inset-level="1"
-          expand-separator
-          icon="receipt"
-          label="Receipts"
-          default-opened
+        <!-- Cliente -->
+        <q-item
+          clickable
+          v-ripple
+          :active="link === '/cliente'"
+          @click="URL('/cliente')"
+          active-class="my-menu-link"
         >
-          <q-expansion-item
-            switch-toggle-side
-            dense-toggle
-            label="Today"
-            :header-inset-level="1"
-            :content-inset-level="2"
-          >
-            <q-card>
-              <q-card-section>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quidem, eius reprehenderit eos corrupti commodi magni quaerat ex
-                numquam, dolorum officiis modi facere maiores architecto
-                suscipit iste eveniet doloribus ullam aliquid.
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
+          <!--          <q-item-section avatar>-->
+          <!--                  <q-icon name="group" />-->
+          <!--          </q-item-section>-->
 
-          <q-expansion-item
-            switch-toggle-side
-            dense-toggle
-            label="Yesterday"
-            :header-inset-level="1"
-            :content-inset-level="2"
-          >
-            <q-card>
-              <q-card-section>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quidem, eius reprehenderit eos corrupti commodi magni quaerat ex
-                numquam, dolorum officiis modi facere maiores architecto
-                suscipit iste eveniet doloribus ullam aliquid.
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-        </q-expansion-item>
+          <q-item-section>Cliente</q-item-section>
+        </q-item>
 
-        <q-expansion-item
+        <!-- Proveedores -->
+        <q-item
           :header-inset-level="1"
-          :content-inset-level="1"
-          expand-separator
-          icon="schedule"
-          label="Postponed"
+          clickable
+          v-ripple
+          :active="link === '/proveedores'"
+          @click="URL('/proveedores')"
+          active-class="my-menu-link"
         >
-          <q-card>
-            <q-card-section>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem,
-              eius reprehenderit eos corrupti commodi magni quaerat ex numquam,
-              dolorum officiis modi facere maiores architecto suscipit iste
-              eveniet doloribus ullam aliquid.
-            </q-card-section>
-          </q-card>
-        </q-expansion-item>
+          <!--          <q-item-section avatar>-->
+          <!--                  <q-icon name="supervised_user_circle" />-->
+          <!--          </q-item-section>-->
+
+          <q-item-section>Proveedores</q-item-section>
+        </q-item>
+
+        <!-- ¨Producto -->
+        <!--              <q-item-->
+        <!--                :header-inset-level="1"-->
+        <!--                clickable-->
+        <!--                v-ripple-->
+        <!--                :active="link === '/producto'"-->
+        <!--                @click="URL('/producto')"-->
+        <!--                active-class="my-menu-link"-->
+        <!--              >-->
+        <!--                <q-item-section avatar>-->
+        <!--                  &lt;!&ndash;                  <q-icon name="supervised_user_circle" />&ndash;&gt;-->
+        <!--                </q-item-section>-->
+
+        <!--                <q-item-section>Producto</q-item-section>-->
+        <!--              </q-item>-->
       </q-expansion-item>
 
+      <q-separator />
+
       <q-expansion-item
-        :content-inset-level="0.5"
-        expand-separator
-        icon="mail"
-        label="Inbox"
-        caption="5 unread emails"
-        default-opened
+        group="somegroup"
+        icon="attach_money"
+        label="Ventas"
+        header-class="text-white glossy bg-orange-5 rounded-borders"
       >
-        <q-expansion-item
-          expand-separator
-          :content-inset-level="0.5"
-          icon="receipt"
-          label="Receipts"
+        <q-item
+          clickable
+          v-ripple
+          :active="link === '/ventas'"
+          @click="URL('/ventas')"
+          active-class="my-menu-link"
         >
-          <q-expansion-item label="Today" :content-inset-level="0.5">
-            <q-card>
-              <q-card-section>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quidem, eius reprehenderit eos corrupti commodi magni quaerat ex
-                numquam, dolorum officiis modi facere maiores architecto
-                suscipit iste eveniet doloribus ullam aliquid.
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
+          <!--          <q-item-section avatar>-->
+          <!--                  <q-icon name="monetization_on" />-->
+          <!--          </q-item-section>-->
+          <q-item-section no-wrap>Seguimiento de Cliente</q-item-section>
+        </q-item>
 
-          <q-expansion-item label="Yesterday" :content-inset-level="0.5">
-            <q-card>
-              <q-card-section>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quidem, eius reprehenderit eos corrupti commodi magni quaerat ex
-                numquam, dolorum officiis modi facere maiores architecto
-                suscipit iste eveniet doloribus ullam aliquid.
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-        </q-expansion-item>
-
-        <q-expansion-item
-          :content-inset-level="0.5"
-          expand-separator
-          icon="schedule"
-          label="Postponed"
+        <q-item
+          clickable
+          v-ripple
+          :active="link === '/cotizacion'"
+          @click="URL('/cotizacion')"
+          active-class="my-menu-link"
         >
-          <q-card>
-            <q-card-section>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem,
-              eius reprehenderit eos corrupti commodi magni quaerat ex numquam,
-              dolorum officiis modi facere maiores architecto suscipit iste
-              eveniet doloribus ullam aliquid.
-            </q-card-section>
-          </q-card>
-        </q-expansion-item>
+          <!--          <q-item-section avatar>-->
+          <!--            <q-icon name="monetization_on" />-->
+          <!--          </q-item-section>-->
+
+          <q-item-section no-wrap>Requerimiento de cotizacion</q-item-section>
+        </q-item>
       </q-expansion-item>
+
+      <q-separator />
     </q-list>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      link: "",
+      name: "",
+      correo: "",
+      newpassword: "",
+      user: {},
+      bar2: false,
+      leftDrawerOpen: false,
+      search: ""
+    };
+  },
+  methods: {
+    showDialog() {
+      const userlocal = JSON.parse(localStorage.getItem("datadelusuario"));
+      this.user = userlocal;
+      this.name = userlocal.name;
+      this.correo = userlocal.email;
+      this.bar2 = true;
+    },
+    async URL(arg) {
+      if (arg == "logout") {
+        console.log("Entro en el deslogueo");
+        this.logout();
+        this.$q.notify({
+          message: "Session Cerrada",
+          color: "red"
+        });
+        await this.$router.push("/login");
+      } else {
+        this.link = arg;
+        console.log(arg);
+        await this.$router.push(arg);
+      }
+    },
+    getUrl(files) {
+      return `http://localhost:4444/upload?count=${files.length}`;
+    }
+  }
+};
+</script>
+<style lang="sass">
+.my-menu-link
+  color: black
+  background: #efe9e5
+</style>

@@ -23,6 +23,17 @@ export default {
       no_estreq: "PROCESANDO"
     }
   ],
-  dialogLlamadaCliente: false,
-  dialogRegistrarCitaCliente: false
+  dialogLlamadaCliente: {
+    estado: false,
+    cliente: null,
+    contacto: null
+  },
+  dialogRegistrarCitaCliente: {
+    estado: false,
+    cliente: null,
+    contacto: null
+  },
+  seguimiento_cliente: [],
+  listar_estado_seguimiento: [],
+  listar_seguimientos_registrados: []
 };

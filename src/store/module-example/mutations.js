@@ -9,9 +9,22 @@ export function setDialogCreate(state, payload) {
 }
 
 export function setdialogLlamadaCliente(state, payload) {
+  console.log(payload);
   state.dialogLlamadaCliente = payload;
 }
 
 export function setdialogRegistrarCitaCliente(state, payload) {
   state.dialogRegistrarCitaCliente = payload;
+}
+
+export function setseguimiento_cliente(state, payload) {
+  state.seguimiento_cliente = payload;
+}
+
+export function setlistar_estado_seguimiento(state, payload) {
+  state.listar_estado_seguimiento = payload;
+}
+
+export function setlistar_seguimientos_registrados(state, payload) {
+  state.listar_seguimientos_registrados = payload;
 }

@@ -1,60 +1,65 @@
 <template>
   <div class="q-pa-md">
     <div>
-      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
-        Clientes
+      <p
+        class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
+      >
+        Requerimientos
       </p>
     </div>
-
     <div class="q-pb-md">
       <div class="row no-wrap shadow-1 bg-grey-4">
-        <q-toolbar class="GPL__toolbar">
+        <q-toolbar>
           <q-input
-            class="GPL__toolbar-input"
-            dense
-            standout="bg-primary"
-            v-model="search"
+            v-if="$q.screen.gt.xs"
+            borderless
+            class="full-width"
             placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
           >
-            <template v-slot:prepend>
-              <q-icon v-if="search === ''" name="search" />
-              <q-icon
-                v-else
-                name="clear"
-                class="cursor-pointer"
-                @click="search = ''"
-              />
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+          <q-input
+            v-else
+            class="full-width"
+            borderless
+            placeholder="Buscar"
+            dense
+            color="primary"
+            v-model="filter"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
             </template>
           </q-input>
 
           <q-space />
 
-          <q-option-group
-            v-if="$q.screen.gt.xs"
-            v-model="separator"
-            inline
-            class="q-ma-sm"
-            :options="[
-              { label: 'Horiz.', value: 'horizontal' },
-              { label: 'Cell', value: 'cell' }
-            ]"
-          />
-
           <!--          <q-btn-->
-          <!--            v-if="$q.screen.gt.xs"-->
           <!--            flat-->
           <!--            dense-->
           <!--            no-wrap-->
-          <!--            color="primary"-->
+          <!--            color="positive"-->
           <!--            icon="add"-->
           <!--            no-caps-->
-          <!--            label="Correo"-->
+          <!--            label="Nuevo"-->
           <!--            class="q-ml-sm q-px-md"-->
-          <!--          >-->
-          <!--          </q-btn>-->
-
+          <!--          />-->
+          <!--          <q-btn-->
+          <!--            flat-->
+          <!--            dense-->
+          <!--            no-wrap-->
+          <!--            color="negative"-->
+          <!--            icon="remove"-->
+          <!--            no-caps-->
+          <!--            label="Eliminar"-->
+          <!--            class="q-ml-sm q-px-md"-->
+          <!--          />-->
           <q-btn
-            v-if="$q.screen.gt.xs"
             flat
             dense
             no-wrap
@@ -68,54 +73,57 @@
       </div>
     </div>
     <q-table
+      dense
       :separator="separator"
       :filter="search"
-      dense
-      :data="Clientes"
+      :data="getseguimiento_cliente"
       :columns="columns"
-      :rows-per-page-options="[]"
-      row-key="name"
+      row-key="co_client"
       :pagination.sync="pagination"
     >
       <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td key="desc" :props="props">
+          <q-td key="co_client" :props="props">
             {{ props.row.co_client }}
           </q-td>
-          <q-td key="no_razsoc" :props="props">
-            {{ props.row.no_razsoc }}
+          <q-td key="no_client" :props="props">
+            {{ props.row.no_client }}
           </q-td>
-          <q-td key="fat" :props="props">
-            {{ props.row.fat }}
+          <q-td key="no_percon" :props="props">
+            {{ props.row.no_percon }}
           </q-td>
           <q-td key="semaforo" :props="props">
             {{ props.row.semaforo }}
           </q-td>
-          <q-td key="carbs" :props="props">
-            {{ props.row.carbs }}
+          <q-td key="no_corele" :props="props">
+            {{ props.row.no_corele }}
           </q-td>
-          <q-td key="protein" :props="props">
-            {{ props.row.protein }}
+          <q-td key="no_arelab" :props="props">
+            {{ props.row.no_arelab }}
           </q-td>
-          <q-td key="sodium" :props="props">
-            {{ props.row.sodium }}
+          <q-td key="no_distri" :props="props">
+            {{ props.row.no_distri }}
           </q-td>
           <q-td key="calcium" :props="props">
             {{ props.row.calcium }}
           </q-td>
-          <q-td key="iron" :props="props">
-            {{ props.row.iron }}
+          <q-td key="ca_segven" :props="props">
+            {{ props.row.ca_segven }}
           </q-td>
-          <q-td key="commend" :props="props">
-            {{ props.row.commend }}
+          <q-td key="no_coment" :props="props">
+            {{ props.row.no_coment }}
           </q-td>
-          <q-td key="estado" :props="props">
+          <q-td key="co_estsve" :props="props">
             <q-select
               dense
               options-dense
-              v-model="props.row.estado"
-              :options="options"
-              @change="update(props.row.estado)"
+              v-model="props.row.co_estsve"
+              :options="getlistar_estado_seguimiento"
+              option-label="no_estsve"
+              option-value="co_estsve"
+              map-options
+              emit-value
+              @change="update(props.row.co_estsve)"
               transition-show="flip-up"
               transition-hide="flip-down"
             />
@@ -124,7 +132,13 @@
             <div class="q-pa-xs q-gutter-xs">
               <q-btn
                 dense
-                @click="dialogLlamadaCliente(true)"
+                @click="
+                  dialogLlamadaCliente({
+                    estado: true,
+                    cliente: props.row.co_client,
+                    contacto: props.row.co_percon
+                  })
+                "
                 size="sm"
                 glossy
                 color="primary"
@@ -142,7 +156,13 @@
               <q-btn
                 dense
                 glossy
-                @click="dialogRegistrarCitaCliente(true)"
+                @click="
+                  dialogRegistrarCitaCliente({
+                    estado: true,
+                    cliente: props.row.co_client,
+                    contacto: props.row.co_percon
+                  })
+                "
                 size="sm"
                 color="brown-5"
                 icon="edit"
@@ -152,41 +172,47 @@
         </q-tr>
       </template>
     </q-table>
-    <q-dialog full-width v-model="dialogLlamada">
-      <Llamadas />
+    <q-dialog full-width v-model="dialogLlamadaEstado">
+      <Llamadas
+        :cliente="dialogLlamada.cliente"
+        :contacto="dialogLlamada.contacto"
+      />
     </q-dialog>
-    <q-dialog full-width v-model="dialogRegistrarCita">
-      <RegistrarCita />
+    <q-dialog full-width v-model="dialogRegistrarCitaEstado">
+      <RegistrarCita
+        :cliente="dialogRegistrarCita.cliente"
+        :contacto="dialogRegistrarCita.contacto"
+      />
     </q-dialog>
     <!--    {{ Clientes }}-->
-    <!--    {{ dialogLlamada }}-->
+    <!--    {{ dialogLlamadaEstado }}-->
   </div>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
 const columns = [
   {
-    name: "desc",
+    name: "co_client",
     align: "left",
     label: "Nro",
     sortable: true,
-    field: "name",
+    field: "co_client",
     style: "width: 1%"
   },
   {
-    name: "no_razsoc",
+    name: "no_client",
     align: "left",
     sortable: true,
     label: "Cliente",
-    field: "no_razsoc",
+    field: "no_client",
     style: "width: 15%"
   },
   {
-    name: "fat",
+    name: "no_percon",
     align: "left",
     sortable: true,
     label: "Contacto",
-    field: "fat"
+    field: "no_percon"
   },
   {
     name: "semaforo",
@@ -196,25 +222,25 @@ const columns = [
     field: "semaforo"
   },
   {
-    name: "carbs",
+    name: "no_corele",
     align: "left",
     sortable: true,
     label: "Correo",
-    field: "carbs"
+    field: "no_corele"
   },
   {
-    name: "protein",
+    name: "no_arelab",
     align: "left",
     sortable: true,
     label: "Area",
-    field: "protein"
+    field: "no_arelab"
   },
   {
-    name: "sodium",
+    name: "no_distri",
     align: "left",
     sortable: true,
     label: "Distrito",
-    field: "sodium"
+    field: "no_distri"
   },
   {
     name: "calcium",
@@ -224,25 +250,25 @@ const columns = [
     field: "calcium"
   },
   {
-    name: "iron",
+    name: "ca_segven",
     align: "left",
     sortable: true,
     label: "Can. Consultas",
-    field: "iron"
+    field: "ca_segven"
   },
   {
-    name: "commend",
+    name: "no_coment",
     align: "left",
     sortable: true,
     label: "Comentarios",
-    field: "commend"
+    field: "no_coment"
   },
   {
-    name: "estado",
+    name: "co_estsve",
     align: "left",
     sortable: true,
     label: "Estados",
-    field: "estado",
+    field: "co_estsve",
     style: "width: 15%"
   },
   {
@@ -257,7 +283,14 @@ const columns = [
 
 export default {
   computed: {
-    ...mapGetters("example", ["dialogLlamada", "dialogRegistrarCita"]),
+    ...mapGetters("example", [
+      "dialogLlamada",
+      "dialogRegistrarCita",
+      "getseguimiento_cliente",
+      "getlistar_estado_seguimiento",
+      "dialogLlamadaEstado",
+      "dialogRegistrarCitaEstado"
+    ]),
     ...mapGetters("clientes", ["Clientes"])
   },
   data() {
@@ -268,26 +301,23 @@ export default {
         // rowsNumber: xx if getting data from a server
       },
       separator: "horizontal",
+      // separator: "cell",
+      filter: "",
       search: "",
       columns,
-      alert: false,
-      options: [
-        "CA - Cita Anulada",
-        "CC - Cita Concretada",
-        "CP - Cliente Potencial",
-        "NC - No Contesta",
-        "NR - No Requieren",
-        "OC - Otorga Cita",
-        "TF - Todo Fisico",
-        "TC - Todo por Correo"
-      ]
+      alert: false
     };
   },
   methods: {
+    test(arg) {
+      console.log(arg);
+    },
     ...mapActions("clientes", ["getClientes"]),
     ...mapActions("example", [
       "dialogLlamadaCliente",
-      "dialogRegistrarCitaCliente"
+      "dialogRegistrarCitaCliente",
+      "seguimiento_cliente",
+      "listar_estado_seguimiento"
     ]),
     update(val) {
       console.log(val);
@@ -300,50 +330,10 @@ export default {
     // CuadroResumen: () => import("./CuadroResumen")
     // AddRegistro: () => import("./Create")
   },
-  created() {
-    this.getClientes();
+  async mounted() {
+    // await this.getClientes();
+    await this.seguimiento_cliente();
+    await this.listar_estado_seguimiento();
   }
 };
 </script>
-<style lang="sass">
-.GPL
-  &__toolbar
-    height: 54px
-  &__toolbar-input
-    width: 35%
-  &__drawer-item
-    line-height: 24px
-    border-radius: 0 24px 24px 0
-    margin-right: 12px
-    .q-item__section--avatar
-      padding-left: 12px
-      .q-icon
-        color: #5f6368
-    .q-item__label:not(.q-item__label--caption)
-      color: #3c4043
-      letter-spacing: .01785714em
-      font-size: .875rem
-      font-weight: 500
-      line-height: 1.25rem
-    &--storage
-      border-radius: 0
-      margin-right: 0
-      padding-top: 24px
-      padding-bottom: 24px
-  &__side-btn
-    &__label
-      font-size: 12px
-      line-height: 24px
-      letter-spacing: .01785714em
-      font-weight: 500
-  @media (min-width: 1024px)
-    &__page-container
-      padding-left: 94px
-</style>
-<!--<style>-->
-<!--@media (min-width: 1024px) {-->
-<!--  .GPL__toolbar-input {-->
-<!--    width: 100%;-->
-<!--  }-->
-<!--}-->
-<!--</style>-->

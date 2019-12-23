@@ -1,7 +1,9 @@
 <template>
   <div class="q-pa-md">
     <div>
-      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
+      <p
+        class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
+      >
         Requerimientos
       </p>
     </div>

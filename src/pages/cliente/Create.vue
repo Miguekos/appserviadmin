@@ -63,6 +63,19 @@
               required
             />
 
+            <q-select
+              v-if="tipoDePersonaVar == 2"
+              dense
+              v-model="listar_sector_economicoVar"
+              :options="listar_sector_economicoOption"
+              option-value="co_sececo"
+              option-label="no_sececo"
+              emit-value
+              map-options
+              label="Sector Economico"
+              outlined
+            />
+
             <q-input
               dense
               ref="sigla"
@@ -94,6 +107,7 @@
         </q-item-section>
       </q-item>
     </q-card>
+    <!--    {{ $data }}-->
     <!-- {{ tipoDeDocumentoOption }} -->
     <!-- {{ tipoDePersonaVar }} -->
   </q-page>
@@ -104,6 +118,8 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      listar_sector_economicoVar: null,
+      listar_sector_economicoOption: [],
       tipoDePersonaOption: [],
       tipoDeDocumentoOption: [],
       tipoDePersonaVar: null,
@@ -132,7 +148,7 @@ export default {
     };
   },
   components: {
-    Atras: () => import("../../components/atras")
+    Atras: () => import("../../components/IrAtras")
   },
   methods: {
     ...mapActions("clientes", [
@@ -140,6 +156,7 @@ export default {
       "tipoDePersona",
       "TipoDeDocumento"
     ]),
+    ...mapActions("proveedor", ["listar_sector_economico"]),
     atras() {
       console.log("Ir Atras");
       this.$router.go(-1);
@@ -149,6 +166,7 @@ export default {
         tipoPersona: this.tipoDePersonaVar,
         tipoDocumento: this.tipoDeDocumentoVar,
         numeroDocumento: this.numeroDeDocumento,
+        codigoSectorEconomico: this.listar_sector_economicoVar,
         razonSocial: this.nombre,
         siglaCliente: this.sigla
       };
@@ -194,6 +212,7 @@ export default {
   async created() {
     this.tipoDePersonaOption = await this.tipoDePersona();
     this.tipoDeDocumentoOption = await this.TipoDeDocumento();
+    this.listar_sector_economicoOption = await this.listar_sector_economico();
   }
 };
 </script>

@@ -3,7 +3,7 @@
     size="sm"
     glossy
     class="full-width"
-    @click="atras()"
+    @click="IrAtras()"
     label="Atras"
     text-color="white"
     color="grey"
@@ -13,7 +13,7 @@
 <script>
 export default {
   methods: {
-    atras() {
+    IrAtras() {
       console.log("Ir Atras");
       this.$router.go(-1);
     }

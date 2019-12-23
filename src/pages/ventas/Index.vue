@@ -4,20 +4,13 @@
       <q-card class="my-card">
         <q-item class="bg-custom4">
           <q-item-section>
-            <q-item-label>Ventas</q-item-label>
-            <q-item-label caption>Seguimieto</q-item-label>
+            <q-item-label>Seguimiento de Cliente</q-item-label>
+            <q-item-label caption>Control</q-item-label>
           </q-item-section>
           <q-item-section></q-item-section>
           <q-item-section></q-item-section>
           <q-item-section>
-            <q-btn
-              size="10px"
-              @click="nuevoRegistro()"
-              q-btn--push
-              label="Correo"
-              text-color="white"
-              color="positive"
-            />
+            <Atras />
           </q-item-section>
         </q-item>
         <div class="row full-width">
@@ -31,13 +24,13 @@
         <TablaListado />
       </q-card>
     </q-page>
-    <q-dialog full-height full-width v-model="getDialogCrear">
-      <q-card class="full-height full-width">
-        <q-card-section>
-          <!--          <AddRegistro />-->
-        </q-card-section>
-      </q-card>
-    </q-dialog>
+    <!--    <q-dialog full-height full-width v-model="getDialogCrear">-->
+    <!--      <q-card class="full-height full-width">-->
+    <!--        <q-card-section>-->
+    <!--          <AddRegistro />-->
+    <!--        </q-card-section>-->
+    <!--      </q-card>-->
+    <!--    </q-dialog>-->
   </div>
 </template>
 
@@ -61,7 +54,8 @@ export default {
   components: {
     TablaListado: () => import("./TablaListado"),
     TablaFiltro: () => import("./TablaFiltro"),
-    CuadroResumen: () => import("./CuadroResumen")
+    CuadroResumen: () => import("./CuadroResumen"),
+    Atras: () => import("../../components/IrAtras")
     // AddRegistro: () => import("./Create")
   }
   // name: 'PageName',

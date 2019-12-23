@@ -1,9 +1,7 @@
 <template>
-  <div class="q-pt-md q-pr-md q-pl-md">
+  <div class="full-width">
     <div>
-      <p class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1">
-        Clientes
-      </p>
+      <TituloTabla titulo="Clientes" />
     </div>
     <div class="q-pb-md">
       <div class="row no-wrap glossy shadow-1 bg-grey-4">
@@ -180,6 +178,9 @@ export default {
         }
       ]
     };
+  },
+  components: {
+    TituloTabla: () => import("../../components/TituloTablas")
   },
   methods: {
     ...mapActions("clientes", ["getClientes", "eliminarCliente"]),

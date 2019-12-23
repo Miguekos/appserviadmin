@@ -2,8 +2,10 @@
   <div class="full-width">
     <div>
       <div>
-        <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
-          Filtros
+        <p
+          class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
+        >
+          Filtros Dinamicos
         </p>
       </div>
       <div class="q-ma-sm">
@@ -58,10 +60,12 @@
     </div>
     <div class="q-pa-xs flex flex-center">
       <q-btn
+        color="secondary"
+        glossy
         @click="showLoading()"
-        label="Filtrar"
+        icon-right="send"
         size="sm"
-        color="positive"
+        label="Filtrar"
       />
     </div>
     <!--    {{ $data }}-->

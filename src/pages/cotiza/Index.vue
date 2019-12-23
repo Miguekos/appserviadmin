@@ -4,8 +4,8 @@
       <q-card class="my-card">
         <q-item class="bg-custom4">
           <q-item-section>
-            <q-item-label>Cotizacion</q-item-label>
-            <q-item-label caption>Requerimientos</q-item-label>
+            <q-item-label>Requerimiento de cotizacion</q-item-label>
+            <q-item-label caption>Control</q-item-label>
           </q-item-section>
           <q-item-section></q-item-section>
           <q-item-section></q-item-section>
@@ -53,7 +53,7 @@ export default {
     TablaFiltro: () => import("./TablaFiltro"),
     CuadroResumen: () => import("./CuadroResumen"),
     AddRegistro: () => import("./Create"),
-    Atras: () => import("../../components/atras")
+    Atras: () => import("../../components/IrAtras")
   }
   // name: 'PageName',
 };

@@ -38,7 +38,7 @@ export default {
   components: {
     ListaDirecciones: () => import("./TablaDetalleDireccion"),
     ListaContactos: () => import("./TablaDetalleContactos"),
-    Atras: () => import("../../components/atras")
+    Atras: () => import("../../components/IrAtras")
     // CuadroResumen: () => import("./CuadroResumen")
   },
   methods: {

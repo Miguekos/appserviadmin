@@ -56,6 +56,52 @@ export async function getResumenVentas() {
   return regisCotiza.data;
 }
 
+export async function seguimiento_cliente({ commit }) {
+  const response = await axiosInstance.get(
+    `/api/ventas/seguimiento_cliente/null`
+  );
+  // console.log(registro.data);
+  commit("setseguimiento_cliente", response.data);
+  // return response.data;
+}
+
+export async function listar_estado_seguimiento({ commit }) {
+  const response = await axiosInstance.get(
+    "/api/ventas/listar_estado_seguimiento"
+  );
+  // console.log(registro.data);
+  commit("setlistar_estado_seguimiento", response.data);
+  // return response.data;
+}
+
+export async function listar_seguimientos_registrados({ commit }, payload) {
+  const response = await axiosInstance.get(
+    `/api/ventas/listar_seguimientos_registrados/${payload.cliente}/${
+      payload.contacto
+    }`
+  );
+  commit("setlistar_seguimientos_registrados", response.data);
+  // return response.data;
+}
+
+// eslint-disable-next-line
+export async function mantenimiento_seguimiento_cliente({}, payload) {
+  const data = {
+    codigoSeguimientoVenta: payload.codigoSeguimientoVenta,
+    comentario: payload.comentario,
+    fechaSeguimiento: payload.fechaSeguimiento
+  };
+  const response = await axiosInstance.post(
+    `/api/ventas/mantenimiento_seguimiento_cliente/${payload.cliente}/${
+      payload.contacto
+    }`,
+    data
+  );
+  // console.log(registro.data);
+  // commit("setlistar_estado_seguimiento", response.data);
+  return response.data;
+}
+
 export function dialogLlamadaCliente({ commit }, payload) {
   commit("setdialogLlamadaCliente", payload);
 }

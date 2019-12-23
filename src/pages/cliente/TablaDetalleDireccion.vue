@@ -2,9 +2,7 @@
   <div class="q-pa-md">
     <!--    {{ datafld }}-->
     <div>
-      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
-        Direcciones
-      </p>
+      <TituloTabla titulo="Direcciones" />
     </div>
     <div class="q-pb-md">
       <div class="row no-wrap shadow-1 bg-grey-4">
@@ -247,6 +245,9 @@ export default {
         }
       ]
     };
+  },
+  components: {
+    TituloTabla: () => import("../../components/TituloTablas")
   },
   methods: {
     eliminarDireccionF() {

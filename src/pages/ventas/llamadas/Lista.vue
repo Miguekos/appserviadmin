@@ -2,7 +2,9 @@
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
-      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
+      <p
+        class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
+      >
         Listado
       </p>
     </div>
@@ -14,33 +16,33 @@
 </template>
 <script>
 export default {
+  props: ["info"],
   data() {
     return {
       columns: [
         {
-          name: "no_semsve",
+          name: "fe_segven",
           required: true,
           label: "Fecha",
           align: "left",
-          field: "no_semsve",
+          field: "fe_segven",
           sortable: true
         },
         {
-          name: "ca_semafo",
+          name: "co_client",
           align: "center",
           label: "Usuario",
-          field: "ca_semafo",
+          field: "co_client",
           sortable: true
         },
         {
-          name: "ca_semafo",
+          name: "no_coment",
           align: "center",
           label: "Comentario",
-          field: "ca_semafo",
+          field: "no_coment",
           sortable: true
         }
       ],
-      info: [],
       resumen: {},
       model: null,
       separator: "cell"

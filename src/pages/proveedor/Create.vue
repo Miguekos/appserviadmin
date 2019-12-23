@@ -121,7 +121,7 @@ export default {
     };
   },
   components: {
-    Atras: () => import("../../components/atras")
+    Atras: () => import("../../components/IrAtras")
   },
   methods: {
     ...mapActions("proveedor", [
