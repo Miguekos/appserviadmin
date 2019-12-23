@@ -92,8 +92,13 @@
           <q-td key="no_percon" :props="props">
             {{ props.row.no_percon }}
           </q-td>
-          <q-td key="semaforo" :props="props">
-            {{ props.row.semaforo }}
+          <q-td key="co_semsve" :props="props">
+            <q-btn
+              class="glossy"
+              round
+              size="xs"
+              :color="semaforo(props.row.co_semsve)"
+            />
           </q-td>
           <q-td key="no_corele" :props="props">
             {{ props.row.no_corele }}
@@ -215,11 +220,11 @@ const columns = [
     field: "no_percon"
   },
   {
-    name: "semaforo",
+    name: "co_semsve",
     align: "left",
     sortable: true,
-    label: "S",
-    field: "semaforo"
+    label: "Semaf.",
+    field: "co_semsve"
   },
   {
     name: "no_corele",
@@ -311,6 +316,23 @@ export default {
     };
   },
   methods: {
+    semaforo(arg) {
+      let respuesta = "";
+      if (arg == 0) {
+        respuesta = "black";
+      } else if (arg == 1) {
+        respuesta = "blue";
+      } else if (arg == 2) {
+        respuesta = "green";
+      } else if (arg == 3) {
+        respuesta = "yellow";
+      } else if (arg == 4) {
+        respuesta = "amber";
+      } else if (arg == 5) {
+        respuesta = "red";
+      }
+      return respuesta;
+    },
     test(arg) {
       console.log(arg);
     },

@@ -68,7 +68,6 @@ export async function guardarDireccion({ commit }, payload) {
   console.log("listar direccion_cliente");
   const data = {
     codigoUbigeo: payload.codigoUbigeo,
-    codigoDireccion: payload.codigoDireccion,
     direccion: payload.direccion
   };
   const response = await axiosInstance.post(
@@ -180,6 +179,22 @@ export async function eliminarContacto({ commit }, payload) {
     data
   );
   console.log("Respuesta de la direccion de cliente");
+  console.log(response.data);
+  // commit("guardarDireccion", response.data);
+  return response.data;
+}
+
+export async function mantenimiento_telefono({ commit }, payload) {
+  console.log("mantenimiento_telefono");
+  const data = {
+    tipoTelefono: "1",
+    numeroTelefono: payload.numeroTelefono
+  };
+  const response = await axiosInstance.post(
+    `/api/clientes/mantenimiento_telefono/${payload.p_id}`,
+    data
+  );
+  console.log("Respuesta mantenimiento_telefono");
   console.log(response.data);
   // commit("guardarDireccion", response.data);
   return response.data;

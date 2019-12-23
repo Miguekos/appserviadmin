@@ -9,7 +9,33 @@
       </p>
     </div>
     <div class="q-pa-xs">
-      <q-table hide-bottom dense :data="info" :columns="columns" />
+      <q-table
+        dense
+        :data="info"
+        :columns="columns"
+        row-key="co_semsve"
+        hide-bottom
+      >
+        <template v-slot:body="props">
+          <q-tr :props="props">
+            <q-td key="co_semsve" :props="props">
+              <q-btn
+                push
+                class="glossy"
+                round
+                size="xs"
+                :color="semaforo(props.row.co_semsve)"
+              />
+            </q-td>
+            <q-td key="no_semsve" :props="props">
+              {{ props.row.no_semsve }}
+            </q-td>
+            <q-td key="ca_semafo" :props="props">
+              {{ props.row.ca_semafo }}
+            </q-td>
+          </q-tr>
+        </template>
+      </q-table>
     </div>
     <!--    {{ info }}-->
   </div>
@@ -20,6 +46,14 @@ export default {
   data() {
     return {
       columns: [
+        {
+          name: "co_semsve",
+          required: true,
+          label: "Semaforo",
+          align: "left",
+          field: "co_semsve",
+          sortable: true
+        },
         {
           name: "no_semsve",
           required: true,
@@ -43,7 +77,24 @@ export default {
     };
   },
   methods: {
-    ...mapActions("example", ["getResumenVentas"])
+    ...mapActions("example", ["getResumenVentas"]),
+    semaforo(arg) {
+      let respuesta = "";
+      if (arg == 0) {
+        respuesta = "black";
+      } else if (arg == 1) {
+        respuesta = "blue";
+      } else if (arg == 2) {
+        respuesta = "green";
+      } else if (arg == 3) {
+        respuesta = "yellow";
+      } else if (arg == 4) {
+        respuesta = "amber";
+      } else if (arg == 5) {
+        respuesta = "red";
+      }
+      return respuesta;
+    }
   },
   created() {
     console.log("se cargo el created de resumen");

@@ -156,7 +156,7 @@
                   outlined
                   dense
                   required
-                  v-model="form.codigoDireccion"
+                  v-model="form.codigoUbigeo"
                   :options="getDistrito"
                   option-value="no_ubigeo"
                   option-label="no_provin"
@@ -199,8 +199,7 @@ export default {
       form: {
         p_id: null,
         direccion: "",
-        codigoUbigeo: "",
-        codigoDireccion: ""
+        codigoUbigeo: ""
       },
       prompt: false,
       pagination: {
@@ -345,7 +344,7 @@ export default {
     distrito() {
       console.log(this.fieldProvincia);
       this.pblistar_distrito(this.fieldProvincia);
-      this.form.codigoUbigeo = this.fieldProvincia;
+      this.form.codigoUbigeo = "";
       this.form.codigoDireccion = "";
     },
     getSelectedString() {
