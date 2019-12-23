@@ -35,6 +35,7 @@ export function dialogLlamadaEstado(state) {
 }
 
 export function dialogRegistrarCita(state) {
+  console.log(state.dialogRegistrarCitaCliente);
   return state.dialogRegistrarCitaCliente;
 }
 
@@ -52,4 +53,12 @@ export function getlistar_estado_seguimiento(state) {
 
 export function getlistar_seguimientos_registrados(state) {
   return state.listar_seguimientos_registrados;
+}
+
+export function getlistar_citas(state) {
+  return state.listar_citas;
+}
+
+export function getlistar_direccion(state) {
+  return state.listar_direccion;
 }

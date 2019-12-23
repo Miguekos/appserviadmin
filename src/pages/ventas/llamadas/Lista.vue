@@ -9,9 +9,14 @@
       </p>
     </div>
     <div class="q-pa-xs">
-      <q-table hide-bottom dense :data="info" :columns="columns" />
+      <q-table
+        :pagination.sync="pagination"
+        dense
+        :data="info"
+        :columns="columns"
+      />
     </div>
-    <!--    {{ info }}-->
+    <!--        {{ info }}-->
   </div>
 </template>
 <script>
@@ -19,6 +24,13 @@ export default {
   props: ["info"],
   data() {
     return {
+      pagination: {
+        sortBy: "fe_segven",
+        descending: true,
+        page: 1,
+        rowsPerPage: 5
+        // rowsNumber: xx if getting data from a server
+      },
       columns: [
         {
           name: "fe_segven",

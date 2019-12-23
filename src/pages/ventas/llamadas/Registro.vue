@@ -131,6 +131,9 @@ export default {
       "seguimiento_cliente"
     ]),
     reset() {
+      this.dialogLlamadaCliente({
+        estado: false
+      });
       this.seguimiento_cliente()
         .then(resp => {
           this.$q.notify({
@@ -138,9 +141,6 @@ export default {
             message: "Tabla principal actualizada"
           });
           console.log(resp);
-          this.dialogLlamadaCliente({
-            estado: false
-          });
         })
         .catch(err => {
           console.log(err);

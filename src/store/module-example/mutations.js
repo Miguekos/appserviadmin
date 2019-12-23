@@ -28,3 +28,11 @@ export function setlistar_estado_seguimiento(state, payload) {
 export function setlistar_seguimientos_registrados(state, payload) {
   state.listar_seguimientos_registrados = payload;
 }
+
+export function setlistar_citas(state, payload) {
+  state.listar_citas = payload;
+}
+
+export function setlistar_direccion(state, payload) {
+  state.listar_direccion = payload;
+}

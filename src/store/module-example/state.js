@@ -35,5 +35,7 @@ export default {
   },
   seguimiento_cliente: [],
   listar_estado_seguimiento: [],
-  listar_seguimientos_registrados: []
+  listar_seguimientos_registrados: [],
+  listar_citas: [],
+  listar_direccion: []
 };

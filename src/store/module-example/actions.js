@@ -109,3 +109,41 @@ export function dialogLlamadaCliente({ commit }, payload) {
 export function dialogRegistrarCitaCliente({ commit }, payload) {
   commit("setdialogRegistrarCitaCliente", payload);
 }
+
+// eslint-disable-next-line
+export async function mantenimiento_citas_cliente({}, payload) {
+  const data = {
+    codigodireccion: payload.codigodireccion,
+    comentario: payload.comentario,
+    fechaCita: payload.fechaCita,
+    horaCita: payload.horaCita
+  };
+  const response = await axiosInstance.post(
+    `/api/ventas/mantenimiento_citas_cliente/${payload.cliente}/${
+      payload.contacto
+    }`,
+    data
+  );
+  // console.log(registro.data);
+  // commit("setlistar_estado_seguimiento", response.data);
+  return response.data;
+}
+
+export async function listar_citas({ commit }, payload) {
+  console.log("listar_citas");
+  console.log(payload.cliente);
+  console.log(payload.contacto);
+  const response = await axiosInstance.get(
+    `/api/ventas/listar_citas/${payload.cliente}/${payload.contacto}`
+  );
+  commit("setlistar_citas", response.data);
+  // return response.data;
+}
+
+export async function listar_direccion({ commit }, payload) {
+  const response = await axiosInstance.get(
+    `/api/ventas/listar_direccion/${payload.cliente}`
+  );
+  commit("setlistar_direccion", response.data);
+  // return response.data;
+}

@@ -185,7 +185,7 @@
       />
     </q-dialog>
     <!--    {{ Clientes }}-->
-    <!--    {{ dialogLlamadaEstado }}-->
+    <!--    {{ dialogRegistrarCita }}-->
   </div>
 </template>
 <script>
