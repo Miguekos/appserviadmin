@@ -162,7 +162,7 @@ export default {
         cliente: this.clienteR,
         contacto: this.contactoR,
         codigoSeguimientoVenta: this.codigoSeguimientoVentaVar,
-        comentario: "2",
+        comentario: this.text,
         fechaSeguimiento: this.date
       };
       console.log(data);
