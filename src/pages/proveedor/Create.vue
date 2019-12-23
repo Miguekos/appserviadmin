@@ -83,12 +83,14 @@
 
             <div class="text-center">
               <q-btn
+                glossy
                 size="sm"
                 label="Registrar"
                 type="submit"
                 color="primary"
               />
               <q-btn
+                glossy
                 size="sm"
                 label="Resetear"
                 type="reset"

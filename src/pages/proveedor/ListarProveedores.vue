@@ -1,9 +1,7 @@
 <template>
   <div class="full-width">
     <div>
-      <p class="bg-secondary shadow-5 text-center text-white text-subtitle1">
-        Proveedores
-      </p>
+      <TituloTabla titulo="Proveedores" />
     </div>
     <div class="q-pb-md">
       <div class="row no-wrap shadow-1 bg-grey-4">
@@ -82,6 +80,7 @@
       :filter="filter"
       :loading="loading"
       class="cursor-pointer"
+      :pagination.sync="pagination"
     >
       <template v-slot:body-cell="props">
         <q-td :props="props" @click.native="rowClick(props.row)">
@@ -94,6 +93,7 @@
       <q-toolbar-title class="q-pa-md row justify-around">
         <!-- <q-toolbar-title class="q-pa-md q-gutter-md"> -->
         <q-btn
+          glossy
           size="sm"
           color="positive"
           text-color="white"
@@ -101,6 +101,7 @@
           @click="URL('/proveedores/create')"
         />
         <q-btn
+          glossy
           size="sm"
           color="negative"
           text-color="white"
@@ -118,17 +119,19 @@ export default {
   computed: {
     ...mapGetters("proveedor", ["Proveedores"])
   },
+  components: {
+    TituloTabla: () => import("../../components/TituloTablas")
+  },
   data() {
     return {
-      selected: [],
       pagination: {
-        sortBy: "id",
+        sortBy: "no_provee",
         descending: false,
-        page: 2,
-        rowsPerPage: 3,
-        rowsNumber: 3,
-        pagesNumber: 3
+        page: 1,
+        rowsPerPage: 7
+        // rowsNumber: xx if getting data from a server
       },
+      selected: [],
       loading: false,
       filter: "",
       columns: [

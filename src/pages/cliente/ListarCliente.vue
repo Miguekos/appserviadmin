@@ -4,10 +4,9 @@
       <TituloTabla titulo="Clientes" />
     </div>
     <div class="q-pb-md">
-      <div class="row no-wrap glossy shadow-1 bg-grey-4">
+      <div class="row no-wrap shadow-1 bg-grey-4">
         <q-toolbar>
           <q-input
-            glossy
             v-if="$q.screen.gt.xs"
             borderless
             class="full-width"
@@ -21,7 +20,6 @@
             </template>
           </q-input>
           <q-input
-            glossy
             v-else
             class="full-width"
             borderless
@@ -81,6 +79,7 @@
       :filter="filter"
       :loading="loading"
       class="cursor-pointer"
+      :pagination.sync="pagination"
     >
       <template v-slot:body-cell="props">
         <q-td :props="props" @click.native="rowClick(props.row)">
@@ -124,20 +123,20 @@ export default {
   },
   data() {
     return {
+      pagination: {
+        sortBy: "no_client",
+        descending: false,
+        page: 1,
+        rowsPerPage: 7
+        // rowsNumber: xx if getting data from a server
+      },
       selected: [],
       info: [],
       loading: false,
       filter: "",
-      pagination: {
-        sortBy: "name",
-        descending: true,
-        page: 2,
-        rowsPerPage: 3
-        // rowsNumber: xx if getting data from a server
-      },
       columns: [
         {
-          name: "desc",
+          name: "no_client",
           required: true,
           label: "Cliente",
           align: "left",

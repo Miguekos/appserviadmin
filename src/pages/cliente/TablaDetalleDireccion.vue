@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pt-sm q-pr-md q-pl-md">
     <!--    {{ datafld }}-->
     <div>
       <TituloTabla titulo="Direcciones" />

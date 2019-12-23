@@ -75,7 +75,7 @@
     <q-table
       dense
       :separator="separator"
-      :filter="search"
+      :filter="filter"
       :data="getseguimiento_cliente"
       :columns="columns"
       row-key="co_client"
@@ -296,8 +296,10 @@ export default {
   data() {
     return {
       pagination: {
+        sortBy: "co_client",
+        descending: false,
         page: 1,
-        rowsPerPage: 5
+        rowsPerPage: 7
         // rowsNumber: xx if getting data from a server
       },
       separator: "horizontal",
