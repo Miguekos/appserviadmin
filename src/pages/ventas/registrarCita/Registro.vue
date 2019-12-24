@@ -84,14 +84,6 @@
         />
         <q-btn
           glossy
-          type="reset"
-          :loading="loadboton2"
-          label="Sin Contacto"
-          size="sm"
-          color="negative"
-        />
-        <q-btn
-          glossy
           label="Cerrar"
           @click="reset()"
           size="sm"

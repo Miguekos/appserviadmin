@@ -41,10 +41,10 @@ export default {
           sortable: true
         },
         {
-          name: "us_regist",
+          name: "no_regist",
           align: "center",
           label: "Usuario",
-          field: "us_regist",
+          field: "no_regist",
           sortable: true
         },
         {

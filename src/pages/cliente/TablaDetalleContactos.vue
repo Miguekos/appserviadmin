@@ -366,6 +366,29 @@ export default {
         console.log("Se ejecuto Guardar Contacto");
         this.contactoCliente(this.form.p_id).then(() => {
           console.log("Se ejecuto Guardar clienteContacto");
+          this.mantenimiento_telefono({
+            p_id: this.form.p_id,
+            numeroTelefono: this.form.p_nu_telefo
+          })
+            .then(resp => {
+              console.log(resp);
+              this.$q.notify({
+                color: "green",
+                textColor: "white",
+                icon: "fas fa-check-circle",
+                message: "Registrado"
+              });
+              this.$router.push("/cliente");
+            })
+            .catch(err => {
+              console.log(err);
+              this.$q.notify({
+                color: "red",
+                textColor: "white",
+                icon: "fas fa-times",
+                message: "Error al registrar.!"
+              });
+            });
           this.prompt = false;
           this.loading = false;
         });
@@ -391,7 +414,8 @@ export default {
       "listar_area_laboral",
       "listar_sigla_profesion",
       "contactoCliente",
-      "eliminarContacto"
+      "eliminarContacto",
+      "mantenimiento_telefono"
     ])
   },
   async mounted() {

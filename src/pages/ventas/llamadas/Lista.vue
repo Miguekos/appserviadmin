@@ -41,10 +41,10 @@ export default {
           sortable: true
         },
         {
-          name: "co_client",
+          name: "no_regist",
           align: "center",
           label: "Usuario",
-          field: "co_client",
+          field: "no_regist",
           sortable: true
         },
         {

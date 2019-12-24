@@ -173,7 +173,9 @@ export default {
       console.log(data);
       this.createCleintes(data)
         .then(resp => {
+          console.log("asdasd");
           console.log(resp);
+          console.log("asdasd");
           this.$q.notify({
             color: "green",
             textColor: "white",

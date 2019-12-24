@@ -73,8 +73,9 @@
         />
         <q-btn
           glossy
-          type="reset"
-          :loading="loadboton2"
+          @click="sinContactos()"
+          :loading="loadboton"
+          :disable="loadboton"
           label="Sin Contacto"
           size="sm"
           color="negative"
@@ -93,6 +94,8 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { date } from "quasar";
+let timeStamp = Date.now();
 export default {
   props: ["clienteR", "contactoR"],
   computed: {
@@ -155,6 +158,59 @@ export default {
         color: "info",
         message: "Por definir"
       });
+    },
+    sinContactos() {
+      this.loadboton = true;
+      let formattedString = date.formatDate(timeStamp, "YYYY-MM-DD");
+      const data = {
+        cliente: this.clienteR,
+        contacto: this.contactoR,
+        codigoSeguimientoVenta: "1",
+        comentario: "Automatico",
+        fechaSeguimiento: formattedString
+      };
+      console.log(data);
+      this.mantenimiento_seguimiento_cliente({ ...data })
+        .then(resp => {
+          console.log(resp);
+          this.$q.notify({
+            color: "positive",
+            message: "Registro Correcto sin contacto"
+          });
+          this.loadboton = true;
+          this.codigoSeguimientoVentaVar = null;
+          this.date = "";
+          this.text = "";
+          this.listar_seguimientos_registrados({
+            cliente: this.clienteR,
+            contacto: this.contactoR
+          })
+            .then(resp => {
+              console.log(resp);
+              this.$q.notify({
+                color: "positive",
+                message: "Tabla Actualziada"
+              });
+              setTimeout(() => {
+                // we're done, we reset loading state
+                this.loadboton = false;
+              }, 2000);
+            })
+            .catch(err => {
+              console.log(err);
+              this.$q.notify({
+                color: "negative",
+                message: "Uy.! algo salio mal"
+              });
+            });
+        })
+        .catch(err => {
+          console.log(err);
+          this.$q.notify({
+            color: "negative",
+            message: "Uy.! algo salio mal"
+          });
+        });
     },
     registrar() {
       this.loadboton = true;
