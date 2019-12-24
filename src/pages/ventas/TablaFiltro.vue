@@ -58,7 +58,7 @@
         />
       </div>
     </div>
-    <div class="q-pa-xs flex flex-center">
+    <div class="q-pa-xs flex flex-center q-gutter-md">
       <q-btn
         color="secondary"
         glossy
@@ -66,6 +66,14 @@
         icon-right="send"
         size="sm"
         label="Filtrar"
+      />
+      <q-btn
+        color="info"
+        glossy
+        @click="limpiarFiltros()"
+        icon-right="send"
+        size="sm"
+        label="Limpiar Filtros"
       />
     </div>
     <!--    {{ $data }}-->
@@ -109,21 +117,30 @@ export default {
     crearCotiza() {
       this.$router.push("/cotizacion/create");
     },
-    simulateProgress(number) {
-      // we set loading state
-      this[`loading${number}`] = true;
-      // simulate a delay
-      setTimeout(() => {
-        // we're done, we reset loading state
-        this[`loading${number}`] = false;
-      }, 3000);
+    CargaSniped() {
+      this.$q.loading.show();
+      // hiding in 2s
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        this.timer = void 0;
+      }, 1000);
     },
     async showLoading() {
+      this.CargaSniped();
       await this.seguimiento_cliente({
         cliente: null,
         seguimiento: this.listar_estado_seguimiento_clienteVar,
         economico: this.listar_sector_economicoVar,
         semoforo: this.semaforo_seguimiento_clienteVar
+      });
+    },
+    async limpiarFiltros() {
+      this.CargaSniped();
+      await this.seguimiento_cliente({
+        cliente: null,
+        seguimiento: null,
+        economico: null,
+        semoforo: null
       });
     }
   },
