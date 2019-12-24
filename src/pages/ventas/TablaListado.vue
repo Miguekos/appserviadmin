@@ -356,7 +356,12 @@ export default {
   },
   async mounted() {
     // await this.getClientes();
-    await this.seguimiento_cliente();
+    await this.seguimiento_cliente({
+      cliente: null,
+      seguimiento: null,
+      economico: null,
+      semoforo: null
+    });
     await this.listar_estado_seguimiento();
   }
 };

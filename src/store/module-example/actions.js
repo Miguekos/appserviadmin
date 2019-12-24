@@ -56,9 +56,11 @@ export async function getResumenVentas() {
   return regisCotiza.data;
 }
 
-export async function seguimiento_cliente({ commit }) {
+export async function seguimiento_cliente({ commit }, payload) {
   const response = await axiosInstance.get(
-    `/api/ventas/seguimiento_cliente/null`
+    `/api/ventas/seguimiento_cliente/${payload.cliente}/${
+      payload.seguimiento
+    }/${payload.economico}/${payload.semoforo}`
   );
   // console.log(registro.data);
   commit("setseguimiento_cliente", response.data);
@@ -146,4 +148,28 @@ export async function listar_direccion({ commit }, payload) {
   );
   commit("setlistar_direccion", response.data);
   // return response.data;
+}
+// eslint-disable-next-line
+export async function listar_estado_seguimiento_cliente({}) {
+  const response = await axiosInstance.get(
+    `/api/ventas/listar_estado_seguimiento_cliente`
+  );
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}
+// eslint-disable-next-line
+export async function listar_sector_economico({}) {
+  const response = await axiosInstance.get(
+    `/api/ventas/listar_sector_economico`
+  );
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}
+// eslint-disable-next-line
+export async function semaforo_seguimiento_cliente({}) {
+  const response = await axiosInstance.get(
+    `/api/ventas/semaforo_seguimiento_cliente`
+  );
+  // commit("setlistar_direccion", response.data);
+  return response.data;
 }

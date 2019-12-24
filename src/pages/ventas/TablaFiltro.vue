@@ -12,32 +12,32 @@
         <q-select
           transition-show="flip-up"
           transition-hide="flip-down"
-          :options="registrosFiltroEstados"
-          option-value="co_estreq"
-          option-label="no_estreq"
+          :options="listar_estado_seguimiento_clienteList"
+          option-value="co_estsve"
+          option-label="no_estsve"
           option-disable="inactive"
           emit-value
           map-options
           label="Estado"
           placeholder="Estado"
           dense
-          v-model="estadoFiltro"
+          v-model="listar_estado_seguimiento_clienteVar"
         />
       </div>
       <div class="q-ma-sm">
         <q-select
           transition-show="flip-up"
           transition-hide="flip-down"
-          :options="registrosFiltroEstados"
-          option-value="co_estreq"
-          option-label="no_estreq"
+          :options="listar_sector_economicoList"
+          option-value="co_sececo"
+          option-label="no_sececo"
           option-disable="inactive"
           emit-value
           map-options
           label="Sector Economico"
           placeholder="Sector Economico"
           dense
-          v-model="estadoFiltro"
+          v-model="listar_sector_economicoVar"
         />
       </div>
 
@@ -45,16 +45,16 @@
         <q-select
           transition-show="flip-up"
           transition-hide="flip-down"
-          :options="registrosFiltroEstados"
-          option-value="co_estreq"
-          option-label="no_estreq"
+          :options="semaforo_seguimiento_clienteList"
+          option-value="co_semsve"
+          option-label="no_semsve"
           option-disable="inactive"
           emit-value
           map-options
           label="Semaforo"
           placeholder="Semaforo"
           dense
-          v-model="estadoFiltro"
+          v-model="semaforo_seguimiento_clienteVar"
         />
       </div>
     </div>
@@ -79,6 +79,12 @@ export default {
   },
   data() {
     return {
+      listar_estado_seguimiento_clienteList: [],
+      listar_estado_seguimiento_clienteVar: null,
+      listar_sector_economicoList: [],
+      listar_sector_economicoVar: null,
+      semaforo_seguimiento_clienteList: [],
+      semaforo_seguimiento_clienteVar: null,
       loading: false,
       estadoFiltro: "",
       fechainicio: "",
@@ -93,7 +99,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions("example", ["registros"]),
+    ...mapActions("example", [
+      "registros",
+      "listar_estado_seguimiento_cliente",
+      "listar_sector_economico",
+      "semaforo_seguimiento_cliente",
+      "seguimiento_cliente"
+    ]),
     crearCotiza() {
       this.$router.push("/cotizacion/create");
     },
@@ -106,17 +118,20 @@ export default {
         this[`loading${number}`] = false;
       }, 3000);
     },
-    showLoading() {
-      this.$q.loading.show();
-      // hiding in 2s
-      this.timer = setTimeout(() => {
-        this.$q.loading.hide();
-        this.timer = void 0;
-      }, 1000);
+    async showLoading() {
+      await this.seguimiento_cliente({
+        cliente: null,
+        seguimiento: this.listar_estado_seguimiento_clienteVar,
+        economico: this.listar_sector_economicoVar,
+        semoforo: this.semaforo_seguimiento_clienteVar
+      });
     }
   },
-  async created() {
+  async mounted() {
     await this.registros();
+    this.listar_estado_seguimiento_clienteList = await this.listar_estado_seguimiento_cliente();
+    this.listar_sector_economicoList = await this.listar_sector_economico();
+    this.semaforo_seguimiento_clienteList = await this.semaforo_seguimiento_cliente();
   },
   beforeDestroy() {
     if (this.timer !== void 0) {
