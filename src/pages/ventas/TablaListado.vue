@@ -1,9 +1,7 @@
 <template>
   <div class="q-pa-md">
     <div>
-      <p
-        class="bg-secondary   shadow-5 text-center text-white text-subtitle1"
-      >
+      <p class="bg-secondary   shadow-5 text-center text-white text-subtitle1">
         Cuadro de Resumen
       </p>
     </div>
@@ -133,22 +131,19 @@
                   })
                 "
                 size="sm"
-
                 color="primary"
                 icon="local_phone"
               />
-              <q-btn dense size="sm"   color="positive" icon="email" />
+              <q-btn dense size="sm" color="positive" icon="email" />
               <q-btn
                 size="sm"
                 dense
                 color="amber"
-
                 text-color="black"
                 icon="email"
               />
               <q-btn
                 dense
-
                 @click="
                   dialogRegistrarCitaCliente({
                     estado: true,

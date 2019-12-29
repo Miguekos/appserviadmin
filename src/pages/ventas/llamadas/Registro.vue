@@ -63,7 +63,6 @@
       </div>
       <div class="q-gutter-md text-center">
         <q-btn
-
           type="submit"
           :loading="loadboton"
           :disable="loadboton"
@@ -72,7 +71,6 @@
           color="positive"
         />
         <q-btn
-
           @click="sinContactos()"
           :loading="loadboton"
           :disable="loadboton"
@@ -80,13 +78,7 @@
           size="sm"
           color="negative"
         />
-        <q-btn
-
-          label="Cerrar"
-          @click="reset()"
-          size="sm"
-          color="secondary"
-        />
+        <q-btn label="Cerrar" @click="reset()" size="sm" color="secondary" />
       </div>
     </q-form>
     <!--    {{ $data }}-->

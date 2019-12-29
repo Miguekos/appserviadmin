@@ -61,7 +61,6 @@
     <div class="q-pa-xs flex flex-center q-gutter-md">
       <q-btn
         color="secondary"
-
         @click="showLoading()"
         icon-right="send"
         size="sm"
@@ -69,7 +68,6 @@
       />
       <q-btn
         color="info"
-
         @click="limpiarFiltros()"
         icon-right="send"
         size="sm"
