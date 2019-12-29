@@ -378,7 +378,6 @@ export default {
                 icon: "fas fa-check-circle",
                 message: "Registrado"
               });
-              this.$router.push("/cliente");
             })
             .catch(err => {
               console.log(err);

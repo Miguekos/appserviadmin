@@ -173,3 +173,12 @@ export async function semaforo_seguimiento_cliente({}) {
   // commit("setlistar_direccion", response.data);
   return response.data;
 }
+
+// eslint-disable-next-line
+export async function leyenda_seguimiento_cliente({}) {
+  const response = await axiosInstance.get(
+    `/api/ventas/leyenda_seguimiento_cliente`
+  );
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}

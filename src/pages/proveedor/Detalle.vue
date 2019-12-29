@@ -9,7 +9,9 @@
         <q-item-section></q-item-section>
         <q-item-section></q-item-section>
         <q-item-section>
-          <Atras />
+          <div class="text-right">
+            <Atras />
+          </div>
         </q-item-section>
       </q-item>
       <div>

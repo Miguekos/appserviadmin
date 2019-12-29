@@ -3,7 +3,7 @@
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p
-        class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
+        class="bg-secondary   shadow-5 text-center text-white text-subtitle1"
       >
         Listado
       </p>

@@ -3,7 +3,7 @@
     <div>
       <div>
         <p
-          class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
+          class="bg-secondary   shadow-5 text-center text-white text-subtitle1"
         >
           Filtros Dinamicos
         </p>
@@ -61,7 +61,7 @@
     <div class="q-pa-xs flex flex-center q-gutter-md">
       <q-btn
         color="secondary"
-        glossy
+
         @click="showLoading()"
         icon-right="send"
         size="sm"
@@ -69,7 +69,7 @@
       />
       <q-btn
         color="info"
-        glossy
+
         @click="limpiarFiltros()"
         icon-right="send"
         size="sm"

@@ -2,35 +2,33 @@
   <div>
     <q-page padding>
       <q-card class="my-card">
-        <q-item class="bg-custom4">
+        <q-item class="shadow-5 bg-secondary text-white  ">
           <q-item-section>
-            <q-item-label>Seguimiento de Cliente</q-item-label>
-            <q-item-label caption>Control</q-item-label>
+            <q-item-label style="font-size: 20px">
+              SEGUIMIENTO DE CLIENTE
+            </q-item-label>
+            <!--            <q-item-label caption>SEGUIMIENTO</q-item-label>-->
           </q-item-section>
-          <q-item-section></q-item-section>
-          <q-item-section></q-item-section>
           <q-item-section>
-            <Atras />
+            <div class="text-right">
+              <Atras />
+            </div>
           </q-item-section>
         </q-item>
         <div class="row full-width">
-          <q-item class="col-sm-6 col-xs-12">
+          <q-item class="col-sm-3 col-xs-12">
             <TablaFiltro />
           </q-item>
-          <q-item class="col-sm-6 col-xs-12">
+          <q-item class="col-sm-3 col-xs-12">
             <CuadroResumen />
+          </q-item>
+          <q-item class="col-sm-6 col-xs-12">
+            <Leyenda />
           </q-item>
         </div>
         <TablaListado />
       </q-card>
     </q-page>
-    <!--    <q-dialog full-height full-width v-model="getDialogCrear">-->
-    <!--      <q-card class="full-height full-width">-->
-    <!--        <q-card-section>-->
-    <!--          <AddRegistro />-->
-    <!--        </q-card-section>-->
-    <!--      </q-card>-->
-    <!--    </q-dialog>-->
   </div>
 </template>
 
@@ -55,6 +53,7 @@ export default {
     TablaListado: () => import("./TablaListado"),
     TablaFiltro: () => import("./TablaFiltro"),
     CuadroResumen: () => import("./CuadroResumen"),
+    Leyenda: () => import("./Leyenda"),
     Atras: () => import("../../components/IrAtras")
     // AddRegistro: () => import("./Create")
   }

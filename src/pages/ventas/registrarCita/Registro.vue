@@ -4,7 +4,7 @@
       <div>
         <div>
           <p
-            class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
+            class="bg-secondary   shadow-5 text-center text-white text-subtitle1"
           >
             Registro
           </p>
@@ -74,7 +74,7 @@
       </div>
       <div class="q-gutter-md text-center">
         <q-btn
-          glossy
+
           type="submit"
           :loading="loadboton"
           :disable="loadboton"
@@ -83,7 +83,7 @@
           color="positive"
         />
         <q-btn
-          glossy
+
           label="Cerrar"
           @click="reset()"
           size="sm"

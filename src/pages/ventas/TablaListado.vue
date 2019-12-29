@@ -2,9 +2,9 @@
   <div class="q-pa-md">
     <div>
       <p
-        class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
+        class="bg-secondary   shadow-5 text-center text-white text-subtitle1"
       >
-        Requerimientos
+        Cuadro de Resumen
       </p>
     </div>
     <div class="q-pb-md">
@@ -83,34 +83,34 @@
     >
       <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td key="co_client" :props="props">
-            {{ props.row.co_client }}
-          </q-td>
-          <q-td key="no_client" :props="props">
-            {{ props.row.no_client }}
+          <q-td key="no_sigcli" :props="props">
+            {{ props.row.no_sigcli }}
           </q-td>
           <q-td key="no_percon" :props="props">
             {{ props.row.no_percon }}
           </q-td>
           <q-td key="co_semsve" :props="props">
             <q-btn
-              class="glossy"
+              class=" "
               round
               size="xs"
               :color="semaforo(props.row.co_semsve)"
             />
           </q-td>
-          <q-td key="no_corele" :props="props">
-            {{ props.row.no_corele }}
-          </q-td>
           <q-td key="no_arelab" :props="props">
             {{ props.row.no_arelab }}
+          </q-td>
+          <q-td key="no_depart" :props="props">
+            {{ props.row.no_depart }}
+          </q-td>
+          <q-td key="no_provin" :props="props">
+            {{ props.row.no_provin }}
           </q-td>
           <q-td key="no_distri" :props="props">
             {{ props.row.no_distri }}
           </q-td>
-          <q-td key="calcium" :props="props">
-            {{ props.row.calcium }}
+          <q-td key="no_sececo" :props="props">
+            {{ props.row.no_sececo }}
           </q-td>
           <q-td key="ca_segven" :props="props">
             {{ props.row.ca_segven }}
@@ -118,23 +118,11 @@
           <q-td key="no_coment" :props="props">
             {{ props.row.no_coment }}
           </q-td>
-          <q-td key="co_estsve" :props="props">
-            <q-select
-              dense
-              options-dense
-              v-model="props.row.co_estsve"
-              :options="getlistar_estado_seguimiento"
-              option-label="no_estsve"
-              option-value="co_estsve"
-              map-options
-              emit-value
-              @change="update(props.row.co_estsve)"
-              transition-show="flip-up"
-              transition-hide="flip-down"
-            />
+          <q-td key="no_sigsve" :props="props">
+            {{ props.row.no_sigsve }}
           </q-td>
           <q-td key="botones" :props="props">
-            <div class="q-pa-xs q-gutter-xs">
+            <div class="q-gutter-xs">
               <q-btn
                 dense
                 @click="
@@ -145,22 +133,22 @@
                   })
                 "
                 size="sm"
-                glossy
+
                 color="primary"
                 icon="local_phone"
               />
-              <q-btn dense size="sm" glossy color="positive" icon="email" />
+              <q-btn dense size="sm"   color="positive" icon="email" />
               <q-btn
                 size="sm"
                 dense
                 color="amber"
-                glossy
+
                 text-color="black"
                 icon="email"
               />
               <q-btn
                 dense
-                glossy
+
                 @click="
                   dialogRegistrarCitaCliente({
                     estado: true,
@@ -197,19 +185,11 @@
 import { mapGetters, mapActions } from "vuex";
 const columns = [
   {
-    name: "co_client",
-    align: "left",
-    label: "Nro",
-    sortable: true,
-    field: "co_client",
-    style: "width: 1%"
-  },
-  {
-    name: "no_client",
+    name: "no_sigcli",
     align: "left",
     sortable: true,
     label: "Cliente",
-    field: "no_client",
+    field: "no_sigcli",
     style: "width: 15%"
   },
   {
@@ -223,15 +203,8 @@ const columns = [
     name: "co_semsve",
     align: "left",
     sortable: true,
-    label: "Semaf.",
+    label: "Sem.",
     field: "co_semsve"
-  },
-  {
-    name: "no_corele",
-    align: "left",
-    sortable: true,
-    label: "Correo",
-    field: "no_corele"
   },
   {
     name: "no_arelab",
@@ -241,6 +214,20 @@ const columns = [
     field: "no_arelab"
   },
   {
+    name: "no_depart",
+    align: "left",
+    sortable: true,
+    label: "Departamento",
+    field: "no_depart"
+  },
+  {
+    name: "no_provin",
+    align: "left",
+    sortable: true,
+    label: "Provincia",
+    field: "no_provin"
+  },
+  {
     name: "no_distri",
     align: "left",
     sortable: true,
@@ -248,32 +235,32 @@ const columns = [
     field: "no_distri"
   },
   {
-    name: "calcium",
+    name: "no_sececo",
     align: "left",
     sortable: true,
     label: "Sector",
-    field: "calcium"
+    field: "no_sececo"
   },
   {
     name: "ca_segven",
-    align: "left",
+    align: "center",
     sortable: true,
-    label: "Can. Consultas",
+    label: "Cant. Consul",
     field: "ca_segven"
   },
   {
     name: "no_coment",
     align: "left",
     sortable: true,
-    label: "Comentarios",
+    label: "Comentario",
     field: "no_coment"
   },
   {
-    name: "co_estsve",
+    name: "no_sigsve",
     align: "left",
     sortable: true,
     label: "Estados",
-    field: "co_estsve",
+    field: "no_sigsve",
     style: "width: 15%"
   },
   {

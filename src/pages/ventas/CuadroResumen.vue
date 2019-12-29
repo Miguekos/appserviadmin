@@ -3,9 +3,9 @@
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p
-        class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
+        class="bg-secondary   shadow-5 text-center text-white text-subtitle1"
       >
-        Cuadro Resumen
+        Resumen de Seguimiento
       </p>
     </div>
     <div class="q-pa-xs">
@@ -21,14 +21,12 @@
             <q-td key="co_semsve" :props="props">
               <q-btn
                 push
-                class="glossy"
+                class=" "
                 round
                 size="xs"
                 :color="semaforo(props.row.co_semsve)"
               />
-            </q-td>
-            <q-td key="no_semsve" :props="props">
-              {{ props.row.no_semsve }}
+              &nbsp; {{ props.row.no_semsve }}
             </q-td>
             <q-td key="ca_semafo" :props="props">
               {{ props.row.ca_semafo }}
@@ -52,14 +50,6 @@ export default {
           label: "Semaforo",
           align: "left",
           field: "co_semsve",
-          sortable: true
-        },
-        {
-          name: "no_semsve",
-          required: true,
-          label: "Semaforo",
-          align: "left",
-          field: "no_semsve",
           sortable: true
         },
         {

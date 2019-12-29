@@ -10,7 +10,11 @@
           <q-item-section></q-item-section>
           <q-item-section></q-item-section>
           <q-item-section>
-            <Atras />
+            <div class="text-right">
+              <div class="text-right">
+                <Atras />
+              </div>
+            </div>
           </q-item-section>
         </q-item>
         <div class="row full-width">

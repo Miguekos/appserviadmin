@@ -1,8 +1,8 @@
 <template>
   <q-btn
     size="sm"
+    icon="arrow_back"
     glossy
-    class="full-width"
     @click="IrAtras()"
     label="Atras"
     text-color="white"
