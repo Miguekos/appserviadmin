@@ -2,11 +2,10 @@
   <q-btn
     size="sm"
     icon="arrow_back"
-    glossy
     @click="IrAtras()"
     label="Atras"
     text-color="white"
-    color="grey"
+    color="black"
   />
 </template>
 

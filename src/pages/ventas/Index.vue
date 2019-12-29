@@ -2,7 +2,7 @@
   <div>
     <q-page padding>
       <q-card class="my-card">
-        <q-item class="shadow-5 bg-secondary text-white  ">
+        <q-item class="shadow-5 bg-secondary text-white">
           <q-item-section>
             <q-item-label style="font-size: 20px">
               SEGUIMIENTO DE CLIENTE
@@ -22,8 +22,19 @@
           <q-item class="col-sm-3 col-xs-12">
             <CuadroResumen />
           </q-item>
-          <q-item class="col-sm-6 col-xs-12">
-            <Leyenda />
+          <q-item class="col-sm-2 col-xs-12">
+            <Leyenda1 />
+          </q-item>
+          <q-item class="col-sm-2 col-xs-12">
+            <Leyenda2 />
+          </q-item>
+          <q-item class="col-sm-2 col-xs-12">
+            <Leyenda3 />
+          </q-item>
+        </div>
+        <div class="row full-width">
+          <q-item class="col-sm-12 col-xs-12">
+            <Leyenda4 />
           </q-item>
         </div>
         <TablaListado />
@@ -53,7 +64,11 @@ export default {
     TablaListado: () => import("./TablaListado"),
     TablaFiltro: () => import("./TablaFiltro"),
     CuadroResumen: () => import("./CuadroResumen"),
-    Leyenda: () => import("./Leyenda"),
+    // Leyenda: () => import("./Leyenda"),
+    Leyenda1: () => import("./Leyenda1"),
+    Leyenda2: () => import("./Leyenda2"),
+    Leyenda3: () => import("./Leyenda3"),
+    Leyenda4: () => import("./Leyenda4"),
     Atras: () => import("../../components/IrAtras")
     // AddRegistro: () => import("./Create")
   }

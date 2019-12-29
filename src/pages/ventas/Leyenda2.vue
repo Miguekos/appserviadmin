@@ -2,8 +2,8 @@
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
-      <p class="bg-secondary   shadow-5 text-center text-white text-subtitle1">
-        Leyenda
+      <p class="bg-secondary   shadow-5 text-center text-white">
+        Area
       </p>
     </div>
     <div class="q-pa-xs">
@@ -12,32 +12,19 @@
         :data="info"
         :columns="columns"
         row-key="co_semsve"
+        hide-bottom
+        hide-header
+        :pagination.sync="pagination"
       >
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="co_emotic" :props="props">
-              {{ props.row.co_emotic }}
-            </q-td>
-            <q-td key="no_emotic" :props="props">
-              {{ props.row.no_emotic }}
-            </q-td>
-            <q-td key="no_sigsec" :props="props">
-              {{ props.row.no_sigsec }}
-            </q-td>
-            <q-td key="no_sececo" :props="props">
-              {{ props.row.no_sececo }}
-            </q-td>
             <q-td key="no_sigare" :props="props">
-              {{ props.row.no_sigare }}
+              <q-badge color="yellow-10">
+                {{ props.row.no_sigare }}
+              </q-badge>
             </q-td>
-            <q-td key="no_sigare" :props="props">
-              {{ props.row.no_sigare }}
-            </q-td>
-            <q-td key="no_sigsve" :props="props">
-              {{ props.row.no_sigsve }}
-            </q-td>
-            <q-td key="no_estsve" :props="props">
-              {{ props.row.no_estsve }}
+            <q-td key="no_arelab" :props="props">
+              {{ props.row.no_arelab }}
             </q-td>
           </q-tr>
         </template>
@@ -51,6 +38,12 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      pagination: {
+        descending: false,
+        page: 1,
+        rowsPerPage: 6
+        // rowsNumber: xx if getting data from a server
+      },
       columns: [
         {
           name: "co_emotic",

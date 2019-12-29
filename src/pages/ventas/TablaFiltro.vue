@@ -3,7 +3,7 @@
     <div>
       <div>
         <p
-          class="bg-secondary   shadow-5 text-center text-white text-subtitle1"
+          class="bg-secondary shadow-5 text-center text-white"
         >
           Filtros Dinamicos
         </p>
@@ -63,14 +63,14 @@
         color="secondary"
         @click="showLoading()"
         icon-right="send"
-        size="sm"
+        size="xs"
         label="Filtrar"
       />
       <q-btn
         color="info"
         @click="limpiarFiltros()"
         icon-right="send"
-        size="sm"
+        size="xs"
         label="Limpiar Filtros"
       />
     </div>

@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa-md">
     <div>
-      <p class="bg-secondary   shadow-5 text-center text-white text-subtitle1">
-        Cuadro de Resumen
+      <p class="bg-secondary shadow-5 text-center text-white">
+        Clientes
       </p>
     </div>
     <div class="q-pb-md">
@@ -76,7 +76,7 @@
       :filter="filter"
       :data="getseguimiento_cliente"
       :columns="columns"
-      row-key="co_client"
+      row-key="no_sigcli"
       :pagination.sync="pagination"
     >
       <template v-slot:body="props">
@@ -89,7 +89,6 @@
           </q-td>
           <q-td key="co_semsve" :props="props">
             <q-btn
-              class=" "
               round
               size="xs"
               :color="semaforo(props.row.co_semsve)"
@@ -123,6 +122,13 @@
             <div class="q-gutter-xs">
               <q-btn
                 dense
+                @click="prueba()"
+                size="sm"
+                color="info"
+                icon="remove_red_eye"
+              />
+              <q-btn
+                dense
                 @click="
                   dialogLlamadaCliente({
                     estado: true,
@@ -152,7 +158,7 @@
                   })
                 "
                 size="sm"
-                color="brown-5"
+                color="red-6"
                 icon="edit"
               />
             </div>
@@ -171,6 +177,49 @@
         :cliente="dialogRegistrarCita.cliente"
         :contacto="dialogRegistrarCita.contacto"
       />
+    </q-dialog>
+    <q-dialog v-model="card">
+      <q-card>
+        <q-img
+          src="https://media-cdn.tripadvisor.com/media/photo-s/0a/47/a8/91/chicken-salad-sandwich.jpg"
+        />
+
+        <q-card-section>
+          <q-btn
+            fab
+            color="primary"
+            icon="place"
+            class="absolute"
+            style="top: 0; right: 12px; transform: translateY(-50%);"
+          />
+
+          <div class="row no-wrap items-center">
+            <div class="col text-h6 ellipsis">Cafe Basilico</div>
+            <div class="col-auto text-grey q-pt-md">
+              <q-icon name="place" /> 250 ft
+            </div>
+          </div>
+
+          <q-rating v-model="stars" :max="5" size="32px" />
+        </q-card-section>
+
+        <q-card-section>
+          <div class="text-subtitle1">$・Italian, Cafe</div>
+          <div class="text-subtitle2 text-grey">
+            Small plates, salads & sandwiches in an intimate setting.
+          </div>
+        </q-card-section>
+
+        <q-separator />
+
+        <q-card-actions>
+          <q-btn flat round icon="event" v-close-popup />
+          <q-btn flat v-close-popup>5:30PM</q-btn>
+          <q-btn flat v-close-popup>7:30PM</q-btn>
+          <q-btn flat v-close-popup>9:00PM</q-btn>
+          <q-btn flat color="primary" v-close-popup>Reserve</q-btn>
+        </q-card-actions>
+      </q-card>
     </q-dialog>
     <!--    {{ Clientes }}-->
     <!--    {{ dialogRegistrarCita }}-->
@@ -282,11 +331,24 @@ export default {
   },
   data() {
     return {
+      carousel: false,
+      card: false,
+      sliders: false,
+
+      slide: 1,
+      lorem:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus, ratione eum minus fuga, quasi dicta facilis corporis magnam, suscipit at quo nostrum!",
+
+      stars: 3,
+
+      slideVol: 39,
+      slideAlarm: 56,
+      slideVibration: 63,
       pagination: {
-        sortBy: "co_client",
+        sortBy: "no_sigcli",
         descending: false,
         page: 1,
-        rowsPerPage: 7
+        rowsPerPage: 15
         // rowsNumber: xx if getting data from a server
       },
       separator: "horizontal",
@@ -298,6 +360,14 @@ export default {
     };
   },
   methods: {
+    prueba() {
+      this.card = true;
+      this.$q.notify({
+        message: "Me precionaste",
+        color: "blue",
+        textColor: "white"
+      });
+    },
     semaforo(arg) {
       let respuesta = "";
       if (arg == 0) {

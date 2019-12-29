@@ -2,7 +2,7 @@
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
-      <p class="bg-secondary   shadow-5 text-center text-white text-subtitle1">
+      <p class="bg-secondary shadow-5 text-center text-white">
         Resumen de Seguimiento
       </p>
     </div>
@@ -13,6 +13,7 @@
         :columns="columns"
         row-key="co_semsve"
         hide-bottom
+        hide-header
       >
         <template v-slot:body="props">
           <q-tr :props="props">
