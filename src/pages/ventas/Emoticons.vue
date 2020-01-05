@@ -1,48 +1,55 @@
 <template>
-  <div class="full-width">
-    <!--    <q-markup-table dark class="bg-indigo-8">-->
-    <div>
-      <p class="bg-secondary   shadow-5 text-center text-white">
-        Estado de Cita
-      </p>
-    </div>
-    <div class="q-pa-xs">
-      <q-table
-        dense
-        :data="info"
-        :columns="columns"
-        row-key="co_semsve"
-        hide-bottom
-        hide-header
-        :pagination.sync="pagination"
-      >
-        <template v-slot:body="props">
-          <q-tr :props="props">
-            <q-td key="no_sigsve" :props="props">
-              <q-badge color="green">
-                {{ props.row.no_sigsve }}
-              </q-badge>
-            </q-td>
-            <q-td key="no_estsve" :props="props">
-              {{ props.row.no_estsve }}
-            </q-td>
-          </q-tr>
-        </template>
-      </q-table>
-    </div>
-    <!--    {{ info }}-->
+  <div>
+    <q-card>
+      <q-card-section class="row justify-center">
+        <!--        <div>-->
+        {{ infoEmoti.no_percon }}
+        <!--        </div>-->
+      </q-card-section>
+      <q-card-section class="row justify-center">
+        <div class="q-gutter-md">
+          <q-icon
+            class="cursor-pointer"
+            name="img:statics/cool.png"
+            size="40px"
+          ></q-icon>
+          <q-icon
+            class="cursor-pointer"
+            name="far fa-smile-beam"
+            size="40px"
+          ></q-icon>
+          <q-icon
+            class="cursor-pointer"
+            name="far fa-smile-beam"
+            size="40px"
+          ></q-icon>
+          <q-icon
+            class="cursor-pointer"
+            name="far fa-smile-beam"
+            size="40px"
+          ></q-icon>
+          <q-icon
+            class="cursor-pointer"
+            name="far fa-smile-beam"
+            size="40px"
+          ></q-icon>
+          <q-icon
+            class="cursor-pointer"
+            name="far fa-smile-beam"
+            size="40px"
+          ></q-icon>
+        </div>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
+
 <script>
 import { mapActions } from "vuex";
 export default {
+  props: ["infoEmoti"],
   data() {
     return {
-      pagination: {
-        page: 1,
-        rowsPerPage: 7
-        // rowsNumber: xx if getting data from a server
-      },
       columns: [
         {
           name: "co_emotic",
@@ -115,7 +122,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("example", ["listar_estado_seguimiento_cliente"]),
+    ...mapActions("example", ["listar_personas_contacto"]),
     semaforo(arg) {
       let respuesta = "";
       if (arg == 0) {
@@ -136,7 +143,9 @@ export default {
   },
   mounted() {
     console.log("se cargo el created de resumen");
-    this.listar_estado_seguimiento_cliente()
+    this.listar_personas_contacto({
+      persona: this.co_person
+    })
       .then(resp => {
         console.log(resp);
         this.info = resp;
@@ -148,3 +157,5 @@ export default {
   }
 };
 </script>
+
+<style scoped></style>

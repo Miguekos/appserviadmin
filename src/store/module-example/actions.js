@@ -182,3 +182,26 @@ export async function leyenda_seguimiento_cliente({}) {
   // commit("setlistar_direccion", response.data);
   return response.data;
 }
+
+// eslint-disable-next-line
+export async function emoticon_cliente({}) {
+  const response = await axiosInstance.get(`/api/ventas/emoticon_cliente`);
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}
+
+// eslint-disable-next-line
+export async function listar_area_laboral({}) {
+  const response = await axiosInstance.get(`/api/ventas/listar_area_laboral`);
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}
+
+// eslint-disable-next-line
+export async function listar_personas_contacto({}, payload) {
+  const response = await axiosInstance.get(
+    `/api/ventas/listar_personas_contacto/${payload.persona}`
+  );
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}

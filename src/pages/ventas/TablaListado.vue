@@ -88,11 +88,17 @@
             {{ props.row.no_percon }}
           </q-td>
           <q-td key="co_semsve" :props="props">
-            <q-btn
-              round
-              size="xs"
-              :color="semaforo(props.row.co_semsve)"
-            />
+            <!--            <q-btn round size="xs" :color="emoticones(props.row.co_semsve)" />-->
+            <q-icon
+              class="cursor-pointer"
+              @click="updateEmoti(props.row)"
+              name="far fa-smile-wink"
+              size="25px"
+              color="red"
+            ></q-icon>
+          </q-td>
+          <q-td key="co_semsve" :props="props">
+            <q-btn round size="xs" :color="semaforo(props.row.co_semsve)" />
           </q-td>
           <q-td key="no_arelab" :props="props">
             {{ props.row.no_arelab }}
@@ -118,11 +124,11 @@
           <q-td key="no_sigsve" :props="props">
             {{ props.row.no_sigsve }}
           </q-td>
-          <q-td key="botones" :props="props">
+          <q-td key="co_percon" :props="props">
             <div class="q-gutter-xs">
               <q-btn
                 dense
-                @click="prueba()"
+                @click="prueba(props.row.co_percon)"
                 size="sm"
                 color="info"
                 icon="remove_red_eye"
@@ -179,47 +185,11 @@
       />
     </q-dialog>
     <q-dialog v-model="card">
-      <q-card>
-        <q-img
-          src="https://media-cdn.tripadvisor.com/media/photo-s/0a/47/a8/91/chicken-salad-sandwich.jpg"
-        />
+      <DialogInformativo :co_person="co_persona" />
+    </q-dialog>
 
-        <q-card-section>
-          <q-btn
-            fab
-            color="primary"
-            icon="place"
-            class="absolute"
-            style="top: 0; right: 12px; transform: translateY(-50%);"
-          />
-
-          <div class="row no-wrap items-center">
-            <div class="col text-h6 ellipsis">Cafe Basilico</div>
-            <div class="col-auto text-grey q-pt-md">
-              <q-icon name="place" /> 250 ft
-            </div>
-          </div>
-
-          <q-rating v-model="stars" :max="5" size="32px" />
-        </q-card-section>
-
-        <q-card-section>
-          <div class="text-subtitle1">$・Italian, Cafe</div>
-          <div class="text-subtitle2 text-grey">
-            Small plates, salads & sandwiches in an intimate setting.
-          </div>
-        </q-card-section>
-
-        <q-separator />
-
-        <q-card-actions>
-          <q-btn flat round icon="event" v-close-popup />
-          <q-btn flat v-close-popup>5:30PM</q-btn>
-          <q-btn flat v-close-popup>7:30PM</q-btn>
-          <q-btn flat v-close-popup>9:00PM</q-btn>
-          <q-btn flat color="primary" v-close-popup>Reserve</q-btn>
-        </q-card-actions>
-      </q-card>
+    <q-dialog v-model="emoti">
+      <Emoticons :infoEmoti="infoEmoti" />
     </q-dialog>
     <!--    {{ Clientes }}-->
     <!--    {{ dialogRegistrarCita }}-->
@@ -242,6 +212,13 @@ const columns = [
     sortable: true,
     label: "Contacto",
     field: "no_percon"
+  },
+  {
+    name: "co_semsve",
+    align: "left",
+    sortable: true,
+    label: "Sem.",
+    field: "co_semsve"
   },
   {
     name: "co_semsve",
@@ -308,11 +285,11 @@ const columns = [
     style: "width: 15%"
   },
   {
-    name: "botones",
+    name: "co_percon",
     align: "center",
     sortable: true,
     label: "Accions",
-    field: "botones",
+    field: "co_percon",
     style: "width: 5%"
   }
 ];
@@ -331,6 +308,9 @@ export default {
   },
   data() {
     return {
+      infoEmoti: [],
+      emoti: false,
+      co_persona: null,
       carousel: false,
       card: false,
       sliders: false,
@@ -360,13 +340,40 @@ export default {
     };
   },
   methods: {
-    prueba() {
+    updateEmoti(arg) {
+      this.infoEmoti = arg;
+      this.emoti = true;
+      // this.$q.notify({
+      //   message: arg,
+      //   color: "blue",
+      //   textColor: "white"
+      // });
+    },
+    prueba(arg) {
+      this.co_persona = arg;
       this.card = true;
       this.$q.notify({
-        message: "Me precionaste",
+        message: arg,
         color: "blue",
         textColor: "white"
       });
+    },
+    emoticones(arg) {
+      let respuesta = "";
+      if (arg == 0) {
+        respuesta = "black";
+      } else if (arg == 1) {
+        respuesta = "blue";
+      } else if (arg == 2) {
+        respuesta = "green";
+      } else if (arg == 3) {
+        respuesta = "yellow";
+      } else if (arg == 4) {
+        respuesta = "amber";
+      } else if (arg == 5) {
+        respuesta = "red";
+      }
+      return respuesta;
     },
     semaforo(arg) {
       let respuesta = "";
@@ -401,8 +408,9 @@ export default {
   },
   components: {
     Llamadas: () => import("./Llamadas"),
-    RegistrarCita: () => import("./RegistrarCita")
-    // TablaFiltro: () => import("./TablaFiltro"),
+    RegistrarCita: () => import("./RegistrarCita"),
+    DialogInformativo: () => import("./DialogInformativo"),
+    Emoticons: () => import("./Emoticons")
     // CuadroResumen: () => import("./CuadroResumen")
     // AddRegistro: () => import("./Create")
   },

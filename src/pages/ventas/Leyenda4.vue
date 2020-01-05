@@ -18,49 +18,49 @@
       >
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="no_sigsec" :props="props">
+            <q-td key="co_sigc01" :props="props">
+              <q-badge :color="`${props.row.no_colhe1}`">
+                {{ props.row.co_sigc01 }}
+              </q-badge>
+            </q-td>
+            <q-td key="no_sigc01" :props="props">
+              {{ props.row.no_sigc01 }}
+            </q-td>
+
+            <q-td key="co_sigc02" :props="props">
+              <q-badge color="#FFFGGG">
+                {{ props.row.co_sigc02 }}
+              </q-badge>
+            </q-td>
+            <q-td key="no_sigc02" :props="props">
+              {{ props.row.no_sigc02 }}
+            </q-td>
+
+            <q-td key="co_sigc03" :props="props">
               <q-badge color="green">
-                {{ props.row.no_sigsec }}
+                {{ props.row.co_sigc03 }}
               </q-badge>
             </q-td>
-            <q-td key="no_sececo" :props="props">
-              {{ props.row.no_sececo }}
+            <q-td key="no_sigc03" :props="props">
+              {{ props.row.no_sigc03 }}
             </q-td>
 
-            <q-td key="no_sigsec" :props="props">
-              <q-badge color="blue">
-                {{ props.row.no_sigsec }}
-              </q-badge>
-            </q-td>
-            <q-td key="no_sececo" :props="props">
-              {{ props.row.no_sececo }}
-            </q-td>
-
-            <q-td key="no_sigsec" :props="props">
-              <q-badge color="red">
-                {{ props.row.no_sigsec }}
-              </q-badge>
-            </q-td>
-            <q-td key="no_sececo" :props="props">
-              {{ props.row.no_sececo }}
-            </q-td>
-
-            <q-td key="no_sigsec" :props="props">
-              <q-badge color="gray">
-                {{ props.row.no_sigsec }}
-              </q-badge>
-            </q-td>
-            <q-td key="no_sececo" :props="props">
-              {{ props.row.no_sececo }}
-            </q-td>
-
-            <q-td key="no_sigsec" :props="props">
+            <q-td key="co_sigc04" :props="props">
               <q-badge color="green">
-                {{ props.row.no_sigsec }}
+                {{ props.row.co_sigc04 }}
               </q-badge>
             </q-td>
-            <q-td key="no_sececo" :props="props">
-              {{ props.row.no_sececo }}
+            <q-td key="no_sigc04" :props="props">
+              {{ props.row.no_sigc04 }}
+            </q-td>
+
+            <q-td key="co_sigc05" :props="props">
+              <q-badge color="green">
+                {{ props.row.co_sigc05 }}
+              </q-badge>
+            </q-td>
+            <q-td key="no_sigc05" :props="props">
+              {{ props.row.no_sigc05 }}
             </q-td>
           </q-tr>
         </template>
@@ -81,66 +81,83 @@ export default {
       },
       columns: [
         {
-          name: "co_emotic",
+          name: "co_sigc01",
           required: true,
           label: "COD",
           align: "left",
-          field: "co_emotic",
+          field: "co_sigc01",
           sortable: true
         },
         {
-          name: "no_emotic",
+          name: "no_sigc01",
           required: true,
           label: "DESCRIPCION",
           align: "left",
-          field: "no_emotic",
+          field: "no_sigc01",
           sortable: true
         },
         {
-          name: "no_sigsec",
+          name: "co_sigc02",
           required: true,
           label: "COD",
           align: "left",
-          field: "no_sigsec",
+          field: "co_sigc02",
           sortable: true
         },
         {
-          name: "no_sececo",
+          name: "no_sigc02",
           required: true,
-          label: "SECTOR",
+          label: "DESCRIPCION",
           align: "left",
-          field: "no_sececo",
+          field: "no_sigc02",
           sortable: true
         },
         {
-          name: "no_sigare",
-          required: true,
-          label: "COD",
-          align: "left",
-          field: "no_sigare",
-          sortable: true
-        },
-        {
-          name: "no_arelab",
-          required: true,
-          label: "AREA",
-          align: "left",
-          field: "no_arelab",
-          sortable: true
-        },
-        {
-          name: "no_sigsve",
+          name: "co_sigc03",
           required: true,
           label: "COD",
           align: "left",
-          field: "no_sigsve",
+          field: "co_sigc03",
           sortable: true
         },
         {
-          name: "no_estsve",
+          name: "no_sigc03",
+          required: true,
+          label: "DESCRIPCION",
           align: "left",
-          label: "ESTADO",
-          field: "no_estsve",
+          field: "no_sigc03",
+          sortable: true
+        },
+        {
+          name: "co_sigc04",
+          required: true,
+          label: "COD",
+          align: "left",
+          field: "co_sigc04",
+          sortable: true
+        },
+        {
+          name: "no_sigc04",
+          required: true,
+          label: "DESCRIPCION",
+          align: "left",
+          field: "no_sigc04",
+          sortable: true
+        },
+        {
+          name: "co_sigc05",
+          required: true,
+          label: "COD",
+          align: "left",
+          field: "co_sigc05",
+          sortable: true
+        },
+        {
+          name: "no_sigc05",
+          required: true,
+          label: "DESCRIPCION",
+          align: "left",
+          field: "no_sigc05",
           sortable: true
         }
       ],

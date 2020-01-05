@@ -41,7 +41,7 @@ export default {
       pagination: {
         descending: false,
         page: 1,
-        rowsPerPage: 6
+        rowsPerPage: 7
         // rowsNumber: xx if getting data from a server
       },
       columns: [
@@ -116,7 +116,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("example", ["leyenda_seguimiento_cliente"]),
+    ...mapActions("example", ["emoticon_cliente"]),
     semaforo(arg) {
       let respuesta = "";
       if (arg == 0) {
@@ -137,7 +137,7 @@ export default {
   },
   mounted() {
     console.log("se cargo el created de resumen");
-    this.leyenda_seguimiento_cliente()
+    this.emoticon_cliente()
       .then(resp => {
         console.log(resp);
         this.info = resp;
