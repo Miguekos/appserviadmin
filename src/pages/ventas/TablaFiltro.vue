@@ -2,9 +2,7 @@
   <div class="full-width">
     <div>
       <div>
-        <p
-          class="bg-secondary shadow-5 text-center text-white"
-        >
+        <p class="bg-secondary shadow-5 text-center text-white">
           Filtros Dinamicos
         </p>
       </div>

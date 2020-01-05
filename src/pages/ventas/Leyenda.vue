@@ -7,12 +7,7 @@
       </p>
     </div>
     <div class="q-pa-xs">
-      <q-table
-        dense
-        :data="info"
-        :columns="columns"
-        row-key="co_semsve"
-      >
+      <q-table dense :data="info" :columns="columns" row-key="co_semsve">
         <template v-slot:body="props">
           <q-tr :props="props">
             <q-td key="co_emotic" :props="props">
