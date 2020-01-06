@@ -2,7 +2,7 @@
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
-      <p class="bg-secondary   shadow-5 text-center text-white">
+      <p class="bg-secondary shadow-5 text-center text-white">
         Trato
       </p>
     </div>
@@ -19,9 +19,14 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <q-td key="co_emotic" :props="props">
-              <q-badge color="deep-purple">
-                {{ props.row.co_emotic }}
-              </q-badge>
+              <!--              <q-badge color="deep-purple">-->
+              <q-icon
+                size="xs"
+                :id="emotiColor(props.row.co_emotic)"
+                :name="emotions(props.row.co_emotic)"
+              ></q-icon>
+              <!--                {{ props.row.co_emotic }}-->
+              <!--              </q-badge>-->
             </q-td>
             <q-td key="no_emotic" :props="props">
               {{ props.row.no_emotic }}
@@ -41,7 +46,7 @@ export default {
       pagination: {
         descending: false,
         page: 1,
-        rowsPerPage: 7
+        rowsPerPage: 8
         // rowsNumber: xx if getting data from a server
       },
       columns: [
@@ -117,22 +122,47 @@ export default {
   },
   methods: {
     ...mapActions("example", ["emoticon_cliente"]),
-    semaforo(arg) {
+    emotions(arg) {
       let respuesta = "";
-      if (arg == 0) {
-        respuesta = "black";
-      } else if (arg == 1) {
-        respuesta = "blue";
+      if (arg == 1) {
+        respuesta = "far fa-laugh-beam";
       } else if (arg == 2) {
-        respuesta = "green";
+        respuesta = "far fa-smile-beam";
       } else if (arg == 3) {
-        respuesta = "yellow";
+        respuesta = "far fa-meh";
       } else if (arg == 4) {
-        respuesta = "amber";
+        respuesta = "far fa-frown";
       } else if (arg == 5) {
-        respuesta = "red";
+        respuesta = "far fa-angry";
+      } else if (arg == 6) {
+        respuesta = "far fa-kiss-wink-heart";
+      } else if (arg == 7) {
+        respuesta = "far fa-hand-holding-usd";
+      } else if (arg == 8) {
+        respuesta = "far fa-meh-blank";
       }
       return respuesta;
+    },
+    emotiColor(arg) {
+      let color = "";
+      if (arg == 1) {
+        color = "color1";
+      } else if (arg == 2) {
+        color = "color2";
+      } else if (arg == 3) {
+        color = "color3";
+      } else if (arg == 4) {
+        color = "color4";
+      } else if (arg == 5) {
+        color = "color5";
+      } else if (arg == 6) {
+        color = "color6";
+      } else if (arg == 7) {
+        color = "color7";
+      } else if (arg == 8) {
+        color = "color8";
+      }
+      return color;
     }
   },
   mounted() {
@@ -149,3 +179,26 @@ export default {
   }
 };
 </script>
+<style>
+#color1 {
+  color: #0ec70b;
+}
+#color2 {
+  color: #0b97c7;
+}
+#color3 {
+  color: #e6ef21;
+}
+#color4 {
+  color: #eba34c;
+}
+#color5 {
+  color: #f02d1d;
+}
+#color6 {
+  color: #c809f7;
+}
+#color7 {
+  color: #b3a9a9;
+}
+</style>

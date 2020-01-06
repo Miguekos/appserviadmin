@@ -122,7 +122,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("example", ["listar_personas_contacto"]),
+    ...mapActions("example", ["emoticon_cliente"]),
     semaforo(arg) {
       let respuesta = "";
       if (arg == 0) {
@@ -143,9 +143,7 @@ export default {
   },
   mounted() {
     console.log("se cargo el created de resumen");
-    this.listar_personas_contacto({
-      persona: this.co_person
-    })
+    this.emoticon_cliente()
       .then(resp => {
         console.log(resp);
         this.info = resp;
@@ -158,4 +156,26 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+#color1 {
+  color: #0ec70b;
+}
+#color2 {
+  color: #0b97c7;
+}
+#color3 {
+  color: #e6ef21;
+}
+#color4 {
+  color: #eba34c;
+}
+#color5 {
+  color: #f02d1d;
+}
+#color6 {
+  color: #c809f7;
+}
+#color7 {
+  color: #b3a9a9;
+}
+</style>
