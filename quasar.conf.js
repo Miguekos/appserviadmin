@@ -75,7 +75,9 @@ module.exports = function(ctx) {
         "QTabPanel",
         "QPopupProxy",
         "QCheckbox",
-        "QTime"
+        "QTime",
+        "QField",
+        "QRating"
       ],
 
       directives: ["Ripple", "ClosePopup"],

@@ -352,11 +352,11 @@ export default {
     prueba(arg) {
       this.co_persona = arg;
       this.card = true;
-      this.$q.notify({
-        message: arg,
-        color: "blue",
-        textColor: "white"
-      });
+      // this.$q.notify({
+      //   message: arg,
+      //   color: "blue",
+      //   textColor: "white"
+      // });
     },
     emoticones(arg) {
       let respuesta = "";

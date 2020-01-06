@@ -4,42 +4,156 @@
       <!--      <q-img-->
       <!--        src="https://media-cdn.tripadvisor.com/media/photo-s/0a/47/a8/91/chicken-salad-sandwich.jpg"-->
       <!--      />-->
-
       <q-card-section>
-        <!--        <q-btn-->
-        <!--          fab-->
-        <!--          color="primary"-->
-        <!--          icon="place"-->
-        <!--          class="absolute"-->
-        <!--          style="top: 0; right: 12px; transform: translateY(-50%);"-->
-        <!--        />-->
-
         <div class="row no-wrap items-center">
           <div class="col text-h6 ellipsis">{{ info[0].no_percon }}</div>
           <div class="col-auto text-grey q-pt-md">
-            <!--            <q-icon name="place" /> 250 ft-->
+            <!--            {{ info[0].no_percon }}-->
           </div>
         </div>
 
-        <q-rating v-model="stars" :max="5" size="32px" />
+        <!--        <q-rating v-model="stars" :max="5" size="32px" />-->
       </q-card-section>
 
       <q-card-section>
-        <div class="text-subtitle1">{{ info[0].no_arelab }}</div>
-        <div class="text-subtitle2 text-grey">
-          {{ info[0] }}
+        <div class="row q-gutter-md justify-around flex">
+          <div class="column">
+            <div>
+              <q-field label="Empresa" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    {{ info[0].no_percon }}
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="Sigla" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    <!--                    {{ info[0].no_percon }}-->
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="RUC" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    <!--                    {{ info[0].no_percon }}-->
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="Sector" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    <!--                    {{ info[0].no_percon }}-->
+                  </div>
+                </template>
+              </q-field>
+            </div>
+          </div>
+          <q-space></q-space>
+          <div class="col self-center">
+            <q-avatar
+              square
+              size="90px"
+              font-size="82px"
+              icon="far fa-smile-beam"
+            />
+          </div>
+        </div>
+      </q-card-section>
+      <q-card-section>
+        <div>
+          <div>
+            <div>
+              <q-field label="Contacto" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    <!--                    {{ info[0].no_percon }}-->
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="Area" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    {{ info[0].no_arelab }}
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="Telefono" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    {{ info[0].nu_telefo }}
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="Correo" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    {{ info[0].no_corele }}
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="Direccion" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    <!--                    {{ info[0].no_percon }}-->
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="Semaforo" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    <!--                    {{ info[0].no_percon }}-->
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="Consultas" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    <!--                    {{ info[0].no_percon }}-->
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="Citas" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    <!--                    {{ info[0].no_percon }}-->
+                  </div>
+                </template>
+              </q-field>
+            </div>
+          </div>
         </div>
       </q-card-section>
 
       <q-separator />
 
-      <q-card-actions>
-        <q-btn flat round icon="event" v-close-popup />
-        <q-btn flat v-close-popup>5:30PM</q-btn>
-        <q-btn flat v-close-popup>7:30PM</q-btn>
-        <q-btn flat v-close-popup>9:00PM</q-btn>
-        <q-btn flat color="primary" v-close-popup>Reserve</q-btn>
-      </q-card-actions>
+      <!--      <q-card-actions>-->
+      <!--        <q-btn flat round icon="event" v-close-popup />-->
+      <!--        <q-btn flat v-close-popup>5:30PM</q-btn>-->
+      <!--        <q-btn flat v-close-popup>7:30PM</q-btn>-->
+      <!--        <q-btn flat v-close-popup>9:00PM</q-btn>-->
+      <!--        <q-btn flat color="primary" v-close-popup>Reserve</q-btn>-->
+      <!--      </q-card-actions>-->
     </q-card>
   </div>
 </template>
@@ -50,6 +164,7 @@ export default {
   props: ["co_person"],
   data() {
     return {
+      dense: true,
       columns: [
         {
           name: "co_emotic",

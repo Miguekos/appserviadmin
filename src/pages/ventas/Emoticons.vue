@@ -10,7 +10,7 @@
         <div class="q-gutter-md">
           <q-icon
             class="cursor-pointer"
-            name="img:statics/cool.png"
+            name="far fa-smile-beam"
             size="40px"
           ></q-icon>
           <q-icon
