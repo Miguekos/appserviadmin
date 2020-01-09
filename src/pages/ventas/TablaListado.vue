@@ -118,11 +118,17 @@
           <q-td key="ca_segven" :props="props">
             {{ props.row.ca_segven }}
           </q-td>
+          <q-td key="cantidad" :props="props">
+            <!--            {{ props.row.ca_segven }}-->
+          </q-td>
           <q-td key="no_coment" :props="props">
             {{ props.row.no_coment }}
           </q-td>
           <q-td key="no_sigsve" :props="props">
             {{ props.row.no_sigsve }}
+          </q-td>
+          <q-td key="usuario" :props="props">
+            <!--            {{ props.row.no_sigsve }}-->
           </q-td>
           <q-td key="co_percon" :props="props">
             <div class="q-gutter-xs">
@@ -270,6 +276,13 @@ const columns = [
     field: "ca_segven"
   },
   {
+    name: "cantidad",
+    align: "center",
+    sortable: true,
+    label: "Cant. Consul",
+    field: "cantidad"
+  },
+  {
     name: "no_coment",
     align: "left",
     sortable: true,
@@ -282,6 +295,14 @@ const columns = [
     sortable: true,
     label: "Estados",
     field: "no_sigsve",
+    style: "width: 15%"
+  },
+  {
+    name: "usuario",
+    align: "left",
+    sortable: true,
+    label: "Usuario",
+    field: "usuario",
     style: "width: 15%"
   },
   {
@@ -340,6 +361,9 @@ export default {
     };
   },
   methods: {
+    coloreando(arg) {
+      return `color: ${arg}`;
+    },
     updateEmoti(arg) {
       this.infoEmoti = arg;
       this.emoti = true;

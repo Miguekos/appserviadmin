@@ -19,7 +19,10 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <q-td key="co_sigc01" :props="props">
-              <q-badge :color="`${props.row.no_colhe1}`">
+              <q-badge
+                text-color="white"
+                :style="coloreando(props.row.no_colhex1)"
+              >
                 {{ props.row.co_sigc01 }}
               </q-badge>
             </q-td>
@@ -28,7 +31,10 @@
             </q-td>
 
             <q-td key="co_sigc02" :props="props">
-              <q-badge color="#FFFGGG">
+              <q-badge
+                text-color="white"
+                :style="coloreando(props.row.no_colhex2)"
+              >
                 {{ props.row.co_sigc02 }}
               </q-badge>
             </q-td>
@@ -37,7 +43,10 @@
             </q-td>
 
             <q-td key="co_sigc03" :props="props">
-              <q-badge color="green">
+              <q-badge
+                text-color="white"
+                :style="coloreando(props.row.no_colhex3)"
+              >
                 {{ props.row.co_sigc03 }}
               </q-badge>
             </q-td>
@@ -46,7 +55,10 @@
             </q-td>
 
             <q-td key="co_sigc04" :props="props">
-              <q-badge color="green">
+              <q-badge
+                text-color="white"
+                :style="coloreando(props.row.no_colhex4)"
+              >
                 {{ props.row.co_sigc04 }}
               </q-badge>
             </q-td>
@@ -55,7 +67,10 @@
             </q-td>
 
             <q-td key="co_sigc05" :props="props">
-              <q-badge color="green">
+              <q-badge
+                text-color="white"
+                :style="coloreando(props.row.no_colhex5)"
+              >
                 {{ props.row.co_sigc05 }}
               </q-badge>
             </q-td>
@@ -169,6 +184,9 @@ export default {
   },
   methods: {
     ...mapActions("example", ["leyenda_seguimiento_cliente"]),
+    coloreando(arg) {
+      return `color: ${arg}`;
+    },
     semaforo(arg) {
       let respuesta = "";
       if (arg == 0) {

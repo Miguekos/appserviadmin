@@ -19,7 +19,10 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <q-td key="no_sigsve" :props="props">
-              <q-badge color="green">
+              <q-badge
+                text-color="white"
+                :style="coloreando(props.row.no_colhex)"
+              >
                 {{ props.row.no_sigsve }}
               </q-badge>
             </q-td>
@@ -116,6 +119,9 @@ export default {
   },
   methods: {
     ...mapActions("example", ["listar_estado_seguimiento_cliente"]),
+    coloreando(arg) {
+      return `color: ${arg}`;
+    },
     semaforo(arg) {
       let respuesta = "";
       if (arg == 0) {

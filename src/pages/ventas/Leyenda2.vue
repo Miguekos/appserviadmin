@@ -2,7 +2,7 @@
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
-      <p class="bg-secondary   shadow-5 text-center text-white">
+      <p class="bg-secondary shadow-5 text-center text-white">
         Area
       </p>
     </div>
@@ -19,7 +19,7 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <q-td key="no_sigare" :props="props">
-              <q-badge color="yellow-10">
+              <q-badge text-color="white" :style="coloreando(props.row.no_colhex)">
                 {{ props.row.no_sigare }}
               </q-badge>
             </q-td>
@@ -38,6 +38,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      colorin: "#89070f",
       pagination: {
         descending: false,
         page: 1,
@@ -117,6 +118,9 @@ export default {
   },
   methods: {
     ...mapActions("example", ["listar_area_laboral"]),
+    coloreando(arg) {
+      return `color: ${arg}`;
+    },
     semaforo(arg) {
       let respuesta = "";
       if (arg == 0) {
@@ -149,3 +153,8 @@ export default {
   }
 };
 </script>
+<style>
+#color1 {
+  color: #165f89;
+}
+</style>

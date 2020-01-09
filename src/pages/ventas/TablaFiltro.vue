@@ -110,6 +110,9 @@ export default {
       "semaforo_seguimiento_cliente",
       "seguimiento_cliente"
     ]),
+    coloreando(arg) {
+      return `color: ${arg}`;
+    },
     crearCotiza() {
       this.$router.push("/cotizacion/create");
     },
