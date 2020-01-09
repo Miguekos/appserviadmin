@@ -92,9 +92,9 @@
             <q-icon
               class="cursor-pointer"
               @click="updateEmoti(props.row)"
-              name="far fa-smile-wink"
+              :id="emotiColor(props.row.co_semsve)"
+              :name="emotions(props.row.co_semsve)"
               size="25px"
-              color="red"
             ></q-icon>
           </q-td>
           <q-td key="co_semsve" :props="props">
@@ -382,22 +382,47 @@ export default {
       //   textColor: "white"
       // });
     },
-    emoticones(arg) {
+    emotions(arg) {
       let respuesta = "";
-      if (arg == 0) {
-        respuesta = "black";
-      } else if (arg == 1) {
-        respuesta = "blue";
+      if (arg == 1) {
+        respuesta = "far fa-laugh-beam";
       } else if (arg == 2) {
-        respuesta = "green";
+        respuesta = "far fa-smile-beam";
       } else if (arg == 3) {
-        respuesta = "yellow";
+        respuesta = "far fa-meh";
       } else if (arg == 4) {
-        respuesta = "amber";
+        respuesta = "far fa-frown";
       } else if (arg == 5) {
-        respuesta = "red";
+        respuesta = "far fa-angry";
+      } else if (arg == 6) {
+        respuesta = "far fa-kiss-wink-heart";
+      } else if (arg == 7) {
+        respuesta = "far fa-hand-holding-usd";
+      } else if (arg == 8) {
+        respuesta = "far fa-meh-blank";
       }
       return respuesta;
+    },
+    emotiColor(arg) {
+      let color = "";
+      if (arg == 1) {
+        color = "color1";
+      } else if (arg == 2) {
+        color = "color2";
+      } else if (arg == 3) {
+        color = "color3";
+      } else if (arg == 4) {
+        color = "color4";
+      } else if (arg == 5) {
+        color = "color5";
+      } else if (arg == 6) {
+        color = "color6";
+      } else if (arg == 7) {
+        color = "color7";
+      } else if (arg == 8) {
+        color = "color8";
+      }
+      return color;
     },
     semaforo(arg) {
       let respuesta = "";
