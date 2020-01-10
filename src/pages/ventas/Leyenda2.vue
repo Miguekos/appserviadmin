@@ -19,7 +19,10 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <q-td key="no_sigare" :props="props">
-              <q-badge text-color="white" :style="coloreando(props.row.no_colhex)">
+              <q-badge
+                text-color="white"
+                :style="coloreando(props.row.no_colhex)"
+              >
                 {{ props.row.no_sigare }}
               </q-badge>
             </q-td>
@@ -119,7 +122,7 @@ export default {
   methods: {
     ...mapActions("example", ["listar_area_laboral"]),
     coloreando(arg) {
-      return `color: ${arg}`;
+      return `background-color: ${arg}`;
     },
     semaforo(arg) {
       let respuesta = "";

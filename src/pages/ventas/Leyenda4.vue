@@ -19,10 +19,7 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <q-td key="co_sigc01" :props="props">
-              <q-badge
-                text-color="white"
-                :style="coloreando(props.row.no_colhex1)"
-              >
+              <q-badge :style="coloreando(props.row.no_colhe1)">
                 {{ props.row.co_sigc01 }}
               </q-badge>
             </q-td>
@@ -31,10 +28,7 @@
             </q-td>
 
             <q-td key="co_sigc02" :props="props">
-              <q-badge
-                text-color="white"
-                :style="coloreando(props.row.no_colhex2)"
-              >
+              <q-badge :style="coloreando(props.row.no_colhe2)">
                 {{ props.row.co_sigc02 }}
               </q-badge>
             </q-td>
@@ -45,7 +39,7 @@
             <q-td key="co_sigc03" :props="props">
               <q-badge
                 text-color="white"
-                :style="coloreando(props.row.no_colhex3)"
+                :style="coloreando(props.row.no_colhe3)"
               >
                 {{ props.row.co_sigc03 }}
               </q-badge>
@@ -57,7 +51,7 @@
             <q-td key="co_sigc04" :props="props">
               <q-badge
                 text-color="white"
-                :style="coloreando(props.row.no_colhex4)"
+                :style="coloreando(props.row.no_colhe4)"
               >
                 {{ props.row.co_sigc04 }}
               </q-badge>
@@ -69,7 +63,7 @@
             <q-td key="co_sigc05" :props="props">
               <q-badge
                 text-color="white"
-                :style="coloreando(props.row.no_colhex5)"
+                :style="coloreando(props.row.no_colhe5)"
               >
                 {{ props.row.co_sigc05 }}
               </q-badge>
@@ -89,6 +83,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      active: true,
       pagination: {
         page: 1,
         rowsPerPage: 3
@@ -185,7 +180,8 @@ export default {
   methods: {
     ...mapActions("example", ["leyenda_seguimiento_cliente"]),
     coloreando(arg) {
-      return `color: ${arg}`;
+      console.log(arg);
+      return `background-color: ${arg}`;
     },
     semaforo(arg) {
       let respuesta = "";

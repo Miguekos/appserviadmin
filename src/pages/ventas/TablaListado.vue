@@ -101,34 +101,37 @@
             <q-btn round size="xs" :color="semaforo(props.row.co_semsve)" />
           </q-td>
           <q-td key="no_arelab" :props="props">
-            {{ props.row.no_arelab }}
+            <q-badge :style="coloreando(props.row.no_colare)">
+              {{ props.row.no_arelab }}
+            </q-badge>
           </q-td>
-          <q-td key="no_depart" :props="props">
-            {{ props.row.no_depart }}
-          </q-td>
-          <q-td key="no_provin" :props="props">
-            {{ props.row.no_provin }}
-          </q-td>
-          <q-td key="no_distri" :props="props">
-            {{ props.row.no_distri }}
+          <q-td key="no_ubicac" :props="props">
+            {{ props.row.no_ubicac }}
           </q-td>
           <q-td key="no_sececo" :props="props">
-            {{ props.row.no_sececo }}
+            <q-badge :style="coloreando(props.row.no_colsec)">
+              {{ props.row.no_sececo }}
+            </q-badge>
           </q-td>
-          <q-td key="ca_segven" :props="props">
-            {{ props.row.ca_segven }}
+          <q-td key="no_usuari" :props="props">
+            {{ props.row.no_usuari }}
           </q-td>
-          <q-td key="cantidad" :props="props">
-            <!--            {{ props.row.ca_segven }}-->
+          <q-td key="fe_regist" :props="props">
+            {{ props.row.fe_regist }}
+          </q-td>
+          <q-td key="no_sigsve" :props="props">
+            <q-badge :style="coloreando(props.row.no_colsve)">
+              {{ props.row.no_sigsve }}
+            </q-badge>
           </q-td>
           <q-td key="no_coment" :props="props">
             {{ props.row.no_coment }}
           </q-td>
-          <q-td key="no_sigsve" :props="props">
-            {{ props.row.no_sigsve }}
+          <q-td key="ca_segven" :props="props">
+            {{ props.row.ca_segven }}
           </q-td>
-          <q-td key="usuario" :props="props">
-            <!--            {{ props.row.no_sigsve }}-->
+          <q-td key="Catálogo" :props="props">
+            {{ props.row.Catálogo }}
           </q-td>
           <q-td key="co_percon" :props="props">
             <div class="q-gutter-xs">
@@ -241,25 +244,11 @@ const columns = [
     field: "no_arelab"
   },
   {
-    name: "no_depart",
+    name: "no_ubicac",
     align: "left",
     sortable: true,
-    label: "Departamento",
-    field: "no_depart"
-  },
-  {
-    name: "no_provin",
-    align: "left",
-    sortable: true,
-    label: "Provincia",
-    field: "no_provin"
-  },
-  {
-    name: "no_distri",
-    align: "left",
-    sortable: true,
-    label: "Distrito",
-    field: "no_distri"
+    label: "Ubicacion",
+    field: "no_ubicac"
   },
   {
     name: "no_sececo",
@@ -269,25 +258,20 @@ const columns = [
     field: "no_sececo"
   },
   {
-    name: "ca_segven",
-    align: "center",
-    sortable: true,
-    label: "Cant. Consul",
-    field: "ca_segven"
-  },
-  {
-    name: "cantidad",
-    align: "center",
-    sortable: true,
-    label: "Cant. Consul",
-    field: "cantidad"
-  },
-  {
-    name: "no_coment",
+    name: "no_usuari",
     align: "left",
     sortable: true,
-    label: "Comentario",
-    field: "no_coment"
+    label: "Usuario",
+    field: "no_usuari",
+    style: "width: 15%"
+  },
+  {
+    name: "fe_regist",
+    align: "left",
+    sortable: true,
+    label: "Fecha",
+    field: "fe_regist",
+    style: "width: 15%"
   },
   {
     name: "no_sigsve",
@@ -298,12 +282,25 @@ const columns = [
     style: "width: 15%"
   },
   {
-    name: "usuario",
+    name: "no_coment",
     align: "left",
     sortable: true,
-    label: "Usuario",
-    field: "usuario",
-    style: "width: 15%"
+    label: "Comentario",
+    field: "no_coment"
+  },
+  {
+    name: "ca_segven",
+    align: "center",
+    sortable: true,
+    label: "Consultas",
+    field: "ca_segven"
+  },
+  {
+    name: "Catálogo",
+    align: "left",
+    sortable: true,
+    label: "Catálogo",
+    field: "Catálogo"
   },
   {
     name: "co_percon",
@@ -362,7 +359,7 @@ export default {
   },
   methods: {
     coloreando(arg) {
-      return `color: ${arg}`;
+      return `background-color: ${arg}`;
     },
     updateEmoti(arg) {
       this.infoEmoti = arg;

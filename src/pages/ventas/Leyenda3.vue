@@ -120,7 +120,7 @@ export default {
   methods: {
     ...mapActions("example", ["listar_estado_seguimiento_cliente"]),
     coloreando(arg) {
-      return `color: ${arg}`;
+      return `background-color: ${arg}`;
     },
     semaforo(arg) {
       let respuesta = "";
