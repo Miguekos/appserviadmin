@@ -155,7 +155,13 @@
                 color="primary"
                 icon="local_phone"
               />
-              <q-btn dense size="sm" color="positive" icon="email" />
+              <q-btn
+                dense
+                size="sm"
+                @click="dialogCorreoOpen()"
+                color="positive"
+                icon="email"
+              />
               <q-btn
                 size="sm"
                 dense
@@ -199,6 +205,30 @@
 
     <q-dialog v-model="emoti">
       <Emoticons :infoEmoti="infoEmoti" />
+    </q-dialog>
+
+    <q-dialog v-model="dialogCorreo">
+      <q-card>
+        <q-card-section class="bg-purple text-white">
+          <div class="q-pa-md">
+            <div class="q-gutter-sm">
+              <q-checkbox dense v-model="teal" label="Teal" color="teal" />
+              <q-checkbox
+                dense
+                v-model="orange"
+                label="Orange"
+                color="orange"
+              />
+              <q-checkbox dense v-model="red" label="Red" color="red" />
+              <q-checkbox dense v-model="cyan" label="Cyan" color="cyan" />
+            </div>
+          </div>
+        </q-card-section>
+        <q-card-actions align="around">
+          <q-btn flat>Action 1</q-btn>
+          <q-btn flat>Action 2</q-btn>
+        </q-card-actions>
+      </q-card>
     </q-dialog>
     <!--    {{ Clientes }}-->
     <!--    {{ dialogRegistrarCita }}-->
@@ -326,6 +356,11 @@ export default {
   },
   data() {
     return {
+      teal: true,
+      orange: false,
+      red: true,
+      cyan: false,
+      dialogCorreo: false,
       infoEmoti: [],
       emoti: false,
       co_persona: null,
@@ -334,9 +369,7 @@ export default {
       sliders: false,
 
       slide: 1,
-      lorem:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus, ratione eum minus fuga, quasi dicta facilis corporis magnam, suscipit at quo nostrum!",
-
+      lorem: "Lorem",
       stars: 3,
 
       slideVol: 39,
@@ -358,6 +391,37 @@ export default {
     };
   },
   methods: {
+    dialogCorreoOpen() {
+      this.dialogCorreo = true;
+    },
+    checkbox() {
+      this.$q
+        .dialog({
+          title: "Options",
+          message: "Choose your options",
+          options: {
+            type: "checkbox",
+            model: [],
+            // inline: true
+            items: [
+              { label: "Option 1", value: "opt1", color: "secondary" },
+              { label: "Option 2", value: "opt2" },
+              { label: "Option 3", value: "opt3" }
+            ]
+          },
+          cancel: true,
+          persistent: true
+        })
+        .onOk(data => {
+          console.log(">>>> OK, received", data);
+        })
+        .onCancel(() => {
+          console.log(">>>> Cancel");
+        })
+        .onDismiss(() => {
+          console.log("I am triggered on both OK and Cancel");
+        });
+    },
     coloreando(arg) {
       return `background-color: ${arg}`;
     },
