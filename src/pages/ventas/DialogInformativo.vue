@@ -22,7 +22,7 @@
               <q-field label="Empresa" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    {{ info[0].no_percon }}
+                    {{ info[0].no_client }}
                   </div>
                 </template>
               </q-field>
@@ -31,7 +31,7 @@
               <q-field label="Sigla" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    <!--                    {{ info[0].no_percon }}-->
+                    {{ info[0].no_sigcli }}
                   </div>
                 </template>
               </q-field>
@@ -40,7 +40,7 @@
               <q-field label="RUC" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    <!--                    {{ info[0].no_percon }}-->
+                    {{ info[0].nu_doccli }}
                   </div>
                 </template>
               </q-field>
@@ -49,7 +49,7 @@
               <q-field label="Sector" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    <!--                    {{ info[0].no_percon }}-->
+                    {{ info[0].no_sececo }}
                   </div>
                 </template>
               </q-field>
@@ -61,7 +61,7 @@
               square
               size="90px"
               font-size="82px"
-              icon="far fa-smile-beam"
+              :icon="emotions(info[0].co_estemo)"
             />
           </div>
         </div>
@@ -73,7 +73,7 @@
               <q-field label="Contacto" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    <!--                    {{ info[0].no_percon }}-->
+                    {{ info[0].no_percon }}
                   </div>
                 </template>
               </q-field>
@@ -109,7 +109,7 @@
               <q-field label="Direccion" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    <!--                    {{ info[0].no_percon }}-->
+                    {{ info[0].no_direcc }}
                   </div>
                 </template>
               </q-field>
@@ -118,7 +118,7 @@
               <q-field label="Semaforo" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    <!--                    {{ info[0].no_percon }}-->
+                    {{ info[0].co_semsve }}
                   </div>
                 </template>
               </q-field>
@@ -127,7 +127,16 @@
               <q-field label="Consultas" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    <!--                    {{ info[0].no_percon }}-->
+                    {{ info[0].ca_consul }}
+                  </div>
+                </template>
+              </q-field>
+            </div>
+            <div>
+              <q-field label="Catalogos" stack-label :dense="dense">
+                <template v-slot:control>
+                  <div class="self-center full-width no-outline" tabindex="0">
+                    {{ info[0].ca_catalo }}
                   </div>
                 </template>
               </q-field>
@@ -136,7 +145,7 @@
               <q-field label="Citas" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    <!--                    {{ info[0].no_percon }}-->
+                    {{ info[0].ca_citcli }}
                   </div>
                 </template>
               </q-field>
@@ -167,27 +176,27 @@ export default {
       dense: true,
       columns: [
         {
-          name: "co_emotic",
+          name: "no_client",
           required: true,
-          label: "COD",
+          label: "EMPRESA",
           align: "left",
-          field: "co_emotic",
+          field: "no_client",
           sortable: true
         },
         {
-          name: "no_emotic",
+          name: "no_sigcli",
           required: true,
-          label: "DESCRIPCION",
+          label: "SIGLA",
           align: "left",
-          field: "no_emotic",
+          field: "no_sigcli",
           sortable: true
         },
         {
-          name: "no_sigsec",
+          name: "nu_doccli",
           required: true,
-          label: "COD",
+          label: "RUC",
           align: "left",
-          field: "no_sigsec",
+          field: "nu_doccli",
           sortable: true
         },
         {
@@ -199,11 +208,11 @@ export default {
           sortable: true
         },
         {
-          name: "no_sigare",
+          name: "no_percon",
           required: true,
-          label: "COD",
+          label: "CONTACTO",
           align: "left",
-          field: "no_sigare",
+          field: "no_percon",
           sortable: true
         },
         {
@@ -215,18 +224,53 @@ export default {
           sortable: true
         },
         {
-          name: "no_sigsve",
+          name: "nu_telefo",
           required: true,
-          label: "COD",
+          label: "TELEFONO",
           align: "left",
-          field: "no_sigsve",
+          field: "nu_telefo",
           sortable: true
         },
         {
-          name: "no_estsve",
+          name: "no_corele",
           align: "left",
-          label: "ESTADO",
-          field: "no_estsve",
+          label: "CORREO",
+          field: "no_corele",
+          sortable: true
+        },
+        {
+          name: "no_direcc",
+          align: "left",
+          label: "DIRECCION",
+          field: "no_direcc",
+          sortable: true
+        },
+        {
+          name: "co_semsve",
+          align: "left",
+          label: "SEMAFORO",
+          field: "co_semsve",
+          sortable: true
+        },
+        {
+          name: "ca_consul",
+          align: "left",
+          label: "CONSULTAS",
+          field: "ca_consul",
+          sortable: true
+        },
+        {
+          name: "ca_catalo",
+          align: "left",
+          label: "CATOLOGOS",
+          field: "ca_catalo",
+          sortable: true
+        },
+        {
+          name: "ca_citcli",
+          align: "left",
+          label: "CITAS",
+          field: "ca_citcli",
           sortable: true
         }
       ],
@@ -238,6 +282,27 @@ export default {
   },
   methods: {
     ...mapActions("example", ["listar_personas_contacto"]),
+    emotions(arg) {
+      let respuesta = "";
+      if (arg == 1) {
+        respuesta = "far fa-laugh-beam";
+      } else if (arg == 2) {
+        respuesta = "far fa-smile-beam";
+      } else if (arg == 3) {
+        respuesta = "far fa-meh";
+      } else if (arg == 4) {
+        respuesta = "far fa-frown";
+      } else if (arg == 5) {
+        respuesta = "far fa-angry";
+      } else if (arg == 6) {
+        respuesta = "far fa-kiss-wink-heart";
+      } else if (arg == 7) {
+        respuesta = "fas fa-dollar-sign";
+      } else if (arg == 8) {
+        respuesta = "far fa-meh-blank";
+      }
+      return respuesta;
+    },
     semaforo(arg) {
       let respuesta = "";
       if (arg == 0) {

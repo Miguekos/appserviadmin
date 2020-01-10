@@ -14,7 +14,7 @@
             class="cursor-pointer"
             :name="emotions(item.co_emotic)"
             :id="emotiColor(item.co_emotic)"
-            @click="selection(item.co_emotic)"
+            @click="actualizarEmoti(item)"
             size="40px"
           ></q-icon>
         </div>
@@ -136,57 +136,32 @@ export default {
     };
   },
   methods: {
-    ...mapActions("example", ["emoticon_cliente"]),
-    selection(arg) {
-      if (arg == 1) {
-        this.$q.notify({
-          message: "EXCELENTE",
-          color: "black",
-          position: "top-right"
+    ...mapActions("example", [
+      "emoticon_cliente",
+      "actualizar_emoticon",
+      "seguimiento_cliente"
+    ]),
+    actualizarEmoti(arg) {
+      console.log(arg);
+      console.log(arg.co_emotic);
+      console.log(this.infoEmoti.co_percon);
+      this.actualizar_emoticon({
+        persona: this.infoEmoti.co_percon,
+        emoti: arg.co_emotic
+      })
+        .then(resp => {
+          console.log(resp);
+          console.log("Se actualizo correctamente");
+          this.seguimiento_cliente({
+            cliente: null,
+            seguimiento: null,
+            economico: null,
+            semoforo: null
+          });
+        })
+        .catch(err => {
+          console.log(err);
         });
-      } else if (arg == 2) {
-        this.$q.notify({
-          message: "BUENO",
-          color: "black",
-          position: "top-right"
-        });
-      } else if (arg == 3) {
-        this.$q.notify({
-          message: "NORMAL",
-          color: "black",
-          position: "top-right"
-        });
-      } else if (arg == 4) {
-        this.$q.notify({
-          message: "MODERADO",
-          color: "black",
-          position: "top-right"
-        });
-      } else if (arg == 5) {
-        this.$q.notify({
-          message: "AMARGO",
-          color: "black",
-          position: "top-right"
-        });
-      } else if (arg == 6) {
-        this.$q.notify({
-          message: "ATREVIDO",
-          color: "black",
-          position: "top-right"
-        });
-      } else if (arg == 7) {
-        this.$q.notify({
-          message: "DENEGADO",
-          color: "black",
-          position: "top-right"
-        });
-      } else if (arg == 8) {
-        this.$q.notify({
-          message: "PENDIENTE",
-          color: "black",
-          position: "top-right"
-        });
-      }
     },
     emotions(arg) {
       let respuesta = "";

@@ -137,7 +137,7 @@ export default {
       } else if (arg == 6) {
         respuesta = "far fa-kiss-wink-heart";
       } else if (arg == 7) {
-        respuesta = "far fa-hand-holding-usd";
+        respuesta = "fas fa-dollar-sign";
       } else if (arg == 8) {
         respuesta = "far fa-meh-blank";
       }

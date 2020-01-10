@@ -87,30 +87,30 @@
           <q-td key="no_percon" :props="props">
             {{ props.row.no_percon }}
           </q-td>
-          <q-td key="co_semsve" :props="props">
+          <q-td key="co_estemo" :props="props">
             <!--            <q-btn round size="xs" :color="emoticones(props.row.co_semsve)" />-->
             <q-icon
               class="cursor-pointer"
               @click="updateEmoti(props.row)"
-              :id="emotiColor(props.row.co_semsve)"
-              :name="emotions(props.row.co_semsve)"
+              :id="emotiColor(props.row.co_estemo)"
+              :name="emotions(props.row.co_estemo)"
               size="25px"
             ></q-icon>
           </q-td>
           <q-td key="co_semsve" :props="props">
             <q-btn round size="xs" :color="semaforo(props.row.co_semsve)" />
           </q-td>
-          <q-td key="no_arelab" :props="props">
+          <q-td key="no_sigare" :props="props">
             <q-badge :style="coloreando(props.row.no_colare)">
-              {{ props.row.no_arelab }}
+              {{ props.row.no_sigare }}
             </q-badge>
           </q-td>
           <q-td key="no_ubicac" :props="props">
             {{ props.row.no_ubicac }}
           </q-td>
-          <q-td key="no_sececo" :props="props">
+          <q-td key="no_sigsec" :props="props">
             <q-badge :style="coloreando(props.row.no_colsec)">
-              {{ props.row.no_sececo }}
+              {{ props.row.no_sigsec }}
             </q-badge>
           </q-td>
           <q-td key="no_usuari" :props="props">
@@ -127,11 +127,11 @@
           <q-td key="no_coment" :props="props">
             {{ props.row.no_coment }}
           </q-td>
-          <q-td key="ca_segven" :props="props">
-            {{ props.row.ca_segven }}
+          <q-td key="ca_consul" :props="props">
+            {{ props.row.ca_consul }}
           </q-td>
-          <q-td key="Catálogo" :props="props">
-            {{ props.row.Catálogo }}
+          <q-td key="ca_catalo" :props="props">
+            {{ props.row.ca_catalo }}
           </q-td>
           <q-td key="co_percon" :props="props">
             <div class="q-gutter-xs">
@@ -253,11 +253,11 @@ const columns = [
     field: "no_percon"
   },
   {
-    name: "co_semsve",
+    name: "co_estemo",
     align: "left",
     sortable: true,
-    label: "Sem.",
-    field: "co_semsve"
+    label: "",
+    field: "co_estemo"
   },
   {
     name: "co_semsve",
@@ -267,11 +267,11 @@ const columns = [
     field: "co_semsve"
   },
   {
-    name: "no_arelab",
+    name: "no_sigare",
     align: "left",
     sortable: true,
     label: "Area",
-    field: "no_arelab"
+    field: "no_sigare"
   },
   {
     name: "no_ubicac",
@@ -281,11 +281,11 @@ const columns = [
     field: "no_ubicac"
   },
   {
-    name: "no_sececo",
+    name: "no_sigsec",
     align: "left",
     sortable: true,
     label: "Sector",
-    field: "no_sececo"
+    field: "no_sigsec"
   },
   {
     name: "no_usuari",
@@ -319,18 +319,18 @@ const columns = [
     field: "no_coment"
   },
   {
-    name: "ca_segven",
+    name: "ca_consul",
     align: "center",
     sortable: true,
     label: "Consultas",
-    field: "ca_segven"
+    field: "ca_consul"
   },
   {
-    name: "Catálogo",
+    name: "ca_catalo",
     align: "left",
     sortable: true,
     label: "Catálogo",
-    field: "Catálogo"
+    field: "ca_catalo"
   },
   {
     name: "co_percon",

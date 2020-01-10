@@ -205,3 +205,12 @@ export async function listar_personas_contacto({}, payload) {
   // commit("setlistar_direccion", response.data);
   return response.data;
 }
+
+// eslint-disable-next-line
+export async function actualizar_emoticon({}, payload) {
+  const response = await axiosInstance.get(
+    `/api/ventas/actualizar_emoticon/${payload.persona}/${payload.emoti}`
+  );
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}

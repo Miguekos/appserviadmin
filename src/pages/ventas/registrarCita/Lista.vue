@@ -12,7 +12,32 @@
         dense
         :data="info"
         :columns="columns"
-      />
+      >
+        <template v-slot:body="props">
+          <q-tr :props="props">
+            <q-td key="fe_citcli" :props="props">
+              {{ props.row.fe_citcli }}
+            </q-td>
+            <q-td key="no_regist" :props="props">
+              {{ props.row.no_regist }}
+            </q-td>
+            <q-td key="no_coment" :props="props">
+              {{ props.row.no_coment }}
+            </q-td>
+            <q-td key="acciones" :props="props">
+              <div class="q-gutter-xs">
+                <q-btn
+                  dense
+                  @click="eliminar()"
+                  size="sm"
+                  color="red-6"
+                  icon="delete"
+                />
+              </div>
+            </q-td>
+          </q-tr>
+        </template>
+      </q-table>
     </div>
     <!--    {{ info }}-->
   </div>
@@ -51,6 +76,13 @@ export default {
           label: "Comentario",
           field: "no_coment",
           sortable: true
+        },
+        {
+          name: "acciones",
+          align: "center",
+          label: "",
+          field: "acciones",
+          sortable: true
         }
       ],
       resumen: {},
@@ -58,7 +90,11 @@ export default {
       separator: "cell"
     };
   },
-  methods: {},
+  methods: {
+    eliminar() {
+      alert("Eliminar");
+    }
+  },
   created() {
     console.log("se cargo el created de resumen");
     // this.$q.loading.show({ delay: 400 });
