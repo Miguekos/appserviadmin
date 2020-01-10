@@ -214,3 +214,10 @@ export async function actualizar_emoticon({}, payload) {
   // commit("setlistar_direccion", response.data);
   return response.data;
 }
+
+// eslint-disable-next-line
+export async function listar_catalogos({}) {
+  const response = await axiosInstance.get(`/api/ventas/listar_catalogos`);
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}

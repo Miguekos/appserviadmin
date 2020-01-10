@@ -209,28 +209,27 @@
 
     <q-dialog v-model="dialogCorreo">
       <q-card>
-        <q-card-section class="bg-purple text-white">
+        <q-card-section>
           <div class="q-pa-md">
-            <div class="q-gutter-sm">
-              <q-checkbox dense v-model="teal" label="Teal" color="teal" />
+            <div class="row q-gutter-sm">
               <q-checkbox
+                v-for="(item, index) in correosVarios"
+                :key="index"
                 dense
-                v-model="orange"
-                label="Orange"
+                v-model="orange[item]"
+                :label="item.no_catpro"
                 color="orange"
               />
-              <q-checkbox dense v-model="red" label="Red" color="red" />
-              <q-checkbox dense v-model="cyan" label="Cyan" color="cyan" />
             </div>
           </div>
         </q-card-section>
         <q-card-actions align="around">
-          <q-btn flat>Action 1</q-btn>
-          <q-btn flat>Action 2</q-btn>
+          <q-btn v-close-popup flat>Enviar</q-btn>
+          <q-btn v-close-popup flat>Cerrar</q-btn>
         </q-card-actions>
       </q-card>
     </q-dialog>
-    <!--    {{ Clientes }}-->
+    {{ orange }}
     <!--    {{ dialogRegistrarCita }}-->
   </div>
 </template>
@@ -356,8 +355,9 @@ export default {
   },
   data() {
     return {
+      correosVarios: [],
       teal: true,
-      orange: false,
+      orange: [],
       red: true,
       cyan: false,
       dialogCorreo: false,
@@ -510,7 +510,8 @@ export default {
       "dialogLlamadaCliente",
       "dialogRegistrarCitaCliente",
       "seguimiento_cliente",
-      "listar_estado_seguimiento"
+      "listar_estado_seguimiento",
+      "listar_catalogos"
     ]),
     update(val) {
       console.log(val);
@@ -533,6 +534,13 @@ export default {
       semoforo: null
     });
     await this.listar_estado_seguimiento();
+    await this.listar_catalogos()
+      .then(resp => {
+        this.correosVarios = resp;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>
