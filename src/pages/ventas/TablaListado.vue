@@ -229,7 +229,7 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
-    {{ orange }}
+    <!--    {{ orange }}-->
     <!--    {{ dialogRegistrarCita }}-->
   </div>
 </template>
