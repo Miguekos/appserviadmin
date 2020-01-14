@@ -18,7 +18,6 @@
             aria-label="Menu"
             icon="menu"
             color="green"
-            class="glossy"
           />
           <q-toolbar-title
             class="cursor-pointer text-weight-bold"

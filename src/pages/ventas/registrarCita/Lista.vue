@@ -16,7 +16,7 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <q-td key="fe_citcli" :props="props">
-              {{ props.row.fe_citcli }}
+              {{ formatearFecha(props.row.fe_citcli) }}
             </q-td>
             <q-td key="no_regist" :props="props">
               {{ props.row.no_regist }}
@@ -43,6 +43,7 @@
   </div>
 </template>
 <script>
+import { date } from "quasar";
 export default {
   props: ["info"],
   data() {
@@ -91,6 +92,9 @@ export default {
     };
   },
   methods: {
+    formatearFecha(fecha) {
+      return date.formatDate(fecha, "YYYY-MM-DD");
+    },
     eliminar() {
       alert("Eliminar");
     }

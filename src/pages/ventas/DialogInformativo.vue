@@ -1,18 +1,11 @@
 <template>
   <div>
     <q-card>
-      <!--      <q-img-->
-      <!--        src="https://media-cdn.tripadvisor.com/media/photo-s/0a/47/a8/91/chicken-salad-sandwich.jpg"-->
-      <!--      />-->
       <q-card-section>
         <div class="row no-wrap items-center">
           <div class="col text-h6 ellipsis">{{ info[0].no_percon }}</div>
-          <div class="col-auto text-grey q-pt-md">
-            <!--            {{ info[0].no_percon }}-->
-          </div>
+          <div class="col-auto text-grey q-pt-md"></div>
         </div>
-
-        <!--        <q-rating v-model="stars" :max="5" size="32px" />-->
       </q-card-section>
 
       <q-card-section>
@@ -56,9 +49,10 @@
             </div>
           </div>
           <q-space></q-space>
-          <div class="col self-center">
+          <div class="col flex flex-center">
             <q-avatar
               square
+              :id="emotiColor(info[0].co_estemo)"
               size="90px"
               font-size="82px"
               :icon="emotions(info[0].co_estemo)"
@@ -319,6 +313,27 @@ export default {
         respuesta = "red";
       }
       return respuesta;
+    },
+    emotiColor(arg) {
+      let color = "";
+      if (arg == 1) {
+        color = "color1";
+      } else if (arg == 2) {
+        color = "color2";
+      } else if (arg == 3) {
+        color = "color3";
+      } else if (arg == 4) {
+        color = "color4";
+      } else if (arg == 5) {
+        color = "color5";
+      } else if (arg == 6) {
+        color = "color6";
+      } else if (arg == 7) {
+        color = "color7";
+      } else if (arg == 8) {
+        color = "color8";
+      }
+      return color;
     }
   },
   mounted() {

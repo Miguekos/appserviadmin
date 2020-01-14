@@ -12,12 +12,28 @@
         dense
         :data="info"
         :columns="columns"
-      />
+        row-key="fe_segven"
+      >
+        <template v-slot:body="props">
+          <q-tr :props="props">
+            <q-td key="fe_segven" :props="props">
+              {{ formatearFecha(props.row.fe_segven) }}
+            </q-td>
+            <q-td key="no_regist" :props="props">
+              {{ props.row.no_regist }}
+            </q-td>
+            <q-td key="no_coment" :props="props">
+              {{ props.row.no_coment }}
+            </q-td>
+          </q-tr>
+        </template>
+      </q-table>
     </div>
     <!--        {{ info }}-->
   </div>
 </template>
 <script>
+import { date } from "quasar";
 export default {
   props: ["info"],
   data() {
@@ -58,7 +74,11 @@ export default {
       separator: "cell"
     };
   },
-  methods: {},
+  methods: {
+    formatearFecha(fecha) {
+      return date.formatDate(fecha, "YYYY-MM-DD");
+    }
+  },
   created() {
     console.log("se cargo el created de resumen");
     // this.$q.loading.show({ delay: 400 });

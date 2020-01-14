@@ -131,7 +131,12 @@ export default {
       this.dialogRegistrarCitaCliente({
         estado: false
       });
-      this.seguimiento_cliente()
+      this.seguimiento_cliente({
+        cliente: null,
+        seguimiento: null,
+        economico: null,
+        semoforo: null
+      })
         .then(resp => {
           this.$q.notify({
             color: "positive",

@@ -6,23 +6,8 @@
         icon="group"
         label="Mantenimiento"
         default-opened
-        header-class="text-white glossy bg-green-5 rounded-borders"
+        header-class="text-white bg-green-5 rounded-borders"
       >
-        <!-- Cliente -->
-        <q-item
-          clickable
-          v-ripple
-          :active="link === '/cliente'"
-          @click="URL('/cliente')"
-          active-class="my-menu-link"
-        >
-          <!--          <q-item-section avatar>-->
-          <!--                  <q-icon name="group" />-->
-          <!--          </q-item-section>-->
-
-          <q-item-section>Cliente</q-item-section>
-        </q-item>
-
         <!-- Proveedores -->
         <q-item
           :header-inset-level="1"
@@ -62,8 +47,18 @@
         group="somegroup"
         icon="attach_money"
         label="Ventas"
-        header-class="text-white glossy bg-orange-5 rounded-borders"
+        header-class="text-white bg-orange-5 rounded-borders"
       >
+        <!-- Cliente -->
+        <q-item
+          clickable
+          v-ripple
+          :active="link === '/cliente'"
+          @click="URL('/cliente')"
+          active-class="my-menu-link"
+        >
+          <q-item-section>Mantenimiento de Cliente</q-item-section>
+        </q-item>
         <q-item
           clickable
           v-ripple

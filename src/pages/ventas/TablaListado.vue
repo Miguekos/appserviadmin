@@ -37,26 +37,6 @@
 
           <q-space />
 
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="positive"-->
-          <!--            icon="add"-->
-          <!--            no-caps-->
-          <!--            label="Nuevo"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="negative"-->
-          <!--            icon="remove"-->
-          <!--            no-caps-->
-          <!--            label="Eliminar"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
           <q-btn
             flat
             dense
@@ -216,7 +196,7 @@
                 v-for="(item, index) in correosVarios"
                 :key="index"
                 dense
-                v-model="orange[item]"
+                v-model="item.il_activo"
                 :label="item.no_catpro"
                 color="orange"
               />

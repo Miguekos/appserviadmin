@@ -95,7 +95,6 @@
       <q-toolbar-title class="q-pa-md row justify-around">
         <!-- <q-toolbar-title class="q-pa-md q-gutter-md"> -->
         <q-btn
-          glossy
           size="sm"
           color="positive"
           text-color="white"
@@ -103,7 +102,6 @@
           @click="URL('/cliente/create')"
         />
         <q-btn
-          glossy
           size="sm"
           color="negative"
           text-color="white"
