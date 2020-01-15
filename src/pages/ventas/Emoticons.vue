@@ -158,6 +158,7 @@ export default {
             economico: null,
             semoforo: null
           });
+          this.$emit("evtFechaCadAtrativos");
         })
         .catch(err => {
           console.log(err);

@@ -184,7 +184,7 @@
     </q-dialog>
 
     <q-dialog v-model="emoti">
-      <Emoticons :infoEmoti="infoEmoti" />
+      <Emoticons @evtFechaCadAtrativos="emoti=false" :infoEmoti="infoEmoti" />
     </q-dialog>
 
     <q-dialog v-model="dialogCorreo">
