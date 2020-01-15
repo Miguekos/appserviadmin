@@ -113,6 +113,9 @@
           <q-td key="ca_catalo" :props="props">
             {{ props.row.ca_catalo }}
           </q-td>
+          <q-td key="ca_citas" :props="props">
+            {{ props.row.ca_citas }}
+          </q-td>
           <q-td key="co_percon" :props="props">
             <div class="q-gutter-xs">
               <q-btn
@@ -184,7 +187,7 @@
     </q-dialog>
 
     <q-dialog v-model="emoti">
-      <Emoticons @evtFechaCadAtrativos="emoti=false" :infoEmoti="infoEmoti" />
+      <Emoticons @evtFechaCadAtrativos="emoti = false" :infoEmoti="infoEmoti" />
     </q-dialog>
 
     <q-dialog v-model="dialogCorreo">
@@ -306,10 +309,17 @@ const columns = [
   },
   {
     name: "ca_catalo",
-    align: "left",
+    align: "center",
     sortable: true,
     label: "Catálogo",
     field: "ca_catalo"
+  },
+  {
+    name: "ca_citas",
+    align: "left",
+    sortable: true,
+    label: "Citas",
+    field: "ca_citas"
   },
   {
     name: "co_percon",

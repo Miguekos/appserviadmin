@@ -6,22 +6,22 @@
           Filtros Dinamicos
         </p>
       </div>
-      <div class="q-ma-sm">
-        <q-select
-          transition-show="flip-up"
-          transition-hide="flip-down"
-          :options="listar_estado_seguimiento_clienteList"
-          option-value="co_estsve"
-          option-label="no_estsve"
-          option-disable="inactive"
-          emit-value
-          map-options
-          label="Estado"
-          placeholder="Estado"
-          dense
-          v-model="listar_estado_seguimiento_clienteVar"
-        />
-      </div>
+      <!--      <div class="q-ma-sm">-->
+      <!--        <q-select-->
+      <!--          transition-show="flip-up"-->
+      <!--          transition-hide="flip-down"-->
+      <!--          :options="listar_estado_seguimiento_clienteList"-->
+      <!--          option-value="co_estsve"-->
+      <!--          option-label="no_estsve"-->
+      <!--          option-disable="inactive"-->
+      <!--          emit-value-->
+      <!--          map-options-->
+      <!--          label="Estado"-->
+      <!--          placeholder="Estado"-->
+      <!--          dense-->
+      <!--          v-model="listar_estado_seguimiento_clienteVar"-->
+      <!--        />-->
+      <!--      </div>-->
       <div class="q-ma-sm">
         <q-select
           transition-show="flip-up"
