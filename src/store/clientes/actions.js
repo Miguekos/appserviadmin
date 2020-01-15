@@ -199,3 +199,21 @@ export async function mantenimiento_telefono({ commit }, payload) {
   // commit("guardarDireccion", response.data);
   return response.data;
 }
+
+export async function percon_direccion_telefono({ commit }, payload) {
+  const data = {
+    p_co_percon: payload.p_co_percon,
+    p_co_direcc: payload.p_co_direcc,
+    p_co_telefo: payload.p_co_telefo
+  };
+  console.log(data);
+  const response = await axiosInstance.get(
+    `/api/clientes/percon_direccion_telefono/${payload.p_co_percon}/${
+      payload.p_co_direcc
+    }`
+  );
+  console.log("Respuesta percon_direccion_telefono");
+  console.log(response.data);
+  // commit("guardarDireccion", response.data);
+  return response.data;
+}

@@ -213,63 +213,8 @@
                   v-model="form.correoElectronico"
                 />
               </div>
-
-              <div class="q-gutter-xs">
-                <q-input
-                  dense
-                  outlined
-                  required
-                  label="Direccion del Proveedor"
-                  v-model="formDireccion.direccion"
-                  @keyup.enter="prompt = false"
-                />
-              </div>
-              <div class="q-gutter-xs">
-                <q-select
-                  outlined
-                  dense
-                  required
-                  @input="provincia()"
-                  v-model="fieldDepartamento"
-                  :options="getDepartamento"
-                  option-value="no_ubigeo"
-                  option-label="nu_depart"
-                  emit-value
-                  map-options
-                  label="Departamento"
-                />
-              </div>
-              <div class="q-gutter-xs">
-                <q-select
-                  @input="distrito()"
-                  outlined
-                  dense
-                  required
-                  v-model="fieldProvincia"
-                  :options="getProvincia"
-                  option-value="no_ubigeo"
-                  option-label="no_provin"
-                  emit-value
-                  map-options
-                  label="Provincia"
-                />
-              </div>
-              <div class="q-gutter-xs">
-                <q-select
-                  outlined
-                  dense
-                  required
-                  v-model="formDireccion.codigoUbigeo"
-                  :options="getDistrito"
-                  option-value="no_ubigeo"
-                  option-label="no_provin"
-                  emit-value
-                  map-options
-                  label="Distrito"
-                />
-              </div>
             </div>
-            <!--            <TablaDetalleDireccionLimpio :id_pro="id_pro" />-->
+            <TablaDetalleDireccionLimpio :id_pro="id_pro" />
           </q-card-section>
 
           <q-card-actions align="right" class="text-primary">
@@ -284,27 +229,14 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
   props: ["datafld", "id_pro"],
   computed: {
-    ...mapGetters("proveedor", [
-      "getDepartamento",
-      "getProvincia",
-      "getDistrito"
-    ])
+    // ...mapGetters("clientes", ["Clientes"])
   },
   data() {
     return {
-      fieldDepartamento: "",
-      fieldProvincia: "",
-      fieldDistrito: "",
-      model: "",
-      formDireccion: {
-        p_id: null,
-        direccion: "",
-        codigoUbigeo: ""
-      },
       selected: [],
       generos: ["M", "F"],
       loading: false,
@@ -375,9 +307,9 @@ export default {
     };
   },
   components: {
-    TituloTabla: () => import("../../components/TituloTablas")
-    // TablaDetalleDireccionLimpio: () =>
-    //   import("../../pages/cliente/TablaDetalleDireccionLimpio")
+    TituloTabla: () => import("../../components/TituloTablas"),
+    TablaDetalleDireccionLimpio: () =>
+      import("../../pages/cliente/TablaDetalleDireccionLimpio")
   },
   methods: {
     eliminarDireccionF() {
@@ -425,26 +357,15 @@ export default {
       "direccionProveedor",
       "pblistar_departamento",
       "pblistar_provincia",
-      "pblistar_distrito",
-      "registrarProveContacto",
-      "contactoProveedor"
+      "pblistar_distrito"
     ]),
     ...mapActions("clientes", [
       "guardarDireccion",
       "direccionCliente",
       "eliminarDireccion",
-      "guardarContacto",
-      "listar_genero_persona",
-      "listar_area_laboral",
-      "listar_sigla_profesion",
-      "contactoCliente",
-      "eliminarContacto",
-      "mantenimiento_telefono",
-      "percon_direccion_telefono"
+      "contactoCliente"
     ]),
     async onSubmit() {
-      // let p_co_perconVar = null;
-      // let p_co_direccVar = null;
       this.loading = true;
       this.$q.notify({
         color: "green-4",
@@ -452,70 +373,15 @@ export default {
         icon: "fas fa-check-circle",
         message: "Submitted"
       });
-      this.guardarDireccion(this.formDireccion).then(result => {
-        console.log("##########111111111111111");
-        const codigoDirec = JSON.parse(result[0].mantenimiento_direccion);
-        console.log(codigoDirec);
-        const p_co_perconVar = codigoDirec.codigoDireccion;
-        console.log(codigoDirec.codigoDireccion);
-        console.log("##########111111111111111111");
-        this.direccionCliente(this.formDireccion.p_id).then(result => {
-          console.log("#########222222222222222222");
+      this.guardarDireccion(this.form).then(result => {
+        console.log(result);
+        this.direccionCliente(this.form.p_id).then(result => {
           console.log(result);
-          console.log("##########22222222222222222");
           this.loading = false;
           this.prompt = false;
-          this.formDireccion.direccion = "";
-          this.formDireccion.codigoUbigeo = "";
-          this.formDireccion.codigoDireccion = "";
-        });
-        this.guardarContacto(this.form).then(resp => {
-          console.log("#########3333333333333333");
-          const personContacto = JSON.parse(
-            resp[0].mantenimiento_persona_contacto
-          );
-          console.log(personContacto);
-          const p_co_direccVar = personContacto.codigoPersonaContacto;
-          console.log(personContacto.codigoPersonaContacto);
-          console.log("#########33333333333333333");
-          console.log("Se ejecuto Guardar Contacto");
-          this.contactoCliente(this.form.p_id).then(resp => {
-            console.log("#########444444444444444444");
-            console.log(resp);
-            console.log("#########4444444444444444");
-            console.log("Se ejecuto Guardar clienteContacto");
-            this.mantenimiento_telefono({
-              p_id: this.form.p_id,
-              numeroTelefono: this.form.p_nu_telefo
-            })
-              .then(resp => {
-                console.log("#########555555555555555555");
-                console.log(resp);
-                console.log("#########555555555555555555");
-                this.percon_direccion_telefono({
-                  p_co_percon: p_co_perconVar,
-                  p_co_direcc: p_co_direccVar,
-                  p_co_telefo: null
-                });
-                this.$q.notify({
-                  color: "green",
-                  textColor: "white",
-                  icon: "fas fa-check-circle",
-                  message: "Registrado"
-                });
-              })
-              .catch(err => {
-                console.log(err);
-                this.$q.notify({
-                  color: "red",
-                  textColor: "white",
-                  icon: "fas fa-times",
-                  message: "Error al registrar.!"
-                });
-              });
-            this.prompt = false;
-            this.loading = false;
-          });
+          this.form.direccion = "";
+          this.form.codigoUbigeo = "";
+          this.form.codigoDireccion = "";
         });
       });
       // this.reload();
@@ -530,6 +396,9 @@ export default {
       this.age = null;
       this.accept = false;
     },
+    crearDireccion() {
+      this.prompt = true;
+    },
     provincia() {
       console.log(this.fieldDepartamento);
       this.pblistar_provincia(this.fieldDepartamento);
@@ -540,6 +409,9 @@ export default {
       this.pblistar_distrito(this.fieldProvincia);
       this.form.codigoUbigeo = "";
       this.form.codigoDireccion = "";
+    },
+    getSelectedString() {
+      return this.selected.length === 0 ? "" : `${this.selected.length}`;
     },
     eliminarContactoF() {
       if (this.selected.length === 0) {
@@ -587,19 +459,72 @@ export default {
       // this.$refs.correo.resetValidation();
       // this.$refs.genero.resetValidation();
     },
+    async onSubmit() {
+      this.loading = true;
+      this.$q.notify({
+        color: "green-4",
+        textColor: "white",
+        icon: "fas fa-check-circle",
+        message: "Submitted"
+      });
+      this.guardarContacto(this.form).then(() => {
+        console.log("Se ejecuto Guardar Contacto");
+        this.contactoCliente(this.form.p_id).then(() => {
+          console.log("Se ejecuto Guardar clienteContacto");
+          this.mantenimiento_telefono({
+            p_id: this.form.p_id,
+            numeroTelefono: this.form.p_nu_telefo
+          })
+            .then(resp => {
+              console.log(resp);
+              this.$q.notify({
+                color: "green",
+                textColor: "white",
+                icon: "fas fa-check-circle",
+                message: "Registrado"
+              });
+            })
+            .catch(err => {
+              console.log(err);
+              this.$q.notify({
+                color: "red",
+                textColor: "white",
+                icon: "fas fa-times",
+                message: "Error al registrar.!"
+              });
+            });
+          this.prompt = false;
+          this.loading = false;
+        });
+      });
+    },
+    onReset() {
+      this.prompt = false;
+      this.name = null;
+      this.age = null;
+      this.accept = false;
+    },
     crearDireccion() {
       this.prompt = true;
     },
     getSelectedString() {
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
-    }
+    },
+    ...mapActions("proveedor", ["registrarProveContacto", "contactoProveedor"]),
     // eslint-disable-next-line
+    ...mapActions("clientes", [
+      "guardarContacto",
+      "listar_genero_persona",
+      "listar_area_laboral",
+      "listar_sigla_profesion",
+      "contactoCliente",
+      "eliminarContacto",
+      "mantenimiento_telefono"
+    ])
   },
   async mounted() {
     this.loading = true;
-    this.formDireccion.p_id = this.id_pro;
     this.form.p_id = this.id_pro;
-    this.pblistar_departamento();
     this.loading = false;
     this.generoOption = await this.listar_genero_persona();
     this.areaOption = await this.listar_area_laboral();
