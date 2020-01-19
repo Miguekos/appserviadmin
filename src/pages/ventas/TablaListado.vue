@@ -141,7 +141,7 @@
               <q-btn
                 dense
                 size="sm"
-                @click="dialogCorreoOpen()"
+                @click="enviarMasivos()"
                 color="positive"
                 icon="email"
               />
@@ -211,6 +211,10 @@
           <q-btn v-close-popup flat>Cerrar</q-btn>
         </q-card-actions>
       </q-card>
+    </q-dialog>
+
+    <q-dialog full-width v-model="envioMasivoCorreo">
+      <Control />
     </q-dialog>
     <!--    {{ orange }}-->
     <!--    {{ dialogRegistrarCita }}-->
@@ -345,6 +349,7 @@ export default {
   },
   data() {
     return {
+      envioMasivoCorreo: false,
       correosVarios: [],
       teal: true,
       orange: [],
@@ -357,11 +362,9 @@ export default {
       carousel: false,
       card: false,
       sliders: false,
-
       slide: 1,
       lorem: "Lorem",
       stars: 3,
-
       slideVol: 39,
       slideAlarm: 56,
       slideVibration: 63,
@@ -381,6 +384,9 @@ export default {
     };
   },
   methods: {
+    enviarMasivos() {
+      this.envioMasivoCorreo = true;
+    },
     dialogCorreoOpen() {
       this.dialogCorreo = true;
     },
@@ -511,7 +517,8 @@ export default {
     Llamadas: () => import("./Llamadas"),
     RegistrarCita: () => import("./RegistrarCita"),
     DialogInformativo: () => import("./DialogInformativo"),
-    Emoticons: () => import("./Emoticons")
+    Emoticons: () => import("./Emoticons"),
+    Control: () => import("./Control")
     // CuadroResumen: () => import("./CuadroResumen")
     // AddRegistro: () => import("./Create")
   },

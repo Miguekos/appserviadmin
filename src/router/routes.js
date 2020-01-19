@@ -92,6 +92,17 @@ const routes = [
     }
   },
   {
+    path: "/catalogo",
+    name: "catalogo",
+    component: () => import("layouts/MyLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/catalogo/Index.vue") }
+    ],
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("layouts/Login"),

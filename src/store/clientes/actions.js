@@ -217,3 +217,36 @@ export async function percon_direccion_telefono({ commit }, payload) {
   // commit("guardarDireccion", response.data);
   return response.data;
 }
+
+// eslint-disable
+export async function listar_catalogos({ commit }) {
+  console.log("listar_catalogos");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_catalogos`
+  );
+  // console.log(response.data);
+  // commit("setClientes", response.data);
+  return response.data;
+}
+
+// eslint-disable
+export async function listar_clientes({ commit }) {
+  console.log("listar_clientes");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_clientes`
+  );
+  // console.log(response.data);
+  // commit("setClientes", response.data);
+  return response.data;
+}
+
+// eslint-disable
+export async function listar_personas_contacto({ commit }) {
+  console.log("listar_personas_contacto");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_personas_contacto`
+  );
+  // console.log(response.data);
+  // commit("setClientes", response.data);
+  return response.data;
+}

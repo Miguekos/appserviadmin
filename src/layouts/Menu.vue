@@ -71,7 +71,6 @@
           <!--          </q-item-section>-->
           <q-item-section no-wrap>Seguimiento de Cliente</q-item-section>
         </q-item>
-
         <q-item
           clickable
           v-ripple
@@ -84,6 +83,19 @@
           <!--          </q-item-section>-->
 
           <q-item-section no-wrap>Requerimiento de cotizacion</q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          v-ripple
+          :active="link === '/catalogo'"
+          @click="URL('/catalogo')"
+          active-class="my-menu-link"
+        >
+          <!--          <q-item-section avatar>-->
+          <!--            <q-icon name="monetization_on" />-->
+          <!--          </q-item-section>-->
+
+          <q-item-section no-wrap>Mantenimiento de Catalogo</q-item-section>
         </q-item>
       </q-expansion-item>
 
