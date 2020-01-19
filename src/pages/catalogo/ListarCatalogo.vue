@@ -34,27 +34,6 @@
           </q-input>
 
           <q-space />
-
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="positive"-->
-          <!--            icon="add"-->
-          <!--            no-caps-->
-          <!--            label="Nuevo"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="negative"-->
-          <!--            icon="remove"-->
-          <!--            no-caps-->
-          <!--            label="Eliminar"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
           <q-btn
             flat
             dense
@@ -70,9 +49,9 @@
     </div>
     <q-table
       dense
-      :data="Clientes"
+      :data="data"
       :columns="columns"
-      row-key="nu_doccli"
+      row-key="no_catpro"
       :selected-rows-label="getSelectedString"
       selection="multiple"
       :selected.sync="selected"
@@ -122,7 +101,8 @@ export default {
   data() {
     return {
       pagination: {
-        sortBy: "no_client",
+        sortBy: "co_catpro",
+        dataLista: [],
         descending: false,
         page: 1,
         rowsPerPage: 7
@@ -134,44 +114,32 @@ export default {
       filter: "",
       columns: [
         {
-          name: "no_client",
+          name: "co_catpro",
           required: true,
-          label: "Cliente",
+          label: "Nro_",
           align: "left",
-          field: "no_client",
+          field: "co_catpro",
           sortable: true
         },
         {
-          name: "nu_doccli",
+          name: "no_catpro",
           align: "left",
           label: "Nro. Document.",
-          field: "nu_doccli",
+          field: "no_catpro",
           sortable: true
         },
         {
-          name: "no_tipdoc",
-          label: "Tipo Docuemt.",
+          name: "co_arcadj",
+          label: "Arcadj.",
           align: "left",
-          field: "no_tipdoc",
+          field: "co_arcadj",
           sortable: true
         },
         {
-          name: "no_sigcli",
+          name: "nu_ordcat",
           label: "Sigla",
           align: "left",
-          field: "no_sigcli"
-        },
-        {
-          name: "ca_percon",
-          label: "Cant. Contactos",
-          align: "center",
-          field: "ca_percon"
-        },
-        {
-          name: "ca_direcc",
-          label: "Cant. Direcciones",
-          align: "center",
-          field: "ca_direcc"
+          field: "nu_ordcat"
         }
       ]
     };
@@ -180,7 +148,11 @@ export default {
     TituloTabla: () => import("../../components/TituloTablas")
   },
   methods: {
-    ...mapActions("clientes", ["getClientes", "eliminarCliente"]),
+    ...mapActions("clientes", [
+      "getClientes",
+      "eliminarCliente",
+      "listar_catalogos"
+    ]),
     onRowClick() {
       console.log("Se preciono una ROW");
     },
@@ -257,7 +229,8 @@ export default {
   },
   async mounted() {
     await this.getClientes();
-    this.info = this.Clientes;
+    this.info = this.listar_catalogos();
+    this.data = await this.listar_catalogos();
   }
 };
 </script>

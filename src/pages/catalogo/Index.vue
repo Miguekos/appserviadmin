@@ -33,7 +33,7 @@
 <script>
 export default {
   components: {
-    // Catalogo: () => import("./Catalogo"),
+    Catalogo: () => import("./Catalogo"),
     ListarCatalogo: () => import("./ListarCatalogo"),
     Atras: () => import("../../components/IrAtras")
     // TablaFiltro: () => import("./TablaFiltro"),

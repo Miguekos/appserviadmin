@@ -221,9 +221,7 @@ export async function percon_direccion_telefono({ commit }, payload) {
 // eslint-disable
 export async function listar_catalogos({ commit }) {
   console.log("listar_catalogos");
-  const response = await axiosInstance.get(
-    `/api/clientes/listar_catalogos`
-  );
+  const response = await axiosInstance.get(`/api/clientes/listar_catalogos`);
   // console.log(response.data);
   // commit("setClientes", response.data);
   return response.data;
@@ -232,9 +230,7 @@ export async function listar_catalogos({ commit }) {
 // eslint-disable
 export async function listar_clientes({ commit }) {
   console.log("listar_clientes");
-  const response = await axiosInstance.get(
-    `/api/clientes/listar_clientes`
-  );
+  const response = await axiosInstance.get(`/api/clientes/listar_clientes`);
   // console.log(response.data);
   // commit("setClientes", response.data);
   return response.data;
@@ -246,7 +242,70 @@ export async function listar_personas_contacto({ commit }) {
   const response = await axiosInstance.get(
     `/api/clientes/listar_personas_contacto`
   );
-  // console.log(response.data);
-  // commit("setClientes", response.data);
+  return response.data;
+}
+
+// eslint-disable
+export async function listar_estado_seguimiento_requerimiento({ commit }) {
+  console.log("listar_estado_seguimiento_requerimiento");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_estado_seguimiento_requerimiento`
+  );
+  return response.data;
+}
+
+// eslint-disable
+export async function listar_motivo_seguimiento_requerimiento({ commit }) {
+  console.log("listar_motivo_seguimiento_requerimiento");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_motivo_seguimiento_requerimiento`
+  );
+  return response.data;
+}
+
+// eslint-disable
+export async function listar_evaluacion_seguimiento_requerimiento({ commit }) {
+  console.log("listar_evaluacion_seguimiento_requerimiento");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_evaluacion_seguimiento_requerimiento`
+  );
+  return response.data;
+}
+
+// eslint-disable
+export async function seguimiento_cotizacion({ commit }) {
+  console.log("seguimiento_cotizacion");
+  const response = await axiosInstance.get(
+    `/api/clientes/seguimiento_cotizacion`
+  );
+  return response.data;
+}
+
+// eslint-disable
+export async function listar_motivo_seguimiento_requerimientov1({ commit }) {
+  console.log("listar_motivo_seguimiento_requerimientov1");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_motivo_seguimiento_requerimientov1`
+  );
+  return response.data;
+}
+
+// eslint-disable
+export async function listar_estado_seguimiento_requerimientov1({ commit }) {
+  console.log("listar_estado_seguimiento_requerimientov1");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_estado_seguimiento_requerimientov1`
+  );
+  return response.data;
+}
+
+// eslint-disable
+export async function listar_evaluacion_seguimiento_requerimientov1({
+  commit
+}) {
+  console.log("listar_evaluacion_seguimiento_requerimientov1");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_evaluacion_seguimiento_requerimientov1`
+  );
   return response.data;
 }

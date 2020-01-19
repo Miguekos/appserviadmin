@@ -16,8 +16,8 @@ const routes = [
     }
   },
   {
-    path: "/cotizacion",
-    name: "cotizacion",
+    path: "/cotiza",
+    name: "cotiza",
     component: () => import("layouts/MyLayout.vue"),
     children: [
       { path: "", component: () => import("pages/cotiza/Index.vue") },
@@ -86,6 +86,17 @@ const routes = [
         path: "detalle/:id",
         component: () => import("pages/cliente/Detalle.vue")
       }
+    ],
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/cotizacion",
+    name: "cotizacion",
+    component: () => import("layouts/MyLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/cotizacion/Index.vue") }
     ],
     meta: {
       requiresAuth: true
