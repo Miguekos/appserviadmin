@@ -23,10 +23,10 @@
             <CuadroResumen />
           </q-item>
           <q-item class="col-sm-2 col-xs-12">
-            <Leyenda1 />
+            <Leyenda2 />
           </q-item>
           <q-item class="col-sm-2 col-xs-12">
-            <Leyenda2 />
+            <Leyenda1 />
           </q-item>
           <q-item class="col-sm-2 col-xs-12">
             <Leyenda3 />

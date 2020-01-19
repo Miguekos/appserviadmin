@@ -4,6 +4,8 @@
       <q-card-section>
         <q-table
           dense
+          hide-bottom
+          hide-header
           title="Catalogo"
           :data="data"
           :columns="columns"
@@ -14,6 +16,10 @@
         >
         </q-table>
       </q-card-section>
+      <q-card-actions align="around">
+        <q-btn v-close-popup flat>Cerrar</q-btn>
+        <q-btn flat>Enviar</q-btn>
+      </q-card-actions>
     </q-card>
   </div>
 </template>

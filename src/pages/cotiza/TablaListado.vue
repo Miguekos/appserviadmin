@@ -39,26 +39,6 @@
 
           <q-space />
 
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="positive"-->
-          <!--            icon="add"-->
-          <!--            no-caps-->
-          <!--            label="Nuevo"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="negative"-->
-          <!--            icon="remove"-->
-          <!--            no-caps-->
-          <!--            label="Eliminar"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
           <q-btn
             flat
             dense
@@ -87,10 +67,74 @@
         :filter="filter"
         :loading="loading"
         loading-label="Cargando Data"
-        :selected-rows-label="getSelectedString"
-        selection="multiple"
-        :selected.sync="selected"
       >
+        <template v-slot:body="props">
+          <q-tr :props="props">
+            <q-td key="id_reqcot" :props="props">
+              {{ props.row.id_reqcot }}
+            </q-td>
+            <q-td key="fe_regist" :props="props">
+              {{ props.row.fe_regist }}
+            </q-td>
+            <q-td key="no_razsoc" :props="props">
+              {{ props.row.no_razsoc }}
+            </q-td>
+            <q-td key="no_contac" :props="props">
+              {{ props.row.no_contac }}
+            </q-td>
+            <q-td key="no_usuari" :props="props">
+              {{ props.row.no_usuari }}
+            </q-td>
+            <q-td key="ca_diapen" :props="props">
+              {{ props.row.ca_diapen }}
+            </q-td>
+            <q-td key="fe_reqcot" :props="props">
+              {{ props.row.fe_reqcot }}
+            </q-td>
+            <q-td key="no_estreq" :props="props">
+              {{ props.row.no_estreq }}
+            </q-td>
+            <q-td key="de_reqcot" :props="props">
+              <q-tooltip
+                transition-show="flip-right"
+                transition-hide="flip-left"
+                anchor="top middle"
+                self="top middle"
+                content-style="font-size: 16px"
+              >
+                {{ props.row.de_reqcot }}
+              </q-tooltip>
+              Con comentario
+            </q-td>
+            <q-td key="co_percon" :props="props">
+              <div class="q-gutter-xs">
+                <!--                {{ props.row.no_estreq }}-->
+                <q-btn
+                  v-if="props.row.no_estreq == 'RECHAZADO'"
+                  dense
+                  @click="prueba(props.row.co_percon)"
+                  size="sm"
+                  color="green"
+                  icon="far fa-frown"
+                />
+                <q-btn
+                  dense
+                  @click="
+                    dialogRegistrarCitaCliente({
+                      estado: true,
+                      cliente: props.row.co_client,
+                      contacto: props.row.co_percon
+                    })
+                  "
+                  size="sm"
+                  color="orange"
+                  icon="edit"
+                />
+                <q-btn size="sm" dense color="red" icon="delete" />
+              </div>
+            </q-td>
+          </q-tr>
+        </template>
         <q-inner-loading :showing="visible">
           <q-spinner-gears size="550px" color="red" />
         </q-inner-loading>
@@ -100,6 +144,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { date } from "quasar";
 export default {
   computed: {
     ...mapGetters("example", ["getRegistros"])
@@ -127,6 +172,7 @@ export default {
           align: "left",
           label: "Fecha Registro.",
           field: "fe_regist",
+          // format: val => date.formatDate(val, "DD-MM-YYYY HH:MM"),
           sortable: true
         },
         {
@@ -139,13 +185,20 @@ export default {
         {
           name: "no_contac",
           align: "left",
-          label: "Nro. Contacto",
+          label: "Contacto",
           field: "no_contac",
           sortable: true
         },
         {
-          name: "ca_diapen",
+          name: "no_usuari",
           align: "left",
+          label: "Usuario",
+          field: "no_usuari",
+          sortable: true
+        },
+        {
+          name: "ca_diapen",
+          align: "center",
           label: "Dias Pendiente",
           field: "ca_diapen",
           sortable: true
@@ -155,6 +208,7 @@ export default {
           align: "left",
           label: "F. Cotizacion.",
           field: "fe_reqcot",
+          format: val => date.formatDate(val, "DD-MM-YYYY"),
           sortable: true
         },
         {
@@ -171,12 +225,22 @@ export default {
           field: "de_reqcot",
           sortable: true,
           sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
+        },
+        {
+          name: "co_percon",
+          align: "center",
+          label: "Acciones",
+          field: "co_percon",
+          sortable: true
         }
       ]
     };
   },
   methods: {
     ...mapActions("example", ["registros"]),
+    formatearFecha(fecha) {
+      return date.formatDate(fecha, "YYYY-MM-DD");
+    },
     getSelectedString() {
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
     }

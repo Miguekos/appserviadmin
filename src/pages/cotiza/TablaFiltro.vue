@@ -3,7 +3,7 @@
     <div>
       <div>
         <p
-          class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
+          class="bg-secondary dense shadow-5 text-center text-white"
         >
           Filtros Dinamicos
         </p>
@@ -21,20 +21,43 @@
           map-options
           placeholder="Estado"
           dense
+          options-dense
           v-model="estadoFiltro"
         />
       </div>
-      <div class="q-ma-md">
-        <q-input dense v-model="fechainicio" type="date" prefix="Fecha ini:   ">
-          <template v-slot:prepend>
-            <q-icon name="event" />
+      <div class="row justify-between q-ma-md">
+        <q-input dense filled v-model="date" mask="date" :rules="['date']">
+          <template v-slot:append>
+            <q-icon name="event" class="cursor-pointer">
+              <q-popup-proxy
+                ref="qDateProxy"
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date
+                  dense
+                  v-model="date"
+                  @input="() => $refs.qDateProxy.hide()"
+                />
+              </q-popup-proxy>
+            </q-icon>
           </template>
         </q-input>
-      </div>
-      <div class="q-ma-md">
-        <q-input dense v-model="fechafin" type="date" prefix="Fecha fin:   ">
-          <template v-slot:prepend>
-            <q-icon name="event" />
+        <q-input dense filled v-model="date" mask="date" :rules="['date']">
+          <template v-slot:append>
+            <q-icon name="event" class="cursor-pointer">
+              <q-popup-proxy
+                ref="qDateProxy"
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date
+                  dense
+                  v-model="date"
+                  @input="() => $refs.qDateProxy.hide()"
+                />
+              </q-popup-proxy>
+            </q-icon>
           </template>
         </q-input>
       </div>
@@ -42,7 +65,7 @@
     <div class="row justify-around q-gutter">
       <q-btn
         color="secondary"
-        glossy
+        dense
         @click="showLoading()"
         icon-right="send"
         size="sm"
@@ -50,7 +73,7 @@
       />
       <q-btn
         color="positive"
-        glossy
+        dense
         @click="nuevo_reque()"
         icon-right="add"
         size="sm"

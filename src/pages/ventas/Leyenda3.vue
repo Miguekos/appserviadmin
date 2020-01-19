@@ -3,7 +3,7 @@
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p class="bg-secondary   shadow-5 text-center text-white">
-        Estado de Cita
+        Estado
       </p>
     </div>
     <div class="q-pa-xs">
@@ -43,7 +43,7 @@ export default {
     return {
       pagination: {
         page: 1,
-        rowsPerPage: 7
+        rowsPerPage: 8
         // rowsNumber: xx if getting data from a server
       },
       columns: [

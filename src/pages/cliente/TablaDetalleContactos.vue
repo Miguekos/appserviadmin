@@ -198,7 +198,6 @@
                   outlined
                   required
                   label="Telefono"
-                  maxlength="9"
                   v-model="form.p_nu_telefo"
                 />
               </div>

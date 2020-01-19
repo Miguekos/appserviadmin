@@ -14,6 +14,7 @@
             class="full-width"
             placeholder="Buscar"
             dense
+            style="width: 5px"
             color="primary"
             v-model="filter"
           >
@@ -42,9 +43,10 @@
             dense
             no-wrap
             color="primary"
-            icon="cloud_upload"
+            icon="email"
             no-caps
-            label="Exportar"
+            label="Correo Masivo"
+            @click="enviarMasivos()"
             class="q-ml-sm q-px-md"
           />
         </q-toolbar>
@@ -58,17 +60,29 @@
       :columns="columns"
       row-key="no_sigcli"
       :pagination.sync="pagination"
+      class="my-sticky-header-table"
+      flat
+      bordered
     >
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="no_sigcli" :props="props">
             {{ props.row.no_sigcli }}
           </q-td>
+          <q-td key="no_sigsec" :props="props">
+            <q-badge :style="coloreando(props.row.no_colsec)">
+              {{ props.row.no_sigsec }}
+            </q-badge>
+          </q-td>
           <q-td key="no_percon" :props="props">
             {{ props.row.no_percon }}
           </q-td>
+          <q-td key="no_sigare" :props="props">
+            <q-badge :style="coloreando(props.row.no_colare)">
+              {{ props.row.no_sigare }}
+            </q-badge>
+          </q-td>
           <q-td key="co_estemo" :props="props">
-            <!--            <q-btn round size="xs" :color="emoticones(props.row.co_semsve)" />-->
             <q-icon
               class="cursor-pointer"
               @click="updateEmoti(props.row)"
@@ -80,18 +94,8 @@
           <q-td key="co_semsve" :props="props">
             <q-btn round size="xs" :color="semaforo(props.row.co_semsve)" />
           </q-td>
-          <q-td key="no_sigare" :props="props">
-            <q-badge :style="coloreando(props.row.no_colare)">
-              {{ props.row.no_sigare }}
-            </q-badge>
-          </q-td>
           <q-td key="no_ubicac" :props="props">
             {{ props.row.no_ubicac }}
-          </q-td>
-          <q-td key="no_sigsec" :props="props">
-            <q-badge :style="coloreando(props.row.no_colsec)">
-              {{ props.row.no_sigsec }}
-            </q-badge>
           </q-td>
           <q-td key="no_usuari" :props="props">
             {{ props.row.no_usuari }}
@@ -105,7 +109,16 @@
             </q-badge>
           </q-td>
           <q-td key="no_coment" :props="props">
-            {{ props.row.no_coment }}
+            <q-tooltip
+              transition-show="flip-right"
+              transition-hide="flip-left"
+              anchor="top middle"
+              self="top middle"
+              content-style="font-size: 16px"
+            >
+              {{ props.row.no_coment }}
+            </q-tooltip>
+            Con Comentario
           </q-td>
           <q-td key="ca_consul" :props="props">
             {{ props.row.ca_consul }}
@@ -138,19 +151,14 @@
                 color="primary"
                 icon="local_phone"
               />
-              <q-btn
-                dense
-                size="sm"
-                @click="enviarMasivos()"
-                color="positive"
-                icon="email"
-              />
+              <q-btn dense size="sm" color="positive" icon="email" />
               <q-btn
                 size="sm"
                 dense
                 color="amber"
                 text-color="black"
                 icon="email"
+                @click="enviarSimple()"
               />
               <q-btn
                 dense
@@ -216,6 +224,10 @@
     <q-dialog full-width v-model="envioMasivoCorreo">
       <Control />
     </q-dialog>
+
+    <q-dialog v-model="envioSimpleCorreo">
+      <ControlSimple />
+    </q-dialog>
     <!--    {{ orange }}-->
     <!--    {{ dialogRegistrarCita }}-->
   </div>
@@ -232,11 +244,25 @@ const columns = [
     style: "width: 15%"
   },
   {
+    name: "no_sigsec",
+    align: "left",
+    sortable: true,
+    label: "Sector",
+    field: "no_sigsec"
+  },
+  {
     name: "no_percon",
     align: "left",
     sortable: true,
     label: "Contacto",
     field: "no_percon"
+  },
+  {
+    name: "no_sigare",
+    align: "left",
+    sortable: true,
+    label: "Area",
+    field: "no_sigare"
   },
   {
     name: "co_estemo",
@@ -248,16 +274,8 @@ const columns = [
   {
     name: "co_semsve",
     align: "left",
-    sortable: true,
-    label: "Sem.",
+    label: "",
     field: "co_semsve"
-  },
-  {
-    name: "no_sigare",
-    align: "left",
-    sortable: true,
-    label: "Area",
-    field: "no_sigare"
   },
   {
     name: "no_ubicac",
@@ -265,13 +283,6 @@ const columns = [
     sortable: true,
     label: "Ubicacion",
     field: "no_ubicac"
-  },
-  {
-    name: "no_sigsec",
-    align: "left",
-    sortable: true,
-    label: "Sector",
-    field: "no_sigsec"
   },
   {
     name: "no_usuari",
@@ -329,7 +340,7 @@ const columns = [
     name: "co_percon",
     align: "center",
     sortable: true,
-    label: "Accions",
+    label: "Acciones",
     field: "co_percon",
     style: "width: 5%"
   }
@@ -350,6 +361,7 @@ export default {
   data() {
     return {
       envioMasivoCorreo: false,
+      envioSimpleCorreo: false,
       correosVarios: [],
       teal: true,
       orange: [],
@@ -369,7 +381,7 @@ export default {
       slideAlarm: 56,
       slideVibration: 63,
       pagination: {
-        sortBy: "no_sigcli",
+        sortBy: "nu_ordreg",
         descending: false,
         page: 1,
         rowsPerPage: 15
@@ -386,6 +398,9 @@ export default {
   methods: {
     enviarMasivos() {
       this.envioMasivoCorreo = true;
+    },
+    enviarSimple() {
+      this.envioSimpleCorreo = true;
     },
     dialogCorreoOpen() {
       this.dialogCorreo = true;
@@ -518,7 +533,8 @@ export default {
     RegistrarCita: () => import("./RegistrarCita"),
     DialogInformativo: () => import("./DialogInformativo"),
     Emoticons: () => import("./Emoticons"),
-    Control: () => import("./Control")
+    Control: () => import("./Control"),
+    ControlSimple: () => import("./ControlSimple")
     // CuadroResumen: () => import("./CuadroResumen")
     // AddRegistro: () => import("./Create")
   },
@@ -541,3 +557,28 @@ export default {
   }
 };
 </script>
+
+<style lang="sass">
+.my-sticky-header-table
+  /* max height is important */
+  .q-table__middle
+    max-height: 400px
+
+  .q-table__top,
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #26a69a
+    color: white
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 28px
+</style>

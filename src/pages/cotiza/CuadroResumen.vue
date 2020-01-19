@@ -1,6 +1,5 @@
 <template>
   <div class="full-width">
-    <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p
         class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
@@ -8,59 +7,63 @@
         Cuadro Resumen
       </p>
     </div>
-    <q-markup-table :separator="separator" flat>
-      <!-- <thead>
-        <tr>
-          <th style="font-size: 20px" class="bg-green-4 text-left">
-            Cuadro Resumen
-          </th>
-          <th style="font-size: 20px" class="bg-green-4 text-left"></th>
-        </tr>
-      </thead>-->
-      <tbody>
-        <tr>
-          <td class="text-left">Pendiente:</td>
-          <td class="text-right">{{ resumen.confirmacion }}</td>
-        </tr>
-        <tr>
-          <td class="text-left">Aceptado:</td>
-          <td class="text-right">{{ resumen.aceptado }}</td>
-        </tr>
-        <tr>
-          <td class="text-left">Rechazado</td>
-          <td class="text-right">{{ resumen.rechazado }}</td>
-        </tr>
-        <tr>
-          <td class="text-left">Listo</td>
-          <td class="text-right">{{ resumen.listo }}</td>
-        </tr>
-        <!--        <tr>-->
-        <!--          <td class="text-left">Total</td>-->
-        <!--          <td class="text-right">{{ resumen.total }}</td>-->
-        <!--        </tr>-->
-      </tbody>
-    </q-markup-table>
+    <q-table
+      hide-header
+      hide-bottom
+      dense
+      :data="data"
+      :columns="columns"
+      row-key="no_estreq"
+    >
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td key="no_estreq" :props="props">
+            <q-badge :style="coloreando(props.row.no_colhex)">
+              {{ props.row.no_estreq }}
+            </q-badge>
+          </q-td>
+          <q-td key="ca_estreq" :props="props">
+            {{ props.row.ca_estreq }}
+          </q-td>
+        </q-tr>
+      </template>
+    </q-table>
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      resumen: {
-        confirmacion: 6,
-        aceptado: 12,
-        rechazado: 0,
-        listo: 12,
-        total: 18
-      },
-      model: null,
-      separator: "cell",
-      options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"]
+      columns: [
+        {
+          name: "no_estreq",
+          required: true,
+          label: "Dessert (100g serving)",
+          align: "left",
+          field: "no_estreq",
+          sortable: true
+        },
+        {
+          name: "ca_estreq",
+          align: "center",
+          label: "Calories",
+          field: "ca_estreq",
+          sortable: true
+        }
+      ],
+      data: []
     };
   },
-  created() {
-    console.log("se cargo el created de resumen");
-    // this.$q.loading.show({ delay: 400 });
+  methods: {
+    ...mapActions("example", ["cuadro_resumen_estado_requerimiento"]),
+    coloreando(arg) {
+      console.log(arg);
+      return `background-color: ${arg}`;
+    }
+  },
+  async mounted() {
+    this.data = await this.cuadro_resumen_estado_requerimiento();
   }
 };
 </script>

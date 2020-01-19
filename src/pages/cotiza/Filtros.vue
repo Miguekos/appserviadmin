@@ -3,15 +3,17 @@
     <q-markup-table :separator="separator" flat bordered dense>
       <thead>
         <tr>
-          <th style="font-size: 20px" class="bg-grey-4 text-left">Filtros</th>
+          <th style="font-size: 20px" class="bg-grey-4 text-left">Filtrhgfdsos</th>
           <th style="font-size: 20px" class="bg-grey-4 text-left"></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="text-left">Estados</td>
+          <td class="text-left">Estadosvsfsfsdf</td>
           <td class="text-right">
             <q-select
+              dense
+              options-dense
               standout="bg-teal text-white"
               v-model="model"
               :options="options"
@@ -23,6 +25,7 @@
           <td class="text-left">Fecha Inicio</td>
           <td class="text-right">
             <q-input
+              dense
               standout="bg-teal text-white"
               type="date"
               v-model="fechainicio"
@@ -33,6 +36,7 @@
           <td class="text-left">Fecha Fin</td>
           <td class="text-right">
             <q-input
+              dense
               standout="bg-teal text-white"
               type="date"
               v-model="fechafin"

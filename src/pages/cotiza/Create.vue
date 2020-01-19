@@ -38,23 +38,50 @@
           <q-form @submit.prevent="onSubmit" class>
             <div class="row flex flex-center">
               <div class="q-pa-xs col-xs-12 col-sm-6">
-                <q-input
-                  dense
-                  filled
-                  v-model="model.date"
-                  mask="date"
-                  :rules="['date']"
-                >
-                  <template v-slot:append>
+                <!--                <q-input-->
+                <!--                  dense-->
+                <!--                  filled-->
+                <!--                  v-model="model.date"-->
+                <!--                  mask="date"-->
+                <!--                  :rules="['date']"-->
+                <!--                >-->
+                <!--                  <template v-slot:append>-->
+                <!--                    <q-icon name="event" class="cursor-pointer">-->
+                <!--                      <q-popup-proxy-->
+                <!--                        ref="qDateProxy"-->
+                <!--                        transition-show="scale"-->
+                <!--                        transition-hide="scale"-->
+                <!--                      >-->
+                <!--                        <q-date-->
+                <!--                          v-model="model.date"-->
+                <!--                          @input="() => $refs.qDateProxy.hide()"-->
+                <!--                        />-->
+                <!--                      </q-popup-proxy>-->
+                <!--                    </q-icon>-->
+                <!--                  </template>-->
+                <!--                </q-input>-->
+                <q-input filled v-model="model.date">
+                  <template v-slot:prepend>
                     <q-icon name="event" class="cursor-pointer">
                       <q-popup-proxy
-                        ref="qDateProxy"
                         transition-show="scale"
                         transition-hide="scale"
                       >
-                        <q-date
+                        <q-date v-model="model.date" mask="YYYY-MM-DD HH:mm" />
+                      </q-popup-proxy>
+                    </q-icon>
+                  </template>
+
+                  <template v-slot:append>
+                    <q-icon name="access_time" class="cursor-pointer">
+                      <q-popup-proxy
+                        transition-show="scale"
+                        transition-hide="scale"
+                      >
+                        <q-time
                           v-model="model.date"
-                          @input="() => $refs.qDateProxy.hide()"
+                          mask="YYYY-MM-DD HH:mm"
+                          format24h
                         />
                       </q-popup-proxy>
                     </q-icon>

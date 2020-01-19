@@ -17,28 +17,8 @@
           @click="URL('/proveedores')"
           active-class="my-menu-link"
         >
-          <!--          <q-item-section avatar>-->
-          <!--                  <q-icon name="supervised_user_circle" />-->
-          <!--          </q-item-section>-->
-
           <q-item-section>Proveedores</q-item-section>
         </q-item>
-
-        <!-- ¨Producto -->
-        <!--              <q-item-->
-        <!--                :header-inset-level="1"-->
-        <!--                clickable-->
-        <!--                v-ripple-->
-        <!--                :active="link === '/producto'"-->
-        <!--                @click="URL('/producto')"-->
-        <!--                active-class="my-menu-link"-->
-        <!--              >-->
-        <!--                <q-item-section avatar>-->
-        <!--                  &lt;!&ndash;                  <q-icon name="supervised_user_circle" />&ndash;&gt;-->
-        <!--                </q-item-section>-->
-
-        <!--                <q-item-section>Producto</q-item-section>-->
-        <!--              </q-item>-->
       </q-expansion-item>
 
       <q-separator />
@@ -49,28 +29,18 @@
         label="Ventas"
         header-class="text-white bg-orange-5 rounded-borders"
       >
-        <!-- Cliente -->
         <q-item
           clickable
           v-ripple
-          :active="link === '/cliente'"
-          @click="URL('/cliente')"
+          :active="link === '/cotiza'"
+          @click="URL('/cotiza')"
           active-class="my-menu-link"
         >
-          <q-item-section>Mantenimiento de Cliente</q-item-section>
+          <q-item-section no-wrap
+            >01 - Requerimiento de cotizacion</q-item-section
+          >
         </q-item>
-        <q-item
-          clickable
-          v-ripple
-          :active="link === '/ventas'"
-          @click="URL('/ventas')"
-          active-class="my-menu-link"
-        >
-          <!--          <q-item-section avatar>-->
-          <!--                  <q-icon name="monetization_on" />-->
-          <!--          </q-item-section>-->
-          <q-item-section no-wrap>Seguimiento de Cliente</q-item-section>
-        </q-item>
+
         <q-item
           clickable
           v-ripple
@@ -78,12 +48,39 @@
           @click="URL('/cotizacion')"
           active-class="my-menu-link"
         >
-          <!--          <q-item-section avatar>-->
-          <!--            <q-icon name="monetization_on" />-->
-          <!--          </q-item-section>-->
-
-          <q-item-section no-wrap>Requerimiento de cotizacion</q-item-section>
+          <q-item-section no-wrap
+            >02 - Seguimiento de cotizacion</q-item-section
+          >
         </q-item>
+
+        <q-item clickable v-ripple active-class="my-menu-link">
+          <q-item-section no-wrap>03 - Orden de Compra Cliente</q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+          :active="link === '/ventas'"
+          @click="URL('/ventas')"
+          active-class="my-menu-link"
+        >
+          <q-item-section no-wrap>04 - Clientes</q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple active-class="my-menu-link">
+          <q-item-section no-wrap>05 - Agenda de Citas</q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+          :active="link === '/cliente'"
+          @click="URL('/cliente')"
+          active-class="my-menu-link"
+        >
+          <q-item-section>06 - Mantenimiento de Cliente</q-item-section>
+        </q-item>
+
         <q-item
           clickable
           v-ripple
@@ -91,11 +88,7 @@
           @click="URL('/catalogo')"
           active-class="my-menu-link"
         >
-          <!--          <q-item-section avatar>-->
-          <!--            <q-icon name="monetization_on" />-->
-          <!--          </q-item-section>-->
-
-          <q-item-section no-wrap>Mantenimiento de Catalogo</q-item-section>
+          <q-item-section no-wrap>07 - Mantenimiento de Ventas</q-item-section>
         </q-item>
       </q-expansion-item>
 

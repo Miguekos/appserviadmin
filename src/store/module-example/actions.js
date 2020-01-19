@@ -32,7 +32,7 @@ export async function registrarCotizacion({}, payload) {
   // };
   const data = {
     co_client: payload.co_client,
-    r_fe_requer: "2019-11-11",
+    r_fe_requer: payload.date,
     asunto: payload.asunto,
     detalle: payload.text,
     contacto: payload.contacto,
@@ -218,6 +218,13 @@ export async function actualizar_emoticon({}, payload) {
 // eslint-disable-next-line
 export async function listar_catalogos({}) {
   const response = await axiosInstance.get(`/api/ventas/listar_catalogos`);
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}
+
+// eslint-disable-next-line
+export async function cuadro_resumen_estado_requerimiento({}) {
+  const response = await axiosInstance.get(`/api/cotizas/cuadro_resumen_estado_requerimiento`);
   // commit("setlistar_direccion", response.data);
   return response.data;
 }
