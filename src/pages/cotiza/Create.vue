@@ -2,11 +2,8 @@
   <div>
     <!-- <q-page padding> -->
     <q-card class="my-card">
-      <q-item class="bg-custom4">
-        <q-item-section>
-          <q-item-label>Registrar</q-item-label>
-          <q-item-label caption>REQUERIMIENTO DE COTIZACIÓN</q-item-label>
-        </q-item-section>
+      <q-item class="shadow-5 bg-secondary text-white items-center">
+        <q-item-label>REGISTRAR</q-item-label>
       </q-item>
       <q-item>
         <q-item-section class="flex-center flex">
@@ -38,36 +35,18 @@
           <q-form @submit.prevent="onSubmit" class>
             <div class="row flex flex-center">
               <div class="q-pa-xs col-xs-12 col-sm-6">
-                <!--                <q-input-->
-                <!--                  dense-->
-                <!--                  filled-->
-                <!--                  v-model="model.date"-->
-                <!--                  mask="date"-->
-                <!--                  :rules="['date']"-->
-                <!--                >-->
-                <!--                  <template v-slot:append>-->
-                <!--                    <q-icon name="event" class="cursor-pointer">-->
-                <!--                      <q-popup-proxy-->
-                <!--                        ref="qDateProxy"-->
-                <!--                        transition-show="scale"-->
-                <!--                        transition-hide="scale"-->
-                <!--                      >-->
-                <!--                        <q-date-->
-                <!--                          v-model="model.date"-->
-                <!--                          @input="() => $refs.qDateProxy.hide()"-->
-                <!--                        />-->
-                <!--                      </q-popup-proxy>-->
-                <!--                    </q-icon>-->
-                <!--                  </template>-->
-                <!--                </q-input>-->
-                <q-input filled v-model="model.date">
+                <q-input dense filled v-model="model.date">
                   <template v-slot:prepend>
                     <q-icon name="event" class="cursor-pointer">
                       <q-popup-proxy
                         transition-show="scale"
                         transition-hide="scale"
                       >
-                        <q-date v-model="model.date" mask="YYYY-MM-DD HH:mm" />
+                        <q-date
+                          v-model="model.date"
+                          v-close-popup
+                          mask="YYYY-MM-DD HH:mm"
+                        />
                       </q-popup-proxy>
                     </q-icon>
                   </template>
@@ -90,34 +69,17 @@
               </div>
               <div class="q-pa-xs col-xs-12 col-sm-6">
                 <q-input
+                  required="true"
                   dense
                   filled
                   v-model="model.no_client"
                   label="Cliente"
                   lazy-rules
-                  :rules="[
-                    val =>
-                      (val && val.length > 0) || 'No puede dejar el campo vacio'
-                  ]"
                 />
               </div>
-              <div class="q-pa-xs col-xs-12 col-sm-6">
+              <div class="q-pa-xs col-xs-12 col-sm-12">
                 <q-select
-                  filled
-                  dense
-                  options-dense
-                  v-model="no_direcc"
-                  :options="getClieDireccion"
-                  option-value="co_direcc"
-                  option-label="no_direcc"
-                  option-disable="inactive"
-                  emit-value
-                  map-options
-                  label="Direccion"
-                />
-              </div>
-              <div class="q-pa-xs col-xs-12 col-sm-6">
-                <q-select
+                  required="true"
                   filled
                   dense
                   options-dense
@@ -133,21 +95,19 @@
               </div>
               <div class="q-pa-xs col-xs-12 col-sm-12">
                 <q-input
+                  required="true"
                   dense
                   filled
                   v-model="model.asunto"
                   label="Asunto"
                   lazy-rules
-                  :rules="[
-                    val =>
-                      (val && val.length > 0) || 'No puede dejar el campo vacio'
-                  ]"
                 />
               </div>
             </div>
             <div class="q-pa-xs">
               <div class="q-pa-xs col-xs-12 col-sm-2">
                 <q-input
+                  required="true"
                   v-model="model.text"
                   filled
                   type="textarea"
@@ -157,18 +117,16 @@
             </div>
             <div class="flex flex-center">
               <q-btn
+                color="positive"
                 size="sm"
-                glossy
                 label="Registrar"
                 :loading="loading1"
                 type="submit"
-                color="primary"
               />
               <q-btn
+                color="negative"
                 size="sm"
-                glossy
                 label="Cerrar"
-                color="primary"
                 flat
                 @click="dialogCreate(false)"
                 class="q-ml-sm"

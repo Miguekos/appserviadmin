@@ -7,7 +7,7 @@
           <div class="col-auto text-grey q-pt-md"></div>
         </div>
       </q-card-section>
-
+      <!--      {{ info }}-->
       <q-card-section>
         <div class="row q-gutter-md justify-around flex">
           <div class="column">
@@ -168,106 +168,6 @@ export default {
   data() {
     return {
       dense: true,
-      columns: [
-        {
-          name: "no_client",
-          required: true,
-          label: "EMPRESA",
-          align: "left",
-          field: "no_client",
-          sortable: true
-        },
-        {
-          name: "no_sigcli",
-          required: true,
-          label: "SIGLA",
-          align: "left",
-          field: "no_sigcli",
-          sortable: true
-        },
-        {
-          name: "nu_doccli",
-          required: true,
-          label: "RUC",
-          align: "left",
-          field: "nu_doccli",
-          sortable: true
-        },
-        {
-          name: "no_sececo",
-          required: true,
-          label: "SECTOR",
-          align: "left",
-          field: "no_sececo",
-          sortable: true
-        },
-        {
-          name: "no_percon",
-          required: true,
-          label: "CONTACTO",
-          align: "left",
-          field: "no_percon",
-          sortable: true
-        },
-        {
-          name: "no_arelab",
-          required: true,
-          label: "AREA",
-          align: "left",
-          field: "no_arelab",
-          sortable: true
-        },
-        {
-          name: "nu_telefo",
-          required: true,
-          label: "TELEFONO",
-          align: "left",
-          field: "nu_telefo",
-          sortable: true
-        },
-        {
-          name: "no_corele",
-          align: "left",
-          label: "CORREO",
-          field: "no_corele",
-          sortable: true
-        },
-        {
-          name: "no_direcc",
-          align: "left",
-          label: "DIRECCION",
-          field: "no_direcc",
-          sortable: true
-        },
-        {
-          name: "co_semsve",
-          align: "left",
-          label: "SEMAFORO",
-          field: "co_semsve",
-          sortable: true
-        },
-        {
-          name: "ca_consul",
-          align: "left",
-          label: "CONSULTAS",
-          field: "ca_consul",
-          sortable: true
-        },
-        {
-          name: "ca_catalo",
-          align: "left",
-          label: "CATOLOGOS",
-          field: "ca_catalo",
-          sortable: true
-        },
-        {
-          name: "ca_citcli",
-          align: "left",
-          label: "CITAS",
-          field: "ca_citcli",
-          sortable: true
-        }
-      ],
       info: [],
       resumen: {},
       model: null,

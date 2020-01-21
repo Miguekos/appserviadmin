@@ -1,19 +1,7 @@
 <template>
   <q-page padding>
     <q-card class="my-card">
-      <q-item class="bg-custom4">
-        <q-item-section>
-          <q-item-label>Clientes</q-item-label>
-          <q-item-label caption>Detalle</q-item-label>
-        </q-item-section>
-        <q-item-section />
-        <q-item-section />
-        <q-item-section>
-          <div class="text-right">
-            <Atras />
-          </div>
-        </q-item-section>
-      </q-item>
+      <TituloTabla titulo="DETALLE" />
       <div>
         <div>
           <ListaDirecciones :datafld="getClieDireccion" :id_pro="id_pro" />
@@ -24,6 +12,8 @@
       </div>
       <!--      <ListarCliente />-->
     </q-card>
+    <!--    {{ getClieDireccion }}-->
+    <!--    {{ getClieContactos }}-->
   </q-page>
 </template>
 
@@ -41,7 +31,8 @@ export default {
   components: {
     ListaDirecciones: () => import("./TablaDetalleDireccion"),
     ListaContactos: () => import("./TablaDetalleContactos"),
-    Atras: () => import("../../components/IrAtras")
+    TituloTabla: () => import("../../components/TituloTablas")
+    // Atras: () => import("../../components/IrAtras")
     // CuadroResumen: () => import("./CuadroResumen")
   },
   methods: {
@@ -53,12 +44,19 @@ export default {
   },
   async mounted() {
     const id = this.$route.params.id;
-    this.id_pro = id;
-    console.log(id);
-    this.$q.loading.show();
-    await this.contactoCliente(id);
-    await this.direccionCliente(id);
-    this.$q.loading.hide();
+    if (this.id != null) {
+      console.log(id);
+    } else {
+      console.log("id");
+      console.log(id);
+      console.log("id");
+      this.id_pro = id;
+      console.log(id);
+      this.$q.loading.show();
+      await this.contactoCliente(id);
+      await this.direccionCliente(id);
+      this.$q.loading.hide();
+    }
   }
   // name: 'PageName',
 };

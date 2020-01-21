@@ -3,7 +3,7 @@
     <q-card>
       <q-card-section class="bg-secondary text-white">
         <div class="text-center" style="font-size: 20px">
-          Catalogos
+          Catalogos Simples
         </div>
       </q-card-section>
       <q-card-section>
@@ -20,6 +20,10 @@
         >
         </q-table>
       </q-card-section>
+      <q-card-actions align="around">
+        <q-btn v-close-popup color="negative" flat>Cerrar</q-btn>
+        <q-btn color="positive" flat>Enviar</q-btn>
+      </q-card-actions>
     </q-card>
   </div>
 </template>

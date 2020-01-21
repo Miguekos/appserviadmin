@@ -2,9 +2,7 @@
   <div class="full-width">
     <div>
       <div>
-        <p
-          class="bg-secondary dense shadow-5 text-center text-white"
-        >
+        <p class="bg-secondary dense shadow-5 text-center text-white">
           Filtros Dinamicos
         </p>
       </div>
@@ -26,36 +24,20 @@
         />
       </div>
       <div class="row justify-between q-ma-md">
-        <q-input dense filled v-model="date" mask="date" :rules="['date']">
+        <q-input dense filled v-model="date_ini" mask="date" :rules="['date']">
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
-              <q-popup-proxy
-                ref="qDateProxy"
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-date
-                  dense
-                  v-model="date"
-                  @input="() => $refs.qDateProxy.hide()"
-                />
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-date dense v-model="date_ini" v-close-popup />
               </q-popup-proxy>
             </q-icon>
           </template>
         </q-input>
-        <q-input dense filled v-model="date" mask="date" :rules="['date']">
+        <q-input dense filled v-model="date_end" mask="date" :rules="['date']">
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
-              <q-popup-proxy
-                ref="qDateProxy"
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-date
-                  dense
-                  v-model="date"
-                  @input="() => $refs.qDateProxy.hide()"
-                />
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-date dense v-model="date_end" v-close-popup />
               </q-popup-proxy>
             </q-icon>
           </template>
@@ -65,7 +47,6 @@
     <div class="row justify-around q-gutter">
       <q-btn
         color="secondary"
-        dense
         @click="showLoading()"
         icon-right="send"
         size="sm"
@@ -73,7 +54,6 @@
       />
       <q-btn
         color="positive"
-        dense
         @click="nuevo_reque()"
         icon-right="add"
         size="sm"
@@ -91,6 +71,8 @@ export default {
   },
   data() {
     return {
+      date_ini: "",
+      date_end: "",
       loading: false,
       estadoFiltro: "",
       fechainicio: "",

@@ -1,9 +1,7 @@
 <template>
   <div class="q-pa-md">
     <div>
-      <p
-        class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
-      >
+      <p class="bg-secondary dense shadow-5 text-center text-white">
         Requerimientos
       </p>
     </div>
@@ -13,7 +11,6 @@
           <q-input
             v-if="$q.screen.gt.xs"
             borderless
-            class="full-width"
             placeholder="Buscar"
             dense
             color="primary"
@@ -38,17 +35,6 @@
           </q-input>
 
           <q-space />
-
-          <q-btn
-            flat
-            dense
-            no-wrap
-            color="primary"
-            icon="cloud_upload"
-            no-caps
-            label="Exportar"
-            class="q-ml-sm q-px-md"
-          />
         </q-toolbar>
       </div>
     </div>

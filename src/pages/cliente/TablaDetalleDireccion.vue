@@ -1,16 +1,16 @@
 <template>
   <div class="q-pt-sm q-pr-md q-pl-md">
-    <!--    {{ datafld }}-->
-    <div>
-      <TituloTabla titulo="Direcciones" />
-    </div>
     <div class="q-pb-md">
+      <div>
+        <p class="bg-secondary dense shadow-5 text-center text-white">
+          Direcciones
+        </p>
+      </div>
       <div class="row no-wrap shadow-1 bg-grey-4">
         <q-toolbar class="q-gutter-sm">
           <q-input
             v-if="$q.screen.gt.xs"
             borderless
-            class="full-width"
             placeholder="Buscar"
             dense
             color="primary"
@@ -22,7 +22,6 @@
           </q-input>
           <q-input
             v-else
-            class="full-width"
             borderless
             placeholder="Buscar"
             dense
@@ -35,27 +34,9 @@
           </q-input>
 
           <q-space />
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="positive"-->
-          <!--            icon="add"-->
-          <!--            no-caps-->
-          <!--            label="Nuevo"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="negative"-->
-          <!--            icon="remove"-->
-          <!--            no-caps-->
-          <!--            label="Eliminar"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
+
           <q-btn
+            v-if="$q.screen.gt.xs"
             class="q-pa-xs"
             dense
             no-wrap
@@ -63,10 +44,11 @@
             color="red"
             no-caps
             outline
-            label="Eliminar Direccion"
+            label="Eliminar"
             @click="eliminarDireccionF()"
           ></q-btn>
           <q-btn
+            v-if="$q.screen.gt.xs"
             class="q-pa-xs"
             dense
             no-wrap
@@ -74,19 +56,9 @@
             no-caps
             outline
             color="positive"
-            label="Agregar Direccion"
+            label="Agregar"
             @click="crearDireccion()"
           ></q-btn>
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="primary"-->
-          <!--            icon="cloud_upload"-->
-          <!--            no-caps-->
-          <!--            label="Exportar"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
         </q-toolbar>
       </div>
     </div>
@@ -246,7 +218,7 @@ export default {
     };
   },
   components: {
-    TituloTabla: () => import("../../components/TituloTablas")
+    // TituloTabla: () => import("../../components/TituloTablas")
   },
   methods: {
     eliminarDireccionF() {
@@ -310,10 +282,11 @@ export default {
         icon: "fas fa-check-circle",
         message: "Submitted"
       });
+      console.log(`Id para guardar: ${this.id_pro}`);
+      this.form.p_id = this.id_pro;
       this.guardarDireccion(this.form).then(result => {
         console.log(result);
-        this.direccionCliente(this.form.p_id).then(result => {
-          console.log(result);
+        this.direccionCliente(this.id_pro).then(() => {
           this.loading = false;
           this.prompt = false;
           this.form.direccion = "";
@@ -356,7 +329,6 @@ export default {
     this.form.p_id = this.id_pro;
     this.pblistar_departamento();
     this.loading = false;
-
     // await this.getClientes();
     // this.info = this.Clientes;
   },

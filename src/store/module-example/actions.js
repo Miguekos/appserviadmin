@@ -36,7 +36,7 @@ export async function registrarCotizacion({}, payload) {
     asunto: payload.asunto,
     detalle: payload.text,
     contacto: payload.contacto,
-    direccion: payload.direccion
+    direccion: 1
   };
 
   console.log(data);
@@ -224,7 +224,9 @@ export async function listar_catalogos({}) {
 
 // eslint-disable-next-line
 export async function cuadro_resumen_estado_requerimiento({}) {
-  const response = await axiosInstance.get(`/api/cotizas/cuadro_resumen_estado_requerimiento`);
+  const response = await axiosInstance.get(
+    `/api/cotizas/cuadro_resumen_estado_requerimiento`
+  );
   // commit("setlistar_direccion", response.data);
   return response.data;
 }

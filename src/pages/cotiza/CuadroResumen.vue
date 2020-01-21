@@ -1,9 +1,7 @@
 <template>
   <div class="full-width">
     <div>
-      <p
-        class="bg-secondary glossy shadow-5 text-center text-white text-subtitle1"
-      >
+      <p class="bg-secondary dense shadow-5 text-center text-white">
         Cuadro Resumen
       </p>
     </div>

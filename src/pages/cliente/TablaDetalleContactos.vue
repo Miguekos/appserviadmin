@@ -1,15 +1,16 @@
 <template>
   <div class="q-pa-md">
-    <div>
-      <TituloTabla titulo="Contactos" />
-    </div>
     <div class="q-pb-md">
+      <div>
+        <p class="bg-secondary dense shadow-5 text-center text-white">
+          Contactos
+        </p>
+      </div>
       <div class="row no-wrap shadow-1 bg-grey-4">
         <q-toolbar class="q-gutter-sm">
           <q-input
             v-if="$q.screen.gt.xs"
             borderless
-            class="full-width"
             placeholder="Buscar"
             dense
             color="primary"
@@ -21,7 +22,6 @@
           </q-input>
           <q-input
             v-else
-            class="full-width"
             borderless
             placeholder="Buscar"
             dense
@@ -34,27 +34,9 @@
           </q-input>
 
           <q-space />
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="positive"-->
-          <!--            icon="add"-->
-          <!--            no-caps-->
-          <!--            label="Nuevo"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="negative"-->
-          <!--            icon="remove"-->
-          <!--            no-caps-->
-          <!--            label="Eliminar"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
+
           <q-btn
+            v-if="$q.screen.gt.xs"
             class="q-pa-xs"
             dense
             no-wrap
@@ -62,10 +44,11 @@
             color="red"
             no-caps
             outline
-            label="Eliminar Contacto"
+            label="Eliminar"
             @click="eliminarContactoF()"
           ></q-btn>
           <q-btn
+            v-if="$q.screen.gt.xs"
             class="q-pa-xs"
             dense
             no-wrap
@@ -73,23 +56,12 @@
             no-caps
             outline
             color="positive"
-            label="Agregar Contacto"
+            label="Agregar"
             @click="crearDireccion()"
           ></q-btn>
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="primary"-->
-          <!--            icon="cloud_upload"-->
-          <!--            no-caps-->
-          <!--            label="Exportar"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
         </q-toolbar>
       </div>
     </div>
-    <!--    {{ `ID proveedor ${id_pro}` }}-->
     <q-table
       dense
       :data="datafld"
@@ -374,7 +346,7 @@ export default {
     };
   },
   components: {
-    TituloTabla: () => import("../../components/TituloTablas")
+    // TituloTabla: () => import("../../components/TituloTablas")
     // TablaDetalleDireccionLimpio: () =>
     //   import("../../pages/cliente/TablaDetalleDireccionLimpio")
   },
@@ -451,46 +423,44 @@ export default {
         icon: "fas fa-check-circle",
         message: "Submitted"
       });
+      this.formDireccion.p_id = this.id_pro;
+      this.form.p_id = this.id_pro;
       this.guardarDireccion(this.formDireccion).then(result => {
-        console.log("##########111111111111111");
         const codigoDirec = JSON.parse(result[0].mantenimiento_direccion);
         console.log(codigoDirec);
         const p_co_perconVar = codigoDirec.codigoDireccion;
         console.log(codigoDirec.codigoDireccion);
-        console.log("##########111111111111111111");
-        this.direccionCliente(this.formDireccion.p_id).then(result => {
-          console.log("#########222222222222222222");
-          console.log(result);
-          console.log("##########22222222222222222");
+        this.direccionCliente(this.formDireccion.p_id).then(() => {
           this.loading = false;
           this.prompt = false;
+          this.apellidoPaterno = "";
+          this.apellidoMaterno = "";
+          this.nombres = "";
+          this.generoPersona = "";
+          this.codigoAreaLaboral = "";
+          this.correoElectronico = "";
+          this.codigoSiglaProfesion = "";
           this.formDireccion.direccion = "";
           this.formDireccion.codigoUbigeo = "";
           this.formDireccion.codigoDireccion = "";
         });
         this.guardarContacto(this.form).then(resp => {
-          console.log("#########3333333333333333");
           const personContacto = JSON.parse(
             resp[0].mantenimiento_persona_contacto
           );
           console.log(personContacto);
           const p_co_direccVar = personContacto.codigoPersonaContacto;
           console.log(personContacto.codigoPersonaContacto);
-          console.log("#########33333333333333333");
           console.log("Se ejecuto Guardar Contacto");
           this.contactoCliente(this.form.p_id).then(resp => {
-            console.log("#########444444444444444444");
             console.log(resp);
-            console.log("#########4444444444444444");
             console.log("Se ejecuto Guardar clienteContacto");
             this.mantenimiento_telefono({
               p_id: this.form.p_id,
               numeroTelefono: this.form.p_nu_telefo
             })
               .then(resp => {
-                console.log("#########555555555555555555");
                 console.log(resp);
-                console.log("#########555555555555555555");
                 this.percon_direccion_telefono({
                   p_co_percon: p_co_perconVar,
                   p_co_direcc: p_co_direccVar,

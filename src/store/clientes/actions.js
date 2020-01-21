@@ -66,6 +66,8 @@ export async function direccionCliente({ commit }, payload) {
 // eslint-disable-next-line
 export async function guardarDireccion({ commit }, payload) {
   console.log("listar direccion_cliente");
+  console.log(payload);
+  console.log("listar direccion_cliente");
   const data = {
     codigoUbigeo: payload.codigoUbigeo,
     direccion: payload.direccion

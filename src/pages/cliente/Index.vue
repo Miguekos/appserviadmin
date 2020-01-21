@@ -1,10 +1,11 @@
 <template>
   <q-page padding>
     <q-card class="my-card">
-      <q-item class="bg-custom4">
+      <q-item class="shadow-5 bg-secondary text-white">
         <q-item-section>
-          <q-item-label>Clientes</q-item-label>
-          <q-item-label caption>Lista</q-item-label>
+          <q-item-label style="font-size: 20px">
+            CLIENTES
+          </q-item-label>
         </q-item-section>
         <q-item-section></q-item-section>
         <q-item-section></q-item-section>

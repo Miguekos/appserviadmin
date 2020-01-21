@@ -1,8 +1,5 @@
 <template>
   <div class="full-width">
-    <div>
-      <TituloTabla titulo="Clientes" />
-    </div>
     <div class="q-pb-md">
       <div class="row no-wrap shadow-1 bg-grey-4">
         <q-toolbar>
@@ -32,39 +29,7 @@
               <q-icon name="search" />
             </template>
           </q-input>
-
           <q-space />
-
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="positive"-->
-          <!--            icon="add"-->
-          <!--            no-caps-->
-          <!--            label="Nuevo"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
-          <!--          <q-btn-->
-          <!--            flat-->
-          <!--            dense-->
-          <!--            no-wrap-->
-          <!--            color="negative"-->
-          <!--            icon="remove"-->
-          <!--            no-caps-->
-          <!--            label="Eliminar"-->
-          <!--            class="q-ml-sm q-px-md"-->
-          <!--          />-->
-          <q-btn
-            flat
-            dense
-            no-wrap
-            color="primary"
-            icon="cloud_upload"
-            no-caps
-            label="Exportar"
-            class="q-ml-sm q-px-md"
-          />
         </q-toolbar>
       </div>
     </div>
@@ -177,7 +142,7 @@ export default {
     };
   },
   components: {
-    TituloTabla: () => import("../../components/TituloTablas")
+    // TituloTabla: () => import("../../components/TituloTablas")
   },
   methods: {
     ...mapActions("clientes", ["getClientes", "eliminarCliente"]),

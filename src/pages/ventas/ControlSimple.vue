@@ -1,9 +1,7 @@
 <template>
   <div class="q-pa-md">
-    <div class="row q-gutter-md justify-around q-pa-md">
-      <envioDeCatalogos />
-      <destinatarios />
-    </div>
+    <envioDeCatalogosSimple />
+    <destinatarios />
   </div>
 </template>
 
@@ -185,7 +183,7 @@ export default {
     };
   },
   components: {
-    envioDeCatalogos: () => import("./envioCatalogo")
+    envioDeCatalogosSimple: () => import("./envioCatalogoSimple")
     // destinatarios: () => import("./destinatarios")
   }
 };

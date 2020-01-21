@@ -1,6 +1,11 @@
 <template>
   <div>
     <q-card>
+      <q-card-section class="bg-secondary text-white">
+        <div class="text-center" style="font-size: 20px">
+          Destinatararios
+        </div>
+      </q-card-section>
       <q-card-section class="q-pa-md">
         <q-select
           v-model="clienteBuscar"
@@ -29,8 +34,8 @@
       </q-card-section>
 
       <q-card-actions class="justify-around">
-        <q-btn flat icon="add" label="Anadir" color="primary"> </q-btn>
-        <q-btn flat icon="email" label="Enviar" color="primary"> </q-btn>
+        <q-btn flat color="negative" icon="add" label="Anadir"> </q-btn>
+        <q-btn flat color="positive" icon="email" label="Enviar"> </q-btn>
       </q-card-actions>
 
       <q-separator />

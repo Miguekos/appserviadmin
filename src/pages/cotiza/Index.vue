@@ -2,21 +2,7 @@
   <div>
     <q-page padding>
       <q-card class="my-card">
-        <q-item class="bg-custom4">
-          <q-item-section>
-            <q-item-label>Requerimiento de cotizacion</q-item-label>
-            <q-item-label caption>Control</q-item-label>
-          </q-item-section>
-          <q-item-section></q-item-section>
-          <q-item-section></q-item-section>
-          <q-item-section>
-            <div class="text-right">
-              <div class="text-right">
-                <Atras />
-              </div>
-            </div>
-          </q-item-section>
-        </q-item>
+        <TituloTablas titulo="REQUERIMIENTO DE COTIZACION" />
         <div class="row full-width">
           <q-item class="col-sm-6 col-xs-12">
             <TablaFiltro />
@@ -38,6 +24,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import TituloTablas from "../../components/TituloTablas";
 export default {
   computed: {
     ...mapGetters("example", ["getDialogCrear"])
@@ -53,11 +40,12 @@ export default {
     }
   },
   components: {
+    TituloTablas,
     TablaListado: () => import("./TablaListado"),
     TablaFiltro: () => import("./TablaFiltro"),
     CuadroResumen: () => import("./CuadroResumen"),
-    AddRegistro: () => import("./Create"),
-    Atras: () => import("../../components/IrAtras")
+    AddRegistro: () => import("./Create")
+    // Atras: () => import("../../components/IrAtras")
   }
   // name: 'PageName',
 };

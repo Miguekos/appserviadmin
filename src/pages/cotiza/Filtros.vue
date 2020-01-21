@@ -3,7 +3,9 @@
     <q-markup-table :separator="separator" flat bordered dense>
       <thead>
         <tr>
-          <th style="font-size: 20px" class="bg-grey-4 text-left">Filtrhgfdsos</th>
+          <th style="font-size: 20px" class="bg-grey-4 text-left">
+            Filtrhgfdsos
+          </th>
           <th style="font-size: 20px" class="bg-grey-4 text-left"></th>
         </tr>
       </thead>
