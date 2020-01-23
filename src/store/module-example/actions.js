@@ -230,3 +230,21 @@ export async function cuadro_resumen_estado_requerimiento({}) {
   // commit("setlistar_direccion", response.data);
   return response.data;
 }
+
+// eslint-disable-next-line
+export async function listar_catalogos_new({}) {
+  const response = await axiosInstance.get(
+    `/api/catalogo/listar_catalogos_new`
+  );
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}
+
+// eslint-disable-next-line
+export async function guardarCatalogos({}) {
+  const response = await axiosInstance.get(
+    `/api/catalogo/guardarCatalogos`
+  );
+  // commit("setlistar_direccion", response.data);
+  return response.data;
+}

@@ -1,55 +1,37 @@
 <template>
-  <div class="full-width">
-    <div class="q-pa-md q-gutter-md">
-      <q-input v-model="text" label="Catalogo" />
+  <div>
+    <div class="text-center q-pa-md q-gutter-md items-center">
+      <div class="row col-12 q-pa-md q-gutter-md">
+        <div class="col">
+          <q-input dense v-model="text" label="Catalogo" />
+        </div>
+        <div class="col">
+          <q-select
+            dense
+            options-dense
+            class="col"
+            v-model="model"
+            :options="options"
+            label="Prioridad"
+          />
+        </div>
+      </div>
       <div class="row items-center justify-between q-gutter-md">
-        <q-select
-          class="col"
-          v-model="model"
-          :options="options"
-          label="Prioridad"
-        />
-        <q-uploader
-          url="http://localhost:4444/upload"
-          label="Subir Catalogos"
-          multiple
-        >
-          <template v-slot:list="scope">
-            <q-list separator>
-              <q-item v-for="file in scope.files" :key="file.name">
-                <q-item-section>
-                  <q-item-label class="full-width ellipsis">
-                    {{ file.name }}
-                  </q-item-label>
+        <template>
+          <div class="q-pa-md">
+            <template>
+              <div class="q-pa-md">
+                <q-uploader
+                  :factory="factoryFn1"
+                  multiple
+                  style="
 
-                  <q-item-label caption>
-                    Status: {{ file.__status }}
-                  </q-item-label>
-
-                  <q-item-label caption>
-                    {{ file.__sizeLabel }} / {{ file.__progressLabel }}
-                  </q-item-label>
-                </q-item-section>
-
-                <q-item-section v-if="file.__img" thumbnail class="gt-xs">
-                  <img :src="file.__img.src" />
-                </q-item-section>
-
-                <q-item-section top side>
-                  <q-btn
-                    class="gt-xs"
-                    size="12px"
-                    flat
-                    dense
-                    round
-                    icon="delete"
-                    @click="scope.removeFile(file)"
-                  />
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </template>
-        </q-uploader>
+                  max-width: 300px"
+                />
+              </div>
+            </template>
+          </div>
+        </template>
         <q-btn class="col" color="positive" label="Grabar" />
       </div>
     </div>
@@ -68,6 +50,17 @@ export default {
     };
   },
   methods: {
+    factoryFn1(files) {
+      console.log(files); // returning a Promise
+      return new Promise(resolve => {
+        // simulating a delay of 2 seconds
+        // setTimeout(() => {
+        resolve({
+          url: "http://127.0.0.1:3000/api/containers/container1/upload"
+        });
+        // }, 2000);
+      });
+    },
     factoryFn(file) {
       console.log(file[0]);
       const fd = new FormData();
@@ -76,6 +69,7 @@ export default {
         console.log(reject);
         // Retrieve JWT token from your store.
         // const token = "myToken";
+        //   url="http://127.0.0.1:3000/api/containers/container1/upload"
         resolve({
           url: "http://localhost:5000",
           method: "POST",
