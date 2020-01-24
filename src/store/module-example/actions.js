@@ -242,9 +242,7 @@ export async function listar_catalogos_new({}) {
 
 // eslint-disable-next-line
 export async function guardarCatalogos({}) {
-  const response = await axiosInstance.get(
-    `/api/catalogo/guardarCatalogos`
-  );
+  const response = await axiosInstance.get(`/api/catalogo/guardarCatalogos`);
   // commit("setlistar_direccion", response.data);
   return response.data;
 }

@@ -89,21 +89,26 @@
               required
             />
 
+            <q-input
+              dense
+              ref="direccionFiscal"
+              outlined
+              v-model="direccionFiscal"
+              label="Direccion Fiscal"
+            />
+
             <div class="text-center">
               <q-btn
-                glossy
                 size="sm"
                 label="Registrar"
                 type="submit"
-                color="primary"
+                color="positive"
               />
               <q-btn
-                glossy
                 size="sm"
                 label="Resetear"
                 type="reset"
-                color="primary"
-                flat
+                color="negative"
                 class="q-ml-sm"
               />
             </div>
@@ -122,6 +127,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      direccionFiscal: "",
       listar_sector_economicoVar: null,
       listar_sector_economicoOption: [],
       tipoDePersonaOption: [],

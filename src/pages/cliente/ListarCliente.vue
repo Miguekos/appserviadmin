@@ -43,7 +43,7 @@
       :selected.sync="selected"
       :filter="filter"
       :loading="loading"
-      class="cursor-pointer"
+      class="my-sticky-header-table cursor-pointer"
       :pagination.sync="pagination"
     >
       <template v-slot:body-cell="props">
@@ -107,24 +107,31 @@ export default {
           sortable: true
         },
         {
+          name: "no_sigcli",
+          label: "Sigla",
+          align: "left",
+          field: "no_sigcli"
+        },
+        {
           name: "nu_doccli",
           align: "left",
-          label: "Nro. Document.",
+          label: "R.U.C.",
+          field: "nu_doccli",
+          sortable: true
+        },
+        {
+          name: "nu_doccli",
+          align: "left",
+          label: "Sector",
           field: "nu_doccli",
           sortable: true
         },
         {
           name: "no_tipdoc",
-          label: "Tipo Docuemt.",
+          label: "Distrito",
           align: "left",
           field: "no_tipdoc",
           sortable: true
-        },
-        {
-          name: "no_sigcli",
-          label: "Sigla",
-          align: "left",
-          field: "no_sigcli"
         },
         {
           name: "ca_percon",
@@ -226,3 +233,27 @@ export default {
   }
 };
 </script>
+<style lang="sass">
+.my-sticky-header-table
+  /* max height is important */
+  .q-table__middle
+    max-height: 400px
+
+  .q-table__top,
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #26a69a
+    color: white
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 28px
+</style>

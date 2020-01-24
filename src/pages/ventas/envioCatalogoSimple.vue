@@ -3,7 +3,7 @@
     <q-card>
       <q-card-section class="bg-secondary text-white">
         <div class="text-center" style="font-size: 20px">
-          Catalogos Simples
+          CATALOGOS
         </div>
       </q-card-section>
       <q-card-section>

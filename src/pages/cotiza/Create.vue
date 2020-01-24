@@ -127,7 +127,6 @@
                 color="negative"
                 size="sm"
                 label="Cerrar"
-                flat
                 @click="dialogCreate(false)"
                 class="q-ml-sm"
               />

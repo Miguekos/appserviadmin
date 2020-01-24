@@ -37,10 +37,8 @@
 
           <q-btn
             v-if="$q.screen.gt.xs"
-            class="q-pa-xs"
-            dense
             no-wrap
-            size="sm"
+            size="md"
             color="red"
             no-caps
             outline
@@ -49,10 +47,8 @@
           ></q-btn>
           <q-btn
             v-if="$q.screen.gt.xs"
-            class="q-pa-xs"
-            dense
             no-wrap
-            size="sm"
+            size="md"
             no-caps
             outline
             color="positive"
@@ -72,6 +68,7 @@
       selection="multiple"
       :selected.sync="selected"
       :selected-rows-label="getSelectedString"
+      class="my-sticky-header-table"
     >
     </q-table>
     <q-dialog v-model="prompt" persistent>
@@ -140,9 +137,14 @@
             </div>
           </q-card-section>
 
-          <q-card-actions align="right" class="text-primary">
-            <q-btn flat label="Cancel" type="reset" />
-            <q-btn flat label="Agregar Direccion" type="submit" />
+          <q-card-actions align="center" class="text-primary">
+            <q-btn flat color="negative" label="Cancel" type="reset" />
+            <q-btn
+              flat
+              color="positive"
+              label="Agregar Direccion"
+              type="submit"
+            />
           </q-card-actions>
         </q-form>
       </q-card>
@@ -210,7 +212,7 @@ export default {
         {
           name: "no_direcc",
           align: "left",
-          label: "Codigo de Direccion",
+          label: "Direccion",
           field: "no_direcc",
           sortable: true
         }
@@ -335,3 +337,28 @@ export default {
   watch: {}
 };
 </script>
+
+<style lang="sass">
+.my-sticky-header-table
+  /* max height is important */
+  .q-table__middle
+    max-height: 400px
+
+  .q-table__top,
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #26a69a
+    color: white
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 28px
+</style>

@@ -37,10 +37,8 @@
 
           <q-btn
             v-if="$q.screen.gt.xs"
-            class="q-pa-xs"
-            dense
             no-wrap
-            size="sm"
+            size="md"
             color="red"
             no-caps
             outline
@@ -49,10 +47,8 @@
           ></q-btn>
           <q-btn
             v-if="$q.screen.gt.xs"
-            class="q-pa-xs"
-            dense
             no-wrap
-            size="sm"
+            size="md"
             no-caps
             outline
             color="positive"
@@ -72,6 +68,7 @@
       selection="multiple"
       :selected.sync="selected"
       :selected-rows-label="getSelectedString"
+      class="my-sticky-header-table"
     >
     </q-table>
     <q-dialog v-model="prompt" persistent>
@@ -243,9 +240,14 @@
             <!--            <TablaDetalleDireccionLimpio :id_pro="id_pro" />-->
           </q-card-section>
 
-          <q-card-actions align="right" class="text-primary">
-            <q-btn flat label="Cancel" @click="reset()" type="reset" />
-            <q-btn flat label="Agregar Contacto" type="submit" />
+          <q-card-actions align="center" class="text-primary">
+            <q-btn color="positive" label="Agregar Contacto" type="submit" />
+            <q-btn
+              color="negative"
+              label="Cancel"
+              @click="reset()"
+              type="reset"
+            />
           </q-card-actions>
         </q-form>
       </q-card>
@@ -307,9 +309,17 @@ export default {
       filter: "",
       columns: [
         {
+          name: "no_sigpro",
+          required: true,
+          label: "",
+          align: "right",
+          field: "no_sigpro",
+          sortable: true
+        },
+        {
           name: "no_percon",
           required: true,
-          label: "Nombre.",
+          label: "Nombres Y Apellidos",
           align: "left",
           field: "no_percon",
           sortable: true
@@ -317,17 +327,17 @@ export default {
         {
           name: "nu_doccon",
           align: "left",
-          label: "Documento",
+          label: "Area",
           field: "nu_doccon",
           sortable: true
         },
-        {
-          name: "no_sigpro",
-          align: "left",
-          label: "Sigla",
-          field: "no_sigpro",
-          sortable: true
-        },
+        // {
+        //   name: "no_sigpro",
+        //   align: "left",
+        //   label: "Correo",
+        //   field: "no_sigpro",
+        //   sortable: true
+        // },
         {
           name: "no_corele",
           align: "left",

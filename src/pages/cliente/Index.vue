@@ -4,10 +4,9 @@
       <q-item class="shadow-5 bg-secondary text-white">
         <q-item-section>
           <q-item-label style="font-size: 20px">
-            CLIENTES
+            MANTENIMIENTO DE CLIENTES
           </q-item-label>
         </q-item-section>
-        <q-item-section></q-item-section>
         <q-item-section></q-item-section>
         <q-item-section>
           <div class="text-right">
