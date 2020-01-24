@@ -112,7 +112,12 @@
               <q-field label="Semaforo" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    {{ info[0].co_semsve }}
+                    <!--                    {{ info[0].co_semsve }}-->
+                    <q-btn
+                      round
+                      size="6px"
+                      :color="semaforo(info[0].co_semsve)"
+                    />
                   </div>
                 </template>
               </q-field>

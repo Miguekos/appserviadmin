@@ -103,11 +103,11 @@
           <q-td key="fe_regist" :props="props">
             {{ props.row.fe_regist }}
           </q-td>
-          <q-td key="no_sigsve" :props="props">
-            <q-badge :style="coloreando(props.row.no_colsve)">
-              {{ props.row.no_sigsve }}
-            </q-badge>
-          </q-td>
+          <!--          <q-td key="no_sigsve" :props="props">-->
+          <!--            <q-badge :style="coloreando(props.row.no_colsve)">-->
+          <!--              {{ props.row.no_sigsve }}-->
+          <!--            </q-badge>-->
+          <!--          </q-td>-->
           <q-td key="no_coment" :props="props">
             <q-tooltip
               transition-show="flip-right"
@@ -300,14 +300,14 @@ const columns = [
     field: "fe_regist",
     style: "width: 15%"
   },
-  {
-    name: "no_sigsve",
-    align: "left",
-    sortable: true,
-    label: "Estados",
-    field: "no_sigsve",
-    style: "width: 15%"
-  },
+  // {
+  //   name: "no_sigsve",
+  //   align: "left",
+  //   sortable: true,
+  //   label: "Estados",
+  //   field: "no_sigsve",
+  //   style: "width: 15%"
+  // },
   {
     name: "no_coment",
     align: "left",

@@ -35,6 +35,7 @@
           label="Sector Economico"
           placeholder="Sector Economico"
           dense
+          options-dense
           v-model="listar_sector_economicoVar"
         />
       </div>
@@ -43,15 +44,16 @@
         <q-select
           transition-show="flip-up"
           transition-hide="flip-down"
-          :options="semaforo_seguimiento_clienteList"
-          option-value="co_semsve"
-          option-label="no_semsve"
+          :options="info"
+          option-value="no_sigare"
+          option-label="no_arelab"
           option-disable="inactive"
           emit-value
           map-options
-          label="Semaforo"
-          placeholder="Semaforo"
+          label="Area"
+          placeholder="Area"
           dense
+          options-dense
           v-model="semaforo_seguimiento_clienteVar"
         />
       </div>
@@ -72,7 +74,7 @@
         label="Limpiar Filtros"
       />
     </div>
-    <!--    {{ $data }}-->
+    <!--    {{ info }}-->
   </div>
 </template>
 <script>
@@ -99,7 +101,8 @@ export default {
       loading2: false,
       model: null,
       separator: "cell",
-      options: []
+      options: [],
+      info: []
     };
   },
   methods: {
@@ -108,7 +111,8 @@ export default {
       "listar_estado_seguimiento_cliente",
       "listar_sector_economico",
       "semaforo_seguimiento_cliente",
-      "seguimiento_cliente"
+      "seguimiento_cliente",
+      "listar_area_laboral"
     ]),
     coloreando(arg) {
       return `color: ${arg}`;
@@ -148,6 +152,14 @@ export default {
     this.listar_estado_seguimiento_clienteList = await this.listar_estado_seguimiento_cliente();
     this.listar_sector_economicoList = await this.listar_sector_economico();
     this.semaforo_seguimiento_clienteList = await this.semaforo_seguimiento_cliente();
+    this.listar_area_laboral()
+      .then(resp => {
+        console.log(resp);
+        this.info = resp;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   beforeDestroy() {
     if (this.timer !== void 0) {

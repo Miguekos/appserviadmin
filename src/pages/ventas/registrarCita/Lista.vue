@@ -2,7 +2,7 @@
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
-      <p class="bg-secondary   shadow-5 text-center text-white text-subtitle1">
+      <p class="bg-secondary   shadow-5 text-center text-white">
         Listado
       </p>
     </div>
@@ -26,6 +26,13 @@
             </q-td>
             <q-td key="acciones" :props="props">
               <div class="q-gutter-xs">
+                <q-btn
+                  dense
+                  @click="eliminar()"
+                  size="sm"
+                  color="orange-6"
+                  icon="edit"
+                />
                 <q-btn
                   dense
                   @click="eliminar()"
@@ -67,14 +74,14 @@ export default {
         {
           name: "no_regist",
           align: "center",
-          label: "Usuario",
+          label: "Contacto",
           field: "no_regist",
           sortable: true
         },
         {
           name: "no_coment",
           align: "center",
-          label: "Comentario",
+          label: "Area",
           field: "no_coment",
           sortable: true
         },

@@ -5,7 +5,7 @@
         <q-item class="shadow-5 bg-secondary text-white">
           <q-item-section>
             <q-item-label style="font-size: 20px">
-              SEGUIMIENTO DE CLIENTES
+              CLIENTES
             </q-item-label>
           </q-item-section>
           <q-item-section>
@@ -52,7 +52,7 @@ export default {
     alert: false
   }),
   methods: {
-    ...mapActions("example", ["dialogCreate"]),
+    ...mapActions("example", ["dialogCreate", "listar_area_laboral"]),
     nuevoRegistro() {
       console.log("Se preciono el boton");
       this.dialogCreate(true);
