@@ -3,9 +3,7 @@
     <q-form @submit.stop="registrar" @reset="onReset" class="q-gutter-md">
       <div>
         <div>
-          <p
-            class="bg-secondary   shadow-5 text-center text-white text-subtitle1"
-          >
+          <p class="bg-secondary   shadow-5 text-center text-white">
             Registro
           </p>
         </div>
@@ -74,7 +72,7 @@
           @click="sinContactos()"
           :loading="loadboton"
           :disable="loadboton"
-          label="Sin Contacto"
+          label="No Contesta"
           size="sm"
           color="negative"
         />

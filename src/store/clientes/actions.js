@@ -190,10 +190,11 @@ export async function mantenimiento_telefono({ commit }, payload) {
   console.log("mantenimiento_telefono");
   const data = {
     tipoTelefono: "1",
-    numeroTelefono: payload.numeroTelefono
+    numeroTelefono: payload.numeroTelefono,
+
   };
   const response = await axiosInstance.post(
-    `/api/clientes/mantenimiento_telefono/${payload.p_id}`,
+    `/api/clientes/mantenimiento_telefono/${payload.p_id}/${payload.p_co_percon}`,
     data
   );
   console.log("Respuesta mantenimiento_telefono");

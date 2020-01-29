@@ -75,7 +75,7 @@
       <q-card style="width: 100%;">
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <q-card-section>
-            <div class="text-h6">Agregar Contacto del cliente {{ id_pro }}</div>
+            <div class="text-h6">Agregar Contacto</div>
           </q-card-section>
 
           <q-card-section>
@@ -83,13 +83,13 @@
               <div class="row q-gutter-xs">
                 <div class="col">
                   <q-input
+                    autofocus
                     ref="form.apellidoPaterno"
                     dense
                     outlined
                     required="true"
                     label="Apellido Paterno"
                     v-model="form.apellidoPaterno"
-                    autofocus
                   />
                 </div>
                 <div class="col ">
@@ -100,7 +100,6 @@
                     required="true"
                     label="Apellido Materno"
                     v-model="form.apellidoMaterno"
-                    autofocus
                   />
                 </div>
               </div>
@@ -112,7 +111,6 @@
                   required="true"
                   label="Nombre"
                   v-model="form.nombres"
-                  autofocus
                 />
               </div>
               <div class="q-gutter-xs">
@@ -187,7 +185,7 @@
                   dense
                   outlined
                   required
-                  label="Direccion del Proveedor"
+                  label="Direccion"
                   v-model="formDireccion.direccion"
                   @keyup.enter="prompt = false"
                 />
@@ -241,8 +239,14 @@
           </q-card-section>
 
           <q-card-actions align="center" class="text-primary">
-            <q-btn color="positive" label="Agregar Contacto" type="submit" />
             <q-btn
+              size="sm"
+              color="positive"
+              label="Agregar Contacto"
+              type="submit"
+            />
+            <q-btn
+              size="sm"
               color="negative"
               label="Cancel"
               @click="reset()"
@@ -467,7 +471,8 @@ export default {
             console.log("Se ejecuto Guardar clienteContacto");
             this.mantenimiento_telefono({
               p_id: this.form.p_id,
-              numeroTelefono: this.form.p_nu_telefo
+              numeroTelefono: this.form.p_nu_telefo,
+              p_co_percon: p_co_direccVar
             })
               .then(resp => {
                 console.log(resp);
@@ -476,6 +481,16 @@ export default {
                   p_co_direcc: p_co_direccVar,
                   p_co_telefo: null
                 });
+                this.apellidoPaterno = "";
+                this.apellidoMaterno = "";
+                this.nombres = "";
+                this.generoPersona = "";
+                this.codigoAreaLaboral = "";
+                this.correoElectronico = "";
+                this.codigoSiglaProfesion = "";
+                this.formDireccion.direccion = "";
+                this.formDireccion.codigoUbigeo = "";
+                this.formDireccion.codigoDireccion = "";
                 this.$q.notify({
                   color: "green",
                   textColor: "white",

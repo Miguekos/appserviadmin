@@ -1,7 +1,9 @@
 <template>
   <div class="full-width">
     <div>
-      <TituloTabla titulo="Catalogos" />
+      <p class="bg-secondary dense shadow-5 text-center text-white">
+        Catalogos
+      </p>
     </div>
     <div class="q-pb-md">
       <div class="row no-wrap shadow-1 bg-grey-4">
@@ -49,7 +51,7 @@
     </div>
     <q-table
       dense
-      :data="data"
+      :data="get_listar_catalogos_new"
       :columns="columns"
       row-key="no_catpro"
       :selected-rows-label="getSelectedString"
@@ -96,7 +98,8 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters("clientes", ["Clientes"])
+    ...mapGetters("clientes", ["Clientes"]),
+    ...mapGetters("example", ["get_listar_catalogos_new"])
   },
   data() {
     return {
@@ -145,14 +148,11 @@ export default {
     };
   },
   components: {
-    TituloTabla: () => import("../../components/TituloTablas")
+    // TituloTabla: () => import("../../components/TituloTablas")
   },
   methods: {
-    ...mapActions("clientes", [
-      "getClientes",
-      "eliminarCliente",
-      "listar_catalogos"
-    ]),
+    ...mapActions("clientes", ["getClientes", "eliminarCliente"]),
+    ...mapActions("example", ["listar_catalogos_new"]),
     onRowClick() {
       console.log("Se preciono una ROW");
     },
@@ -200,7 +200,17 @@ export default {
     },
     rowClick(val) {
       console.log(val);
-      this.$router.push(`/cliente/detalle/${val.co_client}`);
+      window.open(
+        `http://127.0.0.1:3000/api/containers/container1/download/${
+          val.co_arcadj
+        }`,
+        "_blank"
+      );
+      // this.$router.push(
+      //   `http://127.0.0.1:3000/api/containers/container1/download/${
+      //     val.co_arcadj
+      //   }`
+      // );
     },
     rowClickNew() {
       console.log();
@@ -228,9 +238,8 @@ export default {
     // }
   },
   async mounted() {
-    await this.getClientes();
-    this.info = this.listar_catalogos();
-    this.data = await this.listar_catalogos();
+    // await this.getClientes();
+    this.info = await this.listar_catalogos_new();
   }
 };
 </script>

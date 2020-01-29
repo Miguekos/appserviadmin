@@ -85,7 +85,7 @@
                   dense
                   outlined
                   required
-                  label="Direccion del Proveedor"
+                  label="Direccion"
                   v-model="form.direccion"
                   @keyup.enter="prompt = false"
                 />
@@ -138,13 +138,13 @@
           </q-card-section>
 
           <q-card-actions align="center" class="text-primary">
-            <q-btn flat color="negative" label="Cancel" type="reset" />
             <q-btn
-              flat
+              size="sm"
               color="positive"
               label="Agregar Direccion"
               type="submit"
             />
+            <q-btn size="sm" color="negative" label="Cancel" type="reset" />
           </q-card-actions>
         </q-form>
       </q-card>

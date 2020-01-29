@@ -62,3 +62,7 @@ export function getlistar_citas(state) {
 export function getlistar_direccion(state) {
   return state.listar_direccion;
 }
+
+export function get_listar_catalogos_new(state) {
+  return state.set_listar_catalogos_new;
+}

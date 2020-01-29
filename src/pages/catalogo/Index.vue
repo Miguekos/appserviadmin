@@ -14,16 +14,14 @@
             </div>
           </q-item-section>
         </q-item>
-        <div class="row full-width">
-          <q-item class="col-sm-12 col-xs-12">
-            <Catalogo />
-          </q-item>
-        </div>
-        <div class="row full-width">
-          <q-item class="col-sm-12 col-xs-12">
-            <ListarCatalogo />
-          </q-item>
-        </div>
+
+        <q-item class="flex flex-center">
+          <Catalogo />
+        </q-item>
+
+        <q-item class="full-width">
+          <ListarCatalogo />
+        </q-item>
       </q-card>
     </q-page>
   </div>

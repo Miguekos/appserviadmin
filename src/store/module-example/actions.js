@@ -232,17 +232,25 @@ export async function cuadro_resumen_estado_requerimiento({}) {
 }
 
 // eslint-disable-next-line
-export async function listar_catalogos_new({}) {
+export async function listar_catalogos_new({ commit }) {
   const response = await axiosInstance.get(
-    `/api/catalogo/listar_catalogos_new`
+    `/api/catalogos/listar_catalogos_new`
   );
-  // commit("setlistar_direccion", response.data);
-  return response.data;
+  commit("set_listar_catalogos_new", response.data);
+  // return response.data;
 }
 
 // eslint-disable-next-line
-export async function guardarCatalogos({}) {
-  const response = await axiosInstance.get(`/api/catalogo/guardarCatalogos`);
-  // commit("setlistar_direccion", response.data);
+export async function guardarCatalogos({}, payload) {
+  console.log(payload);
+  const data = {
+    nombreCatalogo: payload.nombreCatalogo,
+    codigoArchivoAdjunto: payload.codigoArchivoAdjunto,
+    ordenCatalogo: payload.ordenCatalogo
+  };
+  const response = await axiosInstance.post(
+    `/api/catalogos/guardarCatalogos/`,
+    data
+  );
   return response.data;
 }

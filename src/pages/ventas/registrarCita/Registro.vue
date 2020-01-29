@@ -3,9 +3,7 @@
     <q-form @submit.stop="registrar" @reset="onReset" class="q-gutter-md">
       <div>
         <div>
-          <p
-            class="bg-secondary   shadow-5 text-center text-white text-subtitle1"
-          >
+          <p class="bg-secondary shadow-5 text-center text-white">
             Registro
           </p>
         </div>
@@ -77,11 +75,11 @@
           type="submit"
           :loading="loadboton"
           :disable="loadboton"
-          label="Grabar"
+          label="Aceptar"
           size="sm"
           color="positive"
         />
-        <q-btn label="Cerrar" @click="reset()" size="sm" color="secondary" />
+        <q-btn label="Cerrar" @click="reset()" size="sm" color="red" />
       </div>
     </q-form>
     <!--    {{ direcciones }}-->

@@ -37,5 +37,6 @@ export default {
   listar_estado_seguimiento: [],
   listar_seguimientos_registrados: [],
   listar_citas: [],
-  listar_direccion: []
+  listar_direccion: [],
+  set_listar_catalogos_new: []
 };

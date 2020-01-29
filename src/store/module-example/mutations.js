@@ -36,3 +36,7 @@ export function setlistar_citas(state, payload) {
 export function setlistar_direccion(state, payload) {
   state.listar_direccion = payload;
 }
+
+export function set_listar_catalogos_new(state, payload) {
+  state.set_listar_catalogos_new = payload;
+}
