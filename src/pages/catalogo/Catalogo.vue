@@ -69,6 +69,9 @@ export default {
       ) {
         await this.guardarCatalogos(this.form);
         await this.listar_catalogos_new();
+        this.form.nombreCatalogo = "";
+        this.form.codigoArchivoAdjunto = "";
+        this.form.ordenCatalogo = "";
       } else {
         console.log("Se debe cargar un archivo antes de guardar");
       }
