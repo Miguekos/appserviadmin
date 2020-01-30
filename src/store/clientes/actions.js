@@ -236,17 +236,21 @@ export async function listar_clientes({ commit }, payload) {
   console.log("listar_clientes");
   console.log(payload);
   console.log("listar_clientes");
-  const response = await axiosInstance.get(`/api/clientes/listar_clientes`);
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_clientes/${payload.id}`
+  );
   // console.log(response.data);
   // commit("setClientes", response.data);
   return response.data;
 }
 
 // eslint-disable
-export async function listar_personas_contacto({ commit }) {
+export async function listar_personas_contacto({ commit }, payload) {
+  console.log("listar_personas_contacto");
+  console.log(payload);
   console.log("listar_personas_contacto");
   const response = await axiosInstance.get(
-    `/api/clientes/listar_personas_contacto`
+    `/api/clientes/listar_personas_contacto/${payload.id}`
   );
   return response.data;
 }

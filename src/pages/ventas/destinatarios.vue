@@ -41,8 +41,8 @@
       </q-card-section>
 
       <q-card-actions class="justify-around">
-        <q-btn flat color="negative" icon="add" label="Anadir"> </q-btn>
-        <q-btn flat color="positive" icon="email" label="Enviar"> </q-btn>
+        <q-btn size="sm" color="negative" icon="add" label="Anadir"> </q-btn>
+        <q-btn size="sm" color="positive" icon="email" label="Enviar"> </q-btn>
       </q-card-actions>
 
       <q-separator />
@@ -131,8 +131,8 @@ export default {
     ...mapActions("clientes", ["listar_clientes", "listar_personas_contacto"]),
     async input2(val) {
       console.log(val);
-      this.dataCliente = await this.listar_clientes({
-        id: null
+      this.dataContactos = await this.listar_personas_contacto({
+        id: val
       });
     },
     filterFn(val, update, abort) {
@@ -158,7 +158,9 @@ export default {
     this.dataCliente = await this.listar_clientes({
       id: null
     });
-    this.dataContactos = await this.listar_personas_contacto();
+    this.dataContactos = await this.listar_personas_contacto({
+      id: null
+    });
     this.lotrOpts = await this.listar_clientes({
       id: null
     });
