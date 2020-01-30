@@ -158,9 +158,6 @@ export default {
     this.dataCliente = await this.listar_clientes({
       id: null
     });
-    this.dataContactos = await this.listar_personas_contacto({
-      id: null
-    });
     this.lotrOpts = await this.listar_clientes({
       id: null
     });
