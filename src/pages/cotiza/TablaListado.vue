@@ -238,10 +238,10 @@ export default {
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
     }
   },
-  async created() {
+  async mounted() {
     // this.$q.loading.show();
     this.loading = true;
-    await this.registros();
+    // await this.registros();
     this.loading = false;
     // this.$q.loading.hide();
   }

@@ -9,7 +9,6 @@
       <q-card-section>
         <q-table
           dense
-          hide-bottom
           hide-header
           :data="data"
           :columns="columns"

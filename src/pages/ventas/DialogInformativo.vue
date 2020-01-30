@@ -156,14 +156,6 @@
       </q-card-section>
 
       <q-separator />
-
-      <!--      <q-card-actions>-->
-      <!--        <q-btn flat round icon="event" v-close-popup />-->
-      <!--        <q-btn flat v-close-popup>5:30PM</q-btn>-->
-      <!--        <q-btn flat v-close-popup>7:30PM</q-btn>-->
-      <!--        <q-btn flat v-close-popup>9:00PM</q-btn>-->
-      <!--        <q-btn flat color="primary" v-close-popup>Reserve</q-btn>-->
-      <!--      </q-card-actions>-->
     </q-card>
   </div>
 </template>
@@ -171,7 +163,7 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  props: ["co_person"],
+  props: ["persona"],
   data() {
     return {
       dense: true,
@@ -244,9 +236,9 @@ export default {
     }
   },
   mounted() {
-    console.log("se cargo el created de resumen");
+    console.log("Dialogo Informativo");
     this.listar_personas_contacto({
-      persona: this.co_person
+      persona: this.persona
     })
       .then(resp => {
         console.log(resp);

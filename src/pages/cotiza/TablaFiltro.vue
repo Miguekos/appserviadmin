@@ -24,7 +24,14 @@
         />
       </div>
       <div class="row justify-between q-ma-md">
-        <q-input dense filled v-model="date_ini" mask="date" :rules="['date']">
+        <q-input
+          label="Fecha Inicio"
+          dense
+          filled
+          v-model="date_ini"
+          mask="date"
+          :rules="['date']"
+        >
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
@@ -33,7 +40,14 @@
             </q-icon>
           </template>
         </q-input>
-        <q-input dense filled v-model="date_end" mask="date" :rules="['date']">
+        <q-input
+          label="Fecha Fin"
+          dense
+          filled
+          v-model="date_end"
+          mask="date"
+          :rules="['date']"
+        >
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">

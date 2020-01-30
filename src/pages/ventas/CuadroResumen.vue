@@ -89,8 +89,10 @@ export default {
     console.log("se cargo el created de resumen");
     this.getResumenVentas()
       .then(resp => {
+        console.log("Resumen de Seguimiento");
         console.log(resp);
         this.info = resp;
+        console.log("Resumen de Seguimiento");
       })
       .catch(err => {
         console.log(err);

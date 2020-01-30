@@ -200,7 +200,7 @@
       />
     </q-dialog>
     <q-dialog v-model="card">
-      <DialogInformativo :co_person="co_persona" />
+      <DialogInformativo :persona="co_persona" />
     </q-dialog>
 
     <q-dialog v-model="emoti">
@@ -455,6 +455,8 @@ export default {
       // });
     },
     prueba(arg) {
+      console.log("Se preciono Prueba");
+      console.log(arg);
       this.co_persona = arg;
       this.card = true;
       // this.$q.notify({
