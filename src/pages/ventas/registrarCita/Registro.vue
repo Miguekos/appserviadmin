@@ -43,21 +43,27 @@
           </q-input>
         </div>
         <div class="q-ma-sm">
-          <q-select
-            label="Direccion"
-            required="true"
-            filled
+          <q-input
             dense
-            options-dense
             v-model="listar_direccionVar"
-            :options="direcciones"
-            option-label="no_direcc"
-            option-value="co_direcc"
-            map-options
-            emit-value
-            transition-show="flip-up"
-            transition-hide="flip-down"
+            filled
+            label="Direccion (AUXILIAR)"
           />
+          <!--          <q-select-->
+          <!--            label="Direccion"-->
+          <!--            required="true"-->
+          <!--            filled-->
+          <!--            dense-->
+          <!--            options-dense-->
+          <!--            v-model="listar_direccionVar"-->
+          <!--            :options="direcciones"-->
+          <!--            option-label="no_direcc"-->
+          <!--            option-value="co_direcc"-->
+          <!--            map-options-->
+          <!--            emit-value-->
+          <!--            transition-show="flip-up"-->
+          <!--            transition-hide="flip-down"-->
+          <!--          />-->
         </div>
 
         <div class="q-ma-sm">
@@ -75,7 +81,7 @@
           type="submit"
           :loading="loadboton"
           :disable="loadboton"
-          label="Aceptar"
+          label="Grabar"
           size="sm"
           color="positive"
         />

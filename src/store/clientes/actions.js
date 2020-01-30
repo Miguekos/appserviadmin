@@ -190,11 +190,12 @@ export async function mantenimiento_telefono({ commit }, payload) {
   console.log("mantenimiento_telefono");
   const data = {
     tipoTelefono: "1",
-    numeroTelefono: payload.numeroTelefono,
-
+    numeroTelefono: payload.numeroTelefono
   };
   const response = await axiosInstance.post(
-    `/api/clientes/mantenimiento_telefono/${payload.p_id}/${payload.p_co_percon}`,
+    `/api/clientes/mantenimiento_telefono/${payload.p_id}/${
+      payload.p_co_percon
+    }`,
     data
   );
   console.log("Respuesta mantenimiento_telefono");
@@ -231,7 +232,9 @@ export async function listar_catalogos({ commit }) {
 }
 
 // eslint-disable
-export async function listar_clientes({ commit }) {
+export async function listar_clientes({ commit }, payload) {
+  console.log("listar_clientes");
+  console.log(payload);
   console.log("listar_clientes");
   const response = await axiosInstance.get(`/api/clientes/listar_clientes`);
   // console.log(response.data);

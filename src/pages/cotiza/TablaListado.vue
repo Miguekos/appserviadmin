@@ -79,7 +79,9 @@
               {{ props.row.fe_reqcot }}
             </q-td>
             <q-td key="no_estreq" :props="props">
-              {{ props.row.no_estreq }}
+              <q-badge :style="coloreando(props.row.no_colhex)">
+                {{ props.row.no_estreq }}
+              </q-badge>
             </q-td>
             <q-td key="de_reqcot" :props="props">
               <q-tooltip
@@ -224,6 +226,10 @@ export default {
     };
   },
   methods: {
+    coloreando(arg) {
+      console.log(arg);
+      return `background-color: ${arg}`;
+    },
     ...mapActions("example", ["registros"]),
     formatearFecha(fecha) {
       return date.formatDate(fecha, "YYYY-MM-DD");

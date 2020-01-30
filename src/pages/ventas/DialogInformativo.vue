@@ -67,7 +67,8 @@
               <q-field label="Contacto" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    {{ info[0].no_percon }}
+                    {{ info[0].no_sigpro }} {{ info[0].no_nombre }}
+                    {{ info[0].no_apepat }} {{ info[0].no_apemat }}
                   </div>
                 </template>
               </q-field>
@@ -118,6 +119,7 @@
                       size="6px"
                       :color="semaforo(info[0].co_semsve)"
                     />
+                    <!--                    {} -->
                   </div>
                 </template>
               </q-field>

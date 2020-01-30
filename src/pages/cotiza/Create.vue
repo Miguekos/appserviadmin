@@ -195,19 +195,19 @@ export default {
       "dialogCreate",
       "registros"
     ]),
-    filterFn(val, update, abort) {
-      const asd = this.lotrOpts;
-      if (val.length < 1) {
-        abort();
-        return;
-      }
-      update(() => {
-        const needle = val.toLowerCase();
-        this.options = asd.filter(v =>
-          v.no_client.toLowerCase().includes(needle)
-        );
-      });
-    },
+      filterFn(val, update, abort) {
+        const asd = this.lotrOpts;
+        if (val.length < 1) {
+          abort();
+          return;
+        }
+        update(() => {
+          const needle = val.toLowerCase();
+          this.options = asd.filter(v =>
+            v.no_client.toLowerCase().includes(needle)
+          );
+        });
+      },
     async input2(val) {
       this.notif();
       this.notif = this.$q.notify({

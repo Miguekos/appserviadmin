@@ -103,23 +103,32 @@
           <q-td key="fe_regist" :props="props">
             {{ props.row.fe_regist }}
           </q-td>
-          <!--          <q-td key="no_sigsve" :props="props">-->
-          <!--            <q-badge :style="coloreando(props.row.no_colsve)">-->
-          <!--              {{ props.row.no_sigsve }}-->
-          <!--            </q-badge>-->
-          <!--          </q-td>-->
-          <q-td key="no_coment" :props="props">
-            <q-tooltip
-              transition-show="flip-right"
-              transition-hide="flip-left"
-              anchor="top middle"
-              self="top middle"
-              content-style="font-size: 16px"
-            >
-              {{ props.row.no_coment }}
-            </q-tooltip>
-            Con Comentario
+          <q-td key="no_sigsve" :props="props">
+            <q-badge :style="coloreando(props.row.no_colsve)">
+              <q-tooltip
+                transition-show="flip-right"
+                transition-hide="flip-left"
+                anchor="top middle"
+                self="top middle"
+                content-style="font-size: 16px"
+              >
+                {{ props.row.no_coment }}
+              </q-tooltip>
+              {{ props.row.no_sigsve }}
+            </q-badge>
           </q-td>
+          <!--          <q-td key="no_coment" :props="props">-->
+          <!--            <q-tooltip-->
+          <!--              transition-show="flip-right"-->
+          <!--              transition-hide="flip-left"-->
+          <!--              anchor="top middle"-->
+          <!--              self="top middle"-->
+          <!--              content-style="font-size: 16px"-->
+          <!--            >-->
+          <!--              {{ props.row.no_coment }}-->
+          <!--            </q-tooltip>-->
+          <!--            Con Comentario-->
+          <!--          </q-td>-->
           <q-td key="ca_consul" :props="props">
             {{ props.row.ca_consul }}
           </q-td>
@@ -300,21 +309,21 @@ const columns = [
     field: "fe_regist",
     style: "width: 15%"
   },
-  // {
-  //   name: "no_sigsve",
-  //   align: "left",
-  //   sortable: true,
-  //   label: "Estados",
-  //   field: "no_sigsve",
-  //   style: "width: 15%"
-  // },
   {
-    name: "no_coment",
+    name: "no_sigsve",
     align: "left",
     sortable: true,
-    label: "Comentario",
-    field: "no_coment"
+    label: "Estados",
+    field: "no_sigsve",
+    style: "width: 15%"
   },
+  // {
+  //   name: "no_coment",
+  //   align: "left",
+  //   sortable: true,
+  //   label: "Comentario",
+  //   field: "no_coment"
+  // },
   {
     name: "ca_consul",
     align: "center",

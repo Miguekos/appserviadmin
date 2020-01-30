@@ -26,13 +26,13 @@
             </q-td>
             <q-td key="acciones" :props="props">
               <div class="q-gutter-xs">
-                <q-btn
-                  dense
-                  @click="eliminar()"
-                  size="sm"
-                  color="orange-6"
-                  icon="edit"
-                />
+                <!--                <q-btn-->
+                <!--                  dense-->
+                <!--                  @click="eliminar()"-->
+                <!--                  size="sm"-->
+                <!--                  color="orange-6"-->
+                <!--                  icon="edit"-->
+                <!--                />-->
                 <q-btn
                   dense
                   @click="eliminar()"

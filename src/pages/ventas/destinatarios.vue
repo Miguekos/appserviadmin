@@ -8,6 +8,11 @@
       </q-card-section>
       <q-card-section class="q-pa-md">
         <q-select
+          use-input
+          hide-selected
+          fill-input
+          input-debounce="0"
+          @filter="filterFn"
           v-model="clienteBuscar"
           :options="dataCliente"
           option-label="no_client"
@@ -17,6 +22,8 @@
           label="Cliente"
           dense
           options-dense
+          @input="input2"
+          auto-select
         />
       </q-card-section>
       <q-card-section class="q-pa-md">
@@ -63,6 +70,8 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      lotrOpts: [],
+      model: null,
       selected: [],
       clienteBuscar: null,
       columns1: [
@@ -120,13 +129,39 @@ export default {
   },
   methods: {
     ...mapActions("clientes", ["listar_clientes", "listar_personas_contacto"]),
+    async input2(val) {
+      console.log(val);
+      this.dataCliente = await this.listar_clientes({
+        id: null
+      });
+    },
+    filterFn(val, update, abort) {
+      const asd = this.lotrOpts;
+      console.log(val);
+      console.log(asd);
+      if (val.length < 1) {
+        abort();
+        return;
+      }
+      update(() => {
+        const needle = val.toLowerCase();
+        this.dataCliente = asd.filter(v =>
+          v.no_client.toLowerCase().includes(needle)
+        );
+      });
+    },
     getSelectedString() {
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
     }
   },
   async mounted() {
-    this.dataCliente = await this.listar_clientes();
+    this.dataCliente = await this.listar_clientes({
+      id: null
+    });
     this.dataContactos = await this.listar_personas_contacto();
+    this.lotrOpts = await this.listar_clientes({
+      id: null
+    });
   }
 };
 </script>
