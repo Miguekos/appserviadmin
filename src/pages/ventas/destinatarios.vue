@@ -90,6 +90,13 @@ export default {
           sortable: true
         },
         {
+          name: "",
+          align: "left",
+          label: "Area",
+          field: "",
+          sortable: true
+        },
+        {
           name: "no_corele",
           label: "Correo",
           align: "left",
@@ -115,12 +122,18 @@ export default {
         },
         {
           name: "fat",
-          label: "Cliente",
+          label: "Area",
           field: "fat",
           align: "left",
           sortable: true
         },
-        { name: "carbs", align: "left", label: "Correo", field: "carbs" }
+        {
+          name: "fat",
+          label: "Cliente",
+          field: "fat",
+          align: "left",
+          sortable: true
+        }
       ],
       dataCliente: [],
       dataContactos: [],
