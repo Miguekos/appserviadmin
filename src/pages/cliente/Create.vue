@@ -96,6 +96,50 @@
               v-model="direccionFiscal"
               label="Direccion Fiscal"
             />
+            <div class="q-gutter-xs">
+              <q-select
+                outlined
+                dense
+                required
+                @input="provincia()"
+                v-model="fieldDepartamento"
+                :options="getDepartamento"
+                option-value="no_ubigeo"
+                option-label="nu_depart"
+                emit-value
+                map-options
+                label="Departamento"
+              />
+            </div>
+            <div class="q-gutter-xs">
+              <q-select
+                @input="distrito()"
+                outlined
+                dense
+                required
+                v-model="fieldProvincia"
+                :options="getProvincia"
+                option-value="no_ubigeo"
+                option-label="no_provin"
+                emit-value
+                map-options
+                label="Provincia"
+              />
+            </div>
+            <div class="q-gutter-xs">
+              <q-select
+                outlined
+                dense
+                required
+                v-model="formDireccion.codigoUbigeo"
+                :options="getDistrito"
+                option-value="no_ubigeo"
+                option-label="no_provin"
+                emit-value
+                map-options
+                label="Distrito"
+              />
+            </div>
 
             <div class="text-center">
               <q-btn
@@ -123,10 +167,38 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
+  computed: {
+    ...mapGetters("proveedor", [
+      "getDepartamento",
+      "getProvincia",
+      "getDistrito"
+    ])
+  },
   data() {
     return {
+      form: {
+        tipoPersona: "1",
+        apellidoPaterno: "",
+        apellidoMaterno: "",
+        nombres: "",
+        generoPersona: "",
+        tipoDocumento: "1",
+        codigoAreaLaboral: "",
+        correoElectronico: "",
+        codigoSiglaProfesion: "",
+        p_id: null
+      },
+      fieldDepartamento: "",
+      fieldProvincia: "",
+      fieldDistrito: "",
+      model: "",
+      formDireccion: {
+        p_id: null,
+        direccion: "",
+        codigoUbigeo: ""
+      },
       direccionFiscal: "",
       listar_sector_economicoVar: null,
       listar_sector_economicoOption: [],
@@ -143,7 +215,6 @@ export default {
       documentoTributario: null,
       telf: null,
       direccion: null,
-      model: null,
       sigla: "",
       roles: [
         {
@@ -166,7 +237,27 @@ export default {
       "tipoDePersona",
       "TipoDeDocumento"
     ]),
-    ...mapActions("proveedor", ["listar_sector_economico"]),
+    ...mapActions("proveedor", [
+      "listar_sector_economico",
+      "registrarProveDireccion",
+      "direccionProveedor",
+      "pblistar_departamento",
+      "pblistar_provincia",
+      "pblistar_distrito",
+      "registrarProveContacto",
+      "contactoProveedor"
+    ]),
+    provincia() {
+      console.log(this.fieldDepartamento);
+      this.pblistar_provincia(this.fieldDepartamento);
+      this.fieldProvincia = "";
+    },
+    distrito() {
+      console.log(this.fieldProvincia);
+      this.pblistar_distrito(this.fieldProvincia);
+      this.form.codigoUbigeo = "";
+      this.form.codigoDireccion = "";
+    },
     atras() {
       console.log("Ir Atras");
       this.$router.go(-1);
@@ -221,7 +312,8 @@ export default {
       //   this.$refs.direccion.resetValidation();
     }
   },
-  async created() {
+  async mounted() {
+    this.pblistar_departamento();
     this.tipoDePersonaOption = await this.tipoDePersona();
     this.tipoDeDocumentoOption = await this.TipoDeDocumento();
     this.listar_sector_economicoOption = await this.listar_sector_economico();

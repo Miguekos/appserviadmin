@@ -201,7 +201,7 @@ export default {
     rowClick(val) {
       console.log(val);
       window.open(
-        `http://127.0.0.1:3000/api/containers/container1/download/${
+        `http://172.105.17.123:4100/api/containers/container1/download/${
           val.co_arcadj
         }`,
         "_blank"
