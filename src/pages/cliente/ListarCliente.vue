@@ -121,10 +121,10 @@ export default {
           sortable: true
         },
         {
-          name: "nu_doccli",
+          name: "no_sigsec",
           align: "left",
           label: "Sector",
-          field: "nu_doccli",
+          field: "no_sigsec",
           sortable: true
         },
         {
