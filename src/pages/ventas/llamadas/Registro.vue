@@ -77,6 +77,7 @@
           color="negative"
         />
         <q-btn label="Cerrar" @click="reset()" size="sm" color="secondary" />
+        <q-btn label="Reporte" @click="reporte()" size="sm" color="info" />
       </div>
     </q-form>
     <!--    {{ $data }}-->
@@ -123,6 +124,9 @@ export default {
       "listar_seguimientos_registrados",
       "seguimiento_cliente"
     ]),
+    reporte() {
+      console.log("Reporte Futuro");
+    },
     reset() {
       this.dialogLlamadaCliente({
         estado: false

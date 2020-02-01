@@ -21,8 +21,10 @@
             <q-td key="no_regist" :props="props">
               {{ props.row.no_regist }}
             </q-td>
-            <q-td key="no_coment" :props="props">
-              {{ props.row.no_coment }}
+            <q-td key="no_sigare" :props="props">
+              <q-badge :style="coloreando(props.row.no_colare)">
+                {{ props.row.no_sigare }}
+              </q-badge>
             </q-td>
             <q-td key="acciones" :props="props">
               <div class="q-gutter-xs">
@@ -79,10 +81,10 @@ export default {
           sortable: true
         },
         {
-          name: "no_coment",
+          name: "no_sigare",
           align: "center",
           label: "Area",
-          field: "no_coment",
+          field: "no_sigare",
           sortable: true
         },
         {
@@ -99,6 +101,9 @@ export default {
     };
   },
   methods: {
+    coloreando(arg) {
+      return `background-color: ${arg}`;
+    },
     formatearFecha(fecha) {
       return date.formatDate(fecha, "YYYY-MM-DD");
     },
