@@ -108,18 +108,18 @@
                 />
                 <q-btn
                   dense
-                  @click="
-                    dialogRegistrarCitaCliente({
-                      estado: true,
-                      cliente: props.row.co_client,
-                      contacto: props.row.co_percon
-                    })
-                  "
+                  @click="actualizarCotizacion(props.row)"
                   size="sm"
                   color="orange"
                   icon="edit"
                 />
-                <q-btn size="sm" dense color="red" icon="delete" />
+                <q-btn
+                  size="sm"
+                  @click="eliminarCotizacion(props.row)"
+                  dense
+                  color="red"
+                  icon="delete"
+                />
               </div>
             </q-td>
           </q-tr>
@@ -129,6 +129,7 @@
         </q-inner-loading>
       </q-table>
     </transition>
+    <q-dialog v-model="alert"> <Edit :info="informacion" /> </q-dialog>
   </div>
 </template>
 <script>
@@ -140,6 +141,7 @@ export default {
   },
   data() {
     return {
+      alert: false,
       selected: [],
       visible: true,
       showSimulatedReturnData: true,
@@ -222,20 +224,70 @@ export default {
           field: "co_percon",
           sortable: true
         }
-      ]
+      ],
+      informacion: []
     };
+  },
+  components: {
+    Edit: () => import("./Editar")
   },
   methods: {
     coloreando(arg) {
       console.log(arg);
       return `background-color: ${arg}`;
     },
-    ...mapActions("example", ["registros"]),
+    ...mapActions("example", [
+      "registros",
+      "eliminar_requerimiento_cotizacion"
+    ]),
     formatearFecha(fecha) {
       return date.formatDate(fecha, "YYYY-MM-DD");
     },
     getSelectedString() {
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
+    },
+    eliminarCotizacion(arg) {
+      console.log(arg.id_reqcot);
+      this.$q
+        .dialog({
+          title: "Confirmar",
+          message: "Esta seguro que quiere eliminar?",
+          cancel: true,
+          persistent: true
+        })
+        .onOk(() => {
+          console.log(">>>> OK");
+          this.eliminar_requerimiento_cotizacion(arg.id_reqcot)
+            .then(resp => {
+              console.log(resp);
+              this.registros();
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        })
+        .onOk(() => {
+          console.log(">>>> second OK catcher");
+        })
+        .onCancel(() => {
+          console.log(">>>> Cancel");
+        })
+        .onDismiss(() => {
+          console.log("I am triggered on both OK and Cancel");
+        });
+    },
+    actualizarCotizacion(arg) {
+      console.log(arg);
+      this.informacion = arg;
+      console.log("Se preciono el boton");
+      this.alert = true;
+      // this.$router.push("/cotizacion/create");
+      // this.$q.notify({
+      //   color: "red",
+      //   textColor: "white",
+      //   message: "Por definir.!"
+      // });
+      console.log("Boron precinado");
     }
   },
   async mounted() {

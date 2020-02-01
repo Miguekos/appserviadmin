@@ -266,3 +266,17 @@ export async function enviarEmailVerde({}) {
   const response = await axiosInstance.get(`/api/emails/sendEmail`);
   return response.data;
 }
+
+// eslint-disable-next-line
+export async function eliminar_requerimiento_cotizacion({}, payload) {
+  // console.log(payload);
+  // const data = {
+  //   nombreCatalogo: payload.nombreCatalogo,
+  //   codigoArchivoAdjunto: payload.codigoArchivoAdjunto,
+  //   ordenCatalogo: payload.ordenCatalogo
+  // };
+  const response = await axiosInstance.get(
+    `/api/cotizas/eliminar_requerimiento_cotizacion/${payload}`
+  );
+  return response.data;
+}

@@ -478,8 +478,8 @@ export default {
                 console.log(resp);
                 const telfRegistro = JSON.parse(resp[0].mantenimiento_telefono);
                 this.percon_direccion_telefono({
-                  p_co_percon: p_co_direccVar,
-                  p_co_direcc: p_co_perconVar,
+                  p_co_percon: p_co_perconVar,
+                  p_co_direcc: p_co_direccVar,
                   p_co_telefo: telfRegistro.codigoTelefono
                 });
                 this.apellidoPaterno = "";
