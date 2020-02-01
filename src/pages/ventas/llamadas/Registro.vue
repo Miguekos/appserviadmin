@@ -102,7 +102,7 @@ export default {
       codigoSeguimientoVentaVar: null,
       codigoSeguimientoVenta: [],
       text: "",
-      date: "2019-12-22",
+      date: " ",
       loading: false,
       estadoFiltro: "",
       fechainicio: "",
