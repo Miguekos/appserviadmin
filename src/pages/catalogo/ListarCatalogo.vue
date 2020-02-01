@@ -97,7 +97,7 @@ export default {
   data() {
     return {
       pagination: {
-        sortBy: "co_catpro",
+        sortBy: "nu_ordcat",
         dataLista: [],
         descending: false,
         page: 1,
@@ -112,7 +112,7 @@ export default {
         {
           name: "co_catpro",
           required: true,
-          label: "Nro_",
+          label: "Nro",
           align: "left",
           field: "co_catpro",
           sortable: true
@@ -120,20 +120,20 @@ export default {
         {
           name: "no_catpro",
           align: "left",
-          label: "Nro. Document.",
+          label: "Nombre Documento",
           field: "no_catpro",
           sortable: true
         },
         {
           name: "co_arcadj",
-          label: "Arcadj.",
+          label: "Archivo",
           align: "left",
           field: "co_arcadj",
           sortable: true
         },
         {
           name: "nu_ordcat",
-          label: "Sigla",
+          label: "Prioridad",
           align: "left",
           field: "nu_ordcat"
         }
