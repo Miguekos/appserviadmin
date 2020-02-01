@@ -442,7 +442,7 @@ export default {
       this.guardarDireccion(this.formDireccion).then(result => {
         const codigoDirec = JSON.parse(result[0].mantenimiento_direccion);
         console.log(codigoDirec);
-        const p_co_perconVar = codigoDirec.codigoDireccion;
+        const p_co_direccVar = codigoDirec.codigoDireccion;
         console.log(codigoDirec.codigoDireccion);
         this.direccionCliente(this.formDireccion.p_id).then(() => {
           this.loading = false;
@@ -463,7 +463,7 @@ export default {
             resp[0].mantenimiento_persona_contacto
           );
           console.log(personContacto);
-          const p_co_direccVar = personContacto.codigoPersonaContacto;
+          const p_co_perconVar = personContacto.codigoPersonaContacto;
           console.log(personContacto.codigoPersonaContacto);
           console.log("Se ejecuto Guardar Contacto");
           this.contactoCliente(this.form.p_id).then(resp => {
@@ -472,14 +472,15 @@ export default {
             this.mantenimiento_telefono({
               p_id: this.form.p_id,
               numeroTelefono: this.form.p_nu_telefo,
-              p_co_percon: p_co_direccVar
+              p_co_percon: p_co_perconVar
             })
               .then(resp => {
                 console.log(resp);
+                const telfRegistro = JSON.parse(resp[0].mantenimiento_telefono);
                 this.percon_direccion_telefono({
-                  p_co_percon: p_co_perconVar,
-                  p_co_direcc: p_co_direccVar,
-                  p_co_telefo: null
+                  p_co_percon: p_co_direccVar,
+                  p_co_direcc: p_co_perconVar,
+                  p_co_telefo: telfRegistro.codigoTelefono
                 });
                 this.apellidoPaterno = "";
                 this.apellidoMaterno = "";

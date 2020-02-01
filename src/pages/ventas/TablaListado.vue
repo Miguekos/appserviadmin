@@ -261,28 +261,24 @@ const columns = [
   {
     name: "no_sigsec",
     align: "left",
-    sortable: true,
     label: "Sector",
     field: "no_sigsec"
   },
   {
     name: "no_percon",
     align: "left",
-    sortable: true,
     label: "Contacto",
     field: "no_percon"
   },
   {
     name: "no_sigare",
     align: "left",
-    sortable: true,
     label: "Area",
     field: "no_sigare"
   },
   {
     name: "co_estemo",
     align: "left",
-    sortable: true,
     label: "",
     field: "co_estemo"
   },
@@ -295,14 +291,12 @@ const columns = [
   {
     name: "no_ubicac",
     align: "left",
-    sortable: true,
     label: "Ubicacion",
     field: "no_ubicac"
   },
   {
     name: "no_usuari",
     align: "left",
-    sortable: true,
     label: "Usuario",
     field: "no_usuari",
     style: "width: 15%"
@@ -310,7 +304,6 @@ const columns = [
   {
     name: "fe_regist",
     align: "left",
-    sortable: true,
     label: "Fecha",
     field: "fe_regist",
     style: "width: 15%"
@@ -318,7 +311,6 @@ const columns = [
   {
     name: "no_sigsve",
     align: "left",
-    sortable: true,
     label: "Estados",
     field: "no_sigsve",
     style: "width: 15%"
@@ -326,41 +318,36 @@ const columns = [
   // {
   //   name: "no_coment",
   //   align: "left",
-  //   sortable: true,
+
   //   label: "Comentario",
   //   field: "no_coment"
   // },
   {
     name: "ca_consul",
     align: "center",
-    sortable: true,
     label: "Consultas",
     field: "ca_consul"
   },
   {
     name: "ca_catalo",
     align: "center",
-    sortable: true,
     label: "Catálogo",
     field: "ca_catalo"
   },
   {
     name: "ca_citas",
     align: "left",
-    sortable: true,
     label: "Citas",
     field: "ca_citas"
   },
   {
     name: "co_percon",
     align: "center",
-    sortable: true,
     label: "Acciones",
     field: "co_percon",
     style: "width: 5%"
   }
 ];
-
 export default {
   computed: {
     ...mapGetters("example", [
@@ -396,7 +383,7 @@ export default {
       slideAlarm: 56,
       slideVibration: 63,
       pagination: {
-        sortBy: "nu_ordreg",
+        sortBy: "no_sigcli",
         descending: false,
         page: 1,
         rowsPerPage: 15

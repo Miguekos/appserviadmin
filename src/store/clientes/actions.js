@@ -214,7 +214,7 @@ export async function percon_direccion_telefono({ commit }, payload) {
   const response = await axiosInstance.get(
     `/api/ventas/percon_direccion_telefono/${payload.p_co_percon}/${
       payload.p_co_direcc
-    }`
+    }/${payload.p_co_telefo}`
   );
   console.log("Respuesta percon_direccion_telefono");
   console.log(response.data);
