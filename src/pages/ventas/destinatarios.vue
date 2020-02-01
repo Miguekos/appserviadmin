@@ -41,7 +41,14 @@
       </q-card-section>
 
       <q-card-actions class="justify-around">
-        <q-btn size="sm" color="negative" icon="add" label="Anadir"> </q-btn>
+        <q-btn
+          size="sm"
+          color="info"
+          icon="add"
+          @click="anadir()"
+          label="Añadir"
+        >
+        </q-btn>
         <q-btn size="sm" color="positive" icon="email" label="Enviar"> </q-btn>
       </q-card-actions>
 
@@ -51,17 +58,15 @@
         <q-table
           dense
           title=""
-          :data="data"
+          :data="dataSelecion"
           :columns="columns2"
           row-key="name"
           binary-state-sort
-          :selected-rows-label="getSelectedString"
-          selection="multiple"
-          :selected.sync="selected"
         >
         </q-table>
       </q-card-section>
     </q-card>
+    <!-- {{ dataSelecion }} -->
   </div>
 </template>
 
@@ -90,10 +95,10 @@ export default {
           sortable: true
         },
         {
-          name: "",
+          name: "no_sigare",
           align: "left",
           label: "Area",
-          field: "",
+          field: "no_sigare",
           sortable: true
         },
         {
@@ -106,42 +111,49 @@ export default {
       ],
       columns2: [
         {
-          name: "desc",
-          required: true,
-          label: "Nro",
+          name: "co_percon",
+          label: "Nro.",
           align: "left",
-          field: row => row.name,
+          field: "co_percon",
           sortable: true
         },
         {
-          name: "calories",
+          name: "no_percon",
           align: "left",
           label: "Contacto",
-          field: "calories",
+          field: "no_percon",
           sortable: true
         },
         {
-          name: "fat",
+          name: "no_sigare",
+          align: "left",
           label: "Area",
-          field: "fat",
-          align: "left",
+          field: "no_sigare",
           sortable: true
         },
         {
-          name: "fat",
-          label: "Cliente",
-          field: "fat",
+          name: "no_corele",
+          label: "Correo",
           align: "left",
+          field: "no_corele",
           sortable: true
         }
       ],
       dataCliente: [],
       dataContactos: [],
-      data: []
+      dataSelecion: []
     };
   },
   methods: {
     ...mapActions("clientes", ["listar_clientes", "listar_personas_contacto"]),
+    anadir() {
+      console.log(this.selected);
+      for (let index = 0; index < this.selected.length; index++) {
+        const element = this.selected[index];
+        console.log(element);
+        this.dataSelecion.push(element);
+      }
+    },
     async input2(val) {
       console.log(val);
       this.dataContactos = await this.listar_personas_contacto({

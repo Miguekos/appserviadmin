@@ -75,7 +75,4 @@ export default {
 };
 </script>
 
-<style>
-q-btn {
-}
-</style>
+<style></style>

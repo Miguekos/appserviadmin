@@ -43,7 +43,7 @@ export default {
     return {
       pagination: {
         page: 1,
-        rowsPerPage: 8
+        rowsPerPage: 9
         // rowsNumber: xx if getting data from a server
       },
       columns: [
