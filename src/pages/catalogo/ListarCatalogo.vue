@@ -35,8 +35,8 @@
             </template>
           </q-input>
 
-          <q-space />
-          <q-btn
+          <!-- <q-space /> -->
+          <!-- <q-btn
             flat
             dense
             no-wrap
@@ -45,7 +45,7 @@
             no-caps
             label="Exportar"
             class="q-ml-sm q-px-md"
-          />
+          /> -->
         </q-toolbar>
       </div>
     </div>
@@ -53,7 +53,7 @@
       dense
       :data="get_listar_catalogos_new"
       :columns="columns"
-      row-key="no_catpro"
+      row-key="co_catpro"
       :selected-rows-label="getSelectedString"
       selection="multiple"
       :selected.sync="selected"
@@ -75,13 +75,6 @@
     <q-toolbar class="text-center">
       <q-toolbar-title class="q-pa-md row justify-around">
         <!-- <q-toolbar-title class="q-pa-md q-gutter-md"> -->
-        <q-btn
-          size="sm"
-          color="positive"
-          text-color="white"
-          label="Nuevo"
-          @click="URL('/cliente/create')"
-        />
         <q-btn
           size="sm"
           color="negative"
@@ -152,7 +145,10 @@ export default {
   },
   methods: {
     ...mapActions("clientes", ["getClientes", "eliminarCliente"]),
-    ...mapActions("example", ["listar_catalogos_new"]),
+    ...mapActions("example", [
+      "listar_catalogos_new",
+      "mantenimiento_catalogos"
+    ]),
     onRowClick() {
       console.log("Se preciono una ROW");
     },
@@ -169,17 +165,12 @@ export default {
         const element = this.selected[index];
         console.log(element);
         //tipo de persona
-        console.log(element.co_tipper);
         // Codigo de cliente
-        console.log(element.co_client);
-        this.eliminarCliente({
-          p_id: element.co_client,
-          tipoPersona: element.co_tipper,
-          desactivarCliente: "S"
-        })
+        this.mantenimiento_catalogos(element.co_catpro)
           .then(resp => {
             console.log(resp);
             this.$q.notify({
+              position: "top-right",
               color: "green",
               textColor: "white",
               icon: "fas fa-check-circle",
@@ -189,8 +180,8 @@ export default {
           .catch(err => {
             console.log(err);
           })
-          .finally(() => {
-            this.getClientes();
+          .finally(async () => {
+            this.info = await this.listar_catalogos_new();
             // this.info = this.Clientes;
           });
       }

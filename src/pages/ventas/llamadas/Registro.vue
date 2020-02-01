@@ -8,13 +8,7 @@
           </p>
         </div>
         <div class="q-ma-sm">
-          <q-input
-            required="true"
-            dense
-            filled
-            v-model="date"
-            mask="####-##-##"
-          >
+          <q-input dense filled v-model="date" mask="####-##-##">
             <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
                 <q-popup-proxy

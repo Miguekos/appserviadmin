@@ -129,7 +129,9 @@
         </q-inner-loading>
       </q-table>
     </transition>
-    <q-dialog v-model="alert"> <Edit :info="informacion" /> </q-dialog>
+    <q-dialog v-model="alert">
+      <Edit @evtFechaCadAtrativos="alert = false" :info="informacion" />
+    </q-dialog>
   </div>
 </template>
 <script>
@@ -229,7 +231,7 @@ export default {
     };
   },
   components: {
-    Edit: () => import("./Editar")
+    Edit: () => import("./Actualizar")
   },
   methods: {
     coloreando(arg) {

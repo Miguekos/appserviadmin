@@ -46,6 +46,38 @@ export async function registrarCotizacion({}, payload) {
   return regisCotiza.data;
 }
 
+// eslint-disable-next-line
+export async function actualizarCotizacion({}, payload) {
+  // let timeStamp = Date.now();
+  // let formattedString = date.formatDate(timeStamp, 'YYYY-MM-DDTHH:mm:ss.SSSZ')
+  // let formattedString = date.formatDate(timeStamp, "YYYY-MM-DD");
+  console.log("actualizarCotizacion");
+  console.log(payload);
+  // const data = {
+  //   p_id_client: payload.id_client,
+  //   p_co_usuari: null,
+  //   p_de_solcoc: payload.text,
+  //   p_fe_requer: formattedString
+  // };
+  const data = {
+    p_id_reqcot: payload.id_reqcot,
+    p_fe_reqcot: payload.date,
+    p_no_asunto: payload.asunto,
+    p_de_reqcot: payload.text,
+    p_co_percon: payload.contacto
+  };
+
+  console.log(data);
+  console.log("actualizarCotizacion");
+
+  const actualizarCotiza = await axiosInstance.post(
+    "/api/cotizas/actualizar",
+    data
+  );
+  // console.log(registro.data);
+  return actualizarCotiza.data;
+}
+
 export function dialogCreate({ commit }, payload) {
   commit("setDialogCreate", payload);
 }
@@ -251,6 +283,15 @@ export async function guardarCatalogos({}, payload) {
   const response = await axiosInstance.post(
     `/api/catalogos/guardarCatalogos/`,
     data
+  );
+  return response.data;
+}
+
+// eslint-disable-next-line
+export async function mantenimiento_catalogos({}, payload) {
+  console.log(payload);
+  const response = await axiosInstance.get(
+    `/api/clientes/mantenimiento_catalogos/${payload}`
   );
   return response.data;
 }
