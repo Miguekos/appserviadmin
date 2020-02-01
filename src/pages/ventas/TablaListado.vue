@@ -160,7 +160,13 @@
                 color="primary"
                 icon="local_phone"
               />
-              <q-btn dense size="sm" color="positive" icon="email" />
+              <q-btn
+                @click="correoDirecto()"
+                dense
+                size="sm"
+                color="positive"
+                icon="email"
+              />
               <q-btn
                 size="sm"
                 dense
@@ -405,6 +411,28 @@ export default {
     };
   },
   methods: {
+    correoDirecto() {
+      this.$q
+        .dialog({
+          title: "Enviar Correo",
+          message: "Estas seguro que quieres enviar el correo de consulta?",
+          cancel: true,
+          persistent: true
+        })
+        .onOk(() => {
+          console.log(">>>> OK");
+          this.enviarEmailVerde();
+        })
+        .onOk(() => {
+          console.log(">>>> second OK catcher");
+        })
+        .onCancel(() => {
+          console.log(">>>> Cancel");
+        })
+        .onDismiss(() => {
+          console.log("I am triggered on both OK and Cancel");
+        });
+    },
     enviarMasivos() {
       this.envioMasivoCorreo = true;
     },
@@ -533,7 +561,8 @@ export default {
       "dialogRegistrarCitaCliente",
       "seguimiento_cliente",
       "listar_estado_seguimiento",
-      "listar_catalogos"
+      "listar_catalogos",
+      "enviarEmailVerde"
     ]),
     update(val) {
       console.log(val);

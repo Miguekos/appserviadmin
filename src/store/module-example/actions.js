@@ -254,3 +254,15 @@ export async function guardarCatalogos({}, payload) {
   );
   return response.data;
 }
+
+// eslint-disable-next-line
+export async function enviarEmailVerde({}) {
+  // console.log(payload);
+  // const data = {
+  //   nombreCatalogo: payload.nombreCatalogo,
+  //   codigoArchivoAdjunto: payload.codigoArchivoAdjunto,
+  //   ordenCatalogo: payload.ordenCatalogo
+  // };
+  const response = await axiosInstance.get(`/api/emails/sendEmail`);
+  return response.data;
+}
