@@ -114,6 +114,15 @@ const routes = [
     }
   },
   {
+    path: "/textos",
+    name: "textos",
+    component: () => import("layouts/MyLayout.vue"),
+    children: [{ path: "", component: () => import("pages/textos/Index.vue") }],
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("layouts/Login"),

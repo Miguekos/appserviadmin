@@ -90,6 +90,16 @@
         >
           <q-item-section no-wrap>07 - Mantenimiento de Ventas</q-item-section>
         </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+          :active="link === '/textos'"
+          @click="URL('/textos')"
+          active-class="my-menu-link"
+        >
+          <q-item-section no-wrap>08 - Mantenimiento de Textos</q-item-section>
+        </q-item>
       </q-expansion-item>
 
       <q-separator />
