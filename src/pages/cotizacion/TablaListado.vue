@@ -56,39 +56,60 @@
       :filter="filter"
       :data="data"
       :columns="columns"
-      row-key="no_sigcli"
+      row-key="id_cotiza"
       :pagination.sync="pagination"
     >
       <template v-slot:body="props">
         <q-tr :props="props">
+          <!-- <q-td key="" :props="props"> </q-td> -->
+          <q-td key="fe_cotiza" :props="props">
+            {{ props.row.fe_cotiza }}
+          </q-td>
+          <q-td key="id_cotiza" :props="props">
+            {{ props.row.id_cotiza }}
+          </q-td>
+          <q-td key="co_semcot" :props="props">
+            {{ props.row.co_semcot }}
+          </q-td>
           <q-td key="no_sigcli" :props="props">
             {{ props.row.no_sigcli }}
           </q-td>
-          <q-td key="no_percon" :props="props">
-            {{ props.row.no_percon }}
-          </q-td>
-          <q-td key="co_estemo" :props="props">
-            {{ props.co_estemo }}
-          </q-td>
-          <q-td key="co_semsve" :props="props"> </q-td>
-          <q-td key="no_sigare" :props="props">
-            <q-badge :style="coloreando(props.row.no_colare)">
-              {{ props.row.no_sigare }}
-            </q-badge>
+          <q-td key="no_contac" :props="props">
+            {{ props.row.no_contac }}
           </q-td>
           <q-td key="no_ubicac" :props="props">
             {{ props.row.no_ubicac }}
           </q-td>
-          <q-td key="no_sigsec" :props="props">
+          <q-td key="im_monsol" :props="props">
             <q-badge :style="coloreando(props.row.no_colsec)">
-              {{ props.row.no_sigsec }}
+              {{ props.row.im_monsol }}
             </q-badge>
           </q-td>
+          <q-td key="im_mondol" :props="props">
+            {{ props.row.im_mondol }}
+          </q-td>
+
           <q-td key="no_usuari" :props="props">
             {{ props.row.no_usuari }}
           </q-td>
 
           <q-td key="fe_regist" :props="props">
+            {{ props.row.fe_regist }}
+          </q-td>
+
+          <q-td key="no_sigeva" :props="props">
+            {{ props.row.no_sigeva }}
+          </q-td>
+
+          <q-td key="no_sigest" :props="props">
+            {{ props.row.no_sigest }}
+          </q-td>
+
+          <q-td key="no_sigmot" :props="props">
+            {{ props.row.no_sigmot }}
+          </q-td>
+
+          <!-- <q-td key="fe_regist" :props="props">
             <q-select
               v-model="model"
               dense
@@ -96,7 +117,6 @@
               :options="options"
               label="Standard"
             />
-            <!--            {{ props.row.fe_regist }}-->
           </q-td>
           <q-td key="no_sigsve" :props="props">
             <q-select
@@ -115,16 +135,16 @@
               :options="options"
               label="Standard"
             />
+          </q-td> -->
+          <!-- <q-td key="ca_consul" :props="props"> -->
+          <!--            {{ props.row.ca_consul }}-->
+          <!-- <q-btn round size="xs" :color="semaforo(props.row.co_semsve)" /> -->
+          <!-- </q-td> -->
+          <q-td key="no_coment" :props="props">
+            {{ props.row.no_coment }}
           </q-td>
           <q-td key="ca_consul" :props="props">
-            <!--            {{ props.row.ca_consul }}-->
-            <q-btn round size="xs" :color="semaforo(props.row.co_semsve)" />
-          </q-td>
-          <q-td key="ca_catalo" :props="props">
-            {{ props.row.ca_catalo }}
-          </q-td>
-          <q-td key="ca_citas" :props="props">
-            {{ props.row.ca_citas }}
+            {{ props.row.ca_consul }}
           </q-td>
           <q-td key="co_percon" :props="props">
             <div class="q-gutter-xs">
@@ -189,107 +209,107 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 const columns = [
+  // {
+  //   name: "",
+  //   align: "left",
+  //   sortable: true,
+  //   label: "Nro.",
+  //   field: "",
+  //   style: "width: 15%"
+  // },
+  {
+    name: "fe_cotiza",
+    align: "left",
+    sortable: true,
+    label: "Fecha Cotiz.",
+    field: "fe_cotiza"
+  },
+  {
+    name: "id_cotiza",
+    align: "left",
+    sortable: true,
+    label: "Cotizacion",
+    field: "id_cotiza"
+  },
+  {
+    name: "co_semcot",
+    align: "left",
+    sortable: true,
+    label: "Semaforo",
+    field: "co_semcot"
+  },
   {
     name: "no_sigcli",
     align: "left",
     sortable: true,
-    label: "Nro.",
-    field: "no_sigcli",
-    style: "width: 15%"
+    label: "Cliente",
+    field: "no_sigcli"
   },
   {
-    name: "no_percon",
-    align: "left",
-    sortable: true,
-    label: "Fecha Cotiz.",
-    field: "no_percon"
-  },
-  {
-    name: "co_estemo",
-    align: "left",
-    sortable: true,
-    label: "Cotizacion",
-    field: "co_estemo"
-  },
-  {
-    name: "co_semsve",
-    align: "left",
-    sortable: true,
-    label: "Cliente.",
-    field: "co_semsve"
-  },
-  {
-    name: "no_sigare",
+    name: "no_contac",
     align: "left",
     sortable: true,
     label: "Contacto",
-    field: "no_sigare"
+    field: "no_contac"
   },
   {
-    name: "no_ubicac",
+    name: "im_monsol",
     align: "left",
     sortable: true,
     label: "Monto S/",
-    field: "no_ubicac"
+    field: "im_monsol"
   },
   {
-    name: "no_sigsec",
+    name: "im_mondol",
     align: "left",
     sortable: true,
     label: "Monto $/",
-    field: "no_sigsec"
+    field: "im_mondol",
+    style: "width: 15%"
   },
   {
     name: "no_usuari",
     align: "left",
     sortable: true,
-    label: "Evaluacion",
+    label: "Usuario",
     field: "no_usuari",
     style: "width: 15%"
   },
   {
-    name: "fe_regist",
+    name: "no_sigeva",
     align: "left",
     sortable: true,
-    label: "Estado",
-    field: "fe_regist",
+    label: "Evaluacion",
+    field: "no_sigeva",
     style: "width: 15%"
   },
   {
-    name: "no_sigsve",
+    name: "no_sigest",
     align: "left",
     sortable: true,
-    label: "Motivos",
-    field: "no_sigsve",
-    style: "width: 15%"
+    label: "Estados",
+    field: "no_sigest"
+  },
+  {
+    name: "no_sigmot",
+    align: "center",
+    sortable: true,
+    label: "Motivo",
+    field: "no_sigmot"
   },
   {
     name: "no_coment",
-    align: "left",
+    align: "center",
     sortable: true,
     label: "Comentario",
     field: "no_coment"
   },
   {
     name: "ca_consul",
-    align: "center",
-    sortable: true,
-    label: "Semaforo",
-    field: "ca_consul"
-  },
-  {
-    name: "ca_catalo",
-    align: "center",
-    sortable: true,
-    label: "Orden de Compra",
-    field: "ca_catalo"
-  },
-  {
-    name: "ca_citas",
     align: "left",
     sortable: true,
     label: "Consultas",
-    field: "ca_citas"
+    field: "ca_consul"
   },
   {
     name: "co_percon",
@@ -315,6 +335,7 @@ export default {
   },
   data() {
     return {
+      model: "",
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
       envioMasivoCorreo: false,
       correosVarios: [],
@@ -337,7 +358,7 @@ export default {
       slideAlarm: 56,
       slideVibration: 63,
       pagination: {
-        sortBy: "no_sigcli",
+        sortBy: "id_cotiza",
         descending: false,
         page: 1,
         rowsPerPage: 15
@@ -352,6 +373,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions("reque", ["seguimiento_cotizacion"]),
     enviarMasivos() {
       this.envioMasivoCorreo = true;
     },
@@ -469,14 +491,6 @@ export default {
     test(arg) {
       console.log(arg);
     },
-    ...mapActions("clientes", ["seguimiento_cotizacion"]),
-    ...mapActions("example", [
-      "dialogLlamadaCliente",
-      "dialogRegistrarCitaCliente",
-      "seguimiento_cliente",
-      "listar_estado_seguimiento",
-      "listar_catalogos"
-    ]),
     update(val) {
       console.log(val);
     }
@@ -491,22 +505,7 @@ export default {
     // AddRegistro: () => import("./Create")
   },
   async mounted() {
-    // await this.getClientes();
-    await this.seguimiento_cliente({
-      cliente: null,
-      seguimiento: null,
-      economico: null,
-      semoforo: null
-    });
-    await this.listar_estado_seguimiento();
     this.data = await this.seguimiento_cotizacion();
-    await this.listar_catalogos()
-      .then(resp => {
-        this.correosVarios = resp;
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
 };
 </script>

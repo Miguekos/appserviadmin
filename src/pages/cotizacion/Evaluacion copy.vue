@@ -2,8 +2,8 @@
   <div class="full-width">
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
-      <p class="bg-secondary   shadow-5 text-center text-white">
-        Resumen
+      <p class="bg-secondary shadow-5 text-center text-white">
+        Area
       </p>
     </div>
     <div class="q-pa-xs">
@@ -18,16 +18,16 @@
       >
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="no_sigsve" :props="props">
+            <q-td key="no_sigere" :props="props">
               <q-badge
                 text-color="white"
                 :style="coloreando(props.row.no_colhex)"
               >
-                {{ props.row.no_sigsve }}
+                {{ props.row.no_sigare }}
               </q-badge>
             </q-td>
-            <q-td key="no_estsve" :props="props">
-              {{ props.row.no_estsve }}
+            <q-td key="no_arelab" :props="props">
+              {{ props.row.no_arelab }}
             </q-td>
           </q-tr>
         </template>
@@ -41,73 +41,28 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      colorin: "#89070f",
       pagination: {
+        descending: false,
         page: 1,
         rowsPerPage: 7
         // rowsNumber: xx if getting data from a server
       },
       columns: [
         {
-          name: "co_emotic",
+          name: "no_sigere",
           required: true,
           label: "COD",
           align: "left",
-          field: "co_emotic",
-          sortable: true
-        },
-        {
-          name: "no_emotic",
-          required: true,
-          label: "DESCRIPCION",
-          align: "left",
-          field: "no_emotic",
-          sortable: true
-        },
-        {
-          name: "no_sigsec",
-          required: true,
-          label: "COD",
-          align: "left",
-          field: "no_sigsec",
-          sortable: true
-        },
-        {
-          name: "no_sececo",
-          required: true,
-          label: "SECTOR",
-          align: "left",
-          field: "no_sececo",
-          sortable: true
-        },
-        {
-          name: "no_sigare",
-          required: true,
-          label: "COD",
-          align: "left",
-          field: "no_sigare",
+          field: "no_sigere",
           sortable: true
         },
         {
           name: "no_arelab",
           required: true,
-          label: "AREA",
+          label: "DESCRIPCION",
           align: "left",
           field: "no_arelab",
-          sortable: true
-        },
-        {
-          name: "no_sigsve",
-          required: true,
-          label: "COD",
-          align: "left",
-          field: "no_sigsve",
-          sortable: true
-        },
-        {
-          name: "no_estsve",
-          align: "left",
-          label: "ESTADO",
-          field: "no_estsve",
           sortable: true
         }
       ],
@@ -118,7 +73,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("example", ["listar_estado_seguimiento_cliente"]),
+    ...mapActions("example", ["listar_area_laboral"]),
     coloreando(arg) {
       return `background-color: ${arg}`;
     },
@@ -142,7 +97,7 @@ export default {
   },
   mounted() {
     console.log("se cargo el created de resumen");
-    this.listar_estado_seguimiento_cliente()
+    this.listar_area_laboral()
       .then(resp => {
         console.log(resp);
         this.info = resp;
@@ -154,3 +109,8 @@ export default {
   }
 };
 </script>
+<style>
+#color1 {
+  color: #165f89;
+}
+</style>

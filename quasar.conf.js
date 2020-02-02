@@ -94,6 +94,7 @@ module.exports = function(ctx) {
     supportIE: true,
 
     build: {
+      devtool: "source-map",
       scopeHoisting: true,
       // vueRouterMode: 'history',
       // vueCompiler: true,
@@ -171,7 +172,7 @@ module.exports = function(ctx) {
     cordova: {
       // id: 'org.cordova.quasar.app',
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
-      backButtonExit: true/false // Quasar handles app exit on mobile phone back button
+      backButtonExit: true / false // Quasar handles app exit on mobile phone back button
     },
 
     electron: {

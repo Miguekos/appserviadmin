@@ -3,7 +3,7 @@
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p class="bg-secondary shadow-5 text-center text-white">
-        Estado
+        Actualizar Oferta
       </p>
     </div>
     <div class="q-pa-xs">
@@ -17,15 +17,15 @@
       >
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="no_sigsco" :props="props">
+            <q-td key="no_sigaof" :props="props">
               <q-badge
                 text-color="white"
                 :style="coloreando(props.row.no_colhex)"
-                :label="props.row.no_sigsco"
+                :label="props.row.no_sigaof"
               />
             </q-td>
-            <q-td key="no_estsco" :props="props">
-              {{ props.row.no_estsco }}
+            <q-td key="no_aofsco" :props="props">
+              {{ props.row.no_aofsco }}
             </q-td>
           </q-tr>
         </template>
@@ -41,18 +41,18 @@ export default {
     return {
       columns: [
         {
-          name: "no_sigsco",
+          name: "no_sigaof",
           required: true,
           label: "Semaforo",
           align: "left",
-          field: "no_sigsco",
+          field: "no_sigaof",
           sortable: true
         },
         {
-          name: "no_estsco",
+          name: "no_aofsco",
           align: "left",
           label: "Cantidad",
-          field: "no_estsco",
+          field: "no_aofsco",
           sortable: true
         }
       ],
@@ -63,14 +63,14 @@ export default {
     };
   },
   methods: {
-    ...mapActions("reque", ["listar_estado_seguimiento"]),
+    ...mapActions("reque", ["listar_actualizacion_oferta"]),
     coloreando(arg) {
       return `background-color: ${arg}`;
     }
   },
   mounted() {
     console.log("se cargo el mounted de Estado");
-    this.listar_estado_seguimiento()
+    this.listar_actualizacion_oferta()
       .then(resp => {
         console.log(resp);
         this.info = resp;

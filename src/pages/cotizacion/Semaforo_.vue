@@ -3,7 +3,7 @@
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p class="bg-secondary   shadow-5 text-center text-white">
-        Sector Economico
+        Semaforo
       </p>
     </div>
     <div class="q-pa-xs">
@@ -203,15 +203,6 @@ export default {
   },
   mounted() {
     console.log("se cargo el created de resumen");
-    this.leyenda_seguimiento_cliente()
-      .then(resp => {
-        console.log(resp);
-        this.info = resp;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    // this.$q.loading.show({ delay: 400 });
   }
 };
 </script>

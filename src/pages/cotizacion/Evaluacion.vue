@@ -3,7 +3,7 @@
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p class="bg-secondary shadow-5 text-center text-white">
-        Area
+        Evaluacion
       </p>
     </div>
     <div class="q-pa-xs">
@@ -11,23 +11,21 @@
         dense
         :data="info"
         :columns="columns"
-        row-key="co_semsve"
+        row-key="no_sigeva"
         hide-bottom
         hide-header
-        :pagination.sync="pagination"
       >
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="no_sigere" :props="props">
+            <q-td key="no_sigeva" :props="props">
               <q-badge
                 text-color="white"
                 :style="coloreando(props.row.no_colhex)"
-              >
-                {{ props.row.no_sigare }}
-              </q-badge>
+                :label="props.row.no_sigeva"
+              />
             </q-td>
-            <q-td key="no_arelab" :props="props">
-              {{ props.row.no_arelab }}
+            <q-td key="no_evasco" :props="props">
+              {{ props.row.no_evasco }}
             </q-td>
           </q-tr>
         </template>
@@ -41,63 +39,38 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      colorin: "#89070f",
-      pagination: {
-        descending: false,
-        page: 1,
-        rowsPerPage: 7
-        // rowsNumber: xx if getting data from a server
-      },
       columns: [
         {
-          name: "no_sigere",
+          name: "no_sigeva",
           required: true,
-          label: "COD",
+          label: "Semaforo",
           align: "left",
-          field: "no_sigere",
+          field: "no_sigeva",
           sortable: true
         },
         {
-          name: "no_arelab",
-          required: true,
-          label: "DESCRIPCION",
+          name: "no_evasco",
           align: "left",
-          field: "no_arelab",
+          label: "Cantidad",
+          field: "no_evasco",
           sortable: true
         }
       ],
+      model: "",
       info: [],
       resumen: {},
-      model: null,
       separator: "cell"
     };
   },
   methods: {
-    ...mapActions("example", ["listar_area_laboral"]),
+    ...mapActions("reque", ["listar_evaluacion"]),
     coloreando(arg) {
       return `background-color: ${arg}`;
-    },
-    semaforo(arg) {
-      let respuesta = "";
-      if (arg == 0) {
-        respuesta = "black";
-      } else if (arg == 1) {
-        respuesta = "blue";
-      } else if (arg == 2) {
-        respuesta = "green";
-      } else if (arg == 3) {
-        respuesta = "yellow";
-      } else if (arg == 4) {
-        respuesta = "amber";
-      } else if (arg == 5) {
-        respuesta = "red";
-      }
-      return respuesta;
     }
   },
   mounted() {
-    console.log("se cargo el created de resumen");
-    this.listar_area_laboral()
+    console.log("se cargo el mounted de Estado");
+    this.listar_evaluacion()
       .then(resp => {
         console.log(resp);
         this.info = resp;
@@ -109,8 +82,3 @@ export default {
   }
 };
 </script>
-<style>
-#color1 {
-  color: #165f89;
-}
-</style>

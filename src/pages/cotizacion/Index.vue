@@ -17,16 +17,19 @@
         </q-item>
         <div class="row full-width">
           <q-item class="col-sm-3 col-xs-12">
-            <Estado />
-          </q-item>
-          <q-item class="col-sm-3 col-xs-12">
-            <Motivo />
-          </q-item>
-          <q-item class="col-sm-3 col-xs-12">
             <Evaluacion />
           </q-item>
+          <q-item class="col-sm-2 col-xs-12">
+            <Estado />
+          </q-item>
+          <q-item class="col-sm-2 col-xs-12">
+            <Motivo />
+          </q-item>
+          <q-item class="col-sm-2 col-xs-12">
+            <ActualizarOferta />
+          </q-item>
           <q-item class="col-sm-3 col-xs-12">
-            <Resumen />
+            <Semaforo />
           </q-item>
         </div>
         <TablaListado />
@@ -58,8 +61,8 @@ export default {
     Estado: () => import("./Estado"),
     Motivo: () => import("./Motivo"),
     Evaluacion: () => import("./Evaluacion"),
-    Resumen: () => import("./Resumen"),
-    // Leyenda4: () => import("./Leyenda4"),
+    ActualizarOferta: () => import("./ActualizarOferta"),
+    Semaforo: () => import("./Semaforo"),
     Atras: () => import("../../components/IrAtras")
     // AddRegistro: () => import("./Create")
   }
@@ -67,7 +70,4 @@ export default {
 };
 </script>
 
-<style>
-q-btn {
-}
-</style>
+<style></style>
