@@ -27,3 +27,11 @@ export function getClieContactos(state) {
   console.log(state.clienteContactos);
   return state.clienteContactos;
 }
+
+export function getnombreTextoCorreo(state) {
+  return state.nombreTextoCorreo;
+}
+
+export function gettextoCorreo(state) {
+  return state.textoCorreo;
+}

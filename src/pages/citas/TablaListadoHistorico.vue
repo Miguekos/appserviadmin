@@ -46,9 +46,9 @@
       <q-table
         dense
         v-show="showSimulatedReturnData"
-        :data="getRegistros"
+        :data="info"
         :columns="columns"
-        row-key="id_reqcot"
+        row-key="co_citcli"
         binary-state-sort
         :filter="filter"
         :loading="loading"
@@ -57,29 +57,29 @@
       >
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="id_reqcot" :props="props">
-              {{ props.row.id_reqcot }}
+            <q-td key="co_citcli" :props="props">
+              {{ props.row.co_citcli }}
             </q-td>
-            <q-td key="fe_regist" :props="props">
-              {{ props.row.fe_regist }}
+            <q-td key="no_sigcli" :props="props">
+              {{ props.row.no_sigcli }}
             </q-td>
-            <q-td key="no_razsoc" :props="props">
-              {{ props.row.no_razsoc }}
+            <q-td key="no_percon" :props="props">
+              {{ props.row.no_percon }}
             </q-td>
-            <q-td key="no_contac" :props="props">
-              {{ props.row.no_contac }}
+            <q-td key="no_sigare" :props="props">
+              {{ props.row.no_sigare }}
             </q-td>
-            <q-td key="no_usuari" :props="props">
-              {{ props.row.no_usuari }}
+            <q-td key="no_direcc" :props="props">
+              {{ props.row.no_direcc }}
             </q-td>
-            <q-td key="ca_diapen" :props="props">
-              {{ props.row.ca_diapen }}
+            <q-td key="fe_citcli" :props="props">
+              {{ formatearFecha(props.row.fe_citcli) }}
             </q-td>
-            <q-td key="fe_reqcot" :props="props">
-              {{ props.row.fe_reqcot }}
+            <q-td key="ho_citcli" :props="props">
+              {{ props.row.ho_citcli }}
             </q-td>
-            <q-td key="fe_reqcot" :props="props">
-              {{ props.row.fe_reqcot }}
+            <q-td key="no_repcit  " :props="props">
+              {{ props.row.no_repcit }}
             </q-td>
           </q-tr>
         </template>
@@ -104,6 +104,7 @@ export default {
   },
   data() {
     return {
+      info: [],
       selection: ["teal", "red"],
       itemsListos: [],
       check: false,
@@ -116,62 +117,62 @@ export default {
       rowCount: 10,
       columns: [
         {
-          name: "id_reqcot",
+          name: "co_citcli",
           required: true,
           label: "Nro.",
           align: "left",
-          field: "id_reqcot",
+          field: "co_citcli",
           format: val => `${val}`,
           sortable: true
         },
         {
-          name: "fe_regist",
+          name: "no_sigcli",
           align: "left",
           label: "Sigla Cliente",
-          field: "fe_regist",
+          field: "no_sigcli",
           sortable: true
         },
         {
-          name: "no_razsoc",
+          name: "no_percon",
           align: "left",
           label: "Contacto",
-          field: "no_razsoc",
+          field: "no_percon",
           sortable: true
         },
         {
-          name: "no_contac",
+          name: "no_sigare",
           align: "left",
           label: "Area",
-          field: "no_contac",
+          field: "no_sigare",
           sortable: true
         },
         {
-          name: "no_usuari",
+          name: "no_direcc",
           align: "left",
           label: "Direccion",
-          field: "no_usuari",
+          field: "no_direcc",
           sortable: true
         },
         {
-          name: "ca_diapen",
+          name: "fe_citcli",
           align: "center",
           label: "Fecha",
-          field: "ca_diapen",
+          field: "fe_citcli",
           format: val => date.formatDate(val, "DD-MM-YYYY"),
           sortable: true
         },
         {
-          name: "fe_reqcot",
+          name: "ho_citcli",
           align: "left",
           label: "Hora",
-          field: "fe_reqcot",
+          field: "ho_citcli",
           sortable: true
         },
         {
-          name: "fe_reqcot",
+          name: "no_repcit  ",
           align: "left",
           label: "Representante",
-          field: "fe_reqcot",
+          field: "no_repcit  ",
           sortable: true
         }
       ],
@@ -201,7 +202,10 @@ export default {
       "registros",
       "eliminar_requerimiento_cotizacion"
     ]),
-    ...mapActions("clientes", ["listar_rechazo_citas"]),
+    ...mapActions("clientes", [
+      "listar_rechazo_citas",
+      "listar_citas_historico"
+    ]),
     formatearFecha(fecha) {
       return date.formatDate(fecha, "YYYY-MM-DD");
     },
@@ -209,7 +213,7 @@ export default {
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
     },
     cancelarCita(arg) {
-      console.log(arg.id_reqcot);
+      console.log(arg.co_citcli);
       this.$q
         .dialog({
           title: "Confirmar",
@@ -247,7 +251,7 @@ export default {
   async mounted() {
     // this.$q.loading.show();
     this.loading = true;
-    // await this.registros();
+    this.info = await this.listar_citas_historico();
     this.loading = false;
     // this.$q.loading.hide();
   }

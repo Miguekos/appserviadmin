@@ -36,17 +36,6 @@
           </q-input>
 
           <q-space />
-
-          <q-btn
-            flat
-            dense
-            no-wrap
-            color="primary"
-            icon="cloud_upload"
-            no-caps
-            label="Exportar"
-            class="q-ml-sm q-px-md"
-          />
         </q-toolbar>
       </div>
     </div>

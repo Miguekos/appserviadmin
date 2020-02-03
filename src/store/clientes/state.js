@@ -1,5 +1,7 @@
 export default {
   clientes: [],
   clienteContactos: [],
-  clienteDirecciones: []
+  clienteDirecciones: [],
+  nombreTextoCorreo: "qeqweqweq",
+  textoCorreo: "qwewqeqwe"
 };

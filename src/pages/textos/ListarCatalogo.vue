@@ -34,26 +34,14 @@
               <q-icon name="search" />
             </template>
           </q-input>
-
-          <!-- <q-space /> -->
-          <!-- <q-btn
-            flat
-            dense
-            no-wrap
-            color="primary"
-            icon="cloud_upload"
-            no-caps
-            label="Exportar"
-            class="q-ml-sm q-px-md"
-          /> -->
         </q-toolbar>
       </div>
     </div>
     <q-table
       dense
-      :data="get_listar_catalogos_new"
+      :data="info"
       :columns="columns"
-      row-key="co_catpro"
+      row-key="co_txtcor"
       :selected-rows-label="getSelectedString"
       selection="multiple"
       :selected.sync="selected"
@@ -110,25 +98,25 @@ export default {
       filter: "",
       columns: [
         {
-          name: "co_catpro",
+          name: "co_txtcor",
           required: true,
           label: "Nro",
           align: "left",
-          field: "co_catpro",
+          field: "co_txtcor",
           sortable: true
         },
         {
-          name: "no_catpro",
+          name: "no_txtcor",
           align: "left",
           label: "Nombre de Texto",
-          field: "no_catpro",
+          field: "no_txtcor",
           sortable: true
         },
         {
-          name: "co_arcadj",
+          name: "de_txtcor",
           label: "Texto",
           align: "left",
-          field: "co_arcadj",
+          field: "de_txtcor",
           sortable: true
         }
       ]
@@ -138,7 +126,11 @@ export default {
     // TituloTabla: () => import("../../components/TituloTablas")
   },
   methods: {
-    ...mapActions("clientes", ["getClientes", "eliminarCliente"]),
+    ...mapActions("clientes", [
+      "getClientes",
+      "eliminarCliente",
+      "listar_texto_correos"
+    ]),
     ...mapActions("example", [
       "listar_catalogos_new",
       "mantenimiento_catalogos"
@@ -160,7 +152,7 @@ export default {
         console.log(element);
         //tipo de persona
         // Codigo de cliente
-        this.mantenimiento_catalogos(element.co_catpro)
+        this.mantenimiento_catalogos(element.co_txtcor)
           .then(resp => {
             console.log(resp);
             this.$q.notify({
@@ -175,7 +167,7 @@ export default {
             console.log(err);
           })
           .finally(async () => {
-            this.info = await this.listar_catalogos_new();
+            this.info = await this.listar_texto_correos();
             // this.info = this.Clientes;
           });
       }
@@ -185,17 +177,6 @@ export default {
     },
     rowClick(val) {
       console.log(val);
-      window.open(
-        `http://172.105.17.123:4100/api/containers/container1/download/${
-          val.co_arcadj
-        }`,
-        "_blank"
-      );
-      // this.$router.push(
-      //   `http://127.0.0.1:3000/api/containers/container1/download/${
-      //     val.co_arcadj
-      //   }`
-      // );
     },
     rowClickNew() {
       console.log();
@@ -224,7 +205,7 @@ export default {
   },
   async mounted() {
     // await this.getClientes();
-    this.info = await this.listar_catalogos_new();
+    this.info = await this.listar_texto_correos();
   }
 };
 </script>

@@ -79,8 +79,6 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
-import { date } from "quasar";
-let timeStamp = Date.now();
 export default {
   props: ["clienteR", "contactoR"],
   computed: {
@@ -154,13 +152,12 @@ export default {
     },
     sinContactos() {
       this.loadboton = true;
-      let formattedString = date.formatDate(timeStamp, "YYYY-MM-DD");
+      // let formattedString = date.formatDate(timeStamp, "YYYY-MM-DD");
       const data = {
         cliente: this.clienteR,
         contacto: this.contactoR,
         codigoSeguimientoVenta: "1",
-        comentario: "Automatico",
-        fechaSeguimiento: formattedString
+        comentario: "Automatico"
       };
       console.log(data);
       this.mantenimiento_seguimiento_cliente({ ...data })

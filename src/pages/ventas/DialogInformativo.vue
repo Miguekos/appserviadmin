@@ -104,7 +104,8 @@
               <q-field label="Direccion" stack-label :dense="dense">
                 <template v-slot:control>
                   <div class="self-center full-width no-outline" tabindex="0">
-                    {{ info[0].no_direcc }}
+                    {{ info[0].no_direcc }} , {{ info[0].no_distri }},
+                    {{ info[0].no_provin }} , {{ info[0].no_depart }}
                   </div>
                 </template>
               </q-field>
