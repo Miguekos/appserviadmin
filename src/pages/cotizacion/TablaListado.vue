@@ -61,15 +61,19 @@
     >
       <template v-slot:body="props">
         <q-tr :props="props">
-          <!-- <q-td key="" :props="props"> </q-td> -->
           <q-td key="fe_cotiza" :props="props">
-            {{ props.row.fe_cotiza }}
+            {{ formatearFecha(props.row.fe_cotiza) }}
           </q-td>
           <q-td key="id_cotiza" :props="props">
             {{ props.row.id_cotiza }}
           </q-td>
           <q-td key="co_semcot" :props="props">
-            {{ props.row.co_semcot }}
+            <q-btn
+              push
+              round
+              size="xs"
+              :color="semaforo(props.row.co_semcot)"
+            />
           </q-td>
           <q-td key="no_sigcli" :props="props">
             {{ props.row.no_sigcli }}
@@ -109,37 +113,6 @@
             {{ props.row.no_sigmot }}
           </q-td>
 
-          <!-- <q-td key="fe_regist" :props="props">
-            <q-select
-              v-model="model"
-              dense
-              options-dense
-              :options="options"
-              label="Standard"
-            />
-          </q-td>
-          <q-td key="no_sigsve" :props="props">
-            <q-select
-              v-model="model"
-              dense
-              options-dense
-              :options="options"
-              label="Standard"
-            />
-          </q-td>
-          <q-td key="no_coment" :props="props">
-            <q-select
-              v-model="model"
-              dense
-              options-dense
-              :options="options"
-              label="Standard"
-            />
-          </q-td> -->
-          <!-- <q-td key="ca_consul" :props="props"> -->
-          <!--            {{ props.row.ca_consul }}-->
-          <!-- <q-btn round size="xs" :color="semaforo(props.row.co_semsve)" /> -->
-          <!-- </q-td> -->
           <q-td key="no_coment" :props="props">
             {{ props.row.no_coment }}
           </q-td>
@@ -151,6 +124,7 @@
               <q-btn dense size="sm" color="accent" icon="edit" />
               <q-btn dense size="sm" color="amber" icon="email" />
               <q-btn size="sm" dense color="blue" icon="thumb_up_alt" />
+              <q-btn size="sm" dense color="red" icon="close" />
             </div>
           </q-td>
         </q-tr>
@@ -208,6 +182,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { date } from "quasar";
 const columns = [
   // {
   //   name: "",
@@ -235,7 +210,7 @@ const columns = [
     name: "co_semcot",
     align: "left",
     sortable: true,
-    label: "Semaforo",
+    label: "",
     field: "co_semcot"
   },
   {
@@ -277,7 +252,7 @@ const columns = [
   },
   {
     name: "no_sigeva",
-    align: "left",
+    align: "center",
     sortable: true,
     label: "Evaluacion",
     field: "no_sigeva",
@@ -285,7 +260,7 @@ const columns = [
   },
   {
     name: "no_sigest",
-    align: "left",
+    align: "center",
     sortable: true,
     label: "Estados",
     field: "no_sigest"
@@ -306,7 +281,7 @@ const columns = [
   },
   {
     name: "ca_consul",
-    align: "left",
+    align: "center",
     sortable: true,
     label: "Consultas",
     field: "ca_consul"
@@ -376,6 +351,9 @@ export default {
     ...mapActions("reque", ["seguimiento_cotizacion"]),
     enviarMasivos() {
       this.envioMasivoCorreo = true;
+    },
+    formatearFecha(fecha) {
+      return date.formatDate(fecha, "YYYY-MM-DD");
     },
     dialogCorreoOpen() {
       this.dialogCorreo = true;

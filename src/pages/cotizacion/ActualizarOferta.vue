@@ -14,6 +14,7 @@
         row-key="no_sigeva"
         hide-bottom
         hide-header
+        :pagination.sync="pagination"
       >
         <template v-slot:body="props">
           <q-tr :props="props">
@@ -39,6 +40,13 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      pagination: {
+        sortBy: "no_sigaof",
+        descending: false,
+        page: 1,
+        rowsPerPage: 15
+        // rowsNumber: xx if getting data from a server
+      },
       columns: [
         {
           name: "no_sigaof",

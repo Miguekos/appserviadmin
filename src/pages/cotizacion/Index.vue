@@ -25,10 +25,10 @@
           <q-item class="col-sm-2 col-xs-12">
             <Motivo />
           </q-item>
-          <q-item class="col-sm-2 col-xs-12">
+          <q-item class="col-sm-3 col-xs-12">
             <ActualizarOferta />
           </q-item>
-          <q-item class="col-sm-3 col-xs-12">
+          <q-item class="col-sm-2 col-xs-12">
             <Semaforo />
           </q-item>
         </div>
