@@ -150,7 +150,8 @@ export async function mantenimiento_citas_cliente({}, payload) {
     codigodireccion: payload.codigodireccion,
     comentario: payload.comentario,
     fechaCita: payload.fechaCita,
-    horaCita: payload.horaCita
+    horaCita: payload.horaCita,
+    direccionAlternativa: payload.direccionAlternativa
   };
   const response = await axiosInstance.post(
     `/api/ventas/mantenimiento_citas_cliente/${payload.cliente}/${

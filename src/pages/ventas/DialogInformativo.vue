@@ -120,6 +120,7 @@
                       size="6px"
                       :color="semaforo(info[0].co_semsve)"
                     />
+                    Sin Respuesta
                     <!--                    {} -->
                   </div>
                 </template>

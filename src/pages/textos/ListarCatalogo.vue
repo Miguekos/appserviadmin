@@ -117,6 +117,7 @@ export default {
           label: "Texto",
           align: "left",
           field: "de_txtcor",
+          style: "width: 10px",
           sortable: true
         }
       ]
@@ -135,6 +136,9 @@ export default {
       "listar_catalogos_new",
       "mantenimiento_catalogos"
     ]),
+    coloreando(arg) {
+      return `background-color: ${arg}`;
+    },
     onRowClick() {
       console.log("Se preciono una ROW");
     },
