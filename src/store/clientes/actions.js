@@ -368,3 +368,17 @@ export async function listar_texto_correos({ commit }) {
   );
   return response.data;
 }
+
+export async function mantenimiento_textos_correo_update({}, payload) {
+  console.log("mantenimiento_textos_correo_update");
+  const data = {
+    nombreTextoCorreo: payload.nombreTextoCorreo,
+    textoCorreo: payload.textoCorreo
+  };
+  const response = await axiosInstance.post(
+    `/api/clientes/mantenimiento_textos_correo_update/${payload.id}`, data
+  );
+  // console.log(response.data);
+  // commit("tipoDePersona", response.data);
+  return response.data;
+}

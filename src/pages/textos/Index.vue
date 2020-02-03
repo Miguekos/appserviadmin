@@ -44,6 +44,13 @@
               </div>
               <div class="q-pa-sm text-center">
                 <q-btn
+                  v-if="idupdate != null"
+                  @click="update()"
+                  color="info"
+                  label="Actualizar"
+                />
+                <q-btn
+                  v-else
                   @click="guardarTextos()"
                   color="positive"
                   label="Grabar"
@@ -147,6 +154,7 @@ export default {
   },
   data() {
     return {
+      idupdate: null,
       pagination: {
         sortBy: "nu_ordcat",
         dataLista: [],
@@ -209,7 +217,8 @@ export default {
     ...mapActions("clientes", [
       "getClientes",
       "eliminarCliente",
-      "listar_texto_correos"
+      "listar_texto_correos",
+      "mantenimiento_textos_correo_update"
     ]),
     ...mapActions("example", [
       "listar_catalogos_new",
@@ -262,6 +271,7 @@ export default {
       console.log(val);
       this.form.nombreTextoCorreo = val.no_txtcor;
       this.form.textoCorreo = val.de_txtcor;
+      this.idupdate = val.co_txtcor;
     },
     rowClickNew() {
       console.log();
@@ -292,6 +302,19 @@ export default {
     async guardarTextos() {
       if (this.form.nombreTextoCorreo != "" && this.form.textoCorreo != "") {
         await this.mantenimiento_textos_correo(this.form);
+        this.form.nombreTextoCorreo = "";
+        this.form.textoCorreo = "";
+        this.info = await this.listar_texto_correos();
+      } else {
+        console.log("Se debe cargar un archivo antes de guardar");
+      }
+    },
+    async update() {
+      if (this.form.nombreTextoCorreo != "" && this.form.textoCorreo != "") {
+        await this.mantenimiento_textos_correo_update({
+          ...this.form,
+          id: this.idupdate
+        });
         this.form.nombreTextoCorreo = "";
         this.form.textoCorreo = "";
         this.info = await this.listar_texto_correos();
