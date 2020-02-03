@@ -194,7 +194,7 @@ export async function mantenimiento_telefono({ commit }, payload) {
   };
   const response = await axiosInstance.post(
     `/api/clientes/mantenimiento_telefono/${payload.p_id}/${
-      payload.p_co_percon
+    payload.p_co_percon
     }`,
     data
   );
@@ -213,7 +213,7 @@ export async function percon_direccion_telefono({ commit }, payload) {
   console.log(data);
   const response = await axiosInstance.get(
     `/api/ventas/percon_direccion_telefono/${payload.p_co_percon}/${
-      payload.p_co_direcc
+    payload.p_co_direcc
     }/${payload.p_co_telefo}`
   );
   console.log("Respuesta percon_direccion_telefono");
@@ -316,6 +316,17 @@ export async function listar_evaluacion_seguimiento_requerimientov1({
   console.log("listar_evaluacion_seguimiento_requerimientov1");
   const response = await axiosInstance.get(
     `/api/clientes/listar_evaluacion_seguimiento_requerimientov1`
+  );
+  return response.data;
+}
+
+// eslint-disable
+export async function listar_rechazo_citas({
+  commit
+}) {
+  console.log("listar_rechazo_citas");
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_rechazo_citas`
   );
   return response.data;
 }

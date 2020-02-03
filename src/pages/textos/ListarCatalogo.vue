@@ -2,7 +2,7 @@
   <div class="full-width">
     <div>
       <p class="bg-secondary dense shadow-5 text-center text-white">
-        Catalogos
+        Catalogos de texto
       </p>
     </div>
     <div class="q-pb-md">
@@ -120,22 +120,16 @@ export default {
         {
           name: "no_catpro",
           align: "left",
-          label: "Nombre Documento",
+          label: "Nombre de Texto",
           field: "no_catpro",
           sortable: true
         },
         {
           name: "co_arcadj",
-          label: "Archivo",
+          label: "Texto",
           align: "left",
           field: "co_arcadj",
           sortable: true
-        },
-        {
-          name: "nu_ordcat",
-          label: "Prioridad",
-          align: "left",
-          field: "nu_ordcat"
         }
       ]
     };

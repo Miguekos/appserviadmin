@@ -67,7 +67,13 @@
           <q-item-section no-wrap>04 - Clientes</q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple active-class="my-menu-link">
+        <q-item
+          clickable
+          v-ripple
+          :active="link === '/citas'"
+          @click="URL('/citas')"
+          active-class="my-menu-link"
+        >
           <q-item-section no-wrap>05 - Agenda de Citas</q-item-section>
         </q-item>
 

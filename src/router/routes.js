@@ -123,6 +123,15 @@ const routes = [
     }
   },
   {
+    path: "/citas",
+    name: "citas",
+    component: () => import("layouts/MyLayout.vue"),
+    children: [{ path: "", component: () => import("pages/citas/Index.vue") }],
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("layouts/Login"),

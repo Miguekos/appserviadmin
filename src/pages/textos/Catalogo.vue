@@ -1,7 +1,7 @@
 <template>
   <div class="justify-around full-width">
     <div class="q-pa-sm">
-      <q-input dense v-model="form.nombreCatalogo" label="Nombre" />
+      <q-input dense v-model="form.nombreCatalogo" label="Nombre de texto" />
     </div>
     <div class="q-pa-sm">
       <template>
