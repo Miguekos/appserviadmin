@@ -36,7 +36,7 @@
             <template v-slot:append>
               <q-icon name="access_time" class="cursor-pointer">
                 <q-popup-proxy transition-show="scale" transition-hide="scale">
-                  <q-time v-model="time" />
+                  <q-time v-model="time" mask="HH:mm" format24h />
                 </q-popup-proxy>
               </q-icon>
             </template>
@@ -167,7 +167,7 @@ export default {
       const data = {
         cliente: this.clienteR,
         contacto: this.contactoR,
-        codigodireccion: this.listar_direccionVar,
+        direccionAlternativa: this.listar_direccionVar,
         comentario: this.text,
         fechaCita: this.date,
         horaCita: this.time
