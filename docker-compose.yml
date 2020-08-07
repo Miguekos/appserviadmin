@@ -1,8 +1,8 @@
 # docker-compose.yml
 version: "2"
 services:
-  webapp_envios:
-    #    image: quasarenvios:1.0
+  webapp_sjservi:
+    #    image: quasarsjservi:1.0
     build:
       context: .
       dockerfile: Dockerfile
