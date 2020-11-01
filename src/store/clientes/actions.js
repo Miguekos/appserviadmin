@@ -137,7 +137,7 @@ export async function listar_genero_persona({ commit }) {
 // eslint-disable-next-line
 export async function listar_area_laboral({ commit }) {
   console.log("listar Cliente");
-  const response = await axiosInstance.get("/api/ventas/listar_area_laboral");
+  const response = await axiosInstance.get("/api/clientes/listar_area_laboral");
   // console.log(response.data);
   // commit("setClientes", response.data);
   return response.data;
