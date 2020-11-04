@@ -27,6 +27,7 @@ export async function TipoDeDocumento({ commit }) {
   // commit("TipoDeDocumento", response.data);
   return response.data;
 }
+
 // eslint-disable-next-line
 export async function createCleintes({ commit }, payload) {
   console.log("crear cliente");
@@ -109,13 +110,12 @@ export async function guardarContacto({ commit }, payload) {
 
 export async function eliminarCliente({ commit }, payload) {
   console.log("Eliminar Cliente");
-  const data = {
-    tipoPersona: "2",
-    desactivarCliente: "S"
-  };
+  const id = payload.codigoDeCliente;
+  delete payload.codigoDeCliente;
+  console.log("payload", payload);
   const response = await axiosInstance.post(
-    `/api/clientes/eliminar/${payload.p_id}`,
-    data
+    `/api/clientes/eliminar/${id}`,
+    payload
   );
   console.log("Respuesta de la direccion de cliente");
   console.log(response.data);
@@ -353,7 +353,8 @@ export async function mantenimiento_textos_correo({}, payload) {
     textoCorreo: payload.textoCorreo
   };
   const response = await axiosInstance.post(
-    `/api/clientes/mantenimiento_textos_correo`, data
+    `/api/clientes/mantenimiento_textos_correo`,
+    data
   );
   // console.log(response.data);
   // commit("tipoDePersona", response.data);
@@ -376,7 +377,8 @@ export async function mantenimiento_textos_correo_update({}, payload) {
     textoCorreo: payload.textoCorreo
   };
   const response = await axiosInstance.post(
-    `/api/clientes/mantenimiento_textos_correo_update/${payload.id}`, data
+    `/api/clientes/mantenimiento_textos_correo_update/${payload.id}`,
+    data
   );
   // console.log(response.data);
   // commit("tipoDePersona", response.data);

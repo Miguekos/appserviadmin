@@ -89,13 +89,13 @@
               required
             />
 
-            <q-input
-              dense
-              ref="direccionFiscal"
-              outlined
-              v-model="direccionFiscal"
-              label="Direccion Fiscal"
-            />
+            <!--            <q-input-->
+            <!--              dense-->
+            <!--              ref="direccionFiscal"-->
+            <!--              outlined-->
+            <!--              v-model="direccionFiscal"-->
+            <!--              label="Direccion Fiscal"-->
+            <!--            />-->
             <div class="q-gutter-xs">
               <q-select
                 outlined

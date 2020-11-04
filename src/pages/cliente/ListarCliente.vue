@@ -118,7 +118,7 @@
         transition-hide="flip-up"
       >
         <q-card style="width: 700px;">
-          <DialogUpdate :dataUpdate="dataUpdate" />
+          <DialogUpdate @click="boton" :dataUpdate="dataUpdate" />
         </q-card>
       </q-dialog>
     </div>
@@ -212,6 +212,10 @@ export default {
   },
   methods: {
     ...mapActions("clientes", ["getClientes", "eliminarCliente"]),
+    async boton() {
+      await this.getClientes();
+      this.updateCliente = false;
+    },
     onRowClick() {
       console.log("Se preciono una ROW");
     },

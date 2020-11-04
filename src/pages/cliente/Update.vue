@@ -19,7 +19,7 @@
       <q-item>
         <q-item-section>
           <form
-            @submit.prevent="registrar"
+            @submit.prevent="actualizar"
             @reset.prevent="onReset"
             class="q-gutter-sm"
           >
@@ -89,57 +89,57 @@
               required
             />
 
-            <q-input
-              dense
-              ref="direccionFiscal"
-              outlined
-              v-model="direccionFiscal"
-              label="Direccion Fiscal"
-            />
-            <div class="q-gutter-xs">
-              <q-select
-                outlined
-                dense
-                required
-                @input="provincia()"
-                v-model="fieldDepartamento"
-                :options="getDepartamento"
-                option-value="no_ubigeo"
-                option-label="nu_depart"
-                emit-value
-                map-options
-                label="Departamento"
-              />
-            </div>
-            <div class="q-gutter-xs">
-              <q-select
-                @input="distrito()"
-                outlined
-                dense
-                required
-                v-model="fieldProvincia"
-                :options="getProvincia"
-                option-value="no_ubigeo"
-                option-label="no_provin"
-                emit-value
-                map-options
-                label="Provincia"
-              />
-            </div>
-            <div class="q-gutter-xs">
-              <q-select
-                outlined
-                dense
-                required
-                v-model="formDireccion.codigoUbigeo"
-                :options="getDistrito"
-                option-value="no_ubigeo"
-                option-label="no_provin"
-                emit-value
-                map-options
-                label="Distrito"
-              />
-            </div>
+            <!--            <q-input-->
+            <!--              dense-->
+            <!--              ref="direccionFiscal"-->
+            <!--              outlined-->
+            <!--              v-model="direccionFiscal"-->
+            <!--              label="Direccion Fiscal"-->
+            <!--            />-->
+            <!--            <div class="q-gutter-xs">-->
+            <!--              <q-select-->
+            <!--                outlined-->
+            <!--                dense-->
+            <!--                required-->
+            <!--                @input="provincia()"-->
+            <!--                v-model="fieldDepartamento"-->
+            <!--                :options="getDepartamento"-->
+            <!--                option-value="no_ubigeo"-->
+            <!--                option-label="nu_depart"-->
+            <!--                emit-value-->
+            <!--                map-options-->
+            <!--                label="Departamento"-->
+            <!--              />-->
+            <!--            </div>-->
+            <!--            <div class="q-gutter-xs">-->
+            <!--              <q-select-->
+            <!--                @input="distrito()"-->
+            <!--                outlined-->
+            <!--                dense-->
+            <!--                required-->
+            <!--                v-model="fieldProvincia"-->
+            <!--                :options="getProvincia"-->
+            <!--                option-value="no_ubigeo"-->
+            <!--                option-label="no_provin"-->
+            <!--                emit-value-->
+            <!--                map-options-->
+            <!--                label="Provincia"-->
+            <!--              />-->
+            <!--            </div>-->
+            <!--            <div class="q-gutter-xs">-->
+            <!--              <q-select-->
+            <!--                outlined-->
+            <!--                dense-->
+            <!--                required-->
+            <!--                v-model="formDireccion.codigoUbigeo"-->
+            <!--                :options="getDistrito"-->
+            <!--                option-value="no_ubigeo"-->
+            <!--                option-label="no_provin"-->
+            <!--                emit-value-->
+            <!--                map-options-->
+            <!--                label="Distrito"-->
+            <!--              />-->
+            <!--            </div>-->
 
             <div class="text-center">
               <q-btn
@@ -150,8 +150,8 @@
               />
               <q-btn
                 size="sm"
-                label="Resetear"
-                type="reset"
+                label="Close"
+                v-close-popup
                 color="negative"
                 class="q-ml-sm"
               />
@@ -168,6 +168,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   props: ["dataUpdate"],
   computed: {
@@ -179,6 +180,7 @@ export default {
   },
   data() {
     return {
+      codigoCliente: null,
       form: {
         tipoPersona: "1",
         apellidoPaterno: "",
@@ -236,7 +238,8 @@ export default {
     ...mapActions("clientes", [
       "createCleintes",
       "tipoDePersona",
-      "TipoDeDocumento"
+      "TipoDeDocumento",
+      "eliminarCliente"
     ]),
     ...mapActions("proveedor", [
       "listar_sector_economico",
@@ -248,6 +251,35 @@ export default {
       "registrarProveContacto",
       "contactoProveedor"
     ]),
+    actualizar() {
+      this.eliminarCliente({
+        codigoDeCliente: this.codigoCliente,
+        tipoPersona: this.tipoDePersonaVar,
+        tipoDocumento: this.tipoDeDocumentoVar,
+        numeroDocumento: this.numeroDeDocumento,
+        razonSocial: this.nombre,
+        codigoSectorEconomico: this.listar_sector_economicoVar,
+        siglaCliente: this.sigla
+      })
+        .then(resp => {
+          console.log(resp);
+          this.$q.notify({
+            color: "green",
+            textColor: "white",
+            icon: "fas fa-check-circle",
+            message: "Eliminado Correctamente.!"
+          });
+          this.$emit("click");
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(() => {
+          // this.getClientes();
+          // this.info = this.Clientes;
+          console.log("Finalizo el proceso");
+        });
+    },
     provincia() {
       console.log(this.fieldDepartamento);
       this.pblistar_provincia(this.fieldDepartamento);
@@ -315,13 +347,14 @@ export default {
   },
   async mounted() {
     console.log(this.dataUpdate);
-    this.tipoDePersonaVar = this.dataUpdate;
-    this.tipoDeDocumentoVar = this.dataUpdate.no_tipdoc;
+    this.codigoCliente = this.dataUpdate.co_client;
+    this.tipoDePersonaVar = this.dataUpdate.co_tipper;
+    this.tipoDeDocumentoVar = this.dataUpdate.ti_docide;
     this.numeroDeDocumento = this.dataUpdate.co_doctri;
     this.nombre = this.dataUpdate.no_client;
-    this.listar_sector_economicoVar = this.dataUpdate;
+    this.listar_sector_economicoVar = this.dataUpdate.co_sececo;
     this.sigla = this.dataUpdate.no_sigcli;
-    this.direccionFiscal = this.dataUpdate.no_sigcli;
+    // this.direccionFiscal = this.dataUpdate.no_sigcli;
     this.fieldDepartamento = this.dataUpdate;
     this.fieldProvincia = this.dataUpdate;
     this.formDireccion.codigoUbigeo = this.dataUpdate;
