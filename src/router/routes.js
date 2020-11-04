@@ -82,6 +82,7 @@ const routes = [
     children: [
       { path: "", component: () => import("pages/cliente/Index.vue") },
       { path: "create", component: () => import("pages/cliente/Create.vue") },
+      { path: "update", component: () => import("pages/cliente/Update.vue") },
       {
         path: "detalle/:id",
         component: () => import("pages/cliente/Detalle.vue")

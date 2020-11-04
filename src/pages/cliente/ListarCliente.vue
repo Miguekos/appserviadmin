@@ -39,17 +39,50 @@
       :columns="columns"
       row-key="nu_doccli"
       :selected-rows-label="getSelectedString"
-      selection="multiple"
       :selected.sync="selected"
       :filter="filter"
       :loading="loading"
       class="my-sticky-header-table cursor-pointer"
       :pagination.sync="pagination"
     >
-      <template v-slot:body-cell="props">
-        <q-td :props="props" @click.native="rowClick(props.row)">
-          <div>{{ props.value }}</div>
+      <template v-slot:body-cell-detail="props">
+        <q-td :props="props">
+          <q-btn
+            size="sm"
+            @click="rowClick(props.row)"
+            dense
+            round
+            color="secondary"
+            icon="pageview"
+          />
         </q-td>
+      </template>
+      <template v-slot:body-cell-action="props">
+        <q-td :props="props">
+          <div class="q-gutter-sm">
+            <q-btn
+              dense
+              size="sm"
+              @click="rowClick(props.row)"
+              color="info"
+              icon="visibility"
+            />
+            <q-btn
+              dense
+              size="sm"
+              @click="editarRow(props.row)"
+              color="warning"
+              icon="edit"
+            />
+          </div>
+        </q-td>
+      </template>
+      <template v-slot:no-data="{ icon, message, filter }">
+        <div class="full-width row flex-center text-accent q-gutter-sm">
+          <q-icon size="2em" name="sentiment_dissatisfied" />
+          <span> Nada que mostrar... </span>
+          <q-icon size="2em" :name="filter ? 'filter_b_and_w' : icon" />
+        </div>
       </template>
     </q-table>
     <!-- <div class="q-mt-md">
@@ -66,17 +99,29 @@
           label="Nuevo"
           @click="URL('/cliente/create')"
         />
-        <q-btn
+        <!-- <q-btn
           size="sm"
           color="negative"
           text-color="white"
           label="Eliminar"
           @click="eliminarRow()"
-        />
+        /> -->
       </q-toolbar-title>
     </q-toolbar>
     <!-- {{ $data.selected }} -->
     <!--    {{ Clientes }}-->
+    <div>
+      <q-dialog
+        v-model="updateCliente"
+        persistent
+        transition-show="flip-down"
+        transition-hide="flip-up"
+      >
+        <q-card style="width: 700px;">
+          <DialogUpdate :dataUpdate="dataUpdate" />
+        </q-card>
+      </q-dialog>
+    </div>
   </div>
 </template>
 <script>
@@ -87,6 +132,11 @@ export default {
   },
   data() {
     return {
+      mode: "list",
+      invoice: {},
+      data_employee_dialog: {},
+      employee_dialog: false,
+      updateCliente: false,
       pagination: {
         sortBy: "no_client",
         descending: false,
@@ -95,7 +145,7 @@ export default {
         // rowsNumber: xx if getting data from a server
       },
       selected: [],
-      info: [],
+      dataUpdate: [],
       loading: false,
       filter: "",
       columns: [
@@ -145,11 +195,19 @@ export default {
           label: "Cant. Direcciones",
           align: "center",
           field: "ca_direcc"
+        },
+        {
+          name: "action",
+          align: "right",
+          label: "Acciones",
+          field: "action",
+          sortable: true
         }
       ]
     };
   },
   components: {
+    DialogUpdate: () => import("./Update")
     // TituloTabla: () => import("../../components/TituloTablas")
   },
   methods: {
@@ -195,6 +253,11 @@ export default {
             // this.info = this.Clientes;
           });
       }
+    },
+    editarRow(val) {
+      this.dataUpdate = val;
+      console.log(val);
+      this.updateCliente = true;
     },
     URL(arg) {
       this.$router.push(arg);
