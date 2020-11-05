@@ -35,7 +35,7 @@
 
           <q-space />
 
-          <q-btn
+          <!-- <q-btn
             v-if="$q.screen.gt.xs"
             no-wrap
             size="md"
@@ -44,7 +44,7 @@
             outline
             label="Eliminar"
             @click="eliminarContactoF()"
-          ></q-btn>
+          ></q-btn> -->
           <q-btn
             v-if="$q.screen.gt.xs"
             no-wrap
@@ -65,14 +65,33 @@
       row-key="no_percon"
       :filter="filter"
       :loading="loading"
-      selection="multiple"
       :selected.sync="selected"
       :selected-rows-label="getSelectedString"
       class="my-sticky-header-table"
     >
+      <template v-slot:body-cell-action="props">
+        <q-td :props="props">
+          <div class="q-gutter-sm">
+            <!-- <q-btn
+              dense
+              size="sm"
+              @click="rowClick(props.row)"
+              color="info"
+              icon="visibility"
+            /> -->
+            <q-btn
+              dense
+              size="sm"
+              @click="rowClick(props.row)"
+              color="warning"
+              icon="edit"
+            />
+          </div>
+        </q-td>
+      </template>
     </q-table>
     <q-dialog v-model="prompt" persistent>
-      <q-card style="width: 100%;">
+      <q-card style="width: 100%">
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <q-card-section>
             <div class="text-h6">Agregar Contacto</div>
@@ -92,7 +111,7 @@
                     v-model="form.apellidoPaterno"
                   />
                 </div>
-                <div class="col ">
+                <div class="col">
                   <q-input
                     ref="form.apellidoMaterno"
                     dense
@@ -258,6 +277,18 @@
     </q-dialog>
     <!--    {{ $data.selected }}-->
     <!-- {{ $data.generoOption }} -->
+    <div>
+      <q-dialog
+        v-model="updateCliente"
+        persistent
+        transition-show="flip-down"
+        transition-hide="flip-up"
+      >
+        <q-card style="width: 700px">
+          <DialogUpdate @click="boton" :dataUpdate="dataUpdate" />
+        </q-card>
+      </q-dialog>
+    </div>
   </div>
 </template>
 <script>
@@ -273,6 +304,8 @@ export default {
   },
   data() {
     return {
+      dataUpdate: [],
+      updateCliente: false,
       fieldDepartamento: "",
       fieldProvincia: "",
       fieldDistrito: "",
@@ -329,10 +362,10 @@ export default {
           sortable: true
         },
         {
-          name: "nu_doccon",
+          name: "no_arelab",
           align: "left",
           label: "Area",
-          field: "nu_doccon",
+          field: "no_arelab",
           sortable: true
         },
         // {
@@ -355,16 +388,33 @@ export default {
           label: "Telefono",
           field: "nu_telefo",
           sortable: true
+        },
+        {
+          name: "action",
+          align: "right",
+          label: "Acciones",
+          field: "action",
+          sortable: true
         }
       ]
     };
   },
   components: {
+    DialogUpdate: () => import("./updateContacto.vue")
     // TituloTabla: () => import("../../components/TituloTablas")
     // TablaDetalleDireccionLimpio: () =>
     //   import("../../pages/cliente/TablaDetalleDireccionLimpio")
   },
   methods: {
+    rowClick(val) {
+      console.log(val);
+      this.dataUpdate = val;
+      this.updateCliente = true;
+    },
+    async boton() {
+      // await this.getClientes();
+      this.updateCliente = false;
+    },
     eliminarDireccionF() {
       console.log(`Se selecionaron ${this.selected.length} registros`);
       if (this.selected.length === 0) {

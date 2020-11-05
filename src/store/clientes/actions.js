@@ -83,6 +83,25 @@ export async function guardarDireccion({ commit }, payload) {
   return response.data;
 }
 
+export async function actualizarDireccion({ commit }, payload) {
+  console.log("listar direccion_cliente");
+  console.log(payload);
+  console.log("listar direccion_cliente");
+  const data = {
+    codigoUbigeo: payload.codigoUbigeo,
+    direccion: payload.direccion,
+    codigoDireccion: payload.codigoDireccion
+  };
+  const response = await axiosInstance.post(
+    `/api/clientes/actualizarDireccion/${payload.p_id}`,
+    data
+  );
+  console.log("Respuesta de la direccion de cliente");
+  console.log(response.data);
+  // commit("guardarDireccion", response.data);
+  return response.data;
+}
+
 // eslint-disable-next-line
 export async function guardarContacto({ commit }, payload) {
   console.log("listar guardarContacto");
@@ -100,6 +119,32 @@ export async function guardarContacto({ commit }, payload) {
   };
   const response = await axiosInstance.post(
     `/api/clientes/guardarContacto/${payload.p_id}`,
+    data
+  );
+  console.log("Respuesta de la direccion de cliente");
+  console.log(response.data);
+  // commit("guardarDireccion", response.data);
+  return response.data;
+}
+
+// eslint-disable-next-line
+export async function actualizarContacto({ commit }, payload) {
+  console.log("listar guardarContacto");
+  const data = {
+    tipoPersona: payload.tipoPersona,
+    numeroDocumento: payload.numeroDocumento,
+    apellidoPaterno: payload.apellidoPaterno,
+    apellidoMaterno: payload.apellidoMaterno,
+    nombres: payload.nombres,
+    generoPersona: payload.generoPersona,
+    tipoDocumento: payload.tipoDocumento,
+    codigoAreaLaboral: payload.codigoAreaLaboral,
+    correoElectronico: payload.correoElectronico,
+    codigoSiglaProfesion: payload.codigoSiglaProfesion
+  };
+  console.log(" PARA ACTUALIZAR CONTACTO data", data);
+  const response = await axiosInstance.post(
+    `/api/clientes/actualizarContacto/${payload.p_id}/${payload.persona}`,
     data
   );
   console.log("Respuesta de la direccion de cliente");
