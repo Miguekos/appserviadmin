@@ -20,7 +20,7 @@ const axiosInstance = axios.create({
   //   host: '127.0.0.1',
   //   port: 9000
   // }
-  // baseURL: "http://172.105.17.123:4100"
+  // baseURL: "http://95.111.235.214:4100"
   // baseURL: "http://192.168.0.32:4100"
   baseURL: "https://api.apps.com.pe/sjservi"
 });
