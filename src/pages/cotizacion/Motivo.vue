@@ -6,7 +6,7 @@
         Motivo
       </p>
     </div>
-    <div class="q-pa-xs">
+    <div class="">
       <q-table
         dense
         :data="info"
@@ -18,15 +18,15 @@
       >
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="no_sigmot" :props="props">
+            <q-td key="a" :props="props">
               <q-badge
                 text-color="white"
-                :style="coloreando(props.row.no_colhex)"
-                :label="props.row.no_sigmot"
+                :style="coloreando(props.row.b)"
+                :label="props.row.a"
               />
             </q-td>
-            <q-td key="no_motsco" :props="props">
-              {{ props.row.no_motsco }}
+            <q-td key="c" :props="props">
+              {{ props.row.c }}
             </q-td>
           </q-tr>
         </template>
@@ -49,23 +49,71 @@ export default {
       },
       columns: [
         {
-          name: "no_sigmot",
+          name: "a",
           required: true,
           label: "Semaforo",
           align: "left",
-          field: "no_sigmot",
+          field: "a",
           sortable: true
         },
         {
-          name: "no_motsco",
+          name: "b",
           align: "left",
           label: "Cantidad",
-          field: "no_motsco",
+          field: "b",
+          sortable: true
+        },
+        {
+          name: "c",
+          align: "left",
+          label: "Cantidad",
+          field: "c",
           sortable: true
         }
       ],
       model: "",
-      info: [],
+      info: [
+        {
+          a: "CN",
+          b: "#",
+          c: "Cliente ya no quiere"
+        },
+        {
+          a: "FP",
+          b: "#",
+          c: "Forma de Pago"
+        },
+        {
+          a: "IT",
+          b: "#",
+          c: "Informacion Tecnica"
+        },
+        {
+          a: "PA",
+          b: "#",
+          c: "Precios altos"
+        },
+        {
+          a: "RE",
+          b: "#",
+          c: "Reemplazo de Cotizacion"
+        },
+        {
+          a: "TE",
+          b: "#",
+          c: "Tiempos de entrega"
+        },
+        {
+          a: "TR",
+          b: "#",
+          c: "Tiempo de respuesta"
+        },
+        {
+          a: "PT",
+          b: "#",
+          c: "Precio y entrega"
+        }
+      ],
       resumen: {},
       separator: "cell"
     };
@@ -78,14 +126,14 @@ export default {
   },
   mounted() {
     console.log("se cargo el mounted de Estado");
-    this.listar_motivo_seguimiento()
-      .then(resp => {
-        console.log(resp);
-        this.info = resp;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // this.listar_motivo_seguimiento()
+    //   .then(resp => {
+    //     console.log(resp);
+    //     this.info = resp;
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
     // this.$q.loading.show({ delay: 400 });
   }
 };

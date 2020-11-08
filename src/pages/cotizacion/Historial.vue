@@ -3,7 +3,7 @@
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p class="bg-secondary shadow-5 text-center text-white">
-        Estado
+        Historial Cotizaciones
       </p>
     </div>
     <div class="">
@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       pagination: {
-        sortBy: "no_sigsco",
+        sortBy: "no_sigmot",
         descending: false,
         page: 1,
         rowsPerPage: 15
@@ -72,41 +72,47 @@ export default {
         }
       ],
       model: "",
-      info: [
-        {
-          a: "AN",
-          b: "#E10F12",
-          c: "Anulado"
-        },
-        {
-          a: "AP",
-          b: "#0F58E1",
-          c: "Aprobado"
-        },
-        {
-          a: "OP",
-          b: "#DF8904",
-          c: "Otro proveedor"
-        },
-        {
-          a: "PR",
-          b: "#94D304",
-          c: "Pre-aprobado"
-        }
-      ],
+      // info: [
+      //   {
+      //     a: "ER",
+      //     b: "#0F58E1",
+      //     c: "En revision"
+      //   },
+      //   {
+      //     a: "FR",
+      //     b: "#468CF7",
+      //     c: "Fecha de Respuesta"
+      //   },
+      //   {
+      //     a: "NC",
+      //     b: "#0F0206",
+      //     c: "Nueva Contesta"
+      //   },
+      //   {
+      //     a: "NR",
+      //     b: "#929A9E",
+      //     c: "No Responde la llamada"
+      //   },
+      //   {
+      //     a: "SR",
+      //     b: "#D31F58",
+      //     c: "Sin Revisar por parte del cliente"
+      //   }
+      // ],
+      info: [],
       resumen: {},
       separator: "cell"
     };
   },
   methods: {
-    ...mapActions("reque", ["listar_estado_seguimiento"]),
+    ...mapActions("reque", ["listar_motivo_seguimiento"]),
     coloreando(arg) {
       return `background-color: ${arg}`;
     }
   },
   mounted() {
     console.log("se cargo el mounted de Estado");
-    // this.listar_estado_seguimiento()
+    // this.listar_motivo_seguimiento()
     //   .then(resp => {
     //     console.log(resp);
     //     this.info = resp;

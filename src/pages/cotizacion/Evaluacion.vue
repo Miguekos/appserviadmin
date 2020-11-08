@@ -6,7 +6,7 @@
         Evaluacion
       </p>
     </div>
-    <div class="q-pa-xs">
+    <div class="">
       <q-table
         dense
         :data="info"
@@ -18,15 +18,15 @@
       >
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="no_sigeva" :props="props">
+            <q-td key="a" :props="props">
               <q-badge
                 text-color="white"
-                :style="coloreando(props.row.no_colhex)"
-                :label="props.row.no_sigeva"
+                :style="coloreando(props.row.b)"
+                :label="props.row.a"
               />
             </q-td>
-            <q-td key="no_evasco" :props="props">
-              {{ props.row.no_evasco }}
+            <q-td key="c" :props="props">
+              {{ props.row.c }}
             </q-td>
           </q-tr>
         </template>
@@ -37,6 +37,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -49,23 +50,56 @@ export default {
       },
       columns: [
         {
-          name: "no_sigeva",
+          name: "a",
           required: true,
           label: "Semaforo",
           align: "left",
-          field: "no_sigeva",
+          field: "a",
           sortable: true
         },
         {
-          name: "no_evasco",
+          name: "b",
           align: "left",
           label: "Cantidad",
-          field: "no_evasco",
+          field: "b",
+          sortable: true
+        },
+        {
+          name: "c",
+          align: "left",
+          label: "Cantidad",
+          field: "c",
           sortable: true
         }
       ],
       model: "",
-      info: [],
+      info: [
+        {
+          a: "ER",
+          b: "#0F58E1",
+          c: "En revision"
+        },
+        {
+          a: "FR",
+          b: "#468CF7",
+          c: "Fecha de Respuesta"
+        },
+        {
+          a: "NC",
+          b: "#0F0206",
+          c: "Nueva Contesta"
+        },
+        {
+          a: "NR",
+          b: "#929A9E",
+          c: "No Responde la llamada"
+        },
+        {
+          a: "SR",
+          b: "#D31F58",
+          c: "Sin Revisar por parte del cliente"
+        }
+      ],
       resumen: {},
       separator: "cell"
     };
@@ -78,14 +112,14 @@ export default {
   },
   mounted() {
     console.log("se cargo el mounted de Estado");
-    this.listar_evaluacion()
-      .then(resp => {
-        console.log(resp);
-        this.info = resp;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // this.listar_evaluacion()
+    //   .then(resp => {
+    //     console.log(resp);
+    //     this.info = resp;
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
     // this.$q.loading.show({ delay: 400 });
   }
 };
