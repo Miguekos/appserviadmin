@@ -21,7 +21,7 @@
       </q-card-section>
       <q-card-actions align="around">
         <q-btn v-close-popup color="negative" flat>Cerrar</q-btn>
-        <q-btn color="positive" flat>Enviar</q-btn>
+        <q-btn color="positive" @click="enviarCorreos" flat>Enviar</q-btn>
       </q-card-actions>
     </q-card>
   </div>
@@ -55,7 +55,10 @@ export default {
   },
   methods: {
     ...mapActions("clientes", ["listar_catalogos"]),
+    ...mapActions("example", ["enviarEmailMasicoAmber"]),
     getSelectedString() {
+      console.log(this.selected);
+      this.$store.commit("clientes/setCatalogosEnviar", this.selected);
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
     }
   },

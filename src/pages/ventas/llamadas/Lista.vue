@@ -3,7 +3,7 @@
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p class="bg-secondary   shadow-5 text-center text-white">
-        Listado
+        Historial
       </p>
     </div>
     <div class="q-pa-xs">
@@ -21,6 +21,11 @@
             </q-td>
             <q-td key="no_regist" :props="props">
               {{ props.row.no_regist }}
+            </q-td>
+            <q-td key="no_sigsve" :props="props">
+              <q-badge :style="coloreando(props.row.no_colhex)">
+                {{ props.row.no_sigsve }}
+              </q-badge>
             </q-td>
             <q-td key="no_coment" :props="props">
               {{ props.row.no_coment }}
@@ -62,6 +67,13 @@ export default {
           sortable: true
         },
         {
+          name: "no_sigsve",
+          align: "center",
+          label: "Estado",
+          field: "no_sigsve",
+          sortable: true
+        },
+        {
           name: "no_coment",
           align: "center",
           label: "Comentario",
@@ -75,8 +87,11 @@ export default {
     };
   },
   methods: {
+    coloreando(arg) {
+      return `background-color: ${arg}`;
+    },
     formatearFecha(fecha) {
-      return date.formatDate(fecha, "YYYY-MM-DD");
+      return date.formatDate(fecha, "YYYY-MM-DD HH:mm");
     }
   },
   created() {

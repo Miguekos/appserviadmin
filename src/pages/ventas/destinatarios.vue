@@ -49,7 +49,15 @@
           label="Añadir"
         >
         </q-btn>
-        <q-btn size="sm" color="positive" icon="email" label="Enviar"> </q-btn>
+        <q-btn
+          :loading="loadboton"
+          size="sm"
+          color="positive"
+          @click="enviarCorreos"
+          icon="email"
+          label="Enviar"
+        >
+        </q-btn>
       </q-card-actions>
 
       <q-separator />
@@ -75,6 +83,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      loadboton: false,
       lotrOpts: [],
       model: null,
       selected: [],
@@ -146,6 +155,34 @@ export default {
   },
   methods: {
     ...mapActions("clientes", ["listar_clientes", "listar_personas_contacto"]),
+    ...mapActions("example", ["enviarEmailMasicoAmber"]),
+    async enviarCorreos() {
+      this.loadboton = true;
+      let adjuntos = [];
+      let clientes = [];
+      const array2 = this.$store.state.clientes.setClientesEnviarMasivos;
+      const array = this.$store.state.clientes.setCatalogosEnviar;
+      for (let index = 0; index < array2.length; index++) {
+        const element = array2[index];
+        console.log(element.co_percon);
+        clientes.push(`${element.co_percon}`);
+      }
+      for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        console.log(element.co_arcadj);
+        adjuntos.push(
+          `http://95.111.235.214:4100/api/containers/container1/download/${
+            element.co_arcadj
+          }`
+        );
+      }
+      await this.enviarEmailMasicoAmber({
+        cliente: clientes,
+        adjuntos: adjuntos
+      });
+      this.loadboton = false;
+      // this.$emit("click");
+    },
     anadir() {
       console.log(this.selected);
       for (let index = 0; index < this.selected.length; index++) {
@@ -176,6 +213,7 @@ export default {
       });
     },
     getSelectedString() {
+      this.$store.commit("clientes/setClientesEnviarMasivos", this.selected);
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
     }
   },

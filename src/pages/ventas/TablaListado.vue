@@ -161,7 +161,7 @@
                 icon="local_phone"
               />
               <q-btn
-                @click="correoDirecto()"
+                @click="correoDirecto(props.row)"
                 dense
                 size="sm"
                 color="positive"
@@ -173,7 +173,7 @@
                 color="amber"
                 text-color="black"
                 icon="email"
-                @click="enviarSimple()"
+                @click="enviarSimple(props.row)"
               />
               <q-btn
                 dense
@@ -398,7 +398,8 @@ export default {
     };
   },
   methods: {
-    correoDirecto() {
+    correoDirecto(val) {
+      console.log(val);
       this.$q
         .dialog({
           title: "Enviar Correo",
@@ -408,7 +409,8 @@ export default {
         })
         .onOk(() => {
           console.log(">>>> OK");
-          this.enviarEmailVerde();
+          // console.log();
+          this.enviarEmailVerde(val.co_percon);
         })
         .onOk(() => {
           console.log(">>>> second OK catcher");
@@ -423,7 +425,9 @@ export default {
     enviarMasivos() {
       this.envioMasivoCorreo = true;
     },
-    enviarSimple() {
+    enviarSimple(val) {
+      console.log(val.co_percon);
+      this.$store.commit("clientes/setClientesEnviar", val.co_percon);
       this.envioSimpleCorreo = true;
     },
     dialogCorreoOpen() {

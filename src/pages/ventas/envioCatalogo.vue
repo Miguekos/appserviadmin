@@ -52,6 +52,7 @@ export default {
   methods: {
     ...mapActions("clientes", ["listar_catalogos"]),
     getSelectedString() {
+      this.$store.commit("clientes/setCatalogosEnviar", this.selected);
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
     }
   },

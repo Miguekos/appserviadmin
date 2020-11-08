@@ -3,5 +3,8 @@ export default {
   clienteContactos: [],
   clienteDirecciones: [],
   nombreTextoCorreo: "qeqweqweq",
-  textoCorreo: "qwewqeqwe"
+  textoCorreo: "qwewqeqwe",
+  setCatalogosEnviar: [],
+  setClientesEnviarMasivos: [],
+  setClientesEnviar: null
 };

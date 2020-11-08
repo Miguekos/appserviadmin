@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <envioDeCatalogosSimple />
-    <destinatarios />
+    <!--    <destinatarios />-->
   </div>
 </template>
 

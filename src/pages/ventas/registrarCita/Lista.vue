@@ -3,7 +3,7 @@
     <!--    <q-markup-table dark class="bg-indigo-8">-->
     <div>
       <p class="bg-secondary   shadow-5 text-center text-white">
-        Listado
+        Historial de Cita
       </p>
     </div>
     <div class="q-pa-xs">
@@ -76,7 +76,7 @@ export default {
         {
           name: "no_regist",
           align: "center",
-          label: "Contacto",
+          label: "Usuario",
           field: "no_regist",
           sortable: true
         },
@@ -105,7 +105,7 @@ export default {
       return `background-color: ${arg}`;
     },
     formatearFecha(fecha) {
-      return date.formatDate(fecha, "YYYY-MM-DD");
+      return date.formatDate(fecha, "YYYY-MM-DD HH:mm");
     },
     eliminar() {
       alert("Eliminar");

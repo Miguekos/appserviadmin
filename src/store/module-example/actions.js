@@ -298,14 +298,26 @@ export async function mantenimiento_catalogos({}, payload) {
 }
 
 // eslint-disable-next-line
-export async function enviarEmailVerde({}) {
+export async function enviarEmailVerde({}, payload) {
   // console.log(payload);
   // const data = {
   //   nombreCatalogo: payload.nombreCatalogo,
   //   codigoArchivoAdjunto: payload.codigoArchivoAdjunto,
   //   ordenCatalogo: payload.ordenCatalogo
   // };
-  const response = await axiosInstance.get(`/api/emails/sendEmail`);
+  const response = await axiosInstance.get(`/v1.0/correos/${payload}`);
+  return response.data;
+}
+
+// eslint-disable-next-line
+export async function enviarEmailMasicoAmber({}, payload) {
+  // console.log(payload);
+  // const data = {
+  //   nombreCatalogo: payload.nombreCatalogo,
+  //   codigoArchivoAdjunto: payload.codigoArchivoAdjunto,
+  //   ordenCatalogo: payload.ordenCatalogo
+  // };
+  const response = await axiosInstance.post(`/v1.0/correos`, payload);
   return response.data;
 }
 
