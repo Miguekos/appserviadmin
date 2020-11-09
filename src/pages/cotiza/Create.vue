@@ -3,7 +3,7 @@
     <!-- <q-page padding> -->
     <q-card class="my-card">
       <q-item class="shadow-5 bg-secondary text-white items-center">
-        <q-item-label>REGISTRAR</q-item-label>
+        <q-item-label>REGISTRAR {{ model }}</q-item-label>
       </q-item>
       <q-item>
         <q-item-section class="flex-center flex">
@@ -35,7 +35,7 @@
           <q-form @submit.prevent="onSubmit" class>
             <div class="row flex flex-center">
               <div class="q-pa-xs col-xs-12 col-sm-6">
-                <q-input dense filled v-model="model.date">
+                <q-input dense filled v-model="date">
                   <template v-slot:prepend>
                     <q-icon name="event" class="cursor-pointer">
                       <q-popup-proxy
@@ -43,7 +43,7 @@
                         transition-hide="scale"
                       >
                         <q-date
-                          v-model="model.date"
+                          v-model="date"
                           v-close-popup
                           mask="YYYY-MM-DD HH:mm"
                         />
@@ -58,7 +58,7 @@
                         transition-hide="scale"
                       >
                         <q-time
-                          v-model="model.date"
+                          v-model="date"
                           mask="YYYY-MM-DD HH:mm"
                           format24h
                         />
@@ -98,7 +98,7 @@
                   required="true"
                   dense
                   filled
-                  v-model="model.asunto"
+                  v-model="asunto"
                   label="Asunto"
                   lazy-rules
                 />
@@ -108,7 +108,7 @@
               <div class="q-pa-xs col-xs-12 col-sm-2">
                 <q-input
                   required="true"
-                  v-model="model.text"
+                  v-model="text"
                   filled
                   type="textarea"
                   label="Detalle"
@@ -160,6 +160,7 @@ export default {
   },
   data() {
     return {
+      asunto: "",
       idCliente: null,
       loading: false,
       loading1: false,
@@ -170,6 +171,7 @@ export default {
       text: "",
       contacto: "",
       no_direcc: "",
+      date: "",
       model: {
         text: "",
         date: "",
@@ -236,6 +238,8 @@ export default {
       this.loading1 = true;
       this.registrarCotizacion({
         ...this.model,
+        date: this.date,
+        text: this.text,
         contacto: this.contacto,
         direccion: this.no_direcc,
         idcliente: this.idCliente

@@ -322,6 +322,21 @@ export async function enviarEmailMasicoAmber({}, payload) {
 }
 
 // eslint-disable-next-line
+export async function correosMasivoSimple({}, payload) {
+  // console.log(payload);
+  // const data = {
+  //   nombreCatalogo: payload.nombreCatalogo,
+  //   codigoArchivoAdjunto: payload.codigoArchivoAdjunto,
+  //   ordenCatalogo: payload.ordenCatalogo
+  // };
+  const response = await axiosInstance.post(
+    `/v1.0/correosMasivoSimple`,
+    payload
+  );
+  return response.data;
+}
+
+// eslint-disable-next-line
 export async function eliminar_requerimiento_cotizacion({}, payload) {
   // console.log(payload);
   // const data = {

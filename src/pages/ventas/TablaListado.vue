@@ -49,6 +49,17 @@
             @click="enviarMasivos()"
             class="q-ml-sm q-px-md"
           />
+          <q-btn
+            flat
+            dense
+            no-wrap
+            color="primary"
+            icon="email"
+            no-caps
+            label="Masivo Simple"
+            @click="enviarMasivosSimple()"
+            class="q-ml-sm q-px-md"
+          />
         </q-toolbar>
       </div>
     </div>
@@ -240,6 +251,10 @@
       <Control />
     </q-dialog>
 
+    <q-dialog full-width v-model="envioMasivoCorreoSimple">
+      <ControlMasivoSimple />
+    </q-dialog>
+
     <q-dialog v-model="envioSimpleCorreo">
       <ControlSimple />
     </q-dialog>
@@ -362,6 +377,7 @@ export default {
   },
   data() {
     return {
+      envioMasivoCorreoSimple: false,
       envioMasivoCorreo: false,
       envioSimpleCorreo: false,
       correosVarios: [],
@@ -424,6 +440,9 @@ export default {
     },
     enviarMasivos() {
       this.envioMasivoCorreo = true;
+    },
+    enviarMasivosSimple() {
+      this.envioMasivoCorreoSimple = true;
     },
     enviarSimple(val) {
       console.log(val.co_percon);
@@ -565,6 +584,7 @@ export default {
     DialogInformativo: () => import("./DialogInformativo"),
     Emoticons: () => import("./Emoticons"),
     Control: () => import("./Control"),
+    ControlMasivoSimple: () => import("./ControlMasivoSimple"),
     ControlSimple: () => import("./ControlSimple")
     // CuadroResumen: () => import("./CuadroResumen")
     // AddRegistro: () => import("./Create")
