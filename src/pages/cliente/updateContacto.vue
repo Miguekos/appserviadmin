@@ -190,6 +190,18 @@
           />
           <q-btn
             size="sm"
+            color="warning"
+            @click="limpiarDireccion"
+            label="Limpiar Direccion"
+          />
+          <q-btn
+            size="sm"
+            color="info"
+            @click="limpiarDatos"
+            label="Limpiar Datos"
+          />
+          <q-btn
+            size="sm"
             color="negative"
             label="Cancel"
             @click="cerrar()"
@@ -318,6 +330,20 @@ export default {
     //   import("../../pages/cliente/TablaDetalleDireccionLimpio")
   },
   methods: {
+    limpiarDireccion() {
+      this.fieldDepartamento = "";
+      this.fieldProvincia = "";
+      this.fieldDistrito = "";
+      this.formDireccion.codigoUbigeo = "";
+      this.formDireccion.direccion = "";
+    },
+    limpiarDatos() {
+      this.form.numeroCelular = "";
+      this.form.numeroTelefono = "";
+      this.form.correoElectronico = "";
+      this.form.codigoSiglaProfesion = "";
+      this.form.codigoAreaLaboral = "";
+    },
     cerrar() {
       this.$emit("click");
     },
