@@ -10,17 +10,57 @@
         <q-card-section>
           <div class="q-gutter-sm">
             <div>
+              <q-input
+                dense
+                outlined
+                required
+                label="Direccion"
+                v-model="form.direccion"
+                @keyup.enter="prompt = false"
+              />
+            </div>
+            <div>
               <q-select
                 outlined
                 dense
                 required
-                v-model="contactosDireccion"
-                :options="getClieContactos"
-                option-value="co_percon"
-                option-label="no_percon"
+                @input="provincia()"
+                v-model="fieldDepartamento"
+                :options="getDepartamento"
+                option-value="no_ubigeo"
+                option-label="nu_depart"
                 emit-value
                 map-options
-                label="Contactos"
+                label="Departamento"
+              />
+            </div>
+            <div>
+              <q-select
+                @input="distrito()"
+                outlined
+                dense
+                required
+                v-model="fieldProvincia"
+                :options="getProvincia"
+                option-value="no_ubigeo"
+                option-label="no_provin"
+                emit-value
+                map-options
+                label="Provincia"
+              />
+            </div>
+            <div>
+              <q-select
+                outlined
+                dense
+                required
+                v-model="form.codigoUbigeo"
+                :options="getDistrito"
+                option-value="no_ubigeo"
+                option-label="no_provin"
+                emit-value
+                map-options
+                label="Distrito"
               />
             </div>
           </div>
@@ -28,7 +68,6 @@
 
         <q-card-actions align="center" class="text-primary">
           <q-btn
-            :loading="loading"
             size="sm"
             color="positive"
             label="Agregar Direccion"
@@ -51,13 +90,10 @@ export default {
       "getDepartamento",
       "getProvincia",
       "getDistrito"
-    ]),
-    ...mapGetters("clientes", ["getClieContactos"])
+    ])
   },
   data() {
     return {
-      loadboton: false,
-      contactosDireccion: null,
       updateCliente: false,
       selected: [],
       fieldDepartamento: "",
@@ -126,7 +162,6 @@ export default {
     // TituloTabla: () => import("../../components/TituloTablas")
   },
   methods: {
-    ...mapActions("clientes", ["contactoCliente"]),
     cerrar() {
       this.$emit("click");
     },
@@ -185,47 +220,32 @@ export default {
       "pblistar_distrito"
     ]),
     ...mapActions("clientes", [
-      "actualizarContactoDireccion",
+      "actualizarDireccion",
       "direccionCliente",
       "eliminarDireccion",
       "contactoCliente"
     ]),
     async onSubmit() {
       this.loading = true;
+      this.$q.notify({
+        color: "green-4",
+        textColor: "white",
+        icon: "fas fa-check-circle",
+        message: "Submitted"
+      });
       // console.log(`Id para guardar: ${this.id_pro}`);
       // this.form.p_id = this.id_pro;
-      this.actualizarContactoDireccion({
-        co_direcc: this.dataUpdate.co_direcc,
-        co_percon: this.contactosDireccion,
-        co_usuari: null
-      })
-        .then(result => {
-          console.log(result);
-          // this.direccionCliente(this.form.p_id).then(() => {
+      this.actualizarDireccion(this.form).then(result => {
+        console.log(result);
+        this.direccionCliente(this.form.p_id).then(() => {
           this.loading = false;
-          this.$q.notify({
-            color: "green-4",
-            textColor: "white",
-            icon: "fas fa-check-circle",
-            message: "Actualizado"
-          });
-          //   this.prompt = false;
-          //   this.form.direccion = "";
-          //   this.form.codigoUbigeo = "";
-          //   this.form.codigoDireccion = "";
+          this.prompt = false;
+          this.form.direccion = "";
+          this.form.codigoUbigeo = "";
+          this.form.codigoDireccion = "";
           this.$emit("click");
-          // });
-        })
-        .catch(err => {
-          console.log(err);
-          this.$q.notify({
-            color: "red-4",
-            textColor: "white",
-            icon: "fas fa-check-circle",
-            message: "Error Controlado"
-          });
         });
-      this.loading = false;
+      });
       // this.reload();
       // this.$route.push(`/proveedores/detalle/${this.$route.params.id}`)
     },
@@ -257,13 +277,12 @@ export default {
     }
   },
   async mounted() {
-    await this.contactoCliente(this.dataUpdate.co_client);
-    // this.form.direccion = this.dataUpdate.no_direcc;
-    // this.fieldDepartamento = this.dataUpdate.no_depart;
-    // this.fieldProvincia = this.dataUpdate.no_provin;
-    // this.form.codigoUbigeo = this.dataUpdate.co_ubigeo;
-    // this.form.p_id = this.dataUpdate.co_client;
-    // this.form.codigoDireccion = this.dataUpdate.co_direcc;
+    this.form.direccion = this.dataUpdate.no_direcc;
+    this.fieldDepartamento = this.dataUpdate.no_depart;
+    this.fieldProvincia = this.dataUpdate.no_provin;
+    this.form.codigoUbigeo = this.dataUpdate.co_ubigeo;
+    this.form.p_id = this.dataUpdate.co_client;
+    this.form.codigoDireccion = this.dataUpdate.co_direcc;
     // this.loading = true;
     // this.form.p_id = this.id_pro;
     // this.pblistar_departamento();

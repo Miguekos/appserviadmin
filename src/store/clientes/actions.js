@@ -153,6 +153,21 @@ export async function actualizarContacto({ commit }, payload) {
   return response.data;
 }
 
+// eslint-disable-next-line
+export async function actualizarContactoDireccion({ commit }, payload) {
+  console.log("actualizarContactoDireccion", payload);
+
+  // console.log(" PARA ACTUALIZAR CONTACTO data", data);
+  const response = await axiosInstance.post(
+    `/api/clientes/actualizarContactoDireccion`,
+    payload
+  );
+  console.log("Respuesta de la direccion de cliente");
+  console.log(response.data);
+  // commit("guardarDireccion", response.data);
+  return response.data;
+}
+
 export async function eliminarCliente({ commit }, payload) {
   console.log("Eliminar Cliente");
   const id = payload.codigoDeCliente;

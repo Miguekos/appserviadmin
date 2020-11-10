@@ -12,6 +12,7 @@
             <div class="row q-gutter-xs">
               <div class="col">
                 <q-input
+                  disable
                   autofocus
                   ref="form.apellidoPaterno"
                   dense
@@ -23,6 +24,7 @@
               </div>
               <div class="col">
                 <q-input
+                  disable
                   ref="form.apellidoMaterno"
                   dense
                   outlined
@@ -34,6 +36,7 @@
             </div>
             <div class="q-gutter-xs">
               <q-input
+                disable
                 ref="form.nombres"
                 dense
                 outlined
@@ -44,6 +47,7 @@
             </div>
             <div class="q-gutter-xs">
               <q-select
+                disable
                 :options="generoOption"
                 option-label="no_genero"
                 option-value="ti_genero"
@@ -95,6 +99,16 @@
                 required
                 label="Telefono"
                 v-model="form.p_nu_telefo"
+              />
+            </div>
+            <div class="q-gutter-xs">
+              <q-input
+                ref="celular"
+                dense
+                outlined
+                required
+                label="Celular"
+                v-model="form.celular"
               />
             </div>
             <div class="q-gutter-xs">
@@ -217,6 +231,7 @@ export default {
       areaOption: [],
       siglaOption: [],
       form: {
+        celular: "",
         tipoPersona: "1",
         apellidoPaterno: "",
         apellidoMaterno: "",
