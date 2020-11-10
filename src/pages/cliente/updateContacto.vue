@@ -98,17 +98,17 @@
                 outlined
                 required
                 label="Telefono"
-                v-model="form.p_nu_telefo"
+                v-model="form.numeroTelefono"
               />
             </div>
             <div class="q-gutter-xs">
               <q-input
-                ref="celular"
+                ref="numeroCelular"
                 dense
                 outlined
                 required
                 label="Celular"
-                v-model="form.celular"
+                v-model="form.numeroCelular"
               />
             </div>
             <div class="q-gutter-xs">
@@ -231,7 +231,7 @@ export default {
       areaOption: [],
       siglaOption: [],
       form: {
-        celular: "",
+        numeroCelular: "",
         tipoPersona: "1",
         apellidoPaterno: "",
         apellidoMaterno: "",
@@ -241,7 +241,7 @@ export default {
         codigoAreaLaboral: "",
         correoElectronico: "",
         codigoSiglaProfesion: "",
-        p_nu_telefo: "",
+        numeroTelefono: "",
         p_id: null,
         persona: null
       },
@@ -403,59 +403,71 @@ export default {
       // this.formDireccion.p_id = this.id_pro;
       // this.form.p_id = this.id_pro;
       // console.log("this.formDireccion", this.formDireccion);
-      this.actualizarContacto(this.form).then(resp => {
-        const personContacto = JSON.parse(
-          resp[0].mantenimiento_persona_contacto
-        );
-        console.log(personContacto);
+      const asd = {
+        ...this.form,
+        ...this.formDireccion
+      };
+      console.log(asd);
+      this.actualizarContacto({
+        ...this.form,
+        ...this.formDireccion,
+        ubigeo: this.dataUpdate.co_ubigeo
+      }).then(async resp => {
+        console.log("actualizarContacto", resp);
+        // const personContacto = JSON.parse(
+        //   resp[0].mantenimiento_persona_contacto
+        // );
+        // console.log(personContacto);
         // const p_co_perconVar = personContacto.codigoPersonaContacto;
-        console.log(personContacto.codigoPersonaContacto);
+        // console.log(personContacto.codigoPersonaContacto);
         console.log("Se ejecuto Guardar Contacto");
-        this.contactoCliente(this.form.p_id).then(resp => {
-          console.log(resp);
-          console.log("Se ejecuto Guardar clienteContacto");
-          // this.mantenimiento_telefono({
-          //   p_id: this.form.p_id,
-          //   numeroTelefono: this.form.p_nu_telefo,
-          //   p_co_percon: p_co_perconVar
-          // })
-          //   .then(resp => {
-          //     console.log(resp);
-          //     const telfRegistro = JSON.parse(resp[0].mantenimiento_telefono);
-          //     this.percon_direccion_telefono({
-          //       p_co_percon: p_co_perconVar,
-          //       p_co_direcc: p_co_direccVar,
-          //       p_co_telefo: telfRegistro.codigoTelefono
-          //     });
-          //     this.apellidoPaterno = "";
-          //     this.apellidoMaterno = "";
-          //     this.nombres = "";
-          //     this.generoPersona = "";
-          //     this.codigoAreaLaboral = "";
-          //     this.correoElectronico = "";
-          //     this.codigoSiglaProfesion = "";
-          //     this.formDireccion.direccion = "";
-          //     this.formDireccion.codigoUbigeo = "";
-          //     this.formDireccion.codigoDireccion = "";
-          //     this.$q.notify({
-          //       color: "green",
-          //       textColor: "white",
-          //       icon: "fas fa-check-circle",
-          //       message: "Registrado"
-          //     });
-          //   })
-          //   .catch(err => {
-          //     console.log(err);
-          //     this.$q.notify({
-          //       color: "red",
-          //       textColor: "white",
-          //       icon: "fas fa-times",
-          //       message: "Error al registrar.!"
-          //     });
-          //   });
-          this.prompt = false;
-          this.loading = false;
-        });
+        // this.contactoCliente(this.form.p_id).then(resp => {
+        //   console.log(resp);
+        //   console.log("Se ejecuto Guardar clienteContacto");
+        //   // this.mantenimiento_telefono({
+        //   //   p_id: this.form.p_id,
+        //   //   numeroTelefono: this.form.numeroTelefono,
+        //   //   p_co_percon: p_co_perconVar
+        //   // })
+        //   //   .then(resp => {
+        //   //     console.log(resp);
+        //   //     const telfRegistro = JSON.parse(resp[0].mantenimiento_telefono);
+        //   //     this.percon_direccion_telefono({
+        //   //       p_co_percon: p_co_perconVar,
+        //   //       p_co_direcc: p_co_direccVar,
+        //   //       p_co_telefo: telfRegistro.codigoTelefono
+        //   //     });
+        //   //     this.apellidoPaterno = "";
+        //   //     this.apellidoMaterno = "";
+        //   //     this.nombres = "";
+        //   //     this.generoPersona = "";
+        //   //     this.codigoAreaLaboral = "";
+        //   //     this.correoElectronico = "";
+        //   //     this.codigoSiglaProfesion = "";
+        //   //     this.formDireccion.direccion = "";
+        //   //     this.formDireccion.codigoUbigeo = "";
+        //   //     this.formDireccion.codigoDireccion = "";
+        //   //     this.$q.notify({
+        //   //       color: "green",
+        //   //       textColor: "white",
+        //   //       icon: "fas fa-check-circle",
+        //   //       message: "Registrado"
+        //   //     });
+        //   //   })
+        //   //   .catch(err => {
+        //   //     console.log(err);
+        //   //     this.$q.notify({
+        //   //       color: "red",
+        //   //       textColor: "white",
+        //   //       icon: "fas fa-times",
+        //   //       message: "Error al registrar.!"
+        //   //     });
+        //   //   });
+        //   this.prompt = false;
+        //   this.loading = false;
+        // });
+        await this.contactoCliente(this.dataUpdate.co_client);
+        this.$emit("click");
       });
 
       // this.reload();
@@ -542,15 +554,18 @@ export default {
     this.form.generoPersona = this.dataUpdate.ti_genero;
     this.form.codigoAreaLaboral = this.dataUpdate.co_arelab;
     this.form.codigoSiglaProfesion = this.dataUpdate.co_sigpro;
-    this.form.p_nu_telefo = this.dataUpdate.nu_telefo;
+    this.form.numeroTelefono = this.dataUpdate.nu_telefo;
+    this.form.numeroCelular = this.dataUpdate.nu_telcel;
     this.form.correoElectronico = this.dataUpdate.no_corele;
     this.form.p_id = this.dataUpdate.co_client;
     this.formDireccion.p_id = this.dataUpdate.co_client;
     this.form.persona = this.dataUpdate.co_percon;
-    // this.formDireccion.direccion = this.dataUpdate.
-    // this.fieldDepartamento = this.dataUpdate.
-    // this.fieldProvincia = this.dataUpdate.
-    // this.formDireccion.codigoUbigeo = this.dataUpdate.
+
+    this.formDireccion.direccion = this.dataUpdate.no_direcc;
+    this.fieldDepartamento = this.dataUpdate.no_depart;
+    this.fieldProvincia = this.dataUpdate.no_provin;
+    this.formDireccion.codigoUbigeo = this.dataUpdate.no_distri;
+
     // this.loading = true;
     // this.formDireccion.p_id = this.id_pro;
     // this.form.p_id = this.id_pro;

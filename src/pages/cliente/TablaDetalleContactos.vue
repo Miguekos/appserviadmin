@@ -645,10 +645,10 @@ export default {
     this.formDireccion.p_id = this.id_pro;
     this.form.p_id = this.id_pro;
     this.pblistar_departamento();
-    this.loading = false;
     this.generoOption = await this.listar_genero_persona();
     this.areaOption = await this.listar_area_laboral();
     this.siglaOption = await this.listar_sigla_profesion();
+    this.loading = false;
     // await this.getClientes();
     // this.info = this.Clientes;
   }

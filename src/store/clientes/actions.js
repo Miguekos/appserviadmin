@@ -130,22 +130,25 @@ export async function guardarContacto({ commit }, payload) {
 // eslint-disable-next-line
 export async function actualizarContacto({ commit }, payload) {
   console.log("listar guardarContacto");
-  const data = {
-    tipoPersona: payload.tipoPersona,
-    numeroDocumento: payload.numeroDocumento,
-    apellidoPaterno: payload.apellidoPaterno,
-    apellidoMaterno: payload.apellidoMaterno,
-    nombres: payload.nombres,
-    generoPersona: payload.generoPersona,
-    tipoDocumento: payload.tipoDocumento,
-    codigoAreaLaboral: payload.codigoAreaLaboral,
-    correoElectronico: payload.correoElectronico,
-    codigoSiglaProfesion: payload.codigoSiglaProfesion
-  };
-  console.log(" PARA ACTUALIZAR CONTACTO data", data);
+  const idCliente = payload.p_id;
+  delete payload.p_id;
+  delete payload.codigoUbigeo;
+  // const data = {
+  //   tipoPersona: payload.tipoPersona,
+  //   numeroDocumento: payload.numeroDocumento,
+  //   apellidoPaterno: payload.apellidoPaterno,
+  //   apellidoMaterno: payload.apellidoMaterno,
+  //   nombres: payload.nombres,
+  //   generoPersona: payload.generoPersona,
+  //   tipoDocumento: payload.tipoDocumento,
+  //   codigoAreaLaboral: payload.codigoAreaLaboral,
+  //   correoElectronico: payload.correoElectronico,
+  //   codigoSiglaProfesion: payload.codigoSiglaProfesion
+  // };
+  console.log(" PARA ACTUALIZAR CONTACTO data", payload);
   const response = await axiosInstance.post(
-    `/api/clientes/actualizarContacto/${payload.p_id}/${payload.persona}`,
-    data
+    `/api/clientes/actualizarContacto/${idCliente}/${payload.persona}`,
+    payload
   );
   console.log("Respuesta de la direccion de cliente");
   console.log(response.data);
