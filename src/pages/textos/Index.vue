@@ -183,14 +183,6 @@ export default {
           label: "Nombre de Texto",
           field: "no_txtcor",
           sortable: true
-        },
-        {
-          name: "de_txtcor",
-          label: "Texto",
-          align: "left",
-          field: "de_txtcor",
-          style: "width: 10px",
-          sortable: true
         }
       ],
       textoCorreo: "",
