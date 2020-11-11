@@ -105,21 +105,11 @@ export async function actualizarDireccion({ commit }, payload) {
 // eslint-disable-next-line
 export async function guardarContacto({ commit }, payload) {
   console.log("listar guardarContacto");
-  const data = {
-    tipoPersona: payload.tipoPersona,
-    numeroDocumento: payload.numeroDocumento,
-    apellidoPaterno: payload.apellidoPaterno,
-    apellidoMaterno: payload.apellidoMaterno,
-    nombres: payload.nombres,
-    generoPersona: payload.generoPersona,
-    tipoDocumento: payload.tipoDocumento,
-    codigoAreaLaboral: payload.codigoAreaLaboral,
-    correoElectronico: payload.correoElectronico,
-    codigoSiglaProfesion: payload.codigoSiglaProfesion
-  };
+  delete payload.codigoUbigeo
+
   const response = await axiosInstance.post(
     `/api/clientes/guardarContacto/${payload.p_id}`,
-    data
+    payload
   );
   console.log("Respuesta de la direccion de cliente");
   console.log(response.data);

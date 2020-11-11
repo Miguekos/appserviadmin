@@ -3,7 +3,7 @@
     <!-- <q-page padding> -->
     <q-card class="my-card">
       <q-item class="shadow-5 bg-secondary text-white items-center">
-        <q-item-label>REGISTRAR {{ model }}</q-item-label>
+        <q-item-label>REGISTRAR</q-item-label>
       </q-item>
       <q-item>
         <q-item-section class="flex-center flex">

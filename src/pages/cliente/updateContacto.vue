@@ -438,6 +438,8 @@ export default {
         ...this.form,
         ...this.formDireccion,
         ubigeo: this.dataUpdate.co_ubigeo
+          ? this.dataUpdate.co_ubigeo
+          : this.formDireccion.codigoUbigeo
       }).then(async resp => {
         console.log("actualizarContacto", resp);
         // const personContacto = JSON.parse(

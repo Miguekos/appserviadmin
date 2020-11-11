@@ -60,6 +60,7 @@
     </div>
     <q-table
       dense
+      :pagination="pagination"
       :data="datafld"
       :columns="columns"
       row-key="no_percon"
@@ -184,7 +185,17 @@
                   outlined
                   required
                   label="Telefono"
-                  v-model="form.p_nu_telefo"
+                  v-model="form.numeroTelefono"
+                />
+              </div>
+              <div class="q-gutter-xs">
+                <q-input
+                  ref="numeroCelular"
+                  dense
+                  outlined
+                  required
+                  label="Celular"
+                  v-model="form.numeroCelular"
                 />
               </div>
               <div class="q-gutter-xs">
@@ -259,6 +270,7 @@
 
           <q-card-actions align="center" class="text-primary">
             <q-btn
+              :loading="loading"
               size="sm"
               color="positive"
               label="Agregar Contacto"
@@ -322,6 +334,7 @@ export default {
       areaOption: [],
       siglaOption: [],
       form: {
+        numeroTelefono: "",
         tipoPersona: "1",
         apellidoPaterno: "",
         apellidoMaterno: "",
@@ -331,16 +344,15 @@ export default {
         codigoAreaLaboral: "",
         correoElectronico: "",
         codigoSiglaProfesion: "",
+        numeroCelular: "",
         p_id: null
       },
       prompt: false,
       pagination: {
         sortBy: "id",
         descending: false,
-        page: 2,
-        rowsPerPage: 3,
-        rowsNumber: 3,
-        pagesNumber: 3
+        page: 1,
+        rowsPerPage: 10
       },
       info: [],
       filter: "",
@@ -489,79 +501,93 @@ export default {
       });
       this.formDireccion.p_id = this.id_pro;
       this.form.p_id = this.id_pro;
-      this.guardarDireccion(this.formDireccion).then(result => {
-        const codigoDirec = JSON.parse(result[0].mantenimiento_direccion);
-        console.log(codigoDirec);
-        const p_co_direccVar = codigoDirec.codigoDireccion;
-        console.log(codigoDirec.codigoDireccion);
-        this.direccionCliente(this.formDireccion.p_id).then(() => {
-          this.loading = false;
-          this.prompt = false;
-          this.apellidoPaterno = "";
-          this.apellidoMaterno = "";
-          this.nombres = "";
-          this.generoPersona = "";
-          this.codigoAreaLaboral = "";
-          this.correoElectronico = "";
-          this.codigoSiglaProfesion = "";
-          this.formDireccion.direccion = "";
-          this.formDireccion.codigoUbigeo = "";
-          this.formDireccion.codigoDireccion = "";
+      const jsonEnviar = {
+        ...this.form,
+        ...this.formDireccion,
+        ubigeo: this.formDireccion.codigoUbigeo
+      };
+      this.guardarContacto(jsonEnviar).then(result => {
+        console.log(result);
+        this.$q.notify({
+          color: "green",
+          textColor: "white",
+          icon: "fas fa-check-circle",
+          message: "Registrado"
         });
-        this.guardarContacto(this.form).then(resp => {
-          const personContacto = JSON.parse(
-            resp[0].mantenimiento_persona_contacto
-          );
-          console.log(personContacto);
-          const p_co_perconVar = personContacto.codigoPersonaContacto;
-          console.log(personContacto.codigoPersonaContacto);
-          console.log("Se ejecuto Guardar Contacto");
-          this.contactoCliente(this.form.p_id).then(resp => {
-            console.log(resp);
-            console.log("Se ejecuto Guardar clienteContacto");
-            this.mantenimiento_telefono({
-              p_id: this.form.p_id,
-              numeroTelefono: this.form.p_nu_telefo,
-              p_co_percon: p_co_perconVar
-            })
-              .then(resp => {
-                console.log(resp);
-                const telfRegistro = JSON.parse(resp[0].mantenimiento_telefono);
-                this.percon_direccion_telefono({
-                  p_co_percon: p_co_perconVar,
-                  p_co_direcc: p_co_direccVar,
-                  p_co_telefo: telfRegistro.codigoTelefono
-                });
-                this.apellidoPaterno = "";
-                this.apellidoMaterno = "";
-                this.nombres = "";
-                this.generoPersona = "";
-                this.codigoAreaLaboral = "";
-                this.correoElectronico = "";
-                this.codigoSiglaProfesion = "";
-                this.formDireccion.direccion = "";
-                this.formDireccion.codigoUbigeo = "";
-                this.formDireccion.codigoDireccion = "";
-                this.$q.notify({
-                  color: "green",
-                  textColor: "white",
-                  icon: "fas fa-check-circle",
-                  message: "Registrado"
-                });
-              })
-              .catch(err => {
-                console.log(err);
-                this.$q.notify({
-                  color: "red",
-                  textColor: "white",
-                  icon: "fas fa-times",
-                  message: "Error al registrar.!"
-                });
-              });
-            this.prompt = false;
-            this.loading = false;
-          });
-        });
+        this.loading = false;
+        this.prompt = false;
+        // const codigoDirec = JSON.parse(result[0].mantenimiento_direccion);
+        // console.log(codigoDirec);
+        // const p_co_direccVar = codigoDirec.codigoDireccion;
+        // console.log(codigoDirec.codigoDireccion);
+        // this.direccionCliente(this.formDireccion.p_id).then(() => {
+        //   this.loading = false;
+        //   this.prompt = false;
+        //   this.apellidoPaterno = "";
+        //   this.apellidoMaterno = "";
+        //   this.nombres = "";
+        //   this.generoPersona = "";
+        //   this.codigoAreaLaboral = "";
+        //   this.correoElectronico = "";
+        //   this.codigoSiglaProfesion = "";
+        //   this.formDireccion.direccion = "";
+        //   this.formDireccion.codigoUbigeo = "";
+        //   this.formDireccion.codigoDireccion = "";
+        // });
+        // this.guardarContacto(this.form).then(resp => {
+        //   const personContacto = JSON.parse(
+        //     resp[0].mantenimiento_persona_contacto
+        //   );
+        //   console.log(personContacto);
+        //   const p_co_perconVar = personContacto.codigoPersonaContacto;
+        //   console.log(personContacto.codigoPersonaContacto);
+        //   console.log("Se ejecuto Guardar Contacto");
+        //   this.contactoCliente(this.form.p_id).then(resp => {
+        //     console.log(resp);
+        //     console.log("Se ejecuto Guardar clienteContacto");
+        //     this.mantenimiento_telefono({
+        //       p_id: this.form.p_id,
+        //       numeroTelefono: this.form.p_nu_telefo,
+        //       p_co_percon: p_co_perconVar
+        //     })
+        //       .then(resp => {
+        //         console.log(resp);
+        //         const telfRegistro = JSON.parse(resp[0].mantenimiento_telefono);
+        //         this.percon_direccion_telefono({
+        //           p_co_percon: p_co_perconVar,
+        //           p_co_direcc: p_co_direccVar,
+        //           p_co_telefo: telfRegistro.codigoTelefono
+        //         });
+        //         this.apellidoPaterno = "";
+        //         this.apellidoMaterno = "";
+        //         this.nombres = "";
+        //         this.generoPersona = "";
+        //         this.codigoAreaLaboral = "";
+        //         this.correoElectronico = "";
+        //         this.codigoSiglaProfesion = "";
+        //         this.formDireccion.direccion = "";
+        //         this.formDireccion.codigoUbigeo = "";
+        //         this.formDireccion.codigoDireccion = "";
+        //         this.$q.notify({
+        //           color: "green",
+        //           textColor: "white",
+        //           icon: "fas fa-check-circle",
+        //           message: "Registrado"
+        //         });
+        //       })
+        //       .catch(err => {
+        //         console.log(err);
+        //         this.$q.notify({
+        //           color: "red",
+        //           textColor: "white",
+        //           icon: "fas fa-times",
+        //           message: "Error al registrar.!"
+        //         });
+        //       });
+        //     this.prompt = false;
+        //     this.loading = false;
+        //   });
+        // });
       });
       // this.reload();
       // this.$route.push(`/proveedores/detalle/${this.$route.params.id}`)

@@ -60,6 +60,7 @@
     </div>
     <q-table
       dense
+      :pagination="pagination"
       :data="datafld"
       :columns="columns"
       row-key="co_direcc"
@@ -212,10 +213,8 @@ export default {
       pagination: {
         sortBy: "id",
         descending: false,
-        page: 2,
-        rowsPerPage: 3,
-        rowsNumber: 3,
-        pagesNumber: 3
+        page: 1,
+        rowsPerPage: 10
       },
       info: [],
       loading: false,
