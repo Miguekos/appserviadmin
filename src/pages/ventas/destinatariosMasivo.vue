@@ -3,11 +3,13 @@
     <q-card>
       <q-card-section class="bg-secondary text-white">
         <div class="text-center" style="font-size: 20px">
-          Destinatararios Masivos
+          CONSULTA MASIVA
         </div>
       </q-card-section>
       <q-card-section class="q-pa-md">
         <q-select
+          autofocus
+          color="red"
           use-input
           hide-selected
           fill-input
@@ -28,6 +30,7 @@
       </q-card-section>
       <q-card-section class="q-pa-md">
         <q-table
+          :pagination="pagination"
           dense
           title="Destinatarios"
           :data="dataContactos"
@@ -49,6 +52,7 @@
           label="Añadir"
         >
         </q-btn>
+        <q-btn color="negative" size="sm" v-close-popup>Cerrar</q-btn>
         <q-btn
           :loading="loadboton"
           size="sm"
@@ -83,6 +87,13 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      pagination: {
+        sortBy: "desc",
+        descending: false,
+        page: 1,
+        rowsPerPage: 20
+        // rowsNumber: xx if getting data from a server
+      },
       loadboton: false,
       lotrOpts: [],
       model: null,

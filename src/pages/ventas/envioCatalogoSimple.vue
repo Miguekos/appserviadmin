@@ -3,7 +3,7 @@
     <q-card>
       <q-card-section class="bg-secondary text-white">
         <div class="text-center" style="font-size: 20px">
-          CATALOGOS
+          CONSULTA MASIVA
         </div>
       </q-card-section>
       <q-card-section>
@@ -21,6 +21,7 @@
       </q-card-section>
       <q-card-actions align="around">
         <q-btn v-close-popup color="negative" flat>Cerrar</q-btn>
+        <q-btn color="negative" v-close-popup flat>Cerrar</q-btn>
         <q-btn color="positive" @click="enviarCorreos" flat>Enviar</q-btn>
       </q-card-actions>
     </q-card>

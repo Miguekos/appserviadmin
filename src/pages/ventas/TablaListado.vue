@@ -45,7 +45,7 @@
             color="primary"
             icon="email"
             no-caps
-            label="Correo Masivo"
+            label="Catalogo Masivo"
             @click="enviarMasivos()"
             class="q-ml-sm q-px-md"
           />
@@ -56,7 +56,7 @@
             color="primary"
             icon="email"
             no-caps
-            label="Masivo Simple"
+            label="Consulta Masiva"
             @click="enviarMasivosSimple()"
             class="q-ml-sm q-px-md"
           />

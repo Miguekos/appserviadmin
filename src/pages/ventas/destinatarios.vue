@@ -3,11 +3,13 @@
     <q-card>
       <q-card-section class="bg-secondary text-white">
         <div class="text-center" style="font-size: 20px">
-          Destinatararios
+          CATALOGO MASIVO
         </div>
       </q-card-section>
       <q-card-section class="q-pa-md">
         <q-select
+          autofocus
+          color="red"
           use-input
           hide-selected
           fill-input
@@ -29,6 +31,7 @@
       <q-card-section class="q-pa-md">
         <q-table
           dense
+          :pagination="pagination"
           title="Destinatarios"
           :data="dataContactos"
           :columns="columns1"
@@ -83,6 +86,13 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      pagination: {
+        sortBy: "desc",
+        descending: false,
+        page: 1,
+        rowsPerPage: 20
+        // rowsNumber: xx if getting data from a server
+      },
       loadboton: false,
       lotrOpts: [],
       model: null,
