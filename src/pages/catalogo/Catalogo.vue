@@ -54,7 +54,7 @@ export default {
         return new Promise(resolve => {
           // simulating a delay of 2 seconds
           resolve({
-            url: "http://95.111.235.214:4100/api/containers/container1/upload"
+            url: "https://api.apps.com.pe/api/containers/container1/upload"
           });
         });
       } else {

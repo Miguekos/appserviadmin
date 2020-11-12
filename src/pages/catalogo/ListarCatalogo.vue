@@ -192,7 +192,7 @@ export default {
     rowClick(val) {
       console.log(val);
       window.open(
-        `http://95.111.235.214:4100/api/containers/container1/download/${
+        `https://api.apps.com.pe/api/containers/container1/download/${
           val.co_arcadj
         }`,
         "_blank"
