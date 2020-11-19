@@ -331,10 +331,6 @@ export async function correo_consulta({}, payload) {
 // eslint-disable-next-line
 export async function enviarEmailMasicoAmber({}, payload) {
   console.log("enviarEmailMasicoAmber - payload", payload);
-  // const responseCorreo = await axiosInstance.get(
-  //   `/api/clientes/correo_consulta/${payload.person}/2/null`
-  // );
-  // console.log(responseCorreo.data);
   const response = await axiosInstance.post(`/v1.0/correos`, payload);
   return response.data;
 }
