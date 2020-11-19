@@ -67,6 +67,13 @@
         label="Filtrar"
       />
       <q-btn
+        color="orange"
+        @click="Limpair"
+        icon-right="close"
+        size="sm"
+        label="Limpiar"
+      />
+      <q-btn
         color="positive"
         @click="nuevo_reque()"
         icon-right="add"
@@ -103,6 +110,13 @@ export default {
   },
   methods: {
     ...mapActions("example", ["registros", "dialogCreate"]),
+    async Limpair() {
+      await this.registros({
+        p_co_estreq: "null",
+        p_fe_inireq: "null",
+        p_fe_finreq: "null"
+      });
+    },
     async filtrar() {
       await this.registros({
         p_co_estreq: this.estadoFiltro,
