@@ -61,7 +61,7 @@
     <div class="row justify-around q-gutter">
       <q-btn
         color="secondary"
-        @click="showLoading()"
+        @click="filtrar"
         icon-right="send"
         size="sm"
         label="Filtrar"
@@ -79,6 +79,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   computed: {
     ...mapGetters("example", ["registrosFiltroEstados"])
@@ -102,6 +103,13 @@ export default {
   },
   methods: {
     ...mapActions("example", ["registros", "dialogCreate"]),
+    async filtrar() {
+      await this.registros({
+        p_co_estreq: this.estadoFiltro,
+        p_fe_inireq: this.date_ini,
+        p_fe_finreq: this.date_end
+      });
+    },
     nuevo_reque() {
       console.log("Se preciono el boton");
       this.dialogCreate(true);
@@ -135,7 +143,11 @@ export default {
     }
   },
   async mounted() {
-    await this.registros();
+    await this.registros({
+      p_co_estreq: "null",
+      p_fe_inireq: "null",
+      p_fe_finreq: "null"
+    });
   },
   beforeDestroy() {
     if (this.timer !== void 0) {

@@ -1,16 +1,12 @@
 import { axiosInstance } from "boot/axios";
+
 // import { date } from "quasar";
 
-export async function registros({ commit }) {
-  const data = {
-    p_co_estreq: "null",
-    p_fe_inireq: "null",
-    p_fe_finreq: "null"
-  };
+export async function registros({ commit }, payload) {
   console.log("listarRegistros");
   const registro = await axiosInstance.post(
     "/api/cotizas/requerimiento_listar",
-    data
+    payload
   );
   // console.log(registro.data);
   commit("setRegistros", registro.data);
@@ -182,6 +178,7 @@ export async function listar_direccion({ commit }, payload) {
   commit("setlistar_direccion", response.data);
   // return response.data;
 }
+
 // eslint-disable-next-line
 export async function listar_estado_seguimiento_cliente({}) {
   const response = await axiosInstance.get(
@@ -190,6 +187,7 @@ export async function listar_estado_seguimiento_cliente({}) {
   // commit("setlistar_direccion", response.data);
   return response.data;
 }
+
 // eslint-disable-next-line
 export async function listar_sector_economico({}) {
   const response = await axiosInstance.get(
@@ -198,6 +196,7 @@ export async function listar_sector_economico({}) {
   // commit("setlistar_direccion", response.data);
   return response.data;
 }
+
 // eslint-disable-next-line
 export async function semaforo_seguimiento_cliente({}) {
   const response = await axiosInstance.get(

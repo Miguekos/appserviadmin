@@ -44,7 +44,6 @@
         </div>
         <div class="q-ma-sm">
           <q-input
-            required="true"
             dense
             v-model="text"
             filled
@@ -79,6 +78,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   props: ["clienteR", "contactoR"],
   computed: {
