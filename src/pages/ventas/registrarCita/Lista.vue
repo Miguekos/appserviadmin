@@ -76,7 +76,7 @@ export default {
         {
           name: "no_regist",
           align: "center",
-          label: "Usuario",
+          label: "Comentario",
           field: "no_regist",
           sortable: true
         },
