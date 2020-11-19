@@ -311,24 +311,30 @@ export async function mantenimiento_catalogos({}, payload) {
 
 // eslint-disable-next-line
 export async function enviarEmailVerde({}, payload) {
-  // console.log(payload);
-  // const data = {
-  //   nombreCatalogo: payload.nombreCatalogo,
-  //   codigoArchivoAdjunto: payload.codigoArchivoAdjunto,
-  //   ordenCatalogo: payload.ordenCatalogo
-  // };
+  console.log("enviarEmailVerde - payload", payload);
+  const responseCorreo = await axiosInstance.get(
+    `/api/clientes/correo_consulta/${payload}/1/null`
+  );
+  console.log("enviarEmailVerde", responseCorreo.data);
   const response = await axiosInstance.get(`/v1.0/correos/${payload}`);
   return response.data;
 }
 
 // eslint-disable-next-line
+export async function correo_consulta({}, payload) {
+  const responseCorreo = await axiosInstance.get(
+    `/api/clientes/correo_consulta/${payload.co_person}/${payload.id}/null`
+  );
+  return responseCorreo.data;
+}
+
+// eslint-disable-next-line
 export async function enviarEmailMasicoAmber({}, payload) {
-  // console.log(payload);
-  // const data = {
-  //   nombreCatalogo: payload.nombreCatalogo,
-  //   codigoArchivoAdjunto: payload.codigoArchivoAdjunto,
-  //   ordenCatalogo: payload.ordenCatalogo
-  // };
+  console.log("enviarEmailMasicoAmber - payload", payload);
+  // const responseCorreo = await axiosInstance.get(
+  //   `/api/clientes/correo_consulta/${payload.person}/2/null`
+  // );
+  // console.log(responseCorreo.data);
   const response = await axiosInstance.post(`/v1.0/correos`, payload);
   return response.data;
 }

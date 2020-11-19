@@ -146,8 +146,8 @@
           <q-td key="ca_catalo" :props="props">
             {{ props.row.ca_catalo }}
           </q-td>
-          <q-td key="ca_citas" :props="props">
-            {{ props.row.ca_citas }}
+          <q-td key="ca_citcli" :props="props">
+            {{ props.row.ca_citcli }}
           </q-td>
           <q-td key="co_percon" :props="props">
             <div class="q-gutter-xs">
@@ -350,10 +350,10 @@ const columns = [
     field: "ca_catalo"
   },
   {
-    name: "ca_citas",
+    name: "ca_citcli",
     align: "left",
     label: "Citas",
-    field: "ca_citas"
+    field: "ca_citcli"
   },
   {
     name: "co_percon",
@@ -416,6 +416,7 @@ export default {
   methods: {
     correoDirecto(val) {
       console.log(val);
+      let data = val;
       this.$q
         .dialog({
           title: "Enviar Correo",
@@ -425,8 +426,8 @@ export default {
         })
         .onOk(() => {
           console.log(">>>> OK");
-          // console.log();
-          this.enviarEmailVerde(val.co_percon);
+          // console.log(data);
+          this.enviarEmailVerde(data.co_percon);
         })
         .onOk(() => {
           console.log(">>>> second OK catcher");
