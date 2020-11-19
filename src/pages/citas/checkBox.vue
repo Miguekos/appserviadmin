@@ -21,7 +21,7 @@
       </q-card-section>
       <q-card-actions align="around">
         <q-btn v-close-popup color="negative">Cerrar</q-btn>
-        <q-btn color="positive">Enviar</q-btn>
+        <q-btn @click="enviar" color="positive">Enviar</q-btn>
       </q-card-actions>
     </q-card>
   </div>
@@ -56,6 +56,15 @@ export default {
   },
   methods: {
     ...mapActions("clientes", ["listar_catalogos"]),
+    enviar() {
+      const data = [];
+      for (let index = 0; index < this.selected.length; index++) {
+        const element = this.selected[index];
+        // console.log(element.co_catrci);
+        data.push(element.co_catrci);
+      }
+      this.$emit("click", data);
+    },
     getSelectedString() {
       return this.selected.length === 0 ? "" : `${this.selected.length}`;
     }

@@ -86,14 +86,14 @@
                 <!--                {{ props.row.no_estreq }}-->
                 <q-btn
                   dense
-                  @click="prueba(props.row.co_percon)"
+                  @click="done(props.row)"
                   size="sm"
                   color="green"
                   icon="done"
                 />
                 <q-btn
                   dense
-                  @click="actualizarCotizacion(props.row)"
+                  @click="done_all(props.row)"
                   size="sm"
                   color="info"
                   icon="done_all"
@@ -117,7 +117,9 @@
     <q-dialog v-model="alert">
       <Edit @evtFechaCadAtrativos="alert = false" :info="informacion" />
     </q-dialog>
-    <q-dialog v-model="check"> <checkBox :dataCheck="itemsListos" /> </q-dialog>
+    <q-dialog v-model="check">
+      <checkBox @click="boton" :dataCheck="itemsListos" />
+    </q-dialog>
     <!-- {{ itemsListos }} -->
   </div>
 </template>
@@ -130,6 +132,9 @@ export default {
   },
   data() {
     return {
+      clienteR: "",
+      contactoR: "",
+      codigoCita: "",
       info: [],
       selection: ["teal", "red"],
       itemsListos: [],
@@ -216,7 +221,104 @@ export default {
     checkBox: () => import("./checkBox")
   },
   methods: {
-    checkbox() {
+    ...mapActions("clientes", ["listar_rechazo_citas", "listar_citas_todas"]),
+    ...mapActions("example", ["mantenimiento_citas_cliente"]),
+    async boton(val) {
+      console.log("boton", val);
+      const data = {
+        tipo: "E",
+        cliente: this.clienteR,
+        contacto: this.contactoR,
+        codigoCita: this.codigoCita,
+        codigosAnulacion: val
+      };
+      console.log("data-update", data);
+      console.log("val-update", val);
+      try {
+        const response = await this.mantenimiento_citas_cliente(data);
+        console.log("response", response);
+      } catch (e) {
+        console.log("error", e);
+      }
+      this.check = false;
+    },
+    async done(val) {
+      this.$q
+        .dialog({
+          title: "Confirmar",
+          message: "Seguro quieres continuar?",
+          cancel: true,
+          persistent: true
+        })
+        .onOk(async () => {
+          // console.log('>>>> OK')
+          console.log("boton", val);
+          const data = {
+            tipo: "C",
+            cliente: val.co_client,
+            contacto: val.co_percon,
+            codigoCita: val.co_citcli
+          };
+          console.log("data-update", data);
+          console.log("val-update", val);
+          try {
+            const response = await this.mantenimiento_citas_cliente(data);
+            console.log("response", response);
+          } catch (e) {
+            console.log("error", e);
+          }
+        })
+        .onOk(() => {
+          // console.log('>>>> second OK catcher')
+        })
+        .onCancel(() => {
+          // console.log('>>>> Cancel')
+        })
+        .onDismiss(() => {
+          // console.log('I am triggered on both OK and Cancel')
+        });
+    },
+    async done_all(val) {
+      this.$q
+        .dialog({
+          title: "Confirmar",
+          message: "Seguro quieres continuar?",
+          cancel: true,
+          persistent: true
+        })
+        .onOk(async () => {
+          console.log("boton", val);
+          const data = {
+            tipo: "F",
+            cliente: val.co_client,
+            contacto: val.co_percon,
+            codigoCita: val.co_citcli
+          };
+          console.log("data-update", data);
+          console.log("val-update", val);
+          try {
+            const response = await this.mantenimiento_citas_cliente(data);
+            console.log("response", response);
+          } catch (e) {
+            console.log("error", e);
+          }
+          // console.log('>>>> OK')
+        })
+        .onOk(() => {
+          // console.log('>>>> second OK catcher')
+        })
+        .onCancel(() => {
+          // console.log('>>>> Cancel')
+        })
+        .onDismiss(() => {
+          // console.log('I am triggered on both OK and Cancel')
+        });
+    },
+    checkbox(val) {
+      console.log("checkbox", val);
+      this.clienteR = val.co_client;
+      this.contactoR = val.co_percon;
+      this.codigoCita = val.co_citcli;
       this.listar_rechazo_citas()
         .then(resp => {
           console.log(resp);
@@ -235,7 +337,7 @@ export default {
       "registros",
       "eliminar_requerimiento_cotizacion"
     ]),
-    ...mapActions("clientes", ["listar_rechazo_citas", "listar_citas_todas"]),
+
     formatearFecha(fecha) {
       return date.formatDate(fecha, "YYYY-MM-DD");
     },

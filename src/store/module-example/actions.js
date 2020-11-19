@@ -142,17 +142,30 @@ export function dialogRegistrarCitaCliente({ commit }, payload) {
 
 // eslint-disable-next-line
 export async function mantenimiento_citas_cliente({}, payload) {
-  const data = {
-    codigodireccion: payload.codigodireccion,
-    comentario: payload.comentario,
-    fechaCita: payload.fechaCita,
-    horaCita: payload.horaCita,
-    direccionAlternativa: payload.direccionAlternativa
-  };
+  console.log("mantenimiento_citas_cliente", payload);
+  let data;
+  if (payload.tipo === "R") {
+    data = {
+      codigodireccion: payload.codigodireccion,
+      comentario: payload.comentario,
+      fechaCita: payload.fechaCita,
+      horaCita: payload.horaCita,
+      direccionAlternativa: payload.direccionAlternativa
+    };
+  } else if (payload.tipo === "E") {
+    data = {
+      codigoCita: payload.codigoCita,
+      codigosAnulacion: payload.codigosAnulacion
+    };
+  } else if (payload.tipo === "C" || payload.tipo === "F") {
+    data = {
+      codigoCita: payload.codigoCita
+    };
+  }
   const response = await axiosInstance.post(
-    `/api/ventas/mantenimiento_citas_cliente/${payload.cliente}/${
-      payload.contacto
-    }`,
+    `/api/ventas/mantenimiento_citas_cliente/${payload.tipo}/${
+      payload.cliente
+    }/${payload.contacto}`,
     data
   );
   // console.log(registro.data);

@@ -131,6 +131,9 @@ export default {
       "listar_citas",
       "seguimiento_cliente"
     ]),
+    updateCita(val) {
+      console.log("updfate", val);
+    },
     reset() {
       this.dialogRegistrarCitaCliente({
         estado: false
@@ -165,6 +168,7 @@ export default {
     registrar() {
       this.loadboton = true;
       const data = {
+        tipo: "R",
         cliente: this.clienteR,
         contacto: this.contactoR,
         direccionAlternativa: this.listar_direccionVar,
