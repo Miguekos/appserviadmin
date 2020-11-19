@@ -8,6 +8,7 @@
       </div>
       <div class="q-ma-md">
         <q-select
+          ref="estadoFiltro"
           label="Estado"
           transition-show="flip-up"
           transition-hide="flip-down"
@@ -25,6 +26,7 @@
       </div>
       <div class="row justify-between q-ma-md">
         <q-input
+          ref="date_ini"
           label="Fecha Inicio"
           dense
           filled
@@ -41,6 +43,7 @@
           </template>
         </q-input>
         <q-input
+          ref="date_end"
           label="Fecha Fin"
           dense
           filled
@@ -116,6 +119,14 @@ export default {
         p_fe_inireq: "null",
         p_fe_finreq: "null"
       });
+      this.estadoFiltro = "";
+      this.date_ini = "";
+      this.date_end = "";
+      setTimeout(() => {
+        this.$refs.estadoFiltro.resetValidation();
+        this.$refs.date_ini.resetValidation();
+        this.$refs.date_end.resetValidation();
+      }, 1500);
     },
     async filtrar() {
       await this.registros({
