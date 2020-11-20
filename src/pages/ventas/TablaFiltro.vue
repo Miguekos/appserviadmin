@@ -67,9 +67,9 @@
         label="Filtrar"
       />
       <q-btn
-        color="info"
+        color="red"
         @click="limpiarFiltros()"
-        icon-right="send"
+        icon-right="close"
         size="xs"
         label="Limpiar Filtros"
       />
@@ -121,7 +121,6 @@ export default {
       this.$router.push("/cotizacion/create");
     },
     CargaSniped() {
-      this.$q.loading.show();
       // hiding in 2s
       this.timer = setTimeout(() => {
         this.$q.loading.hide();
@@ -129,26 +128,31 @@ export default {
       }, 1000);
     },
     async showLoading() {
-      this.CargaSniped();
+      this.$q.loading.show();
       await this.seguimiento_cliente({
         cliente: null,
         seguimiento: this.listar_estado_seguimiento_clienteVar,
         economico: this.listar_sector_economicoVar,
-        semoforo: this.semaforo_seguimiento_clienteVar
+        semoforo: null
       });
+      this.$q.loading.hide();
     },
     async limpiarFiltros() {
-      this.CargaSniped();
+      this.$q.loading.show();
       await this.seguimiento_cliente({
         cliente: null,
         seguimiento: null,
         economico: null,
         semoforo: null
       });
+      this.listar_estado_seguimiento_clienteVar = "";
+      this.listar_sector_economicoVar = "";
+      this.$q.loading.hide();
     }
   },
   async mounted() {
-    await this.registros();
+    this.$q.loading.show();
+    // await this.registros();
     this.listar_estado_seguimiento_clienteList = await this.listar_estado_seguimiento_cliente();
     this.listar_sector_economicoList = await this.listar_sector_economico();
     this.semaforo_seguimiento_clienteList = await this.semaforo_seguimiento_cliente();
@@ -160,6 +164,7 @@ export default {
       .catch(err => {
         console.log(err);
       });
+    this.$q.loading.hide();
   },
   beforeDestroy() {
     if (this.timer !== void 0) {

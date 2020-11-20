@@ -591,7 +591,7 @@ export default {
     // AddRegistro: () => import("./Create")
   },
   async mounted() {
-    // await this.getClientes();
+    await this.getClientes();
     await this.seguimiento_cliente({
       cliente: null,
       seguimiento: null,

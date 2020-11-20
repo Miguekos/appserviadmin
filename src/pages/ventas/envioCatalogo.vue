@@ -31,14 +31,6 @@ export default {
       selected: [],
       columns: [
         {
-          name: "co_catpro",
-          required: true,
-          label: "Nro.",
-          align: "left",
-          field: "co_catpro",
-          sortable: true
-        },
-        {
           name: "no_catpro",
           align: "left",
           label: "Catalogos",
