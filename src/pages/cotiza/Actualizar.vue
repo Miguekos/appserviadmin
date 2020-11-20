@@ -1,7 +1,6 @@
 <template>
   <div>
     <!-- <q-page padding> -->
-    {{ info }}
     <q-card class="my-card">
       <q-item class="shadow-5 bg-secondary text-white items-center">
         <q-item-label>Actualizar</q-item-label>

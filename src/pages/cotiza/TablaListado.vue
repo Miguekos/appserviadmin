@@ -48,7 +48,7 @@
         v-show="showSimulatedReturnData"
         :data="getRegistros"
         :columns="columns"
-        row-key="id_reqcot"
+        row-key="no_codreq"
         binary-state-sort
         :filter="filter"
         :loading="loading"
@@ -57,8 +57,8 @@
       >
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="id_reqcot" :props="props">
-              {{ props.row.id_reqcot }}
+            <q-td key="no_codreq" :props="props">
+              {{ props.row.no_codreq }}
             </q-td>
             <q-td key="fe_regist" :props="props">
               {{ props.row.fe_regist }}
@@ -152,11 +152,11 @@ export default {
       rowCount: 10,
       columns: [
         {
-          name: "id_reqcot",
+          name: "no_codreq",
           required: true,
           label: "Nro.",
           align: "left",
-          field: "id_reqcot",
+          field: "no_codreq",
           format: val => `${val}`,
           sortable: true
         },
@@ -262,7 +262,11 @@ export default {
           this.eliminar_requerimiento_cotizacion(arg.id_reqcot)
             .then(resp => {
               console.log(resp);
-              this.registros();
+              this.registros({
+                p_co_estreq: "null",
+                p_fe_inireq: "null",
+                p_fe_finreq: "null"
+              });
             })
             .catch(err => {
               console.log(err);
