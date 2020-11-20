@@ -316,7 +316,7 @@ export async function enviarEmailVerde({}, payload) {
     `/api/clientes/correo_consulta/${payload}/1/null`
   );
   console.log("enviarEmailVerde", responseCorreo.data);
-  const response = await axiosInstance.get(`/v1.0/correos/${payload}`);
+  const response = await axiosInstance.get(`/v1.0/correos/${payload}/1`);
   return response.data;
 }
 
