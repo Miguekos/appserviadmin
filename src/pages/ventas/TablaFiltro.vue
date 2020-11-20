@@ -45,7 +45,7 @@
           transition-show="flip-up"
           transition-hide="flip-down"
           :options="info"
-          option-value="no_sigare"
+          option-value="co_arelab"
           option-label="no_arelab"
           option-disable="inactive"
           emit-value
@@ -131,7 +131,7 @@ export default {
       this.$q.loading.show();
       await this.seguimiento_cliente({
         cliente: null,
-        seguimiento: this.listar_estado_seguimiento_clienteVar,
+        seguimiento: this.semaforo_seguimiento_clienteVar,
         economico: this.listar_sector_economicoVar,
         semoforo: null
       });
@@ -145,8 +145,8 @@ export default {
         economico: null,
         semoforo: null
       });
-      this.listar_estado_seguimiento_clienteVar = "";
-      this.listar_sector_economicoVar = "";
+      this.semaforo_seguimiento_clienteVar = null;
+      this.listar_sector_economicoVar = null;
       this.$q.loading.hide();
     }
   },

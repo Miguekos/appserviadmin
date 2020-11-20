@@ -45,6 +45,7 @@
     >
       <q-table
         dense
+        :pagination="pagination"
         v-show="showSimulatedReturnData"
         :data="info"
         :columns="columns"
@@ -78,8 +79,8 @@
             <q-td key="ho_citcli" :props="props">
               {{ props.row.ho_citcli }}
             </q-td>
-            <q-td key="no_repcit  " :props="props">
-              {{ props.row.no_repcit }}
+            <q-td key="no_estcit" :props="props">
+              {{ props.row.no_estcit }}
             </q-td>
           </q-tr>
         </template>
@@ -104,6 +105,13 @@ export default {
   },
   data() {
     return {
+      pagination: {
+        sortBy: "desc",
+        descending: false,
+        page: 1,
+        rowsPerPage: 20
+        // rowsNumber: xx if getting data from a server
+      },
       info: [],
       selection: ["teal", "red"],
       itemsListos: [],
@@ -169,10 +177,10 @@ export default {
           sortable: true
         },
         {
-          name: "no_repcit  ",
+          name: "no_estcit",
           align: "left",
-          label: "Representante",
-          field: "no_repcit  ",
+          label: "Estado",
+          field: "no_estcit",
           sortable: true
         }
       ],
@@ -252,6 +260,7 @@ export default {
     // this.$q.loading.show();
     this.loading = true;
     this.info = await this.listar_citas_historico();
+    this.$on("actualizar", (this.info = await this.listar_citas_historico()));
     this.loading = false;
     // this.$q.loading.hide();
   }

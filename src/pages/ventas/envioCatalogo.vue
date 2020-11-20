@@ -49,7 +49,7 @@ export default {
     }
   },
   async mounted() {
-    this.data = await this.listar_catalogos();
+    this.data = await this.listar_catalogos(1);
   }
 };
 </script>

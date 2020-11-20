@@ -45,6 +45,7 @@
     >
       <q-table
         dense
+        :pagination="pagination"
         v-show="showSimulatedReturnData"
         :data="info"
         :columns="columns"
@@ -78,8 +79,8 @@
             <q-td key="ho_citcli" :props="props">
               {{ props.row.ho_citcli }}
             </q-td>
-            <q-td key="no_repcit  " :props="props">
-              {{ props.row.no_repcit }}
+            <q-td key="no_estcit" :props="props">
+              {{ props.row.no_estcit }}
             </q-td>
             <q-td key="co_percon" :props="props">
               <div class="q-gutter-xs">
@@ -132,6 +133,13 @@ export default {
   },
   data() {
     return {
+      pagination: {
+        sortBy: "desc",
+        descending: false,
+        page: 1,
+        rowsPerPage: 10
+        // rowsNumber: xx if getting data from a server
+      },
       clienteR: "",
       contactoR: "",
       codigoCita: "",
@@ -200,10 +208,10 @@ export default {
           sortable: true
         },
         {
-          name: "no_repcit  ",
+          name: "no_estcit",
           align: "left",
-          label: "Representante",
-          field: "no_repcit  ",
+          label: "Estado",
+          field: "no_estcit",
           sortable: true
         },
         {
@@ -221,8 +229,15 @@ export default {
     checkBox: () => import("./checkBox")
   },
   methods: {
-    ...mapActions("clientes", ["listar_rechazo_citas", "listar_citas_todas"]),
-    ...mapActions("example", ["mantenimiento_citas_cliente"]),
+    ...mapActions("clientes", [
+      "listar_rechazo_citas",
+      "listar_citas_todas",
+      "listar_citas_historico"
+    ]),
+    ...mapActions("example", [
+      "mantenimiento_citas_cliente",
+      "correo_consulta"
+    ]),
     async boton(val) {
       console.log("boton", val);
       const data = {
@@ -264,6 +279,9 @@ export default {
           try {
             const response = await this.mantenimiento_citas_cliente(data);
             console.log("response", response);
+            this.info = await this.listar_citas_todas();
+            // this.info = await this.listar_citas_historico();
+            this.$emit("actualizar");
           } catch (e) {
             console.log("error", e);
           }
@@ -299,6 +317,13 @@ export default {
           try {
             const response = await this.mantenimiento_citas_cliente(data);
             console.log("response", response);
+            this.correo_consulta({
+              co_person: val.co_percon,
+              id: 3
+            });
+            this.info = await this.listar_citas_todas();
+            // this.info = await this.listar_citas_historico();
+            this.$emit("actualizar");
           } catch (e) {
             console.log("error", e);
           }
@@ -314,7 +339,7 @@ export default {
           // console.log('I am triggered on both OK and Cancel')
         });
     },
-    checkbox(val) {
+    async checkbox(val) {
       console.log("checkbox", val);
       this.clienteR = val.co_client;
       this.contactoR = val.co_percon;
@@ -328,6 +353,9 @@ export default {
         .catch(err => {
           console.log(err);
         });
+      this.info = await this.listar_citas_todas();
+      // this.info = await this.listar_citas_historico();
+      this.$emit("actualizar");
     },
     coloreando(arg) {
       console.log(arg);

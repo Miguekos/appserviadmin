@@ -105,7 +105,7 @@ export async function actualizarDireccion({ commit }, payload) {
 // eslint-disable-next-line
 export async function guardarContacto({ commit }, payload) {
   console.log("listar guardarContacto");
-  delete payload.codigoUbigeo
+  delete payload.codigoUbigeo;
 
   const response = await axiosInstance.post(
     `/api/clientes/guardarContacto/${payload.p_id}`,
@@ -276,9 +276,11 @@ export async function percon_direccion_telefono({ commit }, payload) {
 }
 
 // eslint-disable
-export async function listar_catalogos({ commit }) {
+export async function listar_catalogos({ commit }, payload) {
   console.log("listar_catalogos");
-  const response = await axiosInstance.get(`/api/clientes/listar_catalogos`);
+  const response = await axiosInstance.get(
+    `/api/clientes/listar_catalogos/${payload}`
+  );
   // console.log(response.data);
   // commit("setClientes", response.data);
   return response.data;
