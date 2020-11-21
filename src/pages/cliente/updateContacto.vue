@@ -215,6 +215,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   props: ["datafld", "id_pro", "dataUpdate"],
   computed: {
@@ -437,9 +438,9 @@ export default {
       this.actualizarContacto({
         ...this.form,
         ...this.formDireccion,
-        ubigeo: this.dataUpdate.co_ubigeo
-          ? this.dataUpdate.co_ubigeo
-          : this.formDireccion.codigoUbigeo
+        ubigeo: this.formDireccion.codigoUbigeo
+          ? this.formDireccion.codigoUbigeo
+          : this.dataUpdate.co_ubigeo
       }).then(async resp => {
         console.log("actualizarContacto", resp);
         // const personContacto = JSON.parse(
